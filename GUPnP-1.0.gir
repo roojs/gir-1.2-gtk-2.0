@@ -1,0 +1,938 @@
+<?xml version="1.0"?>
+<!-- This file was automatically generated from C sources - DO NOT EDIT!
+To affect the contents of this file, edit the original C definitions,
+and/or use gtk-doc annotations.  -->
+<repository version="1.2"
+            xmlns="http://www.gtk.org/introspection/core/1.0"
+            xmlns:c="http://www.gtk.org/introspection/c/1.0"
+            xmlns:glib="http://www.gtk.org/introspection/glib/1.0">
+  <include name="GLib" version="2.0"/>
+  <include name="GObject" version="2.0"/>
+  <include name="GSSDP" version="1.0"/>
+  <include name="Gio" version="2.0"/>
+  <include name="Soup" version="2.4"/>
+  <include name="libxml2" version="2.0"/>
+  <package name="gobject-2.0"/>
+  <package name="gssdp-1.0"/>
+  <package name="libsoup-2.4"/>
+  <package name="libxml-2.0"/>
+  <namespace name="GUPnP"
+             version="1.0"
+             shared-library="libgupnp-1.0.so.3"
+             c:identifier-prefixes="GUPnP"
+             c:symbol-prefixes="g_u_pn_p">
+    <record name="Context" c:type="GUPnPContext">
+      <doc xml:whitespace="preserve">This struct contains private data only, and should be accessed using the
+functions below.</doc>
+      <field name="parent" writable="1">
+        <type name="GSSDP.Client" c:type="GSSDPClient"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="ContextPrivate" c:type="GUPnPContextPrivate*"/>
+      </field>
+    </record>
+    <record name="ContextClass" c:type="GUPnPContextClass">
+      <field name="parent_class" writable="1">
+        <type name="GSSDP.ClientClass" c:type="GSSDPClientClass"/>
+      </field>
+      <field name="_gupnp_reserved1" introspectable="0">
+        <callback name="_gupnp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved2" introspectable="0">
+        <callback name="_gupnp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved3" introspectable="0">
+        <callback name="_gupnp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved4" introspectable="0">
+        <callback name="_gupnp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="ContextManager" c:type="GUPnPContextManager">
+      <doc xml:whitespace="preserve">This struct contains private data only, and should be accessed using the
+functions below.</doc>
+      <field name="parent" writable="1">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="ContextManagerPrivate"
+              c:type="GUPnPContextManagerPrivate*"/>
+      </field>
+    </record>
+    <record name="ContextManagerClass" c:type="GUPnPContextManagerClass">
+      <field name="parent_class" writable="1">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+      <field name="_gupnp_reserved1" introspectable="0">
+        <callback name="_gupnp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved2" introspectable="0">
+        <callback name="_gupnp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved3" introspectable="0">
+        <callback name="_gupnp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved4" introspectable="0">
+        <callback name="_gupnp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="ContextManagerPrivate"
+            c:type="GUPnPContextManagerPrivate"
+            disguised="1">
+    </record>
+    <record name="ContextPrivate" c:type="GUPnPContextPrivate" disguised="1">
+    </record>
+    <enumeration name="ControlError" c:type="GUPnPControlError">
+      <doc xml:whitespace="preserve">#GError codes used for errors in the #GUPNP_CONTROL_ERROR domain, during
+invocation of service actions.</doc>
+      <member name="invalid_action"
+              value="401"
+              c:identifier="GUPNP_CONTROL_ERROR_INVALID_ACTION"/>
+      <member name="invalid_args"
+              value="402"
+              c:identifier="GUPNP_CONTROL_ERROR_INVALID_ARGS"/>
+      <member name="out_of_sync"
+              value="403"
+              c:identifier="GUPNP_CONTROL_ERROR_OUT_OF_SYNC"/>
+      <member name="action_failed"
+              value="501"
+              c:identifier="GUPNP_CONTROL_ERROR_ACTION_FAILED"/>
+    </enumeration>
+    <record name="ControlPoint" c:type="GUPnPControlPoint">
+      <doc xml:whitespace="preserve">This struct contains private data only, and should be accessed using the
+functions below.</doc>
+      <field name="parent" writable="1">
+        <type name="GSSDP.ResourceBrowser" c:type="GSSDPResourceBrowser"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="ControlPointPrivate" c:type="GUPnPControlPointPrivate*"/>
+      </field>
+    </record>
+    <record name="ControlPointClass" c:type="GUPnPControlPointClass">
+      <field name="parent_class" writable="1">
+        <type name="GSSDP.ResourceBrowserClass"
+              c:type="GSSDPResourceBrowserClass"/>
+      </field>
+      <field name="device_proxy_available">
+        <callback name="device_proxy_available">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="control_point" transfer-ownership="none">
+              <type name="ControlPoint" c:type="GUPnPControlPoint*"/>
+            </parameter>
+            <parameter name="proxy" transfer-ownership="none">
+              <type name="DeviceProxy" c:type="GUPnPDeviceProxy*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="device_proxy_unavailable">
+        <callback name="device_proxy_unavailable">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="control_point" transfer-ownership="none">
+              <type name="ControlPoint" c:type="GUPnPControlPoint*"/>
+            </parameter>
+            <parameter name="proxy" transfer-ownership="none">
+              <type name="DeviceProxy" c:type="GUPnPDeviceProxy*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="service_proxy_available">
+        <callback name="service_proxy_available">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="control_point" transfer-ownership="none">
+              <type name="ControlPoint" c:type="GUPnPControlPoint*"/>
+            </parameter>
+            <parameter name="proxy" transfer-ownership="none">
+              <type name="ServiceProxy" c:type="GUPnPServiceProxy*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="service_proxy_unavailable">
+        <callback name="service_proxy_unavailable">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="control_point" transfer-ownership="none">
+              <type name="ControlPoint" c:type="GUPnPControlPoint*"/>
+            </parameter>
+            <parameter name="proxy" transfer-ownership="none">
+              <type name="ServiceProxy" c:type="GUPnPServiceProxy*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved1" introspectable="0">
+        <callback name="_gupnp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved2" introspectable="0">
+        <callback name="_gupnp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved3" introspectable="0">
+        <callback name="_gupnp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="ControlPointPrivate"
+            c:type="GUPnPControlPointPrivate"
+            disguised="1">
+    </record>
+    <record name="Device" c:type="GUPnPDevice">
+      <doc xml:whitespace="preserve">This struct contains private data only, and should be accessed using the
+functions below.</doc>
+      <field name="parent" writable="1">
+        <type name="DeviceInfo" c:type="GUPnPDeviceInfo"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="DevicePrivate" c:type="GUPnPDevicePrivate*"/>
+      </field>
+    </record>
+    <record name="DeviceClass" c:type="GUPnPDeviceClass">
+      <field name="parent_class" writable="1">
+        <type name="DeviceInfoClass" c:type="GUPnPDeviceInfoClass"/>
+      </field>
+      <field name="_gupnp_reserved1" introspectable="0">
+        <callback name="_gupnp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved2" introspectable="0">
+        <callback name="_gupnp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved3" introspectable="0">
+        <callback name="_gupnp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved4" introspectable="0">
+        <callback name="_gupnp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="DeviceInfo" c:type="GUPnPDeviceInfo">
+      <doc xml:whitespace="preserve">This struct contains private data only, and should be accessed using the
+functions below.</doc>
+      <field name="parent" writable="1">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="DeviceInfoPrivate" c:type="GUPnPDeviceInfoPrivate*"/>
+      </field>
+    </record>
+    <record name="DeviceInfoClass" c:type="GUPnPDeviceInfoClass">
+      <field name="parent_class" writable="1">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+      <field name="get_element" introspectable="0">
+        <callback name="get_element" introspectable="0">
+          <return-value>
+            <type name="libxml2.Node" c:type="xmlNode*"/>
+          </return-value>
+          <parameters>
+            <parameter name="info" transfer-ownership="none">
+              <type name="DeviceInfo" c:type="GUPnPDeviceInfo*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="get_device" introspectable="0">
+        <callback name="get_device" introspectable="0">
+          <return-value>
+            <type name="DeviceInfo" c:type="GUPnPDeviceInfo*"/>
+          </return-value>
+          <parameters>
+            <parameter name="info" transfer-ownership="none">
+              <type name="DeviceInfo" c:type="GUPnPDeviceInfo*"/>
+            </parameter>
+            <parameter name="element" transfer-ownership="none">
+              <type name="libxml2.Node" c:type="xmlNode*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="get_service" introspectable="0">
+        <callback name="get_service" introspectable="0">
+          <return-value>
+            <type name="ServiceInfo" c:type="GUPnPServiceInfo*"/>
+          </return-value>
+          <parameters>
+            <parameter name="info" transfer-ownership="none">
+              <type name="DeviceInfo" c:type="GUPnPDeviceInfo*"/>
+            </parameter>
+            <parameter name="element" transfer-ownership="none">
+              <type name="libxml2.Node" c:type="xmlNode*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved1" introspectable="0">
+        <callback name="_gupnp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved2" introspectable="0">
+        <callback name="_gupnp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved3" introspectable="0">
+        <callback name="_gupnp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved4" introspectable="0">
+        <callback name="_gupnp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="DeviceInfoPrivate"
+            c:type="GUPnPDeviceInfoPrivate"
+            disguised="1">
+    </record>
+    <record name="DevicePrivate" c:type="GUPnPDevicePrivate" disguised="1">
+    </record>
+    <record name="DeviceProxy" c:type="GUPnPDeviceProxy">
+      <doc xml:whitespace="preserve">This struct contains private data only, and should be accessed using the
+functions below.</doc>
+      <field name="parent" writable="1">
+        <type name="DeviceInfo" c:type="GUPnPDeviceInfo"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="DeviceProxyPrivate" c:type="GUPnPDeviceProxyPrivate*"/>
+      </field>
+    </record>
+    <record name="DeviceProxyClass" c:type="GUPnPDeviceProxyClass">
+      <field name="parent_class" writable="1">
+        <type name="DeviceInfoClass" c:type="GUPnPDeviceInfoClass"/>
+      </field>
+      <field name="_gupnp_reserved1" introspectable="0">
+        <callback name="_gupnp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved2" introspectable="0">
+        <callback name="_gupnp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved3" introspectable="0">
+        <callback name="_gupnp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved4" introspectable="0">
+        <callback name="_gupnp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="DeviceProxyPrivate"
+            c:type="GUPnPDeviceProxyPrivate"
+            disguised="1">
+    </record>
+    <enumeration name="EventingError" c:type="GUPnPEventingError">
+      <doc xml:whitespace="preserve">#GError codes used for errors in the #GUPNP_EVENTING_ERROR domain, during
+eventing of state variables.</doc>
+      <member name="subscription_failed"
+              value="0"
+              c:identifier="GUPNP_EVENTING_ERROR_SUBSCRIPTION_FAILED"/>
+      <member name="subscription_lost"
+              value="1"
+              c:identifier="GUPNP_EVENTING_ERROR_SUBSCRIPTION_LOST"/>
+      <member name="notify_failed"
+              value="2"
+              c:identifier="GUPNP_EVENTING_ERROR_NOTIFY_FAILED"/>
+    </enumeration>
+    <record name="ResourceFactory" c:type="GUPnPResourceFactory">
+      <doc xml:whitespace="preserve">This struct contains private data only, and should be accessed using the
+functions below.</doc>
+      <field name="parent" writable="1">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="ResourceFactoryPrivate"
+              c:type="GUPnPResourceFactoryPrivate*"/>
+      </field>
+    </record>
+    <record name="ResourceFactoryClass" c:type="GUPnPResourceFactoryClass">
+      <field name="parent_class" writable="1">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+      <field name="_gupnp_reserved1" introspectable="0">
+        <callback name="_gupnp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved2" introspectable="0">
+        <callback name="_gupnp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved3" introspectable="0">
+        <callback name="_gupnp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved4" introspectable="0">
+        <callback name="_gupnp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="ResourceFactoryPrivate"
+            c:type="GUPnPResourceFactoryPrivate"
+            disguised="1">
+    </record>
+    <record name="RootDevice" c:type="GUPnPRootDevice">
+      <doc xml:whitespace="preserve">This struct contains private data only, and should be accessed using the
+functions below.</doc>
+      <field name="parent" writable="1">
+        <type name="Device" c:type="GUPnPDevice"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="RootDevicePrivate" c:type="GUPnPRootDevicePrivate*"/>
+      </field>
+    </record>
+    <record name="RootDeviceClass" c:type="GUPnPRootDeviceClass">
+      <field name="parent_class" writable="1">
+        <type name="DeviceClass" c:type="GUPnPDeviceClass"/>
+      </field>
+      <field name="_gupnp_reserved1" introspectable="0">
+        <callback name="_gupnp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved2" introspectable="0">
+        <callback name="_gupnp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved3" introspectable="0">
+        <callback name="_gupnp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved4" introspectable="0">
+        <callback name="_gupnp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="RootDevicePrivate"
+            c:type="GUPnPRootDevicePrivate"
+            disguised="1">
+    </record>
+    <enumeration name="ServerError" c:type="GUPnPServerError">
+      <doc xml:whitespace="preserve">#GError codes used for errors in the #GUPNP_SERVER_ERROR domain, when there
+is communication with another server.</doc>
+      <member name="internal_server_error"
+              value="0"
+              c:identifier="GUPNP_SERVER_ERROR_INTERNAL_SERVER_ERROR"/>
+      <member name="not_found"
+              value="1"
+              c:identifier="GUPNP_SERVER_ERROR_NOT_FOUND"/>
+      <member name="not_implemented"
+              value="2"
+              c:identifier="GUPNP_SERVER_ERROR_NOT_IMPLEMENTED"/>
+      <member name="invalid_response"
+              value="3"
+              c:identifier="GUPNP_SERVER_ERROR_INVALID_RESPONSE"/>
+      <member name="invalid_url"
+              value="4"
+              c:identifier="GUPNP_SERVER_ERROR_INVALID_URL"/>
+      <member name="other" value="5" c:identifier="GUPNP_SERVER_ERROR_OTHER"/>
+    </enumeration>
+    <record name="Service" c:type="GUPnPService">
+      <doc xml:whitespace="preserve">This struct contains private data only, and should be accessed using the
+functions below.</doc>
+      <field name="parent" writable="1">
+        <type name="ServiceInfo" c:type="GUPnPServiceInfo"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="ServicePrivate" c:type="GUPnPServicePrivate*"/>
+      </field>
+    </record>
+    <record name="ServiceAction" c:type="GUPnPServiceAction" disguised="1">
+    </record>
+    <enumeration name="ServiceActionArgDirection"
+                 c:type="GUPnPServiceActionArgDirection">
+      <member name="in"
+              value="0"
+              c:identifier="GUPNP_SERVICE_ACTION_ARG_DIRECTION_IN"/>
+      <member name="out"
+              value="1"
+              c:identifier="GUPNP_SERVICE_ACTION_ARG_DIRECTION_OUT"/>
+    </enumeration>
+    <record name="ServiceActionArgInfo" c:type="GUPnPServiceActionArgInfo">
+      <doc xml:whitespace="preserve">This structure contains information about the argument of service action.</doc>
+      <field name="name" writable="1">
+        <type name="utf8" c:type="char*"/>
+      </field>
+      <field name="direction" writable="1">
+        <type name="ServiceActionArgDirection"
+              c:type="GUPnPServiceActionArgDirection"/>
+      </field>
+      <field name="related_state_variable" writable="1">
+        <type name="utf8" c:type="char*"/>
+      </field>
+      <field name="retval" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+    </record>
+    <record name="ServiceActionInfo" c:type="GUPnPServiceActionInfo">
+      <doc xml:whitespace="preserve">This structure contains information about a service action.</doc>
+      <field name="name" writable="1">
+        <type name="utf8" c:type="char*"/>
+      </field>
+      <field name="arguments" writable="1">
+        <type name="GLib.List" c:type="GList*">
+          <type name="gpointer" c:type="gpointer"/>
+        </type>
+      </field>
+    </record>
+    <record name="ServiceClass" c:type="GUPnPServiceClass">
+      <field name="parent_class" writable="1">
+        <type name="ServiceInfoClass" c:type="GUPnPServiceInfoClass"/>
+      </field>
+      <field name="action_invoked">
+        <callback name="action_invoked">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="service" transfer-ownership="none">
+              <type name="Service" c:type="GUPnPService*"/>
+            </parameter>
+            <parameter name="action" transfer-ownership="none">
+              <type name="ServiceAction" c:type="GUPnPServiceAction*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="query_variable">
+        <callback name="query_variable">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="service" transfer-ownership="none">
+              <type name="Service" c:type="GUPnPService*"/>
+            </parameter>
+            <parameter name="variable" transfer-ownership="none">
+              <type name="utf8" c:type="char*"/>
+            </parameter>
+            <parameter name="value" transfer-ownership="none">
+              <type name="GObject.Value" c:type="GValue*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="notify_failed">
+        <callback name="notify_failed">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="service" transfer-ownership="none">
+              <type name="Service" c:type="GUPnPService*"/>
+            </parameter>
+            <parameter name="callback_urls" transfer-ownership="none">
+              <type name="GLib.List" c:type="GList*">
+                <type name="gpointer" c:type="gpointer"/>
+              </type>
+            </parameter>
+            <parameter name="reason" transfer-ownership="none">
+              <type name="GLib.Error" c:type="GError*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved1" introspectable="0">
+        <callback name="_gupnp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved2" introspectable="0">
+        <callback name="_gupnp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved3" introspectable="0">
+        <callback name="_gupnp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved4" introspectable="0">
+        <callback name="_gupnp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="ServiceInfo" c:type="GUPnPServiceInfo">
+      <doc xml:whitespace="preserve">This struct contains private data only, and should be accessed using the
+functions below.</doc>
+      <field name="parent" writable="1">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="ServiceInfoPrivate" c:type="GUPnPServiceInfoPrivate*"/>
+      </field>
+    </record>
+    <record name="ServiceInfoClass" c:type="GUPnPServiceInfoClass">
+      <field name="parent_class" writable="1">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+      <field name="_gupnp_reserved1" introspectable="0">
+        <callback name="_gupnp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved2" introspectable="0">
+        <callback name="_gupnp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved3" introspectable="0">
+        <callback name="_gupnp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved4" introspectable="0">
+        <callback name="_gupnp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="ServiceInfoPrivate"
+            c:type="GUPnPServiceInfoPrivate"
+            disguised="1">
+    </record>
+    <record name="ServiceIntrospection" c:type="GUPnPServiceIntrospection">
+      <doc xml:whitespace="preserve">This struct contains private data only, and should be accessed using the
+functions below.</doc>
+      <field name="parent" writable="1">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="ServiceIntrospectionPrivate"
+              c:type="GUPnPServiceIntrospectionPrivate*"/>
+      </field>
+    </record>
+    <callback name="ServiceIntrospectionCallback"
+              c:type="GUPnPServiceIntrospectionCallback">
+      <return-value transfer-ownership="none">
+        <type name="none" c:type="void"/>
+      </return-value>
+      <parameters>
+        <parameter name="info" transfer-ownership="none">
+          <type name="ServiceInfo" c:type="GUPnPServiceInfo*"/>
+        </parameter>
+        <parameter name="introspection" transfer-ownership="none">
+          <type name="ServiceIntrospection"
+                c:type="GUPnPServiceIntrospection*"/>
+        </parameter>
+        <parameter name="error" transfer-ownership="none">
+          <type name="GLib.Error" c:type="GError*"/>
+        </parameter>
+        <parameter name="user_data" transfer-ownership="none" closure="3">
+          <type name="gpointer" c:type="gpointer"/>
+        </parameter>
+      </parameters>
+    </callback>
+    <record name="ServiceIntrospectionClass"
+            c:type="GUPnPServiceIntrospectionClass">
+      <field name="parent_class" writable="1">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+    </record>
+    <record name="ServiceIntrospectionPrivate"
+            c:type="GUPnPServiceIntrospectionPrivate"
+            disguised="1">
+    </record>
+    <record name="ServicePrivate" c:type="GUPnPServicePrivate" disguised="1">
+    </record>
+    <record name="ServiceProxy" c:type="GUPnPServiceProxy">
+      <doc xml:whitespace="preserve">This struct contains private data only, and should be accessed using the
+functions below.</doc>
+      <field name="parent" writable="1">
+        <type name="ServiceInfo" c:type="GUPnPServiceInfo"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="ServiceProxyPrivate" c:type="GUPnPServiceProxyPrivate*"/>
+      </field>
+    </record>
+    <record name="ServiceProxyAction"
+            c:type="GUPnPServiceProxyAction"
+            disguised="1">
+    </record>
+    <callback name="ServiceProxyActionCallback"
+              c:type="GUPnPServiceProxyActionCallback">
+      <doc xml:whitespace="preserve">Callback notifying that @action on @proxy has returned and
+gupnp_service_proxy_end_action() etc can be called.</doc>
+      <return-value transfer-ownership="none">
+        <type name="none" c:type="void"/>
+      </return-value>
+      <parameters>
+        <parameter name="proxy" transfer-ownership="none">
+          <doc xml:whitespace="preserve">The #GUPnPServiceProxy @action is called from</doc>
+          <type name="ServiceProxy" c:type="GUPnPServiceProxy*"/>
+        </parameter>
+        <parameter name="action" transfer-ownership="none">
+          <doc xml:whitespace="preserve">The #GUPnPServiceProxyAction in progress</doc>
+          <type name="ServiceProxyAction" c:type="GUPnPServiceProxyAction*"/>
+        </parameter>
+        <parameter name="user_data" transfer-ownership="none" closure="2">
+          <doc xml:whitespace="preserve">User data</doc>
+          <type name="gpointer" c:type="gpointer"/>
+        </parameter>
+      </parameters>
+    </callback>
+    <record name="ServiceProxyClass" c:type="GUPnPServiceProxyClass">
+      <field name="parent_class" writable="1">
+        <type name="ServiceInfoClass" c:type="GUPnPServiceInfoClass"/>
+      </field>
+      <field name="subscription_lost">
+        <callback name="subscription_lost">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="proxy" transfer-ownership="none">
+              <type name="ServiceProxy" c:type="GUPnPServiceProxy*"/>
+            </parameter>
+            <parameter name="reason" transfer-ownership="none">
+              <type name="GLib.Error" c:type="GError*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved1" introspectable="0">
+        <callback name="_gupnp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved2" introspectable="0">
+        <callback name="_gupnp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved3" introspectable="0">
+        <callback name="_gupnp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gupnp_reserved4" introspectable="0">
+        <callback name="_gupnp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <callback name="ServiceProxyNotifyCallback"
+              c:type="GUPnPServiceProxyNotifyCallback">
+      <doc xml:whitespace="preserve">Callback notifying that the state variable @variable on @proxy has changed to</doc>
+      <return-value transfer-ownership="none">
+        <type name="none" c:type="void"/>
+      </return-value>
+      <parameters>
+        <parameter name="proxy" transfer-ownership="none">
+          <doc xml:whitespace="preserve">The #GUPnPServiceProxy the notification originates from</doc>
+          <type name="ServiceProxy" c:type="GUPnPServiceProxy*"/>
+        </parameter>
+        <parameter name="variable" transfer-ownership="none">
+          <doc xml:whitespace="preserve">The name of the variable being notified</doc>
+          <type name="utf8" c:type="char*"/>
+        </parameter>
+        <parameter name="value" transfer-ownership="none">
+          <doc xml:whitespace="preserve">The #GValue of the variable being notified</doc>
+          <type name="GObject.Value" c:type="GValue*"/>
+        </parameter>
+        <parameter name="user_data" transfer-ownership="none" closure="3">
+          <doc xml:whitespace="preserve">User data</doc>
+          <type name="gpointer" c:type="gpointer"/>
+        </parameter>
+      </parameters>
+    </callback>
+    <record name="ServiceProxyPrivate"
+            c:type="GUPnPServiceProxyPrivate"
+            disguised="1">
+    </record>
+    <record name="ServiceStateVariableInfo"
+            c:type="GUPnPServiceStateVariableInfo">
+      <doc xml:whitespace="preserve">This structure contains information about service state variable.</doc>
+      <field name="name" writable="1">
+        <type name="utf8" c:type="char*"/>
+      </field>
+      <field name="send_events" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="is_numeric" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="type" writable="1">
+        <type name="GType" c:type="GType"/>
+      </field>
+      <field name="default_value" writable="1">
+        <type name="GObject.Value" c:type="GValue"/>
+      </field>
+      <field name="minimum" writable="1">
+        <type name="GObject.Value" c:type="GValue"/>
+      </field>
+      <field name="maximum" writable="1">
+        <type name="GObject.Value" c:type="GValue"/>
+      </field>
+      <field name="step" writable="1">
+        <type name="GObject.Value" c:type="GValue"/>
+      </field>
+      <field name="allowed_values" writable="1">
+        <type name="GLib.List" c:type="GList*">
+          <type name="gpointer" c:type="gpointer"/>
+        </type>
+      </field>
+    </record>
+    <record name="XMLDoc" c:type="GUPnPXMLDoc">
+      <field name="parent" writable="1">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <field name="doc" writable="1">
+        <type name="libxml2.Doc" c:type="xmlDoc*"/>
+      </field>
+    </record>
+    <record name="XMLDocClass" c:type="GUPnPXMLDocClass">
+      <field name="parent_class" writable="1">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+    </record>
+    <enumeration name="XMLError" c:type="GUPnPXMLError">
+      <doc xml:whitespace="preserve">#GError codes used for errors in the #GUPNP_XML_ERROR domain, during
+processing of XML data.</doc>
+      <member name="parse" value="0" c:identifier="GUPNP_XML_ERROR_PARSE"/>
+      <member name="no_node" value="1" c:identifier="GUPNP_XML_ERROR_NO_NODE"/>
+      <member name="empty_node"
+              value="2"
+              c:identifier="GUPNP_XML_ERROR_EMPTY_NODE"/>
+      <member name="other" value="3" c:identifier="GUPNP_XML_ERROR_OTHER"/>
+    </enumeration>
+  </namespace>
+</repository>

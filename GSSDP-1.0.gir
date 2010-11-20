@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<!-- This file was automatically generated from C sources - DO NOT EDIT!
+To affect the contents of this file, edit the original C definitions,
+and/or use gtk-doc annotations.  -->
+<repository version="1.2"
+            xmlns="http://www.gtk.org/introspection/core/1.0"
+            xmlns:c="http://www.gtk.org/introspection/c/1.0"
+            xmlns:glib="http://www.gtk.org/introspection/glib/1.0">
+  <include name="GLib" version="2.0"/>
+  <include name="GObject" version="2.0"/>
+  <package name="gobject-2.0"/>
+  <namespace name="GSSDP"
+             version="1.0"
+             shared-library="libgssdp-1.0.so.2"
+             c:identifier-prefixes="GSSDP"
+             c:symbol-prefixes="g_ssdp">
+    <record name="Client" c:type="GSSDPClient">
+      <field name="parent" writable="1">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="ClientPrivate" c:type="GSSDPClientPrivate*"/>
+      </field>
+    </record>
+    <record name="ClientClass" c:type="GSSDPClientClass">
+      <field name="parent_class" writable="1">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+      <field name="_gssdp_reserved1" introspectable="0">
+        <callback name="_gssdp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gssdp_reserved2" introspectable="0">
+        <callback name="_gssdp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gssdp_reserved3" introspectable="0">
+        <callback name="_gssdp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gssdp_reserved4" introspectable="0">
+        <callback name="_gssdp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="ClientPrivate" c:type="GSSDPClientPrivate" disguised="1">
+    </record>
+    <enumeration name="Error" c:type="GSSDPError">
+      <member name="no_ip_address"
+              value="0"
+              c:identifier="GSSDP_ERROR_NO_IP_ADDRESS"/>
+      <member name="failed" value="1" c:identifier="GSSDP_ERROR_FAILED"/>
+    </enumeration>
+    <record name="ResourceBrowser" c:type="GSSDPResourceBrowser">
+      <field name="parent" writable="1">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="ResourceBrowserPrivate"
+              c:type="GSSDPResourceBrowserPrivate*"/>
+      </field>
+    </record>
+    <record name="ResourceBrowserClass" c:type="GSSDPResourceBrowserClass">
+      <field name="parent_class" writable="1">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+      <field name="resource_available">
+        <callback name="resource_available">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="resource_browser" transfer-ownership="none">
+              <type name="ResourceBrowser" c:type="GSSDPResourceBrowser*"/>
+            </parameter>
+            <parameter name="usn" transfer-ownership="none">
+              <type name="utf8" c:type="char*"/>
+            </parameter>
+            <parameter name="locations" transfer-ownership="none">
+              <type name="GLib.List" c:type="GList*">
+                <type name="gpointer" c:type="gpointer"/>
+              </type>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="resource_unavailable">
+        <callback name="resource_unavailable">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="resource_browser" transfer-ownership="none">
+              <type name="ResourceBrowser" c:type="GSSDPResourceBrowser*"/>
+            </parameter>
+            <parameter name="usn" transfer-ownership="none">
+              <type name="utf8" c:type="char*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="_gssdp_reserved1" introspectable="0">
+        <callback name="_gssdp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gssdp_reserved2" introspectable="0">
+        <callback name="_gssdp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gssdp_reserved3" introspectable="0">
+        <callback name="_gssdp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gssdp_reserved4" introspectable="0">
+        <callback name="_gssdp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="ResourceBrowserPrivate"
+            c:type="GSSDPResourceBrowserPrivate"
+            disguised="1">
+    </record>
+    <record name="ResourceGroup" c:type="GSSDPResourceGroup">
+      <field name="parent" writable="1">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <field name="priv" writable="1">
+        <type name="ResourceGroupPrivate" c:type="GSSDPResourceGroupPrivate*"/>
+      </field>
+    </record>
+    <record name="ResourceGroupClass" c:type="GSSDPResourceGroupClass">
+      <field name="parent_class" writable="1">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+      <field name="_gssdp_reserved1" introspectable="0">
+        <callback name="_gssdp_reserved1">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gssdp_reserved2" introspectable="0">
+        <callback name="_gssdp_reserved2">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gssdp_reserved3" introspectable="0">
+        <callback name="_gssdp_reserved3">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_gssdp_reserved4" introspectable="0">
+        <callback name="_gssdp_reserved4">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+    </record>
+    <record name="ResourceGroupPrivate"
+            c:type="GSSDPResourceGroupPrivate"
+            disguised="1">
+    </record>
+  </namespace>
+</repository>

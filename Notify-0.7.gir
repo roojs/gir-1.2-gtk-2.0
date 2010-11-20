@@ -1,0 +1,538 @@
+<?xml version="1.0"?>
+<!-- This file was automatically generated from C sources - DO NOT EDIT!
+To affect the contents of this file, edit the original C definitions,
+and/or use gtk-doc annotations.  -->
+<repository version="1.2"
+            xmlns="http://www.gtk.org/introspection/core/1.0"
+            xmlns:c="http://www.gtk.org/introspection/c/1.0"
+            xmlns:glib="http://www.gtk.org/introspection/glib/1.0">
+  <include name="GLib" version="2.0"/>
+  <include name="GModule" version="2.0"/>
+  <include name="GObject" version="2.0"/>
+  <include name="GdkPixbuf" version="2.0"/>
+  <include name="Gio" version="2.0"/>
+  <package name="gdk-pixbuf-2.0"/>
+  <package name="glib-2.0"/>
+  <package name="gobject-2.0"/>
+  <namespace name="Notify"
+             version="0.7"
+             shared-library="libnotify.so.4"
+             c:identifier-prefixes="Notify"
+             c:symbol-prefixes="notify">
+    <callback name="ActionCallback" c:type="NotifyActionCallback">
+      <doc xml:whitespace="preserve">An action callback function.</doc>
+      <return-value transfer-ownership="none">
+        <type name="none" c:type="void"/>
+      </return-value>
+      <parameters>
+        <parameter name="notification" transfer-ownership="none">
+          <type name="Notification" c:type="NotifyNotification*"/>
+        </parameter>
+        <parameter name="action" transfer-ownership="none">
+          <type name="utf8" c:type="char*"/>
+        </parameter>
+        <parameter name="user_data" transfer-ownership="none" closure="2">
+          <type name="gpointer" c:type="gpointer"/>
+        </parameter>
+      </parameters>
+    </callback>
+    <constant name="EXPIRES_DEFAULT" value="-1">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="EXPIRES_NEVER" value="0">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <class name="Notification"
+           c:symbol-prefix="notification"
+           c:type="NotifyNotification"
+           parent="GObject.Object"
+           glib:type-name="NotifyNotification"
+           glib:get-type="notify_notification_get_type"
+           glib:type-struct="NotificationClass">
+      <constructor name="new" c:identifier="notify_notification_new">
+        <doc xml:whitespace="preserve">Creates a new #NotifyNotification. The summary text is required, but
+all other parameters are optional.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">The new #NotifyNotification.</doc>
+          <type name="Notification" c:type="NotifyNotification*"/>
+        </return-value>
+        <parameters>
+          <parameter name="summary" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The required summary text.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="body" transfer-ownership="none" allow-none="1">
+            <doc xml:whitespace="preserve">The optional body text.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="icon" transfer-ownership="none" allow-none="1">
+            <doc xml:whitespace="preserve">The optional icon theme icon name or filename.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <method name="add_action" c:identifier="notify_notification_add_action">
+        <doc xml:whitespace="preserve">Adds an action to a notification. When the action is invoked, the
+specified callback function will be called, along with the value passed
+to @user_data.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="action" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The action ID.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="label" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The human-readable action label.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     scope="async"
+                     closure="3">
+            <doc xml:whitespace="preserve">The action's callback function.</doc>
+            <type name="ActionCallback" c:type="NotifyActionCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none" allow-none="1">
+            <doc xml:whitespace="preserve">Optional custom data to pass to @callback.</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+          <parameter name="free_func"
+                     transfer-ownership="none"
+                     allow-none="1"
+                     scope="async">
+            <doc xml:whitespace="preserve">An optional function to free @user_data when the notification is destroyed.</doc>
+            <type name="GLib.FreeFunc" c:type="GFreeFunc"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="clear_actions"
+              c:identifier="notify_notification_clear_actions">
+        <doc xml:whitespace="preserve">Clears all actions from the notification.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </method>
+      <method name="clear_hints"
+              c:identifier="notify_notification_clear_hints">
+        <doc xml:whitespace="preserve">Clears all hints from the notification.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </method>
+      <method name="close" c:identifier="notify_notification_close" throws="1">
+        <doc xml:whitespace="preserve">Synchronously tells the notification server to hide the notification on the screen.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">%TRUE on success, or %FALSE on error with @error filled in</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+      </method>
+      <method name="get_closed_reason"
+              c:identifier="notify_notification_get_closed_reason">
+        <doc xml:whitespace="preserve">Returns the closed reason code for the notification. This is valid only
+after the "closed" signal is emitted.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">The closed reason code.</doc>
+          <type name="gint" c:type="gint"/>
+        </return-value>
+      </method>
+      <method name="set_category"
+              c:identifier="notify_notification_set_category">
+        <doc xml:whitespace="preserve">Sets the category of this notification. This can be used by the
+notification server to filter or display the data in a certain way.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="category" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The category.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_hint"
+              c:identifier="notify_notification_set_hint"
+              version="0.6">
+        <doc xml:whitespace="preserve">Sets a hint for @key with value @value. If @value is %NULL,
+a previously set hint for @key is unset.
+If @value is floating, it is consumed.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="key" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the hint key</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none" allow-none="1">
+            <doc xml:whitespace="preserve">the hint value, or %NULL to unset the hint</doc>
+            <type name="GLib.Variant" c:type="GVariant*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_hint_byte"
+              c:identifier="notify_notification_set_hint_byte"
+              deprecated="0.6. Use notify_notification_set_hint() instead">
+        <doc xml:whitespace="preserve">Sets a hint with a byte value.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="key" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The hint.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The hint's value.</doc>
+            <type name="guint8" c:type="guchar"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_hint_byte_array"
+              c:identifier="notify_notification_set_hint_byte_array"
+              deprecated="0.6. Use notify_notification_set_hint() instead">
+        <doc xml:whitespace="preserve">Sets a hint with a byte array value. The length of @value must be passed
+as @len.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="key" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The hint.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The hint's value.</doc>
+            <type name="guint8" c:type="guchar*"/>
+          </parameter>
+          <parameter name="len" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The length of the byte array.</doc>
+            <type name="gulong" c:type="gsize"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_hint_double"
+              c:identifier="notify_notification_set_hint_double"
+              deprecated="0.6. Use notify_notification_set_hint() instead">
+        <doc xml:whitespace="preserve">Sets a hint with a double value.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="key" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The hint.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The hint's value.</doc>
+            <type name="gdouble" c:type="gdouble"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_hint_int32"
+              c:identifier="notify_notification_set_hint_int32"
+              deprecated="0.6. Use notify_notification_set_hint() instead">
+        <doc xml:whitespace="preserve">Sets a hint with a 32-bit integer value.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="key" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The hint.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The hint's value.</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_hint_string"
+              c:identifier="notify_notification_set_hint_string"
+              deprecated="0.6. Use notify_notification_set_hint() instead">
+        <doc xml:whitespace="preserve">Sets a hint with a string value.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="key" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The hint.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The hint's value.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_hint_uint32"
+              c:identifier="notify_notification_set_hint_uint32"
+              deprecated="0.6. Use notify_notification_set_hint() instead">
+        <doc xml:whitespace="preserve">Sets a hint with an unsigned 32-bit integer value.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="key" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The hint.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The hint's value.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_icon_from_pixbuf"
+              c:identifier="notify_notification_set_icon_from_pixbuf"
+              deprecated="use notify_notification_set_image_from_pixbuf() instead.">
+        <doc xml:whitespace="preserve">Sets the icon in the notification from a #GdkPixbuf.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="icon" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The icon.</doc>
+            <type name="GdkPixbuf.Pixbuf" c:type="GdkPixbuf*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_image_from_pixbuf"
+              c:identifier="notify_notification_set_image_from_pixbuf">
+        <doc xml:whitespace="preserve">Sets the image in the notification from a #GdkPixbuf.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="pixbuf" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The image.</doc>
+            <type name="GdkPixbuf.Pixbuf" c:type="GdkPixbuf*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_timeout"
+              c:identifier="notify_notification_set_timeout">
+        <doc xml:whitespace="preserve">Sets the timeout of the notification. To set the default time, pass
+%NOTIFY_EXPIRES_DEFAULT as @timeout. To set the notification to never
+expire, pass %NOTIFY_EXPIRES_NEVER.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="timeout" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The timeout in milliseconds.</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_urgency"
+              c:identifier="notify_notification_set_urgency">
+        <doc xml:whitespace="preserve">Sets the urgency level of this notification.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="urgency" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The urgency level.</doc>
+            <type name="Urgency" c:type="NotifyUrgency"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="show" c:identifier="notify_notification_show" throws="1">
+        <doc xml:whitespace="preserve">Tells the notification server to display the notification on the screen.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">%TRUE if successful. On error, this will return %FALSE and set</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+      </method>
+      <method name="update" c:identifier="notify_notification_update">
+        <doc xml:whitespace="preserve">Updates the notification text and icon. This won't send the update out
+and display it on the screen. For that, you will need to call
+notify_notification_show().</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">%TRUE, unless an invalid parameter was passed.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="summary" transfer-ownership="none">
+            <doc xml:whitespace="preserve">The new required summary text.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="body" transfer-ownership="none" allow-none="1">
+            <doc xml:whitespace="preserve">The optional body text.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+          <parameter name="icon" transfer-ownership="none" allow-none="1">
+            <doc xml:whitespace="preserve">The optional icon theme icon name or filename.</doc>
+            <type name="utf8" c:type="char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <property name="body"
+                writable="1"
+                construct="1"
+                transfer-ownership="none">
+        <type name="utf8"/>
+      </property>
+      <property name="closed-reason" transfer-ownership="none">
+        <type name="gint"/>
+      </property>
+      <property name="icon-name"
+                writable="1"
+                construct="1"
+                transfer-ownership="none">
+        <type name="utf8"/>
+      </property>
+      <property name="id" writable="1" construct="1" transfer-ownership="none">
+        <type name="gint"/>
+      </property>
+      <property name="summary"
+                writable="1"
+                construct="1"
+                transfer-ownership="none">
+        <type name="utf8"/>
+      </property>
+      <field name="parent_object">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <field name="priv">
+        <type name="NotificationPrivate" c:type="NotifyNotificationPrivate*"/>
+      </field>
+      <glib:signal name="closed">
+        <return-value transfer-ownership="none">
+          <type name="none"/>
+        </return-value>
+      </glib:signal>
+    </class>
+    <record name="NotificationClass"
+            c:type="NotifyNotificationClass"
+            glib:is-gtype-struct-for="Notification">
+      <field name="parent_class">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+      <field name="closed">
+        <callback name="closed">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="notification" transfer-ownership="none">
+              <type name="Notification" c:type="NotifyNotification*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+    </record>
+    <record name="NotificationPrivate"
+            c:type="NotifyNotificationPrivate"
+            disguised="1">
+    </record>
+    <enumeration name="Urgency" c:type="NotifyUrgency">
+      <doc xml:whitespace="preserve">The urgency level of the notification.</doc>
+      <member name="low" value="0" c:identifier="NOTIFY_URGENCY_LOW"/>
+      <member name="normal" value="1" c:identifier="NOTIFY_URGENCY_NORMAL"/>
+      <member name="critical"
+              value="2"
+              c:identifier="NOTIFY_URGENCY_CRITICAL"/>
+    </enumeration>
+    <constant name="VERSION_MAJOR" value="0">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="VERSION_MICRO" value="1">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="VERSION_MINOR" value="7">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <function name="get_app_name" c:identifier="notify_get_app_name">
+      <doc xml:whitespace="preserve">Gets the application name registered.</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">The registered application name, passed to notify_init().</doc>
+        <type name="utf8" c:type="char*"/>
+      </return-value>
+    </function>
+    <function name="get_server_caps" c:identifier="notify_get_server_caps">
+      <doc xml:whitespace="preserve">Synchronously queries the server for its capabilities and returns them in a #GList.
+the list elements with g_free() and the list itself with g_list_free().</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:whitespace="preserve">a #GList of server capability strings. Free</doc>
+        <type name="GLib.List" c:type="GList*">
+          <type name="utf8"/>
+        </type>
+      </return-value>
+    </function>
+    <function name="get_server_info" c:identifier="notify_get_server_info">
+      <doc xml:whitespace="preserve">Synchronously queries the server for its information, specifically, the name, vendor,
+server version, and the version of the notifications specification that it
+is compliant with.
+on error. The returned strings must be freed with g_free</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">%TRUE if successful, and the variables passed will be set, %FALSE</doc>
+        <type name="gboolean" c:type="gboolean"/>
+      </return-value>
+      <parameters>
+        <parameter name="ret_name"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full"
+                   allow-none="1">
+          <doc xml:whitespace="preserve">a location to store the server name, or %NULL</doc>
+          <type name="utf8" c:type="char**"/>
+        </parameter>
+        <parameter name="ret_vendor"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full"
+                   allow-none="1">
+          <doc xml:whitespace="preserve">a location to store the server vendor, or %NULL</doc>
+          <type name="utf8" c:type="char**"/>
+        </parameter>
+        <parameter name="ret_version"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full"
+                   allow-none="1">
+          <doc xml:whitespace="preserve">a location to store the server version, or %NULL</doc>
+          <type name="utf8" c:type="char**"/>
+        </parameter>
+        <parameter name="ret_spec_version"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full"
+                   allow-none="1">
+          <doc xml:whitespace="preserve">a location to store the version the service is compliant with, or %NULL</doc>
+          <type name="utf8" c:type="char**"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="init" c:identifier="notify_init">
+      <doc xml:whitespace="preserve">Initialized libnotify. This must be called before any other functions.</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">%TRUE if successful, or %FALSE on error.</doc>
+        <type name="gboolean" c:type="gboolean"/>
+      </return-value>
+      <parameters>
+        <parameter name="app_name" transfer-ownership="none">
+          <doc xml:whitespace="preserve">The name of the application initializing libnotify.</doc>
+          <type name="utf8" c:type="char*"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="is_initted" c:identifier="notify_is_initted">
+      <doc xml:whitespace="preserve">Gets whether or not libnotify is initialized.</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">%TRUE if libnotify is initialized, or %FALSE otherwise.</doc>
+        <type name="gboolean" c:type="gboolean"/>
+      </return-value>
+    </function>
+    <function name="uninit" c:identifier="notify_uninit">
+      <doc xml:whitespace="preserve">Uninitialized libnotify.
+This should be called when the program no longer needs libnotify for
+the rest of its lifecycle, typically just before exitting.</doc>
+      <return-value transfer-ownership="none">
+        <type name="none" c:type="void"/>
+      </return-value>
+    </function>
+  </namespace>
+</repository>
