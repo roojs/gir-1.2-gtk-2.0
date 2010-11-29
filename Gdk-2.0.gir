@@ -1324,6 +1324,15 @@ fill in @keyval and @modifiers with the keyval settings.</doc>
           <type name="gint" c:type="gint"/>
         </return-value>
       </method>
+      <method name="get_n_keys"
+              c:identifier="gdk_device_get_n_keys"
+              version="2.24">
+        <doc xml:whitespace="preserve">Gets the number of keys of a device.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">the number of keys of @device</doc>
+          <type name="gint" c:type="gint"/>
+        </return-value>
+      </method>
       <method name="get_name"
               c:identifier="gdk_device_get_name"
               version="2.22">
@@ -1719,8 +1728,8 @@ mask for a given display.</doc>
           </parameter>
           <parameter name="mask"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none"
+                     caller-allocates="0"
+                     transfer-ownership="full"
                      allow-none="1">
             <doc xml:whitespace="preserve">location to store current modifier mask, or %NULL</doc>
             <type name="ModifierType" c:type="GdkModifierType*"/>
@@ -3134,12 +3143,13 @@ surface if you want to download contents to the client.</doc>
       </virtual-method>
       <virtual-method name="get_size"
                       invoker="get_size"
-                      deprecated="Use gdk_window_get_width() and gdk_window_get_height()"
+                      deprecated="Use gdk_window_get_width() and gdk_window_get_height() for"
                       deprecated-version="2.24">
         <doc xml:whitespace="preserve">Fills *@width and *@height with the size of @drawable.
 On the X11 platform, if @drawable is a #GdkWindow, the returned
 size is the size reported in the most-recently-processed configure
-event, rather than the current size on the X server.</doc>
+event, rather than the current size on the X server.
+#GdkWindows. Use gdk_pixmap_get_size() for #GdkPixmaps.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -3398,12 +3408,13 @@ surface if you want to download contents to the client.</doc>
       </method>
       <method name="get_size"
               c:identifier="gdk_drawable_get_size"
-              deprecated="Use gdk_window_get_width() and gdk_window_get_height()"
+              deprecated="Use gdk_window_get_width() and gdk_window_get_height() for"
               deprecated-version="2.24">
         <doc xml:whitespace="preserve">Fills *@width and *@height with the size of @drawable.
 On the X11 platform, if @drawable is a #GdkWindow, the returned
 size is the size reported in the most-recently-processed configure
-event, rather than the current size on the X server.</doc>
+event, rather than the current size on the X server.
+#GdkWindows. Use gdk_pixmap_get_size() for #GdkPixmaps.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -4426,8 +4437,8 @@ an event structure.</doc>
         <parameters>
           <parameter name="axis_use"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the axis use to look for</doc>
             <type name="AxisUse" c:type="GdkAxisUse"/>
           </parameter>
@@ -4514,8 +4525,8 @@ as if the event had no state field.</doc>
         <parameters>
           <parameter name="state"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">return location for state</doc>
             <type name="ModifierType" c:type="GdkModifierType*"/>
           </parameter>
@@ -13735,8 +13746,8 @@ not &lt;literal&gt;&amp;lt;Control&amp;gt;&amp;lt;Shift&amp;gt;plus&lt;/literal&
           </parameter>
           <parameter name="consumed_modifiers"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none"
+                     caller-allocates="0"
+                     transfer-ownership="full"
                      allow-none="1">
             <doc xml:whitespace="preserve">return location for modifiers that were used to determine the group or level, or %NULL</doc>
             <type name="ModifierType" c:type="GdkModifierType*"/>
@@ -14491,6 +14502,34 @@ or %NULL if there is none.</doc>
           </parameter>
         </parameters>
       </function>
+      <method name="get_size"
+              c:identifier="gdk_pixmap_get_size"
+              version="2.24">
+        <doc xml:whitespace="preserve">This function is purely to make it possible to query the size of pixmaps
+even when compiling without deprecated symbols and you must use pixmaps.
+It is identical to gdk_drawable_get_size(), but for pixmaps.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="width"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
+            <doc xml:whitespace="preserve">location to store @pixmap's width, or %NULL</doc>
+            <type name="gint" c:type="gint*"/>
+          </parameter>
+          <parameter name="height"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
+            <doc xml:whitespace="preserve">location to store @pixmap's height, or %NULL</doc>
+            <type name="gint" c:type="gint*"/>
+          </parameter>
+        </parameters>
+      </method>
     </class>
     <record name="PixmapObject" c:type="GdkPixmapObject">
       <field name="parent_instance" writable="1">
@@ -16980,8 +17019,8 @@ pointer isn't known to GDK</doc>
           </parameter>
           <parameter name="mask"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none"
+                     caller-allocates="0"
+                     transfer-ownership="full"
                      allow-none="1">
             <doc xml:whitespace="preserve">return location for modifier mask or %NULL to not return the modifier mask</doc>
             <type name="ModifierType" c:type="GdkModifierType*"/>
@@ -19614,8 +19653,8 @@ This function is called by the drag source to obtain the</doc>
         </parameter>
         <parameter name="protocol"
                    direction="out"
-                   caller-allocates="1"
-                   transfer-ownership="none">
+                   caller-allocates="0"
+                   transfer-ownership="full">
           <doc xml:whitespace="preserve">location to store the DND protocol in.</doc>
           <type name="DragProtocol" c:type="GdkDragProtocol*"/>
         </parameter>
@@ -19660,8 +19699,8 @@ This function is called by the drag source to obtain the</doc>
         </parameter>
         <parameter name="protocol"
                    direction="out"
-                   caller-allocates="1"
-                   transfer-ownership="none">
+                   caller-allocates="0"
+                   transfer-ownership="full">
           <doc xml:whitespace="preserve">location to store the DND protocol in.</doc>
           <type name="DragProtocol" c:type="GdkDragProtocol*"/>
         </parameter>

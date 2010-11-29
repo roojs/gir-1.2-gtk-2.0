@@ -9662,8 +9662,8 @@ HTTP error to be returned to the client if they could not be.</doc>
         </parameter>
         <parameter name="ver"
                    direction="out"
-                   caller-allocates="1"
-                   transfer-ownership="none"
+                   caller-allocates="0"
+                   transfer-ownership="full"
                    allow-none="1">
           <doc xml:whitespace="preserve">if non-%NULL, will be filled in with the HTTP version</doc>
           <type name="HTTPVersion" c:type="SoupHTTPVersion*"/>
@@ -9694,8 +9694,8 @@ Beware that @headers may be modified even on failure.</doc>
         </parameter>
         <parameter name="ver"
                    direction="out"
-                   caller-allocates="1"
-                   transfer-ownership="none"
+                   caller-allocates="0"
+                   transfer-ownership="full"
                    allow-none="1">
           <doc xml:whitespace="preserve">if non-%NULL, will be filled in with the HTTP version</doc>
           <type name="HTTPVersion" c:type="SoupHTTPVersion*"/>
@@ -9733,8 +9733,8 @@ either "\0" or "\r\n".</doc>
         </parameter>
         <parameter name="ver"
                    direction="out"
-                   caller-allocates="1"
-                   transfer-ownership="none"
+                   caller-allocates="0"
+                   transfer-ownership="full"
                    allow-none="1">
           <doc xml:whitespace="preserve">if non-%NULL, will be filled in with the HTTP version</doc>
           <type name="HTTPVersion" c:type="SoupHTTPVersion*"/>

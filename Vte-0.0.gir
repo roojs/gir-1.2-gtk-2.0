@@ -439,7 +439,7 @@ See vte_pty_new(), g_spawn_async() and vte_terminal_watch_child() for more infor
           </parameter>
           <parameter name="child_pid"
                      direction="out"
-                     caller-allocates="1"
+                     caller-allocates="0"
                      transfer-ownership="full"
                      allow-none="1">
             <doc xml:whitespace="preserve">a location to store the child PID, or %NULL</doc>

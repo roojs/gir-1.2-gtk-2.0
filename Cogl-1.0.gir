@@ -9,6 +9,7 @@ and/or use gtk-doc annotations.  -->
   <include name="GL" version="1.0"/>
   <include name="GLib" version="2.0"/>
   <include name="GObject" version="2.0"/>
+  <package name="cogl-1.0"/>
   <c:include name="cogl/cogl.h"/>
   <namespace name="Cogl"
              version="1.0"
@@ -967,6 +968,13 @@ actual arguments and return type may be different.</doc>
     <record name="IndexArray" c:type="CoglIndexArray" disguised="1">
     </record>
     <record name="Indices" c:type="CoglIndices" disguised="1">
+      <method name="get_array"
+              c:identifier="cogl_indices_get_array"
+              introspectable="0">
+        <return-value>
+          <type name="IndexArray" c:type="CoglIndexArray*"/>
+        </return-value>
+      </method>
       <method name="get_offset" c:identifier="cogl_indices_get_offset">
         <return-value transfer-ownership="none">
           <type name="gulong" c:type="gsize"/>
@@ -2674,6 +2682,22 @@ state changes.</doc>
         <return-value>
           <doc xml:whitespace="preserve">a pointer to the newly allocated #CoglPipeline</doc>
           <type name="Pipeline" c:type="CoglPipeline*"/>
+        </return-value>
+      </method>
+      <method name="get_alpha_test_function"
+              c:identifier="cogl_pipeline_get_alpha_test_function"
+              version="2.0">
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">The alpha test function of @pipeline.</doc>
+          <type name="PipelineAlphaFunc" c:type="CoglPipelineAlphaFunc"/>
+        </return-value>
+      </method>
+      <method name="get_alpha_test_reference"
+              c:identifier="cogl_pipeline_get_alpha_test_reference"
+              version="2.0">
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">The alpha test reference value of @pipeline.</doc>
+          <type name="gfloat" c:type="float"/>
         </return-value>
       </method>
       <method name="get_ambient"
@@ -8392,13 +8416,19 @@ model along all three axes according to the given values.</doc>
               introspectable="0">
       <doc xml:whitespace="preserve">Declares a new #CoglVertexArray of @size bytes to contain arrays of vertex
 attribute data. Once declared, data can be set using cogl_buffer_set_data()
-or by mapping it into the application's address space using cogl_buffer_map().</doc>
+or by mapping it into the application's address space using cogl_buffer_map().
+If @data isn't %NULL then @size bytes will be read from @data and
+immediately copied into the new buffer.</doc>
       <return-value>
         <type name="VertexArray" c:type="CoglVertexArray*"/>
       </return-value>
       <parameters>
         <parameter name="bytes" transfer-ownership="none">
           <type name="gulong" c:type="gsize"/>
+        </parameter>
+        <parameter name="data" transfer-ownership="none">
+          <doc xml:whitespace="preserve">An optional pointer to vertex data to upload immediately.</doc>
+          <type name="gpointer" c:type="void*"/>
         </parameter>
       </parameters>
     </function>

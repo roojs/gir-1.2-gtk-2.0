@@ -11,7 +11,7 @@ and/or use gtk-doc annotations.  -->
   <include name="GObject" version="2.0"/>
   <include name="Gst" version="0.10"/>
   <include name="libxml2" version="2.0"/>
-  <package name="gstreamer-0.10"/>
+  <package name="gstreamer-fft-0.10"/>
   <c:include name="gst/fft/gstfft.h"/>
   <c:include name="gst/fft/gstfftf32.h"/>
   <c:include name="gst/fft/gstfftf64.h"/>

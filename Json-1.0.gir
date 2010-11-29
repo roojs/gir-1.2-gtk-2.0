@@ -2672,8 +2672,8 @@ and %FALSE otherwise.</doc>
         </parameter>
         <parameter name="node_type"
                    direction="out"
-                   caller-allocates="1"
-                   transfer-ownership="none">
+                   caller-allocates="0"
+                   transfer-ownership="full">
           <doc xml:whitespace="preserve">the #JsonNode type to which the boxed type can be serialized into</doc>
           <type name="NodeType" c:type="JsonNodeType*"/>
         </parameter>

@@ -827,7 +827,7 @@ free them.</doc>
               value="4"
               c:identifier="GI_VFUNC_MUST_NOT_OVERRIDE"/>
     </bitfield>
-    <union name="Argument" c:type="_GIArgument">
+    <union name="_Argument" c:type="_GIArgument">
       <field name="v_boolean" writable="1">
         <type name="gboolean" c:type="gboolean"/>
       </field>

@@ -2297,7 +2297,7 @@ be allocated before it is next drawn on the screen.</doc>
       <method name="has_pointer"
               c:identifier="clutter_actor_has_pointer"
               version="1.2">
-        <doc xml:whitespace="preserve">Checks whether an actor contains the the pointer of a
+        <doc xml:whitespace="preserve">Checks whether an actor contains the pointer of a
 #ClutterInputDevice
 %FALSE otherwise</doc>
         <return-value transfer-ownership="none">
@@ -7740,6 +7740,7 @@ Applications should never need to call this function.</doc>
            c:symbol-prefix="behaviour"
            c:type="ClutterBehaviour"
            version="0.2"
+           deprecated="1.6"
            parent="GObject.Object"
            abstract="1"
            glib:type-name="ClutterBehaviour"
@@ -8042,16 +8043,20 @@ to an actor anymore.</doc>
            c:symbol-prefix="behaviour_depth"
            c:type="ClutterBehaviourDepth"
            version="0.2"
+           deprecated="Use clutter_actor_animate() with #ClutterActor:depth"
+           deprecated-version="1.6"
            parent="Behaviour"
            glib:type-name="ClutterBehaviourDepth"
            glib:get-type="clutter_behaviour_depth_get_type"
            glib:type-struct="BehaviourDepthClass">
       <doc xml:whitespace="preserve">The #ClutterBehaviourDepth structure contains only private data
-and should be accessed using the provided API</doc>
+and should be accessed using the provided API
+instead.</doc>
       <implements name="Scriptable"/>
       <constructor name="new"
                    c:identifier="clutter_behaviour_depth_new"
-                   version="0.4">
+                   version="0.4"
+                   deprecated="1.6">
         <doc xml:whitespace="preserve">Creates a new #ClutterBehaviourDepth which can be used to control
 the ClutterActor:depth property of a set of #ClutterActor&lt;!-- --&gt;s.
 If @alpha is not %NULL, the #ClutterBehaviour will take ownership
@@ -8078,7 +8083,8 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </constructor>
       <method name="get_bounds"
               c:identifier="clutter_behaviour_depth_get_bounds"
-              version="0.6">
+              version="0.6"
+              deprecated="1.6">
         <doc xml:whitespace="preserve">Gets the boundaries of the @behaviour</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -8102,7 +8108,8 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </method>
       <method name="set_bounds"
               c:identifier="clutter_behaviour_depth_set_bounds"
-              version="0.6">
+              version="0.6"
+              deprecated="1.6">
         <doc xml:whitespace="preserve">Sets the boundaries of the @behaviour.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -8120,6 +8127,7 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </method>
       <property name="depth-end"
                 version="0.4"
+                deprecated="1.6"
                 writable="1"
                 transfer-ownership="none">
         <doc xml:whitespace="preserve">End depth level to apply to the actors.</doc>
@@ -8127,6 +8135,7 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </property>
       <property name="depth-start"
                 version="0.4"
+                deprecated="1.6"
                 writable="1"
                 transfer-ownership="none">
         <doc xml:whitespace="preserve">Start depth level to apply to the actors.</doc>
@@ -8143,7 +8152,8 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
     <record name="BehaviourDepthClass"
             c:type="ClutterBehaviourDepthClass"
             glib:is-gtype-struct-for="BehaviourDepth"
-            version="0.2">
+            version="0.2"
+            deprecated="1.6">
       <doc xml:whitespace="preserve">The #ClutterBehaviourDepthClass structure contains only private data</doc>
       <field name="parent_class">
         <type name="BehaviourClass" c:type="ClutterBehaviourClass"/>
@@ -8157,6 +8167,7 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
            c:symbol-prefix="behaviour_ellipse"
            c:type="ClutterBehaviourEllipse"
            version="0.4"
+           deprecated="1.6"
            parent="Behaviour"
            glib:type-name="ClutterBehaviourEllipse"
            glib:get-type="clutter_behaviour_ellipse_get_type"
@@ -8534,7 +8545,8 @@ to the canonical interval &lt;0, 360).</doc>
     <record name="BehaviourEllipseClass"
             c:type="ClutterBehaviourEllipseClass"
             glib:is-gtype-struct-for="BehaviourEllipse"
-            version="0.4">
+            version="0.4"
+            deprecated="1.6">
       <doc xml:whitespace="preserve">The #ClutterBehaviourEllipseClass struct contains only private data</doc>
       <field name="parent_class">
         <type name="BehaviourClass" c:type="ClutterBehaviourClass"/>
@@ -8546,8 +8558,9 @@ to the canonical interval &lt;0, 360).</doc>
     </record>
     <callback name="BehaviourForeachFunc"
               c:type="ClutterBehaviourForeachFunc"
-              version="0.2">
-      <doc xml:whitespace="preserve">This function is passed to clutter_behaviour_foreach_actor() and
+              version="0.2"
+              deprecated="1.6">
+      <doc xml:whitespace="preserve">This function is passed to clutter_behaviour_actors_foreach() and
 will be called for each actor driven by @behaviour.</doc>
       <return-value transfer-ownership="none">
         <type name="none" c:type="void"/>
@@ -8571,16 +8584,20 @@ will be called for each actor driven by @behaviour.</doc>
            c:symbol-prefix="behaviour_opacity"
            c:type="ClutterBehaviourOpacity"
            version="0.2"
+           deprecated="Use clutter_actor_animate() and #ClutterActor:opacity"
+           deprecated-version="1.6"
            parent="Behaviour"
            glib:type-name="ClutterBehaviourOpacity"
            glib:get-type="clutter_behaviour_opacity_get_type"
            glib:type-struct="BehaviourOpacityClass">
       <doc xml:whitespace="preserve">The #ClutterBehaviourOpacity structure contains only private data and
-should be accessed using the provided API</doc>
+should be accessed using the provided API
+instead.</doc>
       <implements name="Scriptable"/>
       <constructor name="new"
                    c:identifier="clutter_behaviour_opacity_new"
-                   version="0.2">
+                   version="0.2"
+                   deprecated="1.6">
         <doc xml:whitespace="preserve">Creates a new #ClutterBehaviourOpacity object, driven by @alpha
 which controls the opacity property of every actor, making it
 change in the interval between @opacity_start and @opacity_end.
@@ -8608,7 +8625,8 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </constructor>
       <method name="get_bounds"
               c:identifier="clutter_behaviour_opacity_get_bounds"
-              version="0.6">
+              version="0.6"
+              deprecated="1.6">
         <doc xml:whitespace="preserve">Gets the initial and final levels of the opacity applied by @behaviour
 on each actor it controls.</doc>
         <return-value transfer-ownership="none">
@@ -8633,7 +8651,8 @@ on each actor it controls.</doc>
       </method>
       <method name="set_bounds"
               c:identifier="clutter_behaviour_opacity_set_bounds"
-              version="0.6">
+              version="0.6"
+              deprecated="1.6">
         <doc xml:whitespace="preserve">Sets the initial and final levels of the opacity applied by @behaviour
 on each actor it controls.</doc>
         <return-value transfer-ownership="none">
@@ -8652,6 +8671,7 @@ on each actor it controls.</doc>
       </method>
       <property name="opacity-end"
                 version="0.2"
+                deprecated="1.6"
                 writable="1"
                 transfer-ownership="none">
         <doc xml:whitespace="preserve">Final opacity level of the behaviour.</doc>
@@ -8659,6 +8679,7 @@ on each actor it controls.</doc>
       </property>
       <property name="opacity-start"
                 version="0.2"
+                deprecated="1.6"
                 writable="1"
                 transfer-ownership="none">
         <doc xml:whitespace="preserve">Initial opacity level of the behaviour.</doc>
@@ -8675,7 +8696,8 @@ on each actor it controls.</doc>
     <record name="BehaviourOpacityClass"
             c:type="ClutterBehaviourOpacityClass"
             glib:is-gtype-struct-for="BehaviourOpacity"
-            version="0.2">
+            version="0.2"
+            deprecated="1.6">
       <doc xml:whitespace="preserve">The #ClutterBehaviourOpacityClass structure contains only private data</doc>
       <field name="parent_class">
         <type name="BehaviourClass" c:type="ClutterBehaviourClass"/>
@@ -8689,16 +8711,20 @@ on each actor it controls.</doc>
            c:symbol-prefix="behaviour_path"
            c:type="ClutterBehaviourPath"
            version="0.2"
+           deprecated="Use #ClutterPathConstraint and clutter_actor_animate()"
+           deprecated-version="1.6"
            parent="Behaviour"
            glib:type-name="ClutterBehaviourPath"
            glib:get-type="clutter_behaviour_path_get_type"
            glib:type-struct="BehaviourPathClass">
       <doc xml:whitespace="preserve">The #ClutterBehaviourPath structure contains only private data
-and should be accessed using the provided API</doc>
+and should be accessed using the provided API
+instead.</doc>
       <implements name="Scriptable"/>
       <constructor name="new"
                    c:identifier="clutter_behaviour_path_new"
-                   version="0.2">
+                   version="0.2"
+                   deprecated="1.6">
         <doc xml:whitespace="preserve">Creates a new path behaviour. You can use this behaviour to drive
 actors along the nodes of a path, described by @path.
 This will claim the floating reference on the #ClutterPath so you
@@ -8723,7 +8749,8 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </constructor>
       <constructor name="new_with_description"
                    c:identifier="clutter_behaviour_path_new_with_description"
-                   version="1.0">
+                   version="1.0"
+                   deprecated="1.6">
         <doc xml:whitespace="preserve">Creates a new path behaviour using the path described by @desc. See
 clutter_path_add_string() for a description of the format.
 If @alpha is not %NULL, the #ClutterBehaviour will take ownership
@@ -8746,7 +8773,8 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </constructor>
       <constructor name="new_with_knots"
                    c:identifier="clutter_behaviour_path_new_with_knots"
-                   version="1.0">
+                   version="1.0"
+                   deprecated="1.6">
         <doc xml:whitespace="preserve">Creates a new path behaviour that will make the actors visit all of
 the given knots in order with straight lines in between.
 A path will be created where the first knot is used in a
@@ -8776,7 +8804,8 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </constructor>
       <method name="get_path"
               c:identifier="clutter_behaviour_path_get_path"
-              version="1.0">
+              version="1.0"
+              deprecated="1.6">
         <doc xml:whitespace="preserve">Get the current path of the behaviour</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the path</doc>
@@ -8785,7 +8814,8 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </method>
       <method name="set_path"
               c:identifier="clutter_behaviour_path_set_path"
-              version="1.0">
+              version="1.0"
+              deprecated="1.6">
         <doc xml:whitespace="preserve">Change the path that the actors will follow. This will take the
 floating reference on the #ClutterPath so you do not need to unref
 it.</doc>
@@ -8809,7 +8839,7 @@ it.</doc>
         <type name="BehaviourPathPrivate"
               c:type="ClutterBehaviourPathPrivate*"/>
       </field>
-      <glib:signal name="knot-reached" version="0.2">
+      <glib:signal name="knot-reached" version="0.2" deprecated="1.6">
         <doc xml:whitespace="preserve">This signal is emitted each time a node defined inside the path
 is reached.</doc>
         <return-value transfer-ownership="none">
@@ -8885,6 +8915,8 @@ is reached.</doc>
            c:symbol-prefix="behaviour_rotate"
            c:type="ClutterBehaviourRotate"
            version="0.4"
+           deprecated="Use clutter_actor_animate() instead."
+           deprecated-version="1.6"
            parent="Behaviour"
            glib:type-name="ClutterBehaviourRotate"
            glib:get-type="clutter_behaviour_rotate_get_type"
@@ -9127,7 +9159,8 @@ normal to the rotation axis set with clutter_behaviour_rotate_set_axis().</doc>
     <record name="BehaviourRotateClass"
             c:type="ClutterBehaviourRotateClass"
             glib:is-gtype-struct-for="BehaviourRotate"
-            version="0.4">
+            version="0.4"
+            deprecated="1.6">
       <doc xml:whitespace="preserve">The #ClutterBehaviourRotateClass struct contains only private data</doc>
       <field name="parent_class">
         <type name="BehaviourClass" c:type="ClutterBehaviourClass"/>
@@ -9141,16 +9174,20 @@ normal to the rotation axis set with clutter_behaviour_rotate_set_axis().</doc>
            c:symbol-prefix="behaviour_scale"
            c:type="ClutterBehaviourScale"
            version="0.2"
+           deprecated="Use clutter_actor_animate() with #ClutterActor:x-scale"
+           deprecated-version="1.6"
            parent="Behaviour"
            glib:type-name="ClutterBehaviourScale"
            glib:get-type="clutter_behaviour_scale_get_type"
            glib:type-struct="BehaviourScaleClass">
       <doc xml:whitespace="preserve">The #ClutterBehaviourScale struct contains only private data and
-should be accessed using the provided API</doc>
+should be accessed using the provided API
+and #ClutterActor:y-scale instead.</doc>
       <implements name="Scriptable"/>
       <constructor name="new"
                    c:identifier="clutter_behaviour_scale_new"
-                   version="0.2">
+                   version="0.2"
+                   deprecated="1.6">
         <doc xml:whitespace="preserve">Creates a new  #ClutterBehaviourScale instance.
 If @alpha is not %NULL, the #ClutterBehaviour will take ownership
 of the #ClutterAlpha instance. In the case when @alpha is %NULL,
@@ -9184,7 +9221,8 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </constructor>
       <method name="get_bounds"
               c:identifier="clutter_behaviour_scale_get_bounds"
-              version="0.4">
+              version="0.4"
+              deprecated="1.6">
         <doc xml:whitespace="preserve">Retrieves the bounds used by scale behaviour.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -9222,7 +9260,8 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </method>
       <method name="set_bounds"
               c:identifier="clutter_behaviour_scale_set_bounds"
-              version="0.6">
+              version="0.6"
+              deprecated="1.6">
         <doc xml:whitespace="preserve">Sets the bounds used by scale behaviour.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -9248,6 +9287,7 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </method>
       <property name="x-scale-end"
                 version="0.6"
+                deprecated="1.6"
                 writable="1"
                 transfer-ownership="none">
         <doc xml:whitespace="preserve">The final scaling factor on the X axis for the actors.</doc>
@@ -9255,6 +9295,7 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </property>
       <property name="x-scale-start"
                 version="0.6"
+                deprecated="1.6"
                 writable="1"
                 transfer-ownership="none">
         <doc xml:whitespace="preserve">The initial scaling factor on the X axis for the actors.</doc>
@@ -9262,6 +9303,7 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </property>
       <property name="y-scale-end"
                 version="0.6"
+                deprecated="1.6"
                 writable="1"
                 transfer-ownership="none">
         <doc xml:whitespace="preserve">The final scaling factor on the Y axis for the actors.</doc>
@@ -9269,6 +9311,7 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
       </property>
       <property name="y-scale-start"
                 version="0.6"
+                deprecated="1.6"
                 writable="1"
                 transfer-ownership="none">
         <doc xml:whitespace="preserve">The initial scaling factor on the Y axis for the actors.</doc>
@@ -9285,7 +9328,8 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
     <record name="BehaviourScaleClass"
             c:type="ClutterBehaviourScaleClass"
             glib:is-gtype-struct-for="BehaviourScale"
-            version="0.2">
+            version="0.2"
+            deprecated="1.6">
       <doc xml:whitespace="preserve">The #ClutterBehaviourScaleClass struct contains only private data</doc>
       <field name="parent_class">
         <type name="BehaviourClass" c:type="ClutterBehaviourClass"/>
@@ -9393,16 +9437,16 @@ instead</doc>
           </parameter>
           <parameter name="x_align"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none"
+                     caller-allocates="0"
+                     transfer-ownership="full"
                      allow-none="1">
             <doc xml:whitespace="preserve">return location for the horizontal alignment policy</doc>
             <type name="BinAlignment" c:type="ClutterBinAlignment*"/>
           </parameter>
           <parameter name="y_align"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none"
+                     caller-allocates="0"
+                     transfer-ownership="full"
                      allow-none="1">
             <doc xml:whitespace="preserve">return location for the vertical alignment policy</doc>
             <type name="BinAlignment" c:type="ClutterBinAlignment*"/>
@@ -10387,15 +10431,15 @@ as set using clutter_box_layout_pack() or clutter_box_layout_set_alignment()</do
           </parameter>
           <parameter name="x_align"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">return location for the horizontal alignment policy</doc>
             <type name="BoxAlignment" c:type="ClutterBoxAlignment*"/>
           </parameter>
           <parameter name="y_align"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">return location for the vertical alignment policy</doc>
             <type name="BoxAlignment" c:type="ClutterBoxAlignment*"/>
           </parameter>
@@ -11630,11 +11674,24 @@ color to a #ClutterColor.</doc>
 &lt;structfield&gt;blue&lt;/structfield&gt; and &lt;structfield&gt;alpha&lt;/structfield&gt; 
 channels of @color. If alpha is not specified it will be set full opaque.
 The @color is not allocated.
-The color may be defined by any of the formats understood by
-pango_color_from_string(); these include literal color names, like
-&lt;literal&gt;Red&lt;/literal&gt; or &lt;literal&gt;DarkSlateGray&lt;/literal&gt;, or
-hexadecimal specifications like &lt;literal&gt;&amp;num;3050b2&lt;/literal&gt; or
-&lt;literal&gt;&amp;num;333&lt;/literal&gt;.</doc>
+The format of @str can be either one of:
+&lt;itemizedlist&gt;
+&lt;listitem&gt;&lt;para&gt;a standard name (taken from the X11 rgb.txt
+file");&lt;/para&gt;&lt;/listitem&gt;
+&lt;listitem&gt;&lt;para&gt;an hexadecimal value in the form: '#rgb', '#rrggbb',
+'#rgba' or '#rrggbbaa';&lt;/para&gt;&lt;/listitem&gt;
+&lt;listitem&gt;&lt;para&gt;a RGB color in the form 'rgb(r, g, b)';&lt;/para&gt;&lt;/listitem&gt;
+&lt;listitem&gt;&lt;para&gt;a RGBA color in the form 'rgba(r, g, b,
+a)';&lt;/para&gt;&lt;/listitem&gt;
+where 'r', 'g', 'b' and 'a' are (respectively) the red, green, blue and
+alpha color values.
+In the last two cases, the 'r', 'g', and 'b' values are either integers
+between 0 and 255, or percentage values in the range between 0% and 100%;
+the percentages require the '%' character. The 'a' value, if specified,
+can only be a floating point value between 0.0 and 1.0.
+Whitespace is ignored.
+If the alpha component is not specified then it is assumed to be set to
+be fully opaque.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">%TRUE if parsing succeeded.</doc>
           <type name="gboolean" c:type="gboolean"/>
@@ -24950,7 +25007,7 @@ useful for language bindings.</doc>
     <constant name="MAJOR_VERSION" value="1">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="MICRO_VERSION" value="5">
+    <constant name="MICRO_VERSION" value="7">
       <type name="gint" c:type="gint"/>
     </constant>
     <constant name="MINOR_VERSION" value="5">
@@ -29502,7 +29559,7 @@ done.</doc>
         <doc xml:whitespace="preserve">Loads the definitions from @data into @script and merges with
 the currently loaded ones, if any.
 accordingly. On success, the merge id for the UI definitions is
-returned. You can use the merge id with clutter_script_unmerge().</doc>
+returned. You can use the merge id with clutter_script_unmerge_objects().</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">on error, zero is returned and @error is set</doc>
           <type name="guint" c:type="guint"/>
@@ -30766,15 +30823,15 @@ to the @edge of @source, with the given @offset.</doc>
         <parameters>
           <parameter name="from_edge"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">return location for the actor's edge, or %NULL</doc>
             <type name="SnapEdge" c:type="ClutterSnapEdge*"/>
           </parameter>
           <parameter name="to_edge"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">return location for the source's edge, or %NULL</doc>
             <type name="SnapEdge" c:type="ClutterSnapEdge*"/>
           </parameter>
@@ -30929,7 +30986,7 @@ and should be accessed using the provided API</doc>
 top-level actor which can be used as another container. It works
 exactly like the default stage, but while clutter_stage_get_default()
 will always return the same instance, you will have to keep a pointer
-to any #ClutterStage returned by clutter_stage_create().
+to any #ClutterStage returned by clutter_stage_new().
 The ability to support multiple stages depends on the current
 backend. Use clutter_feature_available() and
 %CLUTTER_FEATURE_STAGE_MULTIPLE to check at runtime whether a
@@ -31156,7 +31213,7 @@ alpha channel of the stage color</doc>
               version="0.6">
         <doc xml:whitespace="preserve">Gets whether the depth cueing effect is enabled on @stage.</doc>
         <return-value transfer-ownership="none">
-          <doc xml:whitespace="preserve">%TRUE if the the depth cueing effect is enabled</doc>
+          <doc xml:whitespace="preserve">%TRUE if the depth cueing effect is enabled</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
       </method>
@@ -33095,15 +33152,15 @@ clutter_table_layout_set_alignment().</doc>
           </parameter>
           <parameter name="x_align"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">return location for the horizontal alignment policy</doc>
             <type name="TableAlignment" c:type="ClutterTableAlignment*"/>
           </parameter>
           <parameter name="y_align"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">return location for the vertical alignment policy</doc>
             <type name="TableAlignment" c:type="ClutterTableAlignment*"/>
           </parameter>
@@ -34447,7 +34504,7 @@ the same as the text color.</doc>
 or not. Only editable #ClutterText&lt;!-- --&gt;s can be in single line
 mode.
 A text actor in single line mode will not wrap text and will clip
-the the visible area to the predefined size. The contents of the
+the visible area to the predefined size. The contents of the
 text actor will scroll to display the end of the text if its length
 is bigger than the allocated width.
 When setting the single line mode the #ClutterText:activatable
@@ -34976,8 +35033,8 @@ sized large enough to contain any child tranformations.&lt;/para&gt;
 &lt;/listitem&gt;
 &lt;listitem&gt;
 &lt;para&gt;Uploading pixel data to the texture (e.g by using
-clutter_actor_set_from_file()) will destroy the offscreen texture data
-and end redirection.&lt;/para&gt;
+clutter_texture_set_from_file()) will destroy the offscreen texture
+data and end redirection.&lt;/para&gt;
 &lt;/listitem&gt;
 &lt;listitem&gt;
 &lt;para&gt;cogl_texture_get_data() with the handle returned by
@@ -36168,6 +36225,16 @@ See clutter_timeline_set_duration().</doc>
           <type name="gdouble" c:type="gdouble"/>
         </return-value>
       </method>
+      <method name="get_reverse"
+              c:identifier="clutter_timeline_get_reverse"
+              version="1.6">
+        <doc xml:whitespace="preserve">Retrieves the value set by clutter_timeline_set_reverse().
+%FALSE otherwise</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">%TRUE if the timeline should reverse when looping, and</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+      </method>
       <method name="has_marker"
               c:identifier="clutter_timeline_has_marker"
               version="0.8">
@@ -36301,6 +36368,49 @@ of the timeline depends on the ClutterTimeline:fps setting.</doc>
           </parameter>
         </parameters>
       </method>
+      <method name="set_reverse"
+              c:identifier="clutter_timeline_set_reverse"
+              version="1.6">
+        <doc xml:whitespace="preserve">Sets whether @timeline should reverse the direction after the
+emission of the #ClutterTimeline::completed signal.
+Setting the #ClutterTimeline:reverse property to %TRUE is the
+equivalent of connecting a callback to the #ClutterTimeline::completed
+signal and changing the direction of the timeline from that callback;
+for instance, this code:
+|[
+static void
+reverse_timeline (ClutterTimeline *timeline)
+{
+ClutterTimelineDirection dir = clutter_timeline_get_direction (timeline);
+if (dir == CLUTTER_TIMELINE_FORWARD)
+dir = CLUTTER_TIMELINE_BACKWARD;
+else
+dir = CLUTTER_TIMELINE_FORWARD;
+clutter_timeline_set_direction (timeline, dir);
+}
+...
+timeline = clutter_timeline_new (1000);
+clutter_timeline_set_loop (timeline);
+g_signal_connect (timeline, "completed",
+G_CALLBACK (reverse_timeline),
+NULL);
+]|
+can be effectively replaced by:
+|[
+timeline = clutter_timeline_new (1000);
+clutter_timeline_set_loop (timeline);
+clutter_timeline_set_reverse (timeline);
+]|</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="reverse" transfer-ownership="none">
+            <doc xml:whitespace="preserve">%TRUE if the @timeline should reverse the direction</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </method>
       <method name="skip" c:identifier="clutter_timeline_skip">
         <doc xml:whitespace="preserve">Advance timeline by the requested time in milliseconds</doc>
         <return-value transfer-ownership="none">
@@ -36351,6 +36461,14 @@ ClutterTimeline:fps value.</doc>
       </property>
       <property name="loop" writable="1" transfer-ownership="none">
         <doc xml:whitespace="preserve">Whether the timeline should automatically rewind and restart.</doc>
+        <type name="gboolean"/>
+      </property>
+      <property name="reverse"
+                version="1.6"
+                writable="1"
+                transfer-ownership="none">
+        <doc xml:whitespace="preserve">Whether the direction of a looping timeline should be reversed
+when emitting the #ClutterTimeline::completed signal.</doc>
         <type name="gboolean"/>
       </property>
       <field name="parent">
@@ -37022,7 +37140,7 @@ typographic points. Pixels are integers.&lt;/note&gt;
     <constant name="VERSION_HEX" value="0">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="VERSION_S" value="1.5.5">
+    <constant name="VERSION_S" value="1.5.7">
       <type name="utf8" c:type="gchar*"/>
     </constant>
     <constant name="VendorHome" value="269025076">
@@ -41354,7 +41472,7 @@ should never be modified or freed.</doc>
     <function name="value_get_units"
               c:identifier="clutter_value_get_units"
               version="0.8">
-      <doc xml:whitespace="preserve">Gets the #ClutterUnit&lt;!-- --&gt;s contained in @value.</doc>
+      <doc xml:whitespace="preserve">Gets the #ClutterUnits contained in @value.</doc>
       <return-value transfer-ownership="none">
         <doc xml:whitespace="preserve">the units inside the passed #GValue</doc>
         <type name="Units" c:type="ClutterUnits*"/>

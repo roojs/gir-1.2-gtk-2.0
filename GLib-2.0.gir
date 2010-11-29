@@ -7377,9 +7377,19 @@ representing an event source.</doc>
       <field name="name" writable="1">
         <type name="utf8" c:type="char*"/>
       </field>
-      <field name="reserved2" writable="1">
-        <type name="gpointer" c:type="gpointer"/>
+      <field name="priv" writable="1">
+        <type name="SourcePrivate" c:type="GSourcePrivate*"/>
       </field>
+      <method name="add_child_source" c:identifier="g_source_add_child_source">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="child_source" transfer-ownership="none">
+            <type name="Source" c:type="GSource*"/>
+          </parameter>
+        </parameters>
+      </method>
       <method name="add_poll" c:identifier="g_source_add_poll">
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7456,6 +7466,17 @@ representing an event source.</doc>
         <return-value>
           <type name="Source" c:type="GSource*"/>
         </return-value>
+      </method>
+      <method name="remove_child_source"
+              c:identifier="g_source_remove_child_source">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="child_source" transfer-ownership="none">
+            <type name="Source" c:type="GSource*"/>
+          </parameter>
+        </parameters>
       </method>
       <method name="remove_poll" c:identifier="g_source_remove_poll">
         <return-value transfer-ownership="none">
@@ -7692,6 +7713,8 @@ required condition has been met, and returns %TRUE if so.</doc>
       <field name="closure_marshal" writable="1">
         <type name="SourceDummyMarshal" c:type="GSourceDummyMarshal"/>
       </field>
+    </record>
+    <record name="SourcePrivate" c:type="GSourcePrivate" disguised="1">
     </record>
     <callback name="SpawnChildSetupFunc" c:type="GSpawnChildSetupFunc">
       <return-value transfer-ownership="none">
@@ -10453,7 +10476,7 @@ enumeration.</doc>
           <parameter name="key" transfer-ownership="none">
             <type name="utf8" c:type="gchar*"/>
           </parameter>
-          <parameter name="type" transfer-ownership="none">
+          <parameter name="expected_type" transfer-ownership="none">
             <type name="VariantType" c:type="GVariantType*"/>
           </parameter>
         </parameters>
@@ -17667,8 +17690,8 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
         </parameter>
         <parameter name="child_pid"
                    direction="out"
-                   caller-allocates="1"
-                   transfer-ownership="none">
+                   caller-allocates="0"
+                   transfer-ownership="full">
           <type name="Pid" c:type="GPid*"/>
         </parameter>
       </parameters>
@@ -17706,8 +17729,8 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
         </parameter>
         <parameter name="child_pid"
                    direction="out"
-                   caller-allocates="1"
-                   transfer-ownership="none">
+                   caller-allocates="0"
+                   transfer-ownership="full">
           <type name="Pid" c:type="GPid*"/>
         </parameter>
         <parameter name="standard_input"

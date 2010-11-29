@@ -15,10 +15,7 @@ and/or use gtk-doc annotations.  -->
   <include name="GstInterfaces" version="0.10"/>
   <include name="GstTag" version="0.10"/>
   <include name="libxml2" version="2.0"/>
-  <package name="gstreamer-0.10"/>
-  <package name="gstreamer-audio-0.10"/>
-  <package name="gstreamer-interfaces-0.10"/>
-  <package name="gstreamer-tag-0.10"/>
+  <package name="gstreamer-riff-0.10"/>
   <c:include name="gst/riff/riff-ids.h"/>
   <c:include name="gst/riff/riff-media.h"/>
   <c:include name="gst/riff/riff-read.h"/>

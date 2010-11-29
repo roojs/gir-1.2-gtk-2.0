@@ -12,8 +12,7 @@ and/or use gtk-doc annotations.  -->
   <include name="Gst" version="0.10"/>
   <include name="GstBase" version="0.10"/>
   <include name="libxml2" version="2.0"/>
-  <package name="gstreamer-0.10"/>
-  <package name="gstreamer-base-0.10"/>
+  <package name="gstreamer-app-0.10"/>
   <c:include name="gst/app/gstappbuffer.h"/>
   <c:include name="gst/app/gstappsink.h"/>
   <c:include name="gst/app/gstappsrc.h"/>

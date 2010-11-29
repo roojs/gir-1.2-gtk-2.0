@@ -10,11 +10,7 @@ and/or use gtk-doc annotations.  -->
   <include name="GModule" version="2.0"/>
   <include name="GObject" version="2.0"/>
   <include name="libxml2" version="2.0"/>
-  <package name="glib-2.0"/>
-  <package name="gmodule-no-export-2.0"/>
-  <package name="gobject-2.0"/>
-  <package name="gthread-2.0"/>
-  <package name="libxml-2.0"/>
+  <package name="gstreamer-0.10"/>
   <c:include name="gst/gst.h"/>
   <namespace name="Gst"
              version="0.10"
@@ -4078,15 +4074,15 @@ MT safe.</doc>
         <parameters>
           <parameter name="state"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">a pointer to #GstState to hold the state. Can be %NULL.</doc>
             <type name="State" c:type="GstState*"/>
           </parameter>
           <parameter name="pending"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">a pointer to #GstState to hold the pending state. Can be %NULL.</doc>
             <type name="State" c:type="GstState*"/>
           </parameter>
@@ -4536,15 +4532,15 @@ MT safe.</doc>
         <parameters>
           <parameter name="state"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">a pointer to #GstState to hold the state. Can be %NULL.</doc>
             <type name="State" c:type="GstState*"/>
           </parameter>
           <parameter name="pending"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">a pointer to #GstState to hold the pending state. Can be %NULL.</doc>
             <type name="State" c:type="GstState*"/>
           </parameter>
@@ -5533,15 +5529,15 @@ functionality.</doc>
             </parameter>
             <parameter name="state"
                        direction="out"
-                       caller-allocates="1"
-                       transfer-ownership="none">
+                       caller-allocates="0"
+                       transfer-ownership="full">
               <doc xml:whitespace="preserve">a pointer to #GstState to hold the state. Can be %NULL.</doc>
               <type name="State" c:type="GstState*"/>
             </parameter>
             <parameter name="pending"
                        direction="out"
-                       caller-allocates="1"
-                       transfer-ownership="none">
+                       caller-allocates="0"
+                       transfer-ownership="full">
               <doc xml:whitespace="preserve">a pointer to #GstState to hold the pending state. Can be %NULL.</doc>
               <type name="State" c:type="GstState*"/>
             </parameter>
@@ -6734,8 +6730,8 @@ check the name of a custom event.</doc>
         <parameters>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">A pointer to store the format in</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -6772,8 +6768,8 @@ check the name of a custom event.</doc>
         <parameters>
           <parameter name="latency"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">A pointer to store the latency in.</doc>
             <type name="ClockTime" c:type="GstClockTime*"/>
           </parameter>
@@ -6806,8 +6802,8 @@ of the newsegment event.</doc>
           </parameter>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">A pointer to the format of the newsegment values</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -6867,8 +6863,8 @@ for a full description of the newsegment event.</doc>
           </parameter>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">A pointer to the format of the newsegment values</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -6911,15 +6907,15 @@ gst_event_new_qos() for more information about the different QoS values.</doc>
           </parameter>
           <parameter name="diff"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">A pointer to store the diff in</doc>
             <type name="ClockTimeDiff" c:type="GstClockTimeDiff*"/>
           </parameter>
           <parameter name="timestamp"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">A pointer to store the timestamp in</doc>
             <type name="ClockTime" c:type="GstClockTime*"/>
           </parameter>
@@ -6940,22 +6936,22 @@ gst_event_new_qos() for more information about the different QoS values.</doc>
           </parameter>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">result location for the stream format</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
           <parameter name="flags"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">result location for the #GstSeekFlags</doc>
             <type name="SeekFlags" c:type="GstSeekFlags*"/>
           </parameter>
           <parameter name="start_type"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">result location for the #GstSeekType of the start position</doc>
             <type name="SeekType" c:type="GstSeekType*"/>
           </parameter>
@@ -6968,8 +6964,8 @@ gst_event_new_qos() for more information about the different QoS values.</doc>
           </parameter>
           <parameter name="stop_type"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">result location for the #GstSeekType of the stop position</doc>
             <type name="SeekType" c:type="GstSeekType*"/>
           </parameter>
@@ -7009,8 +7005,8 @@ gst_event_new_qos() for more information about the different QoS values.</doc>
         <parameters>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">A pointer to store the format in.</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -9593,8 +9589,8 @@ MT safe.</doc>
         <parameters>
           <parameter name="mode"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">a buffering mode</doc>
             <type name="BufferingMode" c:type="GstBufferingMode*"/>
           </parameter>
@@ -9676,8 +9672,8 @@ MT safe.</doc>
         <parameters>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">Result location for the format, or NULL</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -9834,8 +9830,8 @@ MT safe.</doc>
         <parameters>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">Units of the 'processed' and 'dropped' fields. Video sinks and video filters will use GST_FORMAT_BUFFERS (frames). Audio sinks and audio filters will likely use GST_FORMAT_DEFAULT (samples).</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -9898,8 +9894,8 @@ MT safe.</doc>
         <parameters>
           <parameter name="state"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">Result location for the requested state or NULL</doc>
             <type name="State" c:type="GstState*"/>
           </parameter>
@@ -9915,8 +9911,8 @@ MT safe.</doc>
         <parameters>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">Result location for the format, or NULL</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -9939,8 +9935,8 @@ MT safe.</doc>
         <parameters>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">Result location for the format, or NULL</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -9979,22 +9975,22 @@ MT safe.</doc>
         <parameters>
           <parameter name="oldstate"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the previous state, or NULL</doc>
             <type name="State" c:type="GstState*"/>
           </parameter>
           <parameter name="newstate"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the new (current) state, or NULL</doc>
             <type name="State" c:type="GstState*"/>
           </parameter>
           <parameter name="pending"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the pending (target) state, or NULL</doc>
             <type name="State" c:type="GstState*"/>
           </parameter>
@@ -10011,8 +10007,8 @@ MT safe.</doc>
         <parameters>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">result location for the format</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -10078,8 +10074,8 @@ MT safe.</doc>
           </parameter>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">result location for the format</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -10126,8 +10122,8 @@ MT safe.</doc>
         <parameters>
           <parameter name="type"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">A pointer to hold the status type</doc>
             <type name="StreamStatusType" c:type="GstStreamStatusType*"/>
           </parameter>
@@ -10151,8 +10147,8 @@ MT safe.</doc>
         <parameters>
           <parameter name="type"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">A pointer to hold the change type</doc>
             <type name="StructureChangeType" c:type="GstStructureChangeType*"/>
           </parameter>
@@ -16140,8 +16136,8 @@ are non-NULL</doc>
         <parameters>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the format to set for the @segment_start and @segment_end values</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -16178,8 +16174,8 @@ are non-NULL</doc>
         <parameters>
           <parameter name="mode"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">a buffering mode</doc>
             <type name="BufferingMode" c:type="GstBufferingMode*"/>
           </parameter>
@@ -16215,8 +16211,8 @@ and @dest_value may be NULL, in which case that value is omitted.</doc>
         <parameters>
           <parameter name="src_format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the storage for the #GstFormat of the source value, or NULL</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -16229,8 +16225,8 @@ and @dest_value may be NULL, in which case that value is omitted.</doc>
           </parameter>
           <parameter name="dest_format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the storage for the #GstFormat of the destination value, or NULL</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -16252,8 +16248,8 @@ and the value into @duration, if the respective variables are non-NULL.</doc>
         <parameters>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the storage for the #GstFormat of the duration value, or NULL.</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -16301,8 +16297,8 @@ set to GST_FORMAT_UNDEFINED.</doc>
           </parameter>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">a pointer to store the nth format</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -16325,15 +16321,15 @@ set to GST_FORMAT_UNDEFINED.</doc>
           </parameter>
           <parameter name="min_latency"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the storage for the min latency or NULL</doc>
             <type name="ClockTime" c:type="GstClockTime*"/>
           </parameter>
           <parameter name="max_latency"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the storage for the max latency or NULL</doc>
             <type name="ClockTime" c:type="GstClockTime*"/>
           </parameter>
@@ -16365,8 +16361,8 @@ into @cur, if the respective parameters are non-NULL.</doc>
         <parameters>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the storage for the #GstFormat of the position values (may be NULL)</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -16389,8 +16385,8 @@ are non-NULL</doc>
         <parameters>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the format to set for the @segment_start and @segment_end values</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>
@@ -16433,8 +16429,8 @@ See gst_query_set_segment() for an explanation of the function arguments.</doc>
           </parameter>
           <parameter name="format"
                      direction="out"
-                     caller-allocates="1"
-                     transfer-ownership="none">
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the storage for the #GstFormat of the values, or NULL</doc>
             <type name="Format" c:type="GstFormat*"/>
           </parameter>

@@ -8823,6 +8823,17 @@ filled in with pointers to appropriate functions.</doc>
         </parameter>
       </parameters>
     </function>
+    <function name="source_set_dummy_callback"
+              c:identifier="g_source_set_dummy_callback">
+      <return-value transfer-ownership="none">
+        <type name="none" c:type="void"/>
+      </return-value>
+      <parameters>
+        <parameter name="source" transfer-ownership="none">
+          <type name="GLib.Source" c:type="GSource*"/>
+        </parameter>
+      </parameters>
+    </function>
     <function name="strdup_value_contents"
               c:identifier="g_strdup_value_contents">
       <doc xml:whitespace="preserve">Return a newly allocated string, which describes the contents of a
