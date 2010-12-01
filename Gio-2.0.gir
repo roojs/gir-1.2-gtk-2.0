@@ -46575,7 +46575,7 @@ trouble.</doc>
         <type name="GLib.Source" c:type="GSource*"/>
       </return-value>
       <parameters>
-        <parameter name="stream" transfer-ownership="none">
+        <parameter name="pollable_stream" transfer-ownership="none">
           <type name="GObject.Object" c:type="GObject*"/>
         </parameter>
       </parameters>

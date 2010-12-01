@@ -11683,6 +11683,7 @@ file");&lt;/para&gt;&lt;/listitem&gt;
 &lt;listitem&gt;&lt;para&gt;a RGB color in the form 'rgb(r, g, b)';&lt;/para&gt;&lt;/listitem&gt;
 &lt;listitem&gt;&lt;para&gt;a RGBA color in the form 'rgba(r, g, b,
 a)';&lt;/para&gt;&lt;/listitem&gt;
+&lt;/itemizedlist&gt;
 where 'r', 'g', 'b' and 'a' are (respectively) the red, green, blue and
 alpha color values.
 In the last two cases, the 'r', 'g', and 'b' values are either integers
@@ -16678,8 +16679,24 @@ date; not every platform supports every input device type.</doc>
               value="2"
               c:identifier="CLUTTER_EXTENSION_DEVICE"
               glib:nick="extension-device"/>
-      <member name="n_device_types"
+      <member name="joystick_device"
               value="3"
+              c:identifier="CLUTTER_JOYSTICK_DEVICE"
+              glib:nick="joystick-device"/>
+      <member name="tablet_device"
+              value="4"
+              c:identifier="CLUTTER_TABLET_DEVICE"
+              glib:nick="tablet-device"/>
+      <member name="touchpad_device"
+              value="5"
+              c:identifier="CLUTTER_TOUCHPAD_DEVICE"
+              glib:nick="touchpad-device"/>
+      <member name="touchscreen_device"
+              value="6"
+              c:identifier="CLUTTER_TOUCHSCREEN_DEVICE"
+              glib:nick="touchscreen-device"/>
+      <member name="n_device_types"
+              value="7"
               c:identifier="CLUTTER_N_DEVICE_TYPES"
               glib:nick="n-device-types"/>
     </enumeration>
@@ -25007,7 +25024,7 @@ useful for language bindings.</doc>
     <constant name="MAJOR_VERSION" value="1">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="MICRO_VERSION" value="7">
+    <constant name="MICRO_VERSION" value="9">
       <type name="gint" c:type="gint"/>
     </constant>
     <constant name="MINOR_VERSION" value="5">
@@ -37140,7 +37157,7 @@ typographic points. Pixels are integers.&lt;/note&gt;
     <constant name="VERSION_HEX" value="0">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="VERSION_S" value="1.5.7">
+    <constant name="VERSION_S" value="1.5.9">
       <type name="utf8" c:type="gchar*"/>
     </constant>
     <constant name="VendorHome" value="269025076">

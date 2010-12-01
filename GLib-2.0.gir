@@ -3947,7 +3947,7 @@ cannot be accessed directly.</doc>
     <constant name="MAJOR_VERSION" value="2">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="MICRO_VERSION" value="4">
+    <constant name="MICRO_VERSION" value="5">
       <type name="gint" c:type="gint"/>
     </constant>
     <constant name="MINOR_VERSION" value="27">

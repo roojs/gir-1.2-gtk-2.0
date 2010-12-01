@@ -5244,7 +5244,7 @@ supports multiple selections.</doc>
           <type name="Object" c:type="AtkObject*"/>
         </return-value>
       </constructor>
-      <virtual-method name="embed" invoker="embed">
+      <virtual-method name="embed" invoker="embed" version="1.30">
         <doc xml:whitespace="preserve">Embeds the children of an #AtkPlug as the children of the #AtkSocket.  The
 plug may be in the same process or in a different process.</doc>
         <return-value transfer-ownership="none">
@@ -5257,7 +5257,7 @@ plug may be in the same process or in a different process.</doc>
           </parameter>
         </parameters>
       </virtual-method>
-      <method name="embed" c:identifier="atk_socket_embed">
+      <method name="embed" c:identifier="atk_socket_embed" version="1.30">
         <doc xml:whitespace="preserve">Embeds the children of an #AtkPlug as the children of the #AtkSocket.  The
 plug may be in the same process or in a different process.</doc>
         <return-value transfer-ownership="none">
@@ -5270,7 +5270,9 @@ plug may be in the same process or in a different process.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="is_occupied" c:identifier="atk_socket_is_occupied">
+      <method name="is_occupied"
+              c:identifier="atk_socket_is_occupied"
+              version="1.30">
         <doc xml:whitespace="preserve">Determines whether or not the socket has an embedded plug.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">TRUE if a plug is embedded in the socket</doc>
@@ -5749,7 +5751,7 @@ returned.
 Note that it is possible for get_uri to return NULL but for
 get_stream to work nonetheless, since not all GIOChannels connect to URIs.
 can be constructed.</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">Returns a string representing a URI, or NULL if no corresponding URI</doc>
           <type name="utf8" c:type="gchar*"/>
         </return-value>
@@ -7675,7 +7677,7 @@ after the offset if the offset is not inside a sentence.
 If the boundary type is ATK_TEXT_BOUNDARY_LINE_START the returned
 string is from the line start after the offset to the next line start.
 If the boundary_type is ATK_TEXT_BOUNDARY_LINE_END the returned string
-is from the line end at or after the offset to the next line start.</doc>
+is from the line end at or after the offset to the next line end.</doc>
         <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">the text after @offset bounded by the specified @boundary_type.</doc>
           <type name="utf8" c:type="gchar*"/>
@@ -8117,7 +8119,7 @@ after the offset if the offset is not inside a sentence.
 If the boundary type is ATK_TEXT_BOUNDARY_LINE_START the returned
 string is from the line start after the offset to the next line start.
 If the boundary_type is ATK_TEXT_BOUNDARY_LINE_END the returned string
-is from the line end at or after the offset to the next line start.</doc>
+is from the line end at or after the offset to the next line end.</doc>
         <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">the text after @offset bounded by the specified @boundary_type.</doc>
           <type name="utf8" c:type="gchar*"/>
@@ -9528,7 +9530,7 @@ executed for the object.</doc>
         <type name="utf8" c:type="gchar*"/>
       </return-value>
     </function>
-    <function name="get_version" c:identifier="atk_get_version">
+    <function name="get_version" c:identifier="atk_get_version" version="1.20">
       <doc xml:whitespace="preserve">Gets the current version for ATK.</doc>
       <return-value transfer-ownership="none">
         <doc xml:whitespace="preserve">version string for ATK</doc>
