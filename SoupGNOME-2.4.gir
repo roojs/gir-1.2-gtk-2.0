@@ -10,6 +10,8 @@ and/or use gtk-doc annotations.  -->
   <include name="GObject" version="2.0"/>
   <include name="Gio" version="2.0"/>
   <include name="Soup" version="2.4"/>
+  <package name="libsoup-gnome-2.4"/>
+  <c:include name="libsoup/soup-gnome.h"/>
   <namespace name="SoupGNOME"
              version="2.4"
              shared-library="libsoup-gnome-2.4.so.1"

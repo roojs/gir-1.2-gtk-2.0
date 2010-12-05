@@ -20810,6 +20810,12 @@ a #GParamSpec.</doc>
     <constant name="KEY_TopMenu" value="269025186">
       <type name="gint" c:type="gint"/>
     </constant>
+    <constant name="KEY_TouchpadOff" value="269025201">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="KEY_TouchpadOn" value="269025200">
+      <type name="gint" c:type="gint"/>
+    </constant>
     <constant name="KEY_TouchpadToggle" value="269025193">
       <type name="gint" c:type="gint"/>
     </constant>
@@ -36774,6 +36780,12 @@ clutter_timeout_pool_add().</doc>
       <type name="gint" c:type="gint"/>
     </constant>
     <constant name="TopMenu" value="269025186">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="TouchpadOff" value="269025201">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="TouchpadOn" value="269025200">
       <type name="gint" c:type="gint"/>
     </constant>
     <constant name="TouchpadToggle" value="269025193">
