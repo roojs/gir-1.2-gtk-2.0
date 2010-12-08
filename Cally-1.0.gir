@@ -124,10 +124,10 @@ with cally_actor_add_action()</doc>
           </parameter>
         </parameters>
       </method>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Atk.GObjectAccessible" c:type="AtkGObjectAccessible"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ActorPrivate" c:type="CallyActorPrivate*"/>
       </field>
     </class>
@@ -137,7 +137,7 @@ with cally_actor_add_action()</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;CallyActorClass&lt;/structname&gt; structure contains only
 private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="Atk.GObjectAccessibleClass"
               c:type="AtkGObjectAccessibleClass"/>
       </field>
@@ -207,7 +207,7 @@ private data</doc>
           </parameters>
         </callback>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="32">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -241,10 +241,10 @@ data and should be accessed using the provided API</doc>
           </parameter>
         </parameters>
       </constructor>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Actor" c:type="CallyActor"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ClonePrivate" c:type="CallyClonePrivate*"/>
       </field>
     </class>
@@ -254,10 +254,10 @@ data and should be accessed using the provided API</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;CallyCloneClass&lt;/structname&gt; structure contains only
 private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorClass" c:type="CallyActorClass"/>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="8">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -290,10 +290,10 @@ private data and should be accessed using the provided API</doc>
           </parameter>
         </parameters>
       </constructor>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Actor" c:type="CallyActor"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="GroupPrivate" c:type="CallyGroupPrivate*"/>
       </field>
     </class>
@@ -303,10 +303,10 @@ private data and should be accessed using the provided API</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;CallyGroupClass&lt;/structname&gt; structure contains only
 private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorClass" c:type="CallyActorClass"/>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="8">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -340,10 +340,10 @@ a #ClutterRectangle.</doc>
           </parameter>
         </parameters>
       </constructor>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Actor" c:type="CallyActor"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="RectanglePrivate" c:type="CallyRectanglePrivate*"/>
       </field>
     </class>
@@ -353,10 +353,10 @@ a #ClutterRectangle.</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;CallyRectangleClass&lt;/structname&gt; structure contains
 only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorClass" c:type="CallyActorClass"/>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="8">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -383,10 +383,10 @@ data and should be accessed using the provided API</doc>
           <type name="Atk.Object" c:type="AtkObject*"/>
         </return-value>
       </constructor>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Atk.GObjectAccessible" c:type="AtkGObjectAccessible"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="RootPrivate" c:type="CallyRootPrivate*"/>
       </field>
     </class>
@@ -396,11 +396,11 @@ data and should be accessed using the provided API</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;CallyRootClass&lt;/structname&gt; structure contains only
 private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="Atk.GObjectAccessibleClass"
               c:type="AtkGObjectAccessibleClass"/>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="16">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -434,10 +434,10 @@ private data and should be accessed using the provided API</doc>
           </parameter>
         </parameters>
       </constructor>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Group" c:type="CallyGroup"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="StagePrivate" c:type="CallyStagePrivate*"/>
       </field>
       <glib:signal name="activate" version="1.4">
@@ -477,10 +477,10 @@ event listener to "window:destroy"</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;CallyStageClass&lt;/structname&gt; structure contains only
 private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GroupClass" c:type="CallyGroupClass"/>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="16">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -516,10 +516,10 @@ data and should be accessed using the provided API</doc>
           </parameter>
         </parameters>
       </constructor>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Actor" c:type="CallyActor"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="TextPrivate" c:type="CallyTextPrivate*"/>
       </field>
     </class>
@@ -529,10 +529,10 @@ data and should be accessed using the provided API</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;CallyTextClass&lt;/structname&gt; structure contains only
 private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorClass" c:type="CallyActorClass"/>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="8">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -566,10 +566,10 @@ a #ClutterTexture.</doc>
           </parameter>
         </parameters>
       </constructor>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Actor" c:type="CallyActor"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="TexturePrivate" c:type="CallyTexturePrivate*"/>
       </field>
     </class>
@@ -579,10 +579,10 @@ a #ClutterTexture.</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;CallyTextureClass&lt;/structname&gt; structure contains
 only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorClass" c:type="CallyActorClass"/>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="8">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -600,10 +600,10 @@ only private data</doc>
            glib:type-struct="UtilClass">
       <doc xml:whitespace="preserve">The &lt;structname&gt;CallyUtil&lt;/structname&gt; structure contains only
 private data and should be accessed using the provided API</doc>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Atk.Util" c:type="AtkUtil"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="UtilPrivate" c:type="CallyUtilPrivate*"/>
       </field>
     </class>
@@ -613,10 +613,10 @@ private data and should be accessed using the provided API</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;CallyUtilClass&lt;/structname&gt; structure contains only
 private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="Atk.UtilClass" c:type="AtkUtilClass"/>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="8">
           <type name="gpointer" c:type="gpointer"/>
         </array>

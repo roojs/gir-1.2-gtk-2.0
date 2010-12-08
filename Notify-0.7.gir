@@ -393,10 +393,10 @@ notify_notification_show().</doc>
                 transfer-ownership="none">
         <type name="utf8"/>
       </property>
-      <field name="parent_object">
+      <field name="parent_object" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="NotificationPrivate" c:type="NotifyNotificationPrivate*"/>
       </field>
       <glib:signal name="closed">

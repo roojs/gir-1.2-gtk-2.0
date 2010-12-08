@@ -244,10 +244,10 @@ content has changed.</doc>
       <property name="window-y" transfer-ownership="none">
         <type name="gint"/>
       </property>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Clutter.Texture" c:type="ClutterTexture"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="TexturePixmapPrivate"
               c:type="ClutterX11TexturePixmapPrivate*"/>
       </field>
@@ -297,7 +297,7 @@ content from its source pixmap.</doc>
             glib:is-gtype-struct-for="TexturePixmap"
             version="0.8">
       <doc xml:whitespace="preserve">The #ClutterX11TexturePixmapClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="Clutter.TextureClass" c:type="ClutterTextureClass"/>
       </field>
       <field name="update_area">

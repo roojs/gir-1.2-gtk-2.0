@@ -211,7 +211,7 @@ and/or use gtk-doc annotations.  -->
            glib:type-struct="ActionClass">
       <doc xml:whitespace="preserve">The &lt;structname&gt;ClutterAction&lt;/structname&gt; structure contains only
 private data and should be accessed using the provided API</doc>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="ActorMeta" c:type="ClutterActorMeta"/>
       </field>
     </class>
@@ -221,7 +221,7 @@ private data and should be accessed using the provided API</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;ClutterActionClass&lt;/structname&gt; structure contains
 only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorMetaClass" c:type="ClutterActorMetaClass"/>
       </field>
       <field name="_clutter_action1" introspectable="0">
@@ -3722,16 +3722,16 @@ position for the actor.  If read, returns the fixed position if
 any, otherwise the allocation if available, otherwise 0.</doc>
         <type name="gfloat"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.InitiallyUnowned" c:type="GInitiallyUnowned"/>
       </field>
       <field name="flags">
         <type name="guint32" c:type="guint32"/>
       </field>
-      <field name="private_flags">
+      <field name="private_flags" readable="0" private="1">
         <type name="guint32" c:type="guint32"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ActorPrivate" c:type="ClutterActorPrivate*"/>
       </field>
       <glib:signal name="allocation-changed" version="1.0">
@@ -4361,7 +4361,7 @@ using @progress</doc>
             c:type="ClutterActorClass"
             glib:is-gtype-struct-for="Actor">
       <doc xml:whitespace="preserve">Base class for actors.</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.InitiallyUnownedClass"
               c:type="GInitiallyUnownedClass"/>
       </field>
@@ -4843,7 +4843,7 @@ using @progress</doc>
           </parameters>
         </callback>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="29">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -4973,10 +4973,10 @@ The name can be used to identify the #ClutterActorMeta instance</doc>
         <doc xml:whitespace="preserve">The unique name to access the #ClutterActorMeta</doc>
         <type name="utf8"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.InitiallyUnowned" c:type="GInitiallyUnowned"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ActorMetaPrivate" c:type="ClutterActorMetaPrivate*"/>
       </field>
     </class>
@@ -4986,7 +4986,7 @@ The name can be used to identify the #ClutterActorMeta instance</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;ClutterActorMetaClass&lt;/structname&gt; structure contains
 only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.InitiallyUnownedClass"
               c:type="GInitiallyUnownedClass"/>
       </field>
@@ -5495,10 +5495,10 @@ will be used.</doc>
         <doc xml:whitespace="preserve">A #ClutterTimeline instance used to drive the alpha function.</doc>
         <type name="Timeline"/>
       </property>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="GObject.InitiallyUnowned" c:type="GInitiallyUnowned"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="AlphaPrivate" c:type="ClutterAlphaPrivate*"/>
       </field>
     </class>
@@ -5507,7 +5507,7 @@ will be used.</doc>
             glib:is-gtype-struct-for="Alpha"
             version="0.2">
       <doc xml:whitespace="preserve">Base class for #ClutterAlpha</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.InitiallyUnownedClass"
               c:type="GInitiallyUnownedClass"/>
       </field>
@@ -5778,7 +5778,7 @@ or %NULL</doc>
             version="1.0">
       <doc xml:whitespace="preserve">Base interface for #GObject&lt;!-- --&gt;s that can be animated by a
 a #ClutterAnimation.</doc>
-      <field name="parent_iface">
+      <field name="parent_iface" readable="0" private="1">
         <type name="GObject.TypeInterface" c:type="GTypeInterface"/>
       </field>
       <field name="animate_property">
@@ -6247,10 +6247,10 @@ default value is %CLUTTER_LINEAR.</doc>
         <doc xml:whitespace="preserve">The #ClutterTimeline used by the animation.</doc>
         <type name="Timeline"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="AnimationPrivate" c:type="ClutterAnimationPrivate*"/>
       </field>
       <glib:signal name="completed" version="1.0">
@@ -6276,7 +6276,7 @@ started</doc>
             version="1.0">
       <doc xml:whitespace="preserve">The #ClutterAnimationClass structure contains only private data and
 should be accessed using the provided functions.</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="started">
@@ -6840,10 +6840,10 @@ to drive the animation</doc>
 animation</doc>
         <type name="Timeline"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="AnimatorPrivate" c:type="ClutterAnimatorPrivate*"/>
       </field>
     </class>
@@ -6852,10 +6852,10 @@ animation</doc>
             glib:is-gtype-struct-for="Animator"
             version="1.2">
       <doc xml:whitespace="preserve">The #ClutterAnimatorClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="16">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -7912,10 +7912,10 @@ object binds a #ClutterTimeline and a function which computes a value
 the alpha-notify virtual function is called.</doc>
         <type name="Alpha"/>
       </property>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="BehaviourPrivate" c:type="ClutterBehaviourPrivate*"/>
       </field>
       <glib:signal name="applied" version="0.4">
@@ -7948,7 +7948,7 @@ to an actor anymore.</doc>
     <record name="BehaviourClass"
             c:type="ClutterBehaviourClass"
             glib:is-gtype-struct-for="Behaviour">
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="alpha_notify">
@@ -8141,10 +8141,10 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
         <doc xml:whitespace="preserve">Start depth level to apply to the actors.</doc>
         <type name="gint"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Behaviour" c:type="ClutterBehaviour"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="BehaviourDepthPrivate"
               c:type="ClutterBehaviourDepthPrivate*"/>
       </field>
@@ -8155,7 +8155,7 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
             version="0.2"
             deprecated="1.6">
       <doc xml:whitespace="preserve">The #ClutterBehaviourDepthClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="BehaviourClass" c:type="ClutterBehaviourClass"/>
       </field>
     </record>
@@ -8534,10 +8534,10 @@ to the canonical interval &lt;0, 360).</doc>
         <doc xml:whitespace="preserve">Width of the ellipse, in pixels</doc>
         <type name="gint"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Behaviour" c:type="ClutterBehaviour"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="BehaviourEllipsePrivate"
               c:type="ClutterBehaviourEllipsePrivate*"/>
       </field>
@@ -8548,7 +8548,7 @@ to the canonical interval &lt;0, 360).</doc>
             version="0.4"
             deprecated="1.6">
       <doc xml:whitespace="preserve">The #ClutterBehaviourEllipseClass struct contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="BehaviourClass" c:type="ClutterBehaviourClass"/>
       </field>
     </record>
@@ -8685,10 +8685,10 @@ on each actor it controls.</doc>
         <doc xml:whitespace="preserve">Initial opacity level of the behaviour.</doc>
         <type name="guint"/>
       </property>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Behaviour" c:type="ClutterBehaviour"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="BehaviourOpacityPrivate"
               c:type="ClutterBehaviourOpacityPrivate*"/>
       </field>
@@ -8699,7 +8699,7 @@ on each actor it controls.</doc>
             version="0.2"
             deprecated="1.6">
       <doc xml:whitespace="preserve">The #ClutterBehaviourOpacityClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="BehaviourClass" c:type="ClutterBehaviourClass"/>
       </field>
     </record>
@@ -8832,10 +8832,10 @@ it.</doc>
       <property name="path" writable="1" transfer-ownership="none">
         <type name="Path"/>
       </property>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Behaviour" c:type="ClutterBehaviour"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="BehaviourPathPrivate"
               c:type="ClutterBehaviourPathPrivate*"/>
       </field>
@@ -8856,7 +8856,7 @@ is reached.</doc>
     <record name="BehaviourPathClass"
             c:type="ClutterBehaviourPathClass"
             glib:is-gtype-struct-for="BehaviourPath">
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="BehaviourClass" c:type="ClutterBehaviourClass"/>
       </field>
       <field name="knot_reached">
@@ -9148,10 +9148,10 @@ normal to the rotation axis set with clutter_behaviour_rotate_set_axis().</doc>
         <doc xml:whitespace="preserve">The direction of the rotation.</doc>
         <type name="RotateDirection"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Behaviour" c:type="ClutterBehaviour"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="BehaviourRotatePrivate"
               c:type="ClutterBehaviourRotatePrivate*"/>
       </field>
@@ -9162,7 +9162,7 @@ normal to the rotation axis set with clutter_behaviour_rotate_set_axis().</doc>
             version="0.4"
             deprecated="1.6">
       <doc xml:whitespace="preserve">The #ClutterBehaviourRotateClass struct contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="BehaviourClass" c:type="ClutterBehaviourClass"/>
       </field>
     </record>
@@ -9317,10 +9317,10 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
         <doc xml:whitespace="preserve">The initial scaling factor on the Y axis for the actors.</doc>
         <type name="gdouble"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Behaviour" c:type="ClutterBehaviour"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="BehaviourScalePrivate"
               c:type="ClutterBehaviourScalePrivate*"/>
       </field>
@@ -9331,7 +9331,7 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
             version="0.2"
             deprecated="1.6">
       <doc xml:whitespace="preserve">The #ClutterBehaviourScaleClass struct contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="BehaviourClass" c:type="ClutterBehaviourClass"/>
       </field>
     </record>
@@ -9494,10 +9494,10 @@ by the #ClutterBinLayout</doc>
 by the #ClutterBinLayout</doc>
         <type name="BinAlignment"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="LayoutManager" c:type="ClutterLayoutManager"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="BinLayoutPrivate" c:type="ClutterBinLayoutPrivate*"/>
       </field>
     </class>
@@ -9507,7 +9507,7 @@ by the #ClutterBinLayout</doc>
             version="1.2">
       <doc xml:whitespace="preserve">The #ClutterBinLayoutClass structure contains only private
 data and should be accessed using the provided API</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="LayoutManagerClass" c:type="ClutterLayoutManagerClass"/>
       </field>
     </record>
@@ -10320,10 +10320,10 @@ layout of the children of @box</doc>
         <doc xml:whitespace="preserve">The #ClutterLayoutManager used by the #ClutterBox</doc>
         <type name="LayoutManager"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Actor" c:type="ClutterActor"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="BoxPrivate" c:type="ClutterBoxPrivate*"/>
       </field>
     </class>
@@ -10351,7 +10351,7 @@ layout of the children of @box</doc>
             glib:is-gtype-struct-for="Box"
             version="1.2">
       <doc xml:whitespace="preserve">The #ClutterBoxClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorClass" c:type="ClutterActorClass"/>
       </field>
       <field name="clutter_padding_1">
@@ -10824,10 +10824,10 @@ layout properties</doc>
 alongside the Y axis, instead of alongside the X axis</doc>
         <type name="gboolean"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="LayoutManager" c:type="ClutterLayoutManager"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="BoxLayoutPrivate" c:type="ClutterBoxLayoutPrivate*"/>
       </field>
     </class>
@@ -10837,7 +10837,7 @@ alongside the Y axis, instead of alongside the X axis</doc>
             version="1.2">
       <doc xml:whitespace="preserve">The #ClutterBoxLayoutClass structure contains only private
 data and should be accessed using the provided API</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="LayoutManagerClass" c:type="ClutterLayoutManagerClass"/>
       </field>
     </record>
@@ -11066,10 +11066,10 @@ actor, in pixels.</doc>
 actor, in pixels.</doc>
         <type name="guint"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Texture" c:type="ClutterTexture"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="CairoTexturePrivate" c:type="ClutterCairoTexturePrivate*"/>
       </field>
       <glib:signal name="create-surface" version="1.6" introspectable="0">
@@ -11102,7 +11102,7 @@ the one used.</doc>
             glib:is-gtype-struct-for="CairoTexture"
             version="1.0">
       <doc xml:whitespace="preserve">The #ClutterCairoTextureClass struct contains only private data.</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="TextureClass" c:type="ClutterTextureClass"/>
       </field>
       <field name="create_surface">
@@ -11254,7 +11254,7 @@ instantiation by overriding #ClutterContainerIface::create_child_meta,
         <doc xml:whitespace="preserve">The #ClutterContainer that created this #ClutterChildMeta.</doc>
         <type name="Container"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
       <field name="container">
@@ -11269,7 +11269,7 @@ instantiation by overriding #ClutterContainerIface::create_child_meta,
             glib:is-gtype-struct-for="ChildMeta"
             version="0.8">
       <doc xml:whitespace="preserve">The #ClutterChildMetaClass contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
     </record>
@@ -11326,10 +11326,10 @@ amount of time has passed.</doc>
         <doc xml:whitespace="preserve">Whether the clickable actor should be in "pressed" state</doc>
         <type name="gboolean"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Action" c:type="ClutterAction"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ClickActionPrivate" c:type="ClutterClickActionPrivate*"/>
       </field>
       <glib:signal name="clicked" version="1.4">
@@ -11353,7 +11353,7 @@ pointer button press and release events</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;ClutterClickActionClass&lt;/structname&gt; structure
 contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActionClass" c:type="ClutterActionClass"/>
       </field>
       <field name="clicked">
@@ -11482,10 +11482,10 @@ and should be accessed using the provided API</doc>
         <doc xml:whitespace="preserve">This property specifies the source actor being cloned.</doc>
         <type name="Actor"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Actor" c:type="ClutterActor"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ClonePrivate" c:type="ClutterClonePrivate*"/>
       </field>
     </class>
@@ -11494,7 +11494,7 @@ and should be accessed using the provided API</doc>
             glib:is-gtype-struct-for="Clone"
             version="1.0">
       <doc xml:whitespace="preserve">The #ClutterCloneClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorClass" c:type="ClutterActorClass"/>
       </field>
       <field name="_clutter_actor_clone1" introspectable="0">
@@ -11672,34 +11672,53 @@ color to a #ClutterColor.</doc>
         <doc xml:whitespace="preserve">Parses a string definition of a color, filling the
 &lt;structfield&gt;red&lt;/structfield&gt;, &lt;structfield&gt;green&lt;/structfield&gt;, 
 &lt;structfield&gt;blue&lt;/structfield&gt; and &lt;structfield&gt;alpha&lt;/structfield&gt; 
-channels of @color. If alpha is not specified it will be set full opaque.
+channels of @color.
 The @color is not allocated.
 The format of @str can be either one of:
 &lt;itemizedlist&gt;
-&lt;listitem&gt;&lt;para&gt;a standard name (taken from the X11 rgb.txt
-file");&lt;/para&gt;&lt;/listitem&gt;
-&lt;listitem&gt;&lt;para&gt;an hexadecimal value in the form: '#rgb', '#rrggbb',
-'#rgba' or '#rrggbbaa';&lt;/para&gt;&lt;/listitem&gt;
-&lt;listitem&gt;&lt;para&gt;a RGB color in the form 'rgb(r, g, b)';&lt;/para&gt;&lt;/listitem&gt;
-&lt;listitem&gt;&lt;para&gt;a RGBA color in the form 'rgba(r, g, b,
-a)';&lt;/para&gt;&lt;/listitem&gt;
+&lt;listitem&gt;
+&lt;para&gt;a standard name (as taken from the X11 rgb.txt file)&lt;/para&gt;
+&lt;/listitem&gt;
+&lt;listitem&gt;
+&lt;para&gt;an hexadecimal value in the form: &lt;literal&gt;&amp;num;rgb&lt;/literal&gt;,
+&lt;literal&gt;&amp;num;rrggbb&lt;/literal&gt;, &lt;literal&gt;&amp;num;rgba&lt;/literal&gt; or
+&lt;literal&gt;&amp;num;rrggbbaa&lt;/literal&gt;&lt;/para&gt;
+&lt;/listitem&gt;
+&lt;listitem&gt;
+&lt;para&gt;a RGB color in the form: &lt;literal&gt;rgb(r, g, b)&lt;/literal&gt;&lt;/para&gt;
+&lt;/listitem&gt;
+&lt;listitem&gt;
+&lt;para&gt;a RGB color in the form: &lt;literal&gt;rgba(r, g, b, a)&lt;/literal&gt;&lt;/para&gt;
+&lt;/listitem&gt;
+&lt;listitem&gt;
+&lt;para&gt;a HSL color in the form: &lt;literal&gt;hsl(h, s, l)&lt;/literal&gt;&lt;/para&gt;
+&lt;/listitem&gt;
+&lt;listitem&gt;
+&lt;para&gt;a HSL color in the form: &lt;literal&gt;hsla(h, s, l, a)&lt;/literal&gt;&lt;/para&gt;
+&lt;/listitem&gt;
 &lt;/itemizedlist&gt;
-where 'r', 'g', 'b' and 'a' are (respectively) the red, green, blue and
-alpha color values.
-In the last two cases, the 'r', 'g', and 'b' values are either integers
-between 0 and 255, or percentage values in the range between 0% and 100%;
-the percentages require the '%' character. The 'a' value, if specified,
+where 'r', 'g', 'b' and 'a' are (respectively) the red, green, blue color
+intensities and the opacity. The 'h', 's' and 'l' are (respectively) the
+hue, saturation and luminance values.
+In the rgb() and rgba() formats, the 'r', 'g', and 'b' values are either
+integers between 0 and 255, or percentage values in the range between 0%
+and 100%; the percentages require the '%' character. The 'a' value, if
+specified, can only be a floating point value between 0.0 and 1.0.
+In the hls() and hlsa() formats, the 'h' value (hue) it's an angle between
+0 and 360.0 degrees; the 'l' and 's' values (luminance and saturation) are
+a floating point value between 0.0 and 1.0. The 'a' value, if specified,
 can only be a floating point value between 0.0 and 1.0.
-Whitespace is ignored.
+Whitespace inside the definitions is ignored; no leading whitespace
+is allowed.
 If the alpha component is not specified then it is assumed to be set to
 be fully opaque.</doc>
         <return-value transfer-ownership="none">
-          <doc xml:whitespace="preserve">%TRUE if parsing succeeded.</doc>
+          <doc xml:whitespace="preserve">%TRUE if parsing succeeded, and %FALSE otherwise</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <parameter name="str" transfer-ownership="none">
-            <doc xml:whitespace="preserve">a string specifiying a color (named color or #RRGGBBAA)</doc>
+            <doc xml:whitespace="preserve">a string specifiying a color</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
         </parameters>
@@ -11832,7 +11851,7 @@ all the four 8 bit channels used by #ClutterColor.</doc>
         <doc xml:whitespace="preserve">Returns a textual specification of @color in the hexadecimal form
 &lt;literal&gt;&amp;num;rrggbbaa&lt;/literal&gt;, where &lt;literal&gt;r&lt;/literal&gt;,
 &lt;literal&gt;g&lt;/literal&gt;, &lt;literal&gt;b&lt;/literal&gt; and &lt;literal&gt;a&lt;/literal&gt; are
-hex digits representing the red, green, blue and alpha components
+hexadecimal digits representing the red, green, blue and alpha components
 respectively.</doc>
         <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">a newly-allocated text string</doc>
@@ -11931,7 +11950,7 @@ private data and should be accessed using the provided API</doc>
           </parameter>
         </parameters>
       </virtual-method>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="ActorMeta" c:type="ClutterActorMeta"/>
       </field>
     </class>
@@ -11941,7 +11960,7 @@ private data and should be accessed using the provided API</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;ClutterConstraintClass&lt;/structname&gt; structure contains
 only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorMetaClass" c:type="ClutterActorMetaClass"/>
       </field>
       <field name="update_allocation">
@@ -12644,7 +12663,7 @@ clutter_container_child_set_property() calls.</doc>
       <doc xml:whitespace="preserve">Base interface for container actors. The @add, @remove and @foreach
 virtual functions must be provided by any implementation; the other
 virtual functions are optional.</doc>
-      <field name="g_iface">
+      <field name="g_iface" readable="0" private="1">
         <type name="GObject.TypeInterface" c:type="GTypeInterface"/>
       </field>
       <field name="add">
@@ -13383,10 +13402,10 @@ smaller the tiles</doc>
 smaller the tiles</doc>
         <type name="guint"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="OffscreenEffect" c:type="ClutterOffscreenEffect"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="DeformEffectPrivate" c:type="ClutterDeformEffectPrivate*"/>
       </field>
     </class>
@@ -13396,7 +13415,7 @@ smaller the tiles</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;ClutterDeformEffectClass&lt;/structname&gt; structure contains
 only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="OffscreenEffectClass"
               c:type="ClutterOffscreenEffectClass"/>
       </field>
@@ -13683,10 +13702,10 @@ be modified or freed</doc>
                 transfer-ownership="none">
         <type name="Backend"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="DeviceManagerPrivate"
               c:type="ClutterDeviceManagerPrivate*"/>
       </field>
@@ -13722,7 +13741,7 @@ removed from the #ClutterDeviceManager</doc>
             glib:is-gtype-struct-for="DeviceManager"
             version="1.2">
       <doc xml:whitespace="preserve">The #ClutterDeviceManagerClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="get_devices">
@@ -13801,7 +13820,7 @@ removed from the #ClutterDeviceManager</doc>
           </parameters>
         </callback>
       </field>
-      <field name="_padding">
+      <field name="_padding" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="8">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -14023,10 +14042,10 @@ vertically at least of the given amount of pixels since
 the button press event</doc>
         <type name="guint"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Action" c:type="ClutterAction"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="DragActionPrivate" c:type="ClutterDragActionPrivate*"/>
       </field>
       <glib:signal name="drag-begin" version="1.4">
@@ -14107,7 +14126,7 @@ signal has been emitted first</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;ClutterDragActionClass&lt;/structname&gt; structure contains
 only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActionClass" c:type="ClutterActionClass"/>
       </field>
       <field name="drag_begin">
@@ -14318,7 +14337,7 @@ be accessed using the provided API</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
       </virtual-method>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="ActorMeta" c:type="ClutterActorMeta"/>
       </field>
     </class>
@@ -14327,7 +14346,7 @@ be accessed using the provided API</doc>
             glib:is-gtype-struct-for="Effect"
             version="1.4">
       <doc xml:whitespace="preserve">The #ClutterEffectClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorMetaClass" c:type="ClutterActorMetaClass"/>
       </field>
       <field name="pre_paint">
@@ -14448,28 +14467,28 @@ be accessed using the provided API</doc>
            glib:get-type="clutter_event_get_type"
            c:symbol-prefix="event">
       <doc xml:whitespace="preserve">Generic event wrapper.</doc>
-      <field name="type" writable="1">
+      <field name="type" readable="0" private="1">
         <type name="EventType" c:type="ClutterEventType"/>
       </field>
-      <field name="any" writable="1">
+      <field name="any" readable="0" private="1">
         <type name="AnyEvent" c:type="ClutterAnyEvent"/>
       </field>
-      <field name="button" writable="1">
+      <field name="button" readable="0" private="1">
         <type name="ButtonEvent" c:type="ClutterButtonEvent"/>
       </field>
-      <field name="key" writable="1">
+      <field name="key" readable="0" private="1">
         <type name="KeyEvent" c:type="ClutterKeyEvent"/>
       </field>
-      <field name="motion" writable="1">
+      <field name="motion" readable="0" private="1">
         <type name="MotionEvent" c:type="ClutterMotionEvent"/>
       </field>
-      <field name="scroll" writable="1">
+      <field name="scroll" readable="0" private="1">
         <type name="ScrollEvent" c:type="ClutterScrollEvent"/>
       </field>
-      <field name="stage_state" writable="1">
+      <field name="stage_state" readable="0" private="1">
         <type name="StageStateEvent" c:type="ClutterStageStateEvent"/>
       </field>
-      <field name="crossing" writable="1">
+      <field name="crossing" readable="0" private="1">
         <type name="CrossingEvent" c:type="ClutterCrossingEvent"/>
       </field>
       <constructor name="new" c:identifier="clutter_event_new">
@@ -14996,7 +15015,7 @@ it should be accessed using the provided API</doc>
           <type name="LayoutManager" c:type="ClutterLayoutManager*"/>
         </return-value>
       </constructor>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="LayoutManager" c:type="ClutterLayoutManager"/>
       </field>
     </class>
@@ -15006,7 +15025,7 @@ it should be accessed using the provided API</doc>
             version="1.2">
       <doc xml:whitespace="preserve">The #ClutterFixedLayoutClass structure contains only private data
 and it should be accessed using the provided API</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="LayoutManagerClass" c:type="ClutterLayoutManagerClass"/>
       </field>
     </record>
@@ -15282,10 +15301,10 @@ property is honoured by vertical non-overflowing layouts and
 by horizontal overflowing layouts</doc>
         <type name="gfloat"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="LayoutManager" c:type="ClutterLayoutManager"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="FlowLayoutPrivate" c:type="ClutterFlowLayoutPrivate*"/>
       </field>
     </class>
@@ -15295,7 +15314,7 @@ by horizontal overflowing layouts</doc>
             version="1.2">
       <doc xml:whitespace="preserve">The #ClutterFlowLayoutClass structure contains only private data
 and should be accessed using the provided API</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="LayoutManagerClass" c:type="ClutterLayoutManagerClass"/>
       </field>
     </record>
@@ -15882,10 +15901,10 @@ and should be accessed using the provided API</doc>
           <type name="none" c:type="void"/>
         </return-value>
       </method>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Actor" c:type="ClutterActor"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="GroupPrivate" c:type="ClutterGroupPrivate*"/>
       </field>
     </class>
@@ -15894,7 +15913,7 @@ and should be accessed using the provided API</doc>
             glib:is-gtype-struct-for="Group"
             version="0.1">
       <doc xml:whitespace="preserve">The #ClutterGroupClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorClass" c:type="ClutterActorClass"/>
       </field>
       <field name="_clutter_reserved1" introspectable="0">
@@ -16655,7 +16674,7 @@ of the passed @event to update the stage associated to the input device.</doc>
             version="1.2">
       <doc xml:whitespace="preserve">The #ClutterInputDeviceClass structure contains only private
 data and should not be accessed directly</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
     </record>
@@ -17085,10 +17104,10 @@ a #GParamSpec.</doc>
         <doc xml:whitespace="preserve">The type of the values in the interval.</doc>
         <type name="GType"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.InitiallyUnowned" c:type="GInitiallyUnowned"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="IntervalPrivate" c:type="ClutterIntervalPrivate*"/>
       </field>
     </class>
@@ -17097,7 +17116,7 @@ a #GParamSpec.</doc>
             glib:is-gtype-struct-for="Interval"
             version="1.0">
       <doc xml:whitespace="preserve">The #ClutterIntervalClass contains only private data.</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.InitiallyUnownedClass"
               c:type="GInitiallyUnownedClass"/>
       </field>
@@ -24553,10 +24572,10 @@ count of the @container</doc>
           </parameter>
         </parameters>
       </method>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.InitiallyUnowned" c:type="GInitiallyUnowned"/>
       </field>
-      <field name="dummy">
+      <field name="dummy" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
       <glib:signal name="layout-changed" version="1.2">
@@ -24591,7 +24610,7 @@ by using clutter_layout_manager_layout_changed().</doc>
             version="1.2">
       <doc xml:whitespace="preserve">The #ClutterLayoutManagerClass structure contains only private
 data and should be accessed using the provided API</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.InitiallyUnownedClass"
               c:type="GInitiallyUnownedClass"/>
       </field>
@@ -24859,16 +24878,16 @@ data and should be accessed using the provided API</doc>
         <doc xml:whitespace="preserve">The #ClutterLayoutManager that created this #ClutterLayoutMeta.</doc>
         <type name="LayoutManager"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="ChildMeta" c:type="ClutterChildMeta"/>
       </field>
       <field name="manager">
         <type name="LayoutManager" c:type="ClutterLayoutManager*"/>
       </field>
-      <field name="dummy0">
+      <field name="dummy0" readable="0" private="1">
         <type name="gint32" c:type="gint32"/>
       </field>
-      <field name="dummy1">
+      <field name="dummy1" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
     </class>
@@ -24878,7 +24897,7 @@ data and should be accessed using the provided API</doc>
             version="1.2">
       <doc xml:whitespace="preserve">The #ClutterLayoutMetaClass contains only private data and
 should never be accessed directly</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ChildMetaClass" c:type="ClutterChildMetaClass"/>
       </field>
       <field name="_clutter_padding1" introspectable="0">
@@ -24998,10 +25017,10 @@ useful for language bindings.</doc>
           </parameter>
         </parameters>
       </function>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Model" c:type="ClutterModel"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ListModelPrivate" c:type="ClutterListModelPrivate*"/>
       </field>
     </class>
@@ -25010,7 +25029,7 @@ useful for language bindings.</doc>
             glib:is-gtype-struct-for="ListModel"
             version="0.6">
       <doc xml:whitespace="preserve">The #ClutterListModelClass struct contains only private data.</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ModelClass" c:type="ClutterModelClass"/>
       </field>
     </record>
@@ -25353,7 +25372,7 @@ pango_font_description_from_string().</doc>
             glib:is-gtype-struct-for="Media"
             version="0.2">
       <doc xml:whitespace="preserve">Interface vtable for #ClutterMedia implementations</doc>
-      <field name="base_iface">
+      <field name="base_iface" readable="0" private="1">
         <type name="GObject.TypeInterface" c:type="GTypeInterface"/>
       </field>
       <field name="eos">
@@ -26028,10 +26047,10 @@ This property is set to %TRUE if a filter function has been
 set using clutter_model_set_filter()</doc>
         <type name="gboolean"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ModelPrivate" c:type="ClutterModelPrivate*"/>
       </field>
       <glib:signal name="filter-changed" version="0.6">
@@ -26094,7 +26113,7 @@ when the ::row-removed signal has been emitted.</doc>
             glib:is-gtype-struct-for="Model"
             version="0.6">
       <doc xml:whitespace="preserve">Class for #ClutterModel instances.</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="get_n_rows">
@@ -26690,10 +26709,10 @@ bindings.</doc>
         <doc xml:whitespace="preserve">The row number to which this iter points to.</doc>
         <type name="guint"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ModelIterPrivate" c:type="ClutterModelIterPrivate*"/>
       </field>
     </class>
@@ -26702,7 +26721,7 @@ bindings.</doc>
             glib:is-gtype-struct-for="ModelIter"
             version="0.6">
       <doc xml:whitespace="preserve">Class for #ClutterModelIter instances.</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="get_value">
@@ -27229,10 +27248,10 @@ modified or freed</doc>
           <type name="none" c:type="void"/>
         </return-value>
       </method>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Effect" c:type="ClutterEffect"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="OffscreenEffectPrivate"
               c:type="ClutterOffscreenEffectPrivate*"/>
       </field>
@@ -27242,7 +27261,7 @@ modified or freed</doc>
             glib:is-gtype-struct-for="OffscreenEffect"
             version="1.4">
       <doc xml:whitespace="preserve">The #ClutterOffscreenEffectClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="EffectClass" c:type="ClutterEffectClass"/>
       </field>
       <field name="create_texture">
@@ -27711,7 +27730,7 @@ encompases @pv and @another_pv.</doc>
            glib:fundamental="1">
       <doc xml:whitespace="preserve">A #GParamSpec subclass for defining properties holding
 a #ClutterColor.</doc>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.ParamSpec" c:type="GParamSpec"/>
       </field>
       <field name="default_value">
@@ -27724,7 +27743,7 @@ a #ClutterColor.</doc>
            glib:type-name="ClutterParamSpecFixed"
            glib:get-type="clutter_param_fixed_get_type"
            glib:fundamental="1">
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.ParamSpec" c:type="GParamSpec"/>
       </field>
       <field name="minimum">
@@ -27745,7 +27764,7 @@ a #ClutterColor.</doc>
     </class>
     <record name="ParamSpecUnits" c:type="ClutterParamSpecUnits" version="1.0">
       <doc xml:whitespace="preserve">#GParamSpec subclass for unit based properties.</doc>
-      <field name="parent_instance" writable="1">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.ParamSpec" c:type="GParamSpec"/>
       </field>
       <field name="default_type" writable="1">
@@ -28231,10 +28250,10 @@ unaltered.</doc>
       <property name="length" transfer-ownership="none">
         <type name="guint"/>
       </property>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="GObject.InitiallyUnowned" c:type="GInitiallyUnowned"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="PathPrivate" c:type="ClutterPathPrivate*"/>
       </field>
     </class>
@@ -28260,7 +28279,7 @@ called for each node contained in the path.</doc>
             glib:is-gtype-struct-for="Path"
             version="1.0">
       <doc xml:whitespace="preserve">The #ClutterPathClass struct contains only private data.</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.InitiallyUnownedClass"
               c:type="GInitiallyUnownedClass"/>
       </field>
@@ -28854,10 +28873,10 @@ A @width of 0 will unset the border.</doc>
         <doc xml:whitespace="preserve">Whether the #ClutterRectangle should be displayed with a border.</doc>
         <type name="gboolean"/>
       </property>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Actor" c:type="ClutterActor"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="RectanglePrivate" c:type="ClutterRectanglePrivate*"/>
       </field>
     </class>
@@ -28866,7 +28885,7 @@ A @width of 0 will unset the border.</doc>
             glib:is-gtype-struct-for="Rectangle"
             version="0.1">
       <doc xml:whitespace="preserve">The #ClutterRectangleClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorClass" c:type="ClutterActorClass"/>
       </field>
       <field name="_clutter_rectangle1" introspectable="0">
@@ -29211,10 +29230,10 @@ from its initial state after the ::complete signal has been fired.</doc>
         <doc xml:whitespace="preserve">Whether the #ClutterScore should restart once finished.</doc>
         <type name="gboolean"/>
       </property>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ScorePrivate" c:type="ClutterScorePrivate*"/>
       </field>
       <glib:signal name="completed" version="0.6">
@@ -29268,7 +29287,7 @@ inside a #ClutterScore starts playing.</doc>
             glib:is-gtype-struct-for="Score"
             version="0.6">
       <doc xml:whitespace="preserve">The #ClutterScoreClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="timeline_started">
@@ -29659,10 +29678,10 @@ is %TRUE then the currently parsed data comes from a file, and the
 file name is stored inside the #ClutterScript:filename property.</doc>
         <type name="gboolean"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ScriptPrivate" c:type="ClutterScriptPrivate*"/>
       </field>
     </class>
@@ -29671,7 +29690,7 @@ file name is stored inside the #ClutterScript:filename property.</doc>
             glib:is-gtype-struct-for="Script"
             version="0.6">
       <doc xml:whitespace="preserve">The #ClutterScriptClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="get_type_from_name">
@@ -29981,7 +30000,7 @@ definition language parsed by #ClutterScript.</doc>
       <doc xml:whitespace="preserve">Interface for implementing "scriptable" objects. An object implementing
 this interface can override the parsing and properties setting sequence
 when loading a UI definition data with #ClutterScript</doc>
-      <field name="g_iface">
+      <field name="g_iface" readable="0" private="1">
         <type name="GObject.TypeInterface" c:type="GTypeInterface"/>
       </field>
       <field name="set_id">
@@ -30506,10 +30525,10 @@ in the GL context.</doc>
 program, if any</doc>
         <type name="utf8"/>
       </property>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ShaderPrivate" c:type="ClutterShaderPrivate*"/>
       </field>
     </class>
@@ -30518,7 +30537,7 @@ program, if any</doc>
             glib:is-gtype-struct-for="Shader"
             version="0.6">
       <doc xml:whitespace="preserve">The #ClutterShaderClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
     </record>
@@ -30671,10 +30690,10 @@ should be set by the constructor of #ClutterShaderEffect
 sub-classes.</doc>
         <type name="ShaderType"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="OffscreenEffect" c:type="ClutterOffscreenEffect"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ShaderEffectPrivate" c:type="ClutterShaderEffectPrivate*"/>
       </field>
     </class>
@@ -30684,7 +30703,7 @@ sub-classes.</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;ClutterShaderEffectClass&lt;/structname&gt; structure contains
 only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="OffscreenEffectClass"
               c:type="ClutterOffscreenEffectClass"/>
       </field>
@@ -31642,10 +31661,10 @@ actors farther from the viewpoint.</doc>
         <doc xml:whitespace="preserve">Whether the stage is resizable via user interaction.</doc>
         <type name="gboolean"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Group" c:type="ClutterGroup"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="StagePrivate" c:type="ClutterStagePrivate*"/>
       </field>
       <glib:signal name="activate">
@@ -31695,7 +31714,7 @@ backends that use a static frame buffer.&lt;/note&gt;</doc>
             glib:is-gtype-struct-for="Stage"
             version="0.1">
       <doc xml:whitespace="preserve">The #ClutterStageClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GroupClass" c:type="ClutterGroupClass"/>
       </field>
       <field name="fullscreen">
@@ -31761,7 +31780,7 @@ backends that use a static frame buffer.&lt;/note&gt;</doc>
           </parameters>
         </callback>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="31">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -31876,7 +31895,7 @@ has been removed from the stage manager.</doc>
             version="1.0">
       <doc xml:whitespace="preserve">The #ClutterStageManagerClass structure contains only private data
 and should be accessed using the provided API</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="stage_added">
@@ -32090,7 +32109,7 @@ whose members should not be accessed directly</doc>
             glib:is-gtype-struct-for="StageWindow"
             version="0.8">
       <doc xml:whitespace="preserve">The interface implemented by backends for stage windows</doc>
-      <field name="parent_iface">
+      <field name="parent_iface" readable="0" private="1">
         <type name="GObject.TypeInterface" c:type="GTypeInterface"/>
       </field>
       <field name="get_wrapper" introspectable="0">
@@ -32709,10 +32728,10 @@ clutter_state_warp_to_state() to change state without
 a transition.</doc>
         <type name="utf8"/>
       </property>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="StatePrivate" c:type="ClutterStatePrivate*"/>
       </field>
       <glib:signal name="completed" version="1.4">
@@ -32730,7 +32749,7 @@ clutter_state_warp_to_state().</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The &lt;structname&gt;ClutterStateClass&lt;/structname&gt; structure contains
 only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="completed">
@@ -32745,7 +32764,7 @@ only private data</doc>
           </parameters>
         </callback>
       </field>
-      <field name="_padding_dummy">
+      <field name="_padding_dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="8">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -33577,10 +33596,10 @@ The default value is %CLUTTER_EASE_OUT_CUBIC</doc>
 layout properties</doc>
         <type name="gboolean"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="LayoutManager" c:type="ClutterLayoutManager"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="TableLayoutPrivate" c:type="ClutterTableLayoutPrivate*"/>
       </field>
     </class>
@@ -33590,7 +33609,7 @@ layout properties</doc>
             version="1.4">
       <doc xml:whitespace="preserve">The #ClutterTableLayoutClass structure contains only private
 data and should be accessed using the provided API</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="LayoutManagerClass" c:type="ClutterLayoutManagerClass"/>
       </field>
     </record>
@@ -34781,10 +34800,10 @@ a #ClutterText actor with :use-markup set to %TRUE, the markup
 is stripped from the string.&lt;/note&gt;</doc>
         <type name="gboolean"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Actor" c:type="ClutterActor"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="TextPrivate" c:type="ClutterTextPrivate*"/>
       </field>
       <glib:signal name="activate">
@@ -34857,7 +34876,7 @@ the user. It is emitted before @self text changes.</doc>
             glib:is-gtype-struct-for="Text"
             version="1.0">
       <doc xml:whitespace="preserve">The #ClutterTextClass struct contains only private data.</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorClass" c:type="ClutterActorClass"/>
       </field>
       <field name="text_changed">
@@ -35629,10 +35648,10 @@ synchronously causing some blocking.</doc>
       <property name="tile-waste" transfer-ownership="none">
         <type name="gint"/>
       </property>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="Actor" c:type="ClutterActor"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="TexturePrivate" c:type="ClutterTexturePrivate*"/>
       </field>
       <glib:signal name="load-finished" version="1.0">
@@ -35680,7 +35699,7 @@ argument to the callback.</doc>
             glib:is-gtype-struct-for="Texture"
             version="0.1">
       <doc xml:whitespace="preserve">The #ClutterTextureClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="ActorClass" c:type="ClutterActorClass"/>
       </field>
       <field name="size_change">
@@ -36494,10 +36513,10 @@ ClutterTimeline:fps value.</doc>
 when emitting the #ClutterTimeline::completed signal.</doc>
         <type name="gboolean"/>
       </property>
-      <field name="parent">
+      <field name="parent" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="TimelinePrivate" c:type="ClutterTimelinePrivate*"/>
       </field>
       <glib:signal name="completed">
@@ -36576,7 +36595,7 @@ expired.</doc>
             glib:is-gtype-struct-for="Timeline"
             version="0.2">
       <doc xml:whitespace="preserve">The #ClutterTimelineClass structure contains only private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="started">
@@ -36935,25 +36954,25 @@ This enumeration might be expanded at later date</doc>
             c:symbol-prefix="units">
       <doc xml:whitespace="preserve">An opaque structure, to be used to store sizing and positioning
 values along with their unit.</doc>
-      <field name="unit_type" writable="1">
+      <field name="unit_type" readable="0" private="1">
         <type name="UnitType" c:type="ClutterUnitType"/>
       </field>
-      <field name="value" writable="1">
+      <field name="value" readable="0" private="1">
         <type name="gfloat" c:type="gfloat"/>
       </field>
-      <field name="pixels" writable="1">
+      <field name="pixels" readable="0" private="1">
         <type name="gfloat" c:type="gfloat"/>
       </field>
-      <field name="pixels_set" writable="1">
+      <field name="pixels_set" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="serial" writable="1">
+      <field name="serial" readable="0" private="1">
         <type name="gint32" c:type="gint32"/>
       </field>
-      <field name="__padding_1" writable="1">
+      <field name="__padding_1" readable="0" private="1">
         <type name="gint32" c:type="gint32"/>
       </field>
-      <field name="__padding_2" writable="1">
+      <field name="__padding_2" readable="0" private="1">
         <type name="gint64" c:type="gint64"/>
       </field>
       <method name="copy" c:identifier="clutter_units_copy" version="1.0">

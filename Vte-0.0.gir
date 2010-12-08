@@ -1887,34 +1887,34 @@ treat all graphic non-punctuation non-space characters as word characters.</doc>
       <field name="widget">
         <type name="Gtk.Widget" c:type="GtkWidget"/>
       </field>
-      <field name="adjustment">
+      <field name="adjustment" readable="0" private="1">
         <type name="Gtk.Adjustment" c:type="GtkAdjustment*"/>
       </field>
-      <field name="char_width">
+      <field name="char_width" readable="0" private="1">
         <type name="glong" c:type="glong"/>
       </field>
-      <field name="char_height">
+      <field name="char_height" readable="0" private="1">
         <type name="glong" c:type="glong"/>
       </field>
-      <field name="char_ascent">
+      <field name="char_ascent" readable="0" private="1">
         <type name="glong" c:type="glong"/>
       </field>
-      <field name="char_descent">
+      <field name="char_descent" readable="0" private="1">
         <type name="glong" c:type="glong"/>
       </field>
-      <field name="row_count">
+      <field name="row_count" readable="0" private="1">
         <type name="glong" c:type="glong"/>
       </field>
-      <field name="column_count">
+      <field name="column_count" readable="0" private="1">
         <type name="glong" c:type="glong"/>
       </field>
-      <field name="window_title">
+      <field name="window_title" readable="0" private="1">
         <type name="utf8" c:type="char*"/>
       </field>
-      <field name="icon_title">
+      <field name="icon_title" readable="0" private="1">
         <type name="utf8" c:type="char*"/>
       </field>
-      <field name="pvt">
+      <field name="pvt" readable="0" private="1">
         <type name="TerminalPrivate" c:type="VteTerminalPrivate*"/>
       </field>
       <glib:signal name="beep">
@@ -2807,22 +2807,22 @@ to an output stream.</doc>
               glib:nick="default"/>
     </enumeration>
     <record name="_CharAttributes" c:type="_VteCharAttributes">
-      <field name="row" writable="1">
+      <field name="row" readable="0" private="1">
         <type name="glong" c:type="long"/>
       </field>
-      <field name="column" writable="1">
+      <field name="column" readable="0" private="1">
         <type name="glong" c:type="long"/>
       </field>
-      <field name="fore" writable="1">
+      <field name="fore" readable="0" private="1">
         <type name="Gdk.Color" c:type="GdkColor"/>
       </field>
-      <field name="back" writable="1">
+      <field name="back" readable="0" private="1">
         <type name="Gdk.Color" c:type="GdkColor"/>
       </field>
-      <field name="underline" writable="1" bits="1">
+      <field name="underline" readable="0" bits="1" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="strikethrough" writable="1" bits="1">
+      <field name="strikethrough" readable="0" bits="1" private="1">
         <type name="guint" c:type="guint"/>
       </field>
     </record>

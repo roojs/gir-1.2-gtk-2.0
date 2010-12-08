@@ -266,25 +266,25 @@ the buffer data is going to be updated.</doc>
       <doc xml:whitespace="preserve">A structure for holding a color definition. The contents of
 the CoglColor structure are private and should never by accessed
 directly.</doc>
-      <field name="red" writable="1">
+      <field name="red" readable="0" private="1">
         <type name="guint8" c:type="guint8"/>
       </field>
-      <field name="green" writable="1">
+      <field name="green" readable="0" private="1">
         <type name="guint8" c:type="guint8"/>
       </field>
-      <field name="blue" writable="1">
+      <field name="blue" readable="0" private="1">
         <type name="guint8" c:type="guint8"/>
       </field>
-      <field name="alpha" writable="1">
+      <field name="alpha" readable="0" private="1">
         <type name="guint8" c:type="guint8"/>
       </field>
-      <field name="padding0" writable="1">
+      <field name="padding0" readable="0" private="1">
         <type name="guint32" c:type="guint32"/>
       </field>
-      <field name="padding1" writable="1">
+      <field name="padding1" readable="0" private="1">
         <type name="guint32" c:type="guint32"/>
       </field>
-      <field name="padding2" writable="1">
+      <field name="padding2" readable="0" private="1">
         <type name="guint32" c:type="guint32"/>
       </field>
       <method name="copy"
@@ -2114,20 +2114,39 @@ than the identity matrix you can use cogl_matrix_init_from_array().&lt;/note&gt;
       <field name="ww" writable="1">
         <type name="gfloat" c:type="float"/>
       </field>
-      <field name="inv" writable="1">
+      <field name="inv" readable="0" private="1">
         <array zero-terminated="0" c:type="gfloat" fixed-size="16">
           <type name="gfloat" c:type="float"/>
         </array>
       </field>
-      <field name="type" writable="1">
+      <field name="type" readable="0" private="1">
         <type name="guint" c:type="unsigned"/>
       </field>
-      <field name="flags" writable="1">
+      <field name="flags" readable="0" private="1">
         <type name="guint" c:type="unsigned"/>
       </field>
-      <field name="_padding3" writable="1">
+      <field name="_padding3" readable="0" private="1">
         <type name="guint" c:type="unsigned"/>
       </field>
+      <method name="copy"
+              c:identifier="cogl_matrix_copy"
+              version="1.6"
+              introspectable="0">
+        <doc xml:whitespace="preserve">Allocates a new #CoglMatrix on the heap and initializes it with
+the same values as @matrix.
+cogl_matrix_free()</doc>
+        <return-value>
+          <doc xml:whitespace="preserve">A newly allocated #CoglMatrix which should be freed using</doc>
+          <type name="Matrix" c:type="CoglMatrix*"/>
+        </return-value>
+      </method>
+      <method name="free" c:identifier="cogl_matrix_free" version="1.6">
+        <doc xml:whitespace="preserve">Frees a #CoglMatrix that was previously allocated via a call to
+cogl_matrix_copy().</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </method>
       <method name="frustum" c:identifier="cogl_matrix_frustum">
         <doc xml:whitespace="preserve">Multiplies @matrix by the given frustum perspective matrix.</doc>
         <return-value transfer-ownership="none">

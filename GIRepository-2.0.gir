@@ -1942,6 +1942,36 @@ g_base_info_unref() when done.</doc>
         </parameter>
       </parameters>
     </function>
+    <function name="object_info_find_method_using_interfaces"
+              c:identifier="g_object_info_find_method_using_interfaces">
+      <doc xml:whitespace="preserve">Obtain a method of the object given a @name, searching both the
+object @info and any interfaces it implements.  %NULL will be
+returned if there's no method available with that name.
+Note that this function does *not* search parent classes; you will have
+to chain up if that's desired.
+g_base_info_unref() when done.</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:whitespace="preserve">the #GIFunctionInfo. Free the struct by calling</doc>
+        <type name="FunctionInfo" c:type="GIFunctionInfo*"/>
+      </return-value>
+      <parameters>
+        <parameter name="info" transfer-ownership="none">
+          <doc xml:whitespace="preserve">a #GIObjectInfo</doc>
+          <type name="ObjectInfo" c:type="GIObjectInfo*"/>
+        </parameter>
+        <parameter name="name" transfer-ownership="none">
+          <doc xml:whitespace="preserve">name of method to obtain</doc>
+          <type name="utf8" c:type="gchar*"/>
+        </parameter>
+        <parameter name="implementor"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full">
+          <doc xml:whitespace="preserve">The implementor of the interface</doc>
+          <type name="ObjectInfo" c:type="GIObjectInfo**"/>
+        </parameter>
+      </parameters>
+    </function>
     <function name="object_info_find_signal"
               c:identifier="g_object_info_find_signal"
               introspectable="0">

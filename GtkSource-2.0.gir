@@ -2714,7 +2714,7 @@ This function MUST be implemented when
       <field name="parent_instance" writable="1">
         <type name="Engine" c:type="GtkSourceEngine"/>
       </field>
-      <field name="priv" writable="1">
+      <field name="priv" readable="0" private="1">
         <type name="ContextEnginePrivate"
               c:type="GtkSourceContextEnginePrivate*"/>
       </field>

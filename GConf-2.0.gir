@@ -951,46 +951,46 @@ Just like gconf_engine_get_list (), but uses #GConfClient caching and error-hand
       <field name="object">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="engine" introspectable="0">
+      <field name="engine" introspectable="0" readable="0" private="1">
         <type name="Engine" c:type="GConfEngine*"/>
       </field>
-      <field name="error_mode">
+      <field name="error_mode" readable="0" private="1">
         <type name="ClientErrorHandlingMode"
               c:type="GConfClientErrorHandlingMode"/>
       </field>
-      <field name="dir_hash">
+      <field name="dir_hash" readable="0" private="1">
         <type name="GLib.HashTable" c:type="GHashTable*">
           <type name="gpointer" c:type="gpointer"/>
           <type name="gpointer" c:type="gpointer"/>
         </type>
       </field>
-      <field name="cache_hash">
+      <field name="cache_hash" readable="0" private="1">
         <type name="GLib.HashTable" c:type="GHashTable*">
           <type name="gpointer" c:type="gpointer"/>
           <type name="gpointer" c:type="gpointer"/>
         </type>
       </field>
-      <field name="listeners" introspectable="0">
+      <field name="listeners" introspectable="0" readable="0" private="1">
         <type name="Listeners" c:type="GConfListeners*"/>
       </field>
-      <field name="notify_list">
+      <field name="notify_list" readable="0" private="1">
         <type name="GLib.SList" c:type="GSList*">
           <type name="gpointer" c:type="gpointer"/>
         </type>
       </field>
-      <field name="notify_handler">
+      <field name="notify_handler" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="pending_notify_count">
+      <field name="pending_notify_count" readable="0" private="1">
         <type name="gint" c:type="int"/>
       </field>
-      <field name="cache_dirs">
+      <field name="cache_dirs" readable="0" private="1">
         <type name="GLib.HashTable" c:type="GHashTable*">
           <type name="gpointer" c:type="gpointer"/>
           <type name="gpointer" c:type="gpointer"/>
         </type>
       </field>
-      <field name="pad2">
+      <field name="pad2" readable="0" private="1">
         <type name="gint" c:type="int"/>
       </field>
       <glib:signal name="error">

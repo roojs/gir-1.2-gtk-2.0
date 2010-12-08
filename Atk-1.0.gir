@@ -5282,7 +5282,7 @@ plug may be in the same process or in a different process.</doc>
       <field name="parent">
         <type name="Object" c:type="AtkObject"/>
       </field>
-      <field name="embedded_plug_id">
+      <field name="embedded_plug_id" readable="0" private="1">
         <type name="utf8" c:type="gchar*"/>
       </field>
     </class>

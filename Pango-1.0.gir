@@ -2521,7 +2521,7 @@ first cluster.</doc>
       <field name="log_clusters" writable="1">
         <type name="gint" c:type="gint*"/>
       </field>
-      <field name="space" writable="1">
+      <field name="space" readable="0" private="1">
         <type name="gint" c:type="gint"/>
       </field>
       <constructor name="new" c:identifier="pango_glyph_string_new">
@@ -5189,22 +5189,22 @@ changes to colors. (See pango_renderer_set_color())</doc>
           </parameter>
         </parameters>
       </method>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="underline">
+      <field name="underline" readable="0" private="1">
         <type name="Underline" c:type="PangoUnderline"/>
       </field>
-      <field name="strikethrough">
+      <field name="strikethrough" readable="0" private="1">
         <type name="gboolean" c:type="gboolean"/>
       </field>
-      <field name="active_count">
+      <field name="active_count" readable="0" private="1">
         <type name="gint" c:type="int"/>
       </field>
       <field name="matrix">
         <type name="Matrix" c:type="PangoMatrix*"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="RendererPrivate" c:type="PangoRendererPrivate*"/>
       </field>
     </class>
@@ -5213,7 +5213,7 @@ changes to colors. (See pango_renderer_set_color())</doc>
             glib:is-gtype-struct-for="Renderer"
             version="1.8">
       <doc xml:whitespace="preserve">Class structure for #PangoRenderer.</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="draw_glyphs">

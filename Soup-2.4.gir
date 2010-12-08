@@ -3902,6 +3902,12 @@ printf ("%c %s\n", direction, data);
     <constant name="MESSAGE_STATUS_CODE" value="status-code">
       <type name="utf8" c:type="gchar*"/>
     </constant>
+    <constant name="MESSAGE_TLS_CERTIFICATE" value="tls-certificate">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="MESSAGE_TLS_ERRORS" value="tls-errors">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
     <constant name="MESSAGE_URI" value="uri">
       <type name="utf8" c:type="gchar*"/>
     </constant>
@@ -4161,6 +4167,34 @@ version from the request and the version from the response.</doc>
           <doc xml:whitespace="preserve">the HTTP version</doc>
           <type name="HTTPVersion" c:type="SoupHTTPVersion"/>
         </return-value>
+      </method>
+      <method name="get_https_status"
+              c:identifier="soup_message_get_https_status"
+              version="2.34">
+        <doc xml:whitespace="preserve">If @msg is using https, this retrieves the #GTlsCertificate
+associated with its connection, and the #GTlsCertificateFlags showing
+what problems, if any, have been found with that certificate.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">%TRUE if @msg uses https, %FALSE if not</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="certificate"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="none">
+            <doc xml:whitespace="preserve">@msg's TLS certificate</doc>
+            <type name="Gio.TlsCertificate" c:type="GTlsCertificate**"/>
+          </parameter>
+          <parameter name="errors"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
+            <doc xml:whitespace="preserve">the verification status of @certificate</doc>
+            <type name="Gio.TlsCertificateFlags"
+                  c:type="GTlsCertificateFlags*"/>
+          </parameter>
+        </parameters>
       </method>
       <method name="get_uri" c:identifier="soup_message_get_uri">
         <doc xml:whitespace="preserve">Gets @msg's URI</doc>
@@ -4484,6 +4518,12 @@ finished writing an informational (1xx) response for @msg.</doc>
       </property>
       <property name="status-code" writable="1" transfer-ownership="none">
         <type name="guint"/>
+      </property>
+      <property name="tls-certificate" writable="1" transfer-ownership="none">
+        <type name="Gio.TlsCertificate"/>
+      </property>
+      <property name="tls-errors" writable="1" transfer-ownership="none">
+        <type name="Gio.TlsCertificateFlags"/>
       </property>
       <property name="uri" writable="1" transfer-ownership="none">
         <type name="URI"/>
@@ -5209,7 +5249,11 @@ parsed (in which case *@params will be unchanged).</doc>
           <type name="utf8" c:type="char*"/>
         </return-value>
         <parameters>
-          <parameter name="params" transfer-ownership="none">
+          <parameter name="params"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
             <doc xml:whitespace="preserve">return location for the Content-Type parameters (eg, "charset"), or %NULL</doc>
             <type name="GLib.HashTable" c:type="GHashTable**">
               <type name="gpointer" c:type="gpointer"/>
@@ -5545,7 +5589,7 @@ After intializing the iterator with
 soup_message_headers_iter_init(), call
 soup_message_headers_iter_next() to fetch data from it.
 You may not modify the headers while iterating over them.</doc>
-      <field name="dummy" writable="1">
+      <field name="dummy" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="3">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -6376,6 +6420,12 @@ range", referring to the last -@start bytes of the resource body.
       <type name="utf8" c:type="gchar*"/>
     </constant>
     <constant name="SOCKET_TIMEOUT" value="timeout">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="SOCKET_TLS_CERTIFICATE" value="tls-certificate">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="SOCKET_TLS_ERRORS" value="tls-errors">
       <type name="utf8" c:type="gchar*"/>
     </constant>
     <constant name="SOCKET_TRUSTED_CERTIFICATE" value="trusted-certificate">
@@ -8265,10 +8315,13 @@ return value is %SOUP_SOCKET_ERROR.)</doc>
       <property name="timeout" writable="1" transfer-ownership="none">
         <type name="guint"/>
       </property>
-      <property name="trusted-certificate"
-                writable="1"
-                construct-only="1"
-                transfer-ownership="none">
+      <property name="tls-certificate" transfer-ownership="none">
+        <type name="Gio.TlsCertificate"/>
+      </property>
+      <property name="tls-errors" transfer-ownership="none">
+        <type name="Gio.TlsCertificateFlags"/>
+      </property>
+      <property name="trusted-certificate" transfer-ownership="none">
         <type name="gboolean"/>
       </property>
       <field name="parent">

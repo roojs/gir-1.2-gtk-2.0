@@ -2267,7 +2267,7 @@ cannot parse the buffer.</doc>
       <field name="parent_instance">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
       <glib:signal name="area-prepared">

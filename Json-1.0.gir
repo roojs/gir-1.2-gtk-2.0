@@ -596,10 +596,10 @@ Can be called only if the call is associated to an object.</doc>
           </parameter>
         </parameters>
       </method>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="BuilderPrivate" c:type="JsonBuilderPrivate*"/>
       </field>
     </class>
@@ -609,7 +609,7 @@ Can be called only if the call is associated to an object.</doc>
             version="0.12">
       <doc xml:whitespace="preserve">The &lt;structname&gt;JsonBuilder&lt;/structname&gt; structure contains only
 private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="_json_reserved1" introspectable="0">
@@ -742,10 +742,10 @@ JsonGenerator:indent property</doc>
 stream.</doc>
         <type name="Node"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="GeneratorPrivate" c:type="JsonGeneratorPrivate*"/>
       </field>
     </class>
@@ -753,7 +753,7 @@ stream.</doc>
             c:type="JsonGeneratorClass"
             glib:is-gtype-struct-for="Generator">
       <doc xml:whitespace="preserve">#JsonGenerator class</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="_json_reserved1" introspectable="0">
@@ -1731,10 +1731,10 @@ filled accordingly.</doc>
           </parameter>
         </parameters>
       </method>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ParserPrivate" c:type="JsonParserPrivate*"/>
       </field>
       <glib:signal name="array-element">
@@ -1845,7 +1845,7 @@ a JSON data stream.</doc>
             c:type="JsonParserClass"
             glib:is-gtype-struct-for="Parser">
       <doc xml:whitespace="preserve">#JsonParser class.</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="parse_start">
@@ -2318,10 +2318,10 @@ If another #JsonNode is currently set as root, it will be replaced.</doc>
         <doc xml:whitespace="preserve">The root of the JSON tree that the #JsonReader should read.</doc>
         <type name="Node"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ReaderPrivate" c:type="JsonReaderPrivate*"/>
       </field>
     </class>
@@ -2331,7 +2331,7 @@ If another #JsonNode is currently set as root, it will be replaced.</doc>
             version="0.12">
       <doc xml:whitespace="preserve">The &lt;structname&gt;JsonReaderClass&lt;/structname&gt; structure contains only
 private data</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
       <field name="_json_padding0" introspectable="0">
@@ -2575,7 +2575,7 @@ with properties storing complex data types. The json_serialize_gobject()
 function will check if the passed #GObject implements this interface,
 so it can also be used to override the default property serialization
 sequence.</doc>
-      <field name="g_iface">
+      <field name="g_iface" readable="0" private="1">
         <type name="GObject.TypeInterface" c:type="GTypeInterface"/>
       </field>
       <field name="serialize_property">

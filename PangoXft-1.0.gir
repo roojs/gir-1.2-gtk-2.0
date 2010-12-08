@@ -140,26 +140,26 @@ The renderer must not be currently active.</doc>
                 transfer-ownership="none">
         <type name="gint"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Pango.Renderer" c:type="PangoRenderer"/>
       </field>
-      <field name="display">
+      <field name="display" readable="0" private="1">
         <type name="xlib.Display" c:type="Display*"/>
       </field>
-      <field name="screen">
+      <field name="screen" readable="0" private="1">
         <type name="gint" c:type="int"/>
       </field>
-      <field name="draw">
+      <field name="draw" readable="0" private="1">
         <type name="xft.Draw" c:type="XftDraw*"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="RendererPrivate" c:type="PangoXftRendererPrivate*"/>
       </field>
     </class>
     <record name="RendererClass"
             c:type="PangoXftRendererClass"
             glib:is-gtype-struct-for="Renderer">
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="Pango.RendererClass" c:type="PangoRendererClass"/>
       </field>
       <field name="composite_trapezoids">

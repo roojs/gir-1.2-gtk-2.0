@@ -40461,12 +40461,38 @@ by a TLS backend.</doc>
           </parameter>
         </parameters>
       </function>
+      <virtual-method name="verify" invoker="verify">
+        <return-value transfer-ownership="none">
+          <type name="TlsCertificateFlags" c:type="GTlsCertificateFlags"/>
+        </return-value>
+        <parameters>
+          <parameter name="identity" transfer-ownership="none">
+            <type name="SocketConnectable" c:type="GSocketConnectable*"/>
+          </parameter>
+          <parameter name="trusted_ca" transfer-ownership="none">
+            <type name="TlsCertificate" c:type="GTlsCertificate*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="get_issuer"
               c:identifier="g_tls_certificate_get_issuer"
               introspectable="0">
         <return-value>
           <type name="TlsCertificate" c:type="GTlsCertificate*"/>
         </return-value>
+      </method>
+      <method name="verify" c:identifier="g_tls_certificate_verify">
+        <return-value transfer-ownership="none">
+          <type name="TlsCertificateFlags" c:type="GTlsCertificateFlags"/>
+        </return-value>
+        <parameters>
+          <parameter name="identity" transfer-ownership="none">
+            <type name="SocketConnectable" c:type="GSocketConnectable*"/>
+          </parameter>
+          <parameter name="trusted_ca" transfer-ownership="none">
+            <type name="TlsCertificate" c:type="GTlsCertificate*"/>
+          </parameter>
+        </parameters>
       </method>
       <property name="certificate"
                 writable="1"
@@ -40516,6 +40542,24 @@ by a TLS backend.</doc>
             glib:is-gtype-struct-for="TlsCertificate">
       <field name="parent_class">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+      <field name="verify">
+        <callback name="verify">
+          <return-value transfer-ownership="none">
+            <type name="TlsCertificateFlags" c:type="GTlsCertificateFlags"/>
+          </return-value>
+          <parameters>
+            <parameter name="cert" transfer-ownership="none">
+              <type name="TlsCertificate" c:type="GTlsCertificate*"/>
+            </parameter>
+            <parameter name="identity" transfer-ownership="none">
+              <type name="SocketConnectable" c:type="GSocketConnectable*"/>
+            </parameter>
+            <parameter name="trusted_ca" transfer-ownership="none">
+              <type name="TlsCertificate" c:type="GTlsCertificate*"/>
+            </parameter>
+          </parameters>
+        </callback>
       </field>
       <field name="padding">
         <array zero-terminated="0" c:type="gpointer" fixed-size="8">
@@ -40747,13 +40791,6 @@ a TLS-library-specific subtype.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="emit_need_certificate"
-              c:identifier="g_tls_connection_emit_need_certificate"
-              introspectable="0">
-        <return-value>
-          <type name="TlsCertificate" c:type="GTlsCertificate*"/>
-        </return-value>
-      </method>
       <method name="get_certificate"
               c:identifier="g_tls_connection_get_certificate"
               introspectable="0">
@@ -40768,6 +40805,12 @@ a TLS-library-specific subtype.</doc>
           <type name="TlsCertificate" c:type="GTlsCertificate*"/>
         </return-value>
       </method>
+      <method name="get_peer_certificate_errors"
+              c:identifier="g_tls_connection_get_peer_certificate_errors">
+        <return-value transfer-ownership="none">
+          <type name="TlsCertificateFlags" c:type="GTlsCertificateFlags"/>
+        </return-value>
+      </method>
       <method name="get_rehandshake_mode"
               c:identifier="g_tls_connection_get_rehandshake_mode">
         <return-value transfer-ownership="none">
@@ -40776,6 +40819,12 @@ a TLS-library-specific subtype.</doc>
       </method>
       <method name="get_require_close_notify"
               c:identifier="g_tls_connection_get_require_close_notify">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+      </method>
+      <method name="get_use_system_certdb"
+              c:identifier="g_tls_connection_get_use_system_certdb">
         <return-value transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
@@ -40842,17 +40891,6 @@ a TLS-library-specific subtype.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="set_peer_certificate"
-              c:identifier="g_tls_connection_set_peer_certificate">
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <parameter name="certificate" transfer-ownership="none">
-            <type name="TlsCertificate" c:type="GTlsCertificate*"/>
-          </parameter>
-        </parameters>
-      </method>
       <method name="set_rehandshake_mode"
               c:identifier="g_tls_connection_set_rehandshake_mode">
         <return-value transfer-ownership="none">
@@ -40875,6 +40913,17 @@ a TLS-library-specific subtype.</doc>
           </parameter>
         </parameters>
       </method>
+      <method name="set_use_system_certdb"
+              c:identifier="g_tls_connection_set_use_system_certdb">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="use_system_certdb" transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </method>
       <property name="base-io-stream"
                 writable="1"
                 construct-only="1"
@@ -40887,11 +40936,24 @@ a TLS-library-specific subtype.</doc>
       <property name="peer-certificate" transfer-ownership="none">
         <type name="TlsCertificate"/>
       </property>
-      <property name="rehandshake-mode" writable="1" transfer-ownership="none">
+      <property name="peer-certificate-errors" transfer-ownership="none">
+        <type name="TlsCertificateFlags"/>
+      </property>
+      <property name="rehandshake-mode"
+                writable="1"
+                construct="1"
+                transfer-ownership="none">
         <type name="TlsRehandshakeMode"/>
       </property>
       <property name="require-close-notify"
                 writable="1"
+                construct="1"
+                transfer-ownership="none">
+        <type name="gboolean"/>
+      </property>
+      <property name="use-system-certdb"
+                writable="1"
+                construct="1"
                 transfer-ownership="none">
         <type name="gboolean"/>
       </property>
@@ -40914,29 +40976,12 @@ a TLS-library-specific subtype.</doc>
           </parameter>
         </parameters>
       </glib:signal>
-      <glib:signal name="need-certificate" introspectable="0">
-        <return-value>
-          <type name="TlsCertificate"/>
-        </return-value>
-      </glib:signal>
     </class>
     <record name="TlsConnectionClass"
             c:type="GTlsConnectionClass"
             glib:is-gtype-struct-for="TlsConnection">
       <field name="parent_class">
         <type name="IOStreamClass" c:type="GIOStreamClass"/>
-      </field>
-      <field name="need_certificate" introspectable="0">
-        <callback name="need_certificate" introspectable="0">
-          <return-value>
-            <type name="TlsCertificate" c:type="GTlsCertificate*"/>
-          </return-value>
-          <parameters>
-            <parameter name="connection" transfer-ownership="none">
-              <type name="TlsConnection" c:type="GTlsConnection*"/>
-            </parameter>
-          </parameters>
-        </callback>
       </field>
       <field name="accept_certificate">
         <callback name="accept_certificate">
@@ -41037,28 +41082,32 @@ a TLS-library-specific subtype.</doc>
                  glib:error-quark="g_tls_error_quark">
       <doc xml:whitespace="preserve">An error code used with %G_TLS_ERROR in a #GError returned from a
 TLS-related routine.</doc>
-      <member name="misc"
+      <member name="unavailable"
               value="0"
+              c:identifier="G_TLS_ERROR_UNAVAILABLE"
+              glib:nick="unavailable"/>
+      <member name="misc"
+              value="1"
               c:identifier="G_TLS_ERROR_MISC"
               glib:nick="misc"/>
       <member name="bad_certificate"
-              value="1"
+              value="2"
               c:identifier="G_TLS_ERROR_BAD_CERTIFICATE"
               glib:nick="bad-certificate"/>
       <member name="not_tls"
-              value="2"
+              value="3"
               c:identifier="G_TLS_ERROR_NOT_TLS"
               glib:nick="not-tls"/>
       <member name="handshake"
-              value="3"
+              value="4"
               c:identifier="G_TLS_ERROR_HANDSHAKE"
               glib:nick="handshake"/>
       <member name="certificate_required"
-              value="4"
+              value="5"
               c:identifier="G_TLS_ERROR_CERTIFICATE_REQUIRED"
               glib:nick="certificate-required"/>
       <member name="eof"
-              value="5"
+              value="6"
               c:identifier="G_TLS_ERROR_EOF"
               glib:nick="eof"/>
     </enumeration>
@@ -46751,7 +46800,7 @@ ownership of @error, so the caller does not have to free it any more.</doc>
               introspectable="0"
               throws="1">
       <return-value>
-        <type name="TlsClientConnection" c:type="GTlsClientConnection*"/>
+        <type name="IOStream" c:type="GIOStream*"/>
       </return-value>
       <parameters>
         <parameter name="base_io_stream" transfer-ownership="none">
@@ -46772,7 +46821,7 @@ ownership of @error, so the caller does not have to free it any more.</doc>
               introspectable="0"
               throws="1">
       <return-value>
-        <type name="TlsServerConnection" c:type="GTlsServerConnection*"/>
+        <type name="IOStream" c:type="GIOStream*"/>
       </return-value>
       <parameters>
         <parameter name="base_io_stream" transfer-ownership="none">

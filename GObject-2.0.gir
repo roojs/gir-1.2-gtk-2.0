@@ -1568,7 +1568,6 @@ drops to 0, the object is finalized (i.e. its memory is freed).</doc>
     </class>
     <record name="InitiallyUnownedClass"
             c:type="GInitiallyUnownedClass"
-            disguised="1"
             glib:is-gtype-struct-for="InitiallyUnowned">
       <doc xml:whitespace="preserve">The class structure for the &lt;structname&gt;GInitiallyUnowned&lt;/structname&gt; type.</doc>
       <field name="g_type_class">

@@ -513,7 +513,7 @@ implement the eyedropper feature in #GtkColorSelection.</doc>
           <type name="none" c:type="void"/>
         </return-value>
       </method>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
       <field name="size">
@@ -522,10 +522,10 @@ implement the eyedropper feature in #GtkColorSelection.</doc>
       <field name="colors">
         <type name="Color" c:type="GdkColor*"/>
       </field>
-      <field name="visual">
+      <field name="visual" readable="0" private="1">
         <type name="Visual" c:type="GdkVisual*"/>
       </field>
-      <field name="windowing_data">
+      <field name="windowing_data" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
     </class>
@@ -573,7 +573,7 @@ implement the eyedropper feature in #GtkColorSelection.</doc>
       <field name="type" writable="1">
         <type name="CursorType" c:type="GdkCursorType"/>
       </field>
-      <field name="ref_count" writable="1">
+      <field name="ref_count" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
       <constructor name="new" c:identifier="gdk_cursor_new">
@@ -2080,71 +2080,71 @@ for the color picker in the #GtkColorSelectionDialog.</doc>
       <field name="parent_instance">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="queued_events">
+      <field name="queued_events" readable="0" private="1">
         <type name="GLib.List" c:type="GList*">
           <type name="gpointer" c:type="gpointer"/>
         </type>
       </field>
-      <field name="queued_tail">
+      <field name="queued_tail" readable="0" private="1">
         <type name="GLib.List" c:type="GList*">
           <type name="gpointer" c:type="gpointer"/>
         </type>
       </field>
-      <field name="button_click_time">
+      <field name="button_click_time" readable="0" private="1">
         <array zero-terminated="0" c:type="guint32" fixed-size="2">
           <type name="guint32" c:type="guint32"/>
         </array>
       </field>
-      <field name="button_window">
+      <field name="button_window" readable="0" private="1">
         <array zero-terminated="0" c:type="GdkWindow" fixed-size="2">
           <type name="Window" c:type="GdkWindow*"/>
         </array>
       </field>
-      <field name="button_number">
+      <field name="button_number" readable="0" private="1">
         <array zero-terminated="0" c:type="gint" fixed-size="2">
           <type name="gint" c:type="gint"/>
         </array>
       </field>
-      <field name="double_click_time">
+      <field name="double_click_time" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="core_pointer">
+      <field name="core_pointer" readable="0" private="1">
         <type name="Device" c:type="GdkDevice*"/>
       </field>
-      <field name="pointer_hooks">
+      <field name="pointer_hooks" readable="0" private="1">
         <type name="DisplayPointerHooks" c:type="GdkDisplayPointerHooks*"/>
       </field>
-      <field name="closed" bits="1">
+      <field name="closed" readable="0" bits="1" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="ignore_core_events" bits="1">
+      <field name="ignore_core_events" readable="0" bits="1" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="double_click_distance">
+      <field name="double_click_distance" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="button_x">
+      <field name="button_x" readable="0" private="1">
         <array zero-terminated="0" c:type="gint" fixed-size="2">
           <type name="gint" c:type="gint"/>
         </array>
       </field>
-      <field name="button_y">
+      <field name="button_y" readable="0" private="1">
         <array zero-terminated="0" c:type="gint" fixed-size="2">
           <type name="gint" c:type="gint"/>
         </array>
       </field>
-      <field name="pointer_grabs">
+      <field name="pointer_grabs" readable="0" private="1">
         <type name="GLib.List" c:type="GList*">
           <type name="gpointer" c:type="gpointer"/>
         </type>
       </field>
-      <field name="keyboard_grab">
+      <field name="keyboard_grab" readable="0" private="1">
         <type name="KeyboardGrabInfo" c:type="GdkKeyboardGrabInfo"/>
       </field>
-      <field name="pointer_info">
+      <field name="pointer_info" readable="0" private="1">
         <type name="PointerWindowInfo" c:type="GdkPointerWindowInfo"/>
       </field>
-      <field name="last_event_time">
+      <field name="last_event_time" readable="0" private="1">
         <type name="guint32" c:type="guint32"/>
       </field>
       <glib:signal name="closed" version="2.2">
@@ -2539,7 +2539,7 @@ gdk_drag_context_suggested_action() returns GDK_ACTION_ASK.</doc>
       <field name="start_time">
         <type name="guint32" c:type="guint32"/>
       </field>
-      <field name="windowing_data">
+      <field name="windowing_data" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
     </class>
@@ -6799,7 +6799,7 @@ intend to render the image to.</doc>
       <field name="colormap">
         <type name="Colormap" c:type="GdkColormap*"/>
       </field>
-      <field name="windowing_data">
+      <field name="windowing_data" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
     </class>
@@ -14172,10 +14172,10 @@ directly, or in the 'prepare_run' virtual function of a subclass of
                 transfer-ownership="none">
         <type name="Screen"/>
       </property>
-      <field name="parent_instance">
+      <field name="parent_instance" readable="0" private="1">
         <type name="Pango.Renderer" c:type="PangoRenderer"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="PangoRendererPrivate" c:type="GdkPangoRendererPrivate*"/>
       </field>
     </class>
@@ -14184,7 +14184,7 @@ directly, or in the 'prepare_run' virtual function of a subclass of
             glib:is-gtype-struct-for="PangoRenderer"
             version="2.6">
       <doc xml:whitespace="preserve">#GdkPangoRenderer is the class structure for #GdkPangoRenderer.</doc>
-      <field name="parent_class">
+      <field name="parent_class" readable="0" private="1">
         <type name="Pango.RendererClass" c:type="PangoRendererClass"/>
       </field>
     </record>
@@ -14971,7 +14971,7 @@ or the other of the two sources but not in both.</doc>
       <field name="n_colors" writable="1">
         <type name="gint" c:type="gint"/>
       </field>
-      <field name="info_list" writable="1">
+      <field name="info_list" readable="0" private="1">
         <type name="GLib.SList" c:type="GSList*">
           <type name="gpointer" c:type="gpointer"/>
         </type>
