@@ -54,13 +54,13 @@ and/or use gtk-doc annotations.  -->
     <constant name="PIXBUF_MAJOR" value="2">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="PIXBUF_MICRO" value="2">
+    <constant name="PIXBUF_MICRO" value="0">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="PIXBUF_MINOR" value="22">
+    <constant name="PIXBUF_MINOR" value="23">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="PIXBUF_VERSION" value="2.22.2">
+    <constant name="PIXBUF_VERSION" value="2.23.0">
       <type name="utf8" c:type="gchar*"/>
     </constant>
     <constant name="PIXDATA_HEADER_LENGTH" value="24">

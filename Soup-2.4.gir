@@ -801,6 +801,12 @@ could not be parsed or incorporated into @auth at all.</doc>
         </parameters>
       </glib:signal>
     </class>
+    <class name="AuthBasic"
+           c:symbol-prefix="auth_basic"
+           parent="Auth"
+           glib:type-name="SoupAuthBasic"
+           glib:get-type="soup_auth_basic_get_type">
+    </class>
     <record name="AuthClass"
             c:type="SoupAuthClass"
             glib:is-gtype-struct-for="Auth">
@@ -934,6 +940,12 @@ could not be parsed or incorporated into @auth at all.</doc>
         </callback>
       </field>
     </record>
+    <class name="AuthDigest"
+           c:symbol-prefix="auth_digest"
+           parent="Auth"
+           glib:type-name="SoupAuthDigest"
+           glib:get-type="soup_auth_digest_get_type">
+    </class>
     <class name="AuthDomain"
            c:symbol-prefix="auth_domain"
            c:type="SoupAuthDomain"
@@ -1706,6 +1718,12 @@ be worth considering.</doc>
         </parameter>
       </parameters>
     </callback>
+    <class name="AuthNTLM"
+           c:symbol-prefix="auth_ntlm"
+           parent="Auth"
+           glib:type-name="SoupAuthNTLM"
+           glib:get-type="soup_auth_ntlm_get_type">
+    </class>
     <record name="Buffer"
             c:type="SoupBuffer"
             glib:type-name="SoupBuffer"
@@ -1887,6 +1905,9 @@ any data, but will instead simply reference the same data as</doc>
                 glib:type-name="SoupByteArray"
                 glib:get-type="soup_byte_array_get_type">
     </glib:boxed>
+    <constant name="CACHE_H" value="1">
+      <type name="gint" c:type="gint"/>
+    </constant>
     <constant name="CHAR_HTTP_CTL" value="16">
       <type name="gint" c:type="gint"/>
     </constant>
@@ -1938,6 +1959,57 @@ any data, but will instead simply reference the same data as</doc>
     <constant name="COOKIE_MAX_AGE_ONE_YEAR" value="0">
       <type name="gint" c:type="gint"/>
     </constant>
+    <enumeration name="CacheResponse"
+                 glib:type-name="SoupCacheResponse"
+                 glib:get-type="soup_cache_response_get_type"
+                 c:type="SoupCacheResponse">
+      <member name="fresh"
+              value="0"
+              c:identifier="SOUP_CACHE_RESPONSE_FRESH"
+              glib:nick="fresh"/>
+      <member name="needs_validation"
+              value="1"
+              c:identifier="SOUP_CACHE_RESPONSE_NEEDS_VALIDATION"
+              glib:nick="needs-validation"/>
+      <member name="stale"
+              value="2"
+              c:identifier="SOUP_CACHE_RESPONSE_STALE"
+              glib:nick="stale"/>
+    </enumeration>
+    <enumeration name="CacheType"
+                 glib:type-name="SoupCacheType"
+                 glib:get-type="soup_cache_type_get_type"
+                 c:type="SoupCacheType">
+      <member name="single_user"
+              value="0"
+              c:identifier="SOUP_CACHE_SINGLE_USER"
+              glib:nick="single-user"/>
+      <member name="shared"
+              value="1"
+              c:identifier="SOUP_CACHE_SHARED"
+              glib:nick="shared"/>
+    </enumeration>
+    <bitfield name="Cacheability"
+              glib:type-name="SoupCacheability"
+              glib:get-type="soup_cacheability_get_type"
+              c:type="SoupCacheability">
+      <member name="cacheable"
+              value="1"
+              c:identifier="SOUP_CACHE_CACHEABLE"
+              glib:nick="cacheable"/>
+      <member name="uncacheable"
+              value="2"
+              c:identifier="SOUP_CACHE_UNCACHEABLE"
+              glib:nick="uncacheable"/>
+      <member name="invalidates"
+              value="4"
+              c:identifier="SOUP_CACHE_INVALIDATES"
+              glib:nick="invalidates"/>
+      <member name="validates"
+              value="8"
+              c:identifier="SOUP_CACHE_VALIDATES"
+              glib:nick="validates"/>
+    </bitfield>
     <callback name="ChunkAllocator" c:type="SoupChunkAllocator">
       <doc xml:whitespace="preserve">The prototype for a chunk allocation callback. This should allocate
 a new #SoupBuffer and return it for the I/O layer to read message
@@ -6295,6 +6367,27 @@ error.</doc>
         </callback>
       </field>
     </record>
+    <constant name="REQUESTER_H" value="1">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="REQUEST_DATA_H" value="1">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="REQUEST_FILE_H" value="1">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="REQUEST_H" value="1">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="REQUEST_HTTP_H" value="1">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="REQUEST_SESSION" value="session">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="REQUEST_URI" value="uri">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
     <record name="Range" c:type="SoupRange" version="2.26">
       <doc xml:whitespace="preserve">Represents a byte range as used in the Range header.
 If @end is non-negative, then @start and @end represent the bounds
@@ -6313,6 +6406,19 @@ range", referring to the last -@start bytes of the resource body.
         <type name="gint64" c:type="goffset"/>
       </field>
     </record>
+    <enumeration name="RequesterError"
+                 glib:type-name="SoupRequesterError"
+                 glib:get-type="soup_requester_error_get_type"
+                 c:type="SoupRequesterError">
+      <member name="bad_uri"
+              value="0"
+              c:identifier="SOUP_REQUESTER_ERROR_BAD_URI"
+              glib:nick="bad-uri"/>
+      <member name="unsupported_uri_scheme"
+              value="1"
+              c:identifier="SOUP_REQUESTER_ERROR_UNSUPPORTED_URI_SCHEME"
+              glib:nick="unsupported-uri-scheme"/>
+    </enumeration>
     <constant name="SERVER_ASYNC_CONTEXT" value="async-context">
       <type name="utf8" c:type="gchar*"/>
     </constant>
@@ -7081,16 +7187,22 @@ feature to the session at construct time by using the
       <method name="add_feature_by_type"
               c:identifier="soup_session_add_feature_by_type"
               version="2.24">
-        <doc xml:whitespace="preserve">Creates a new feature of type @feature_type and adds it to
-the case wher you don't need to customize the new feature in any
-way. You can also add a feature to the session at construct time by
+        <doc xml:whitespace="preserve">If @feature_type is the type of a class that implements
+#SoupSessionFeature, this creates a new feature of that type and
+adds it to @session as with soup_session_add_feature(). You can use
+this when you don't need to customize the new feature in any way.
+If @feature_type is not a #SoupSessionFeature type, this gives
+each existing feature on @session the chance to accept @feature_type
+as a "subfeature". This can be used to add new #SoupAuth types,
+for instance.
+You can also add a feature to the session at construct time by
 using the %SOUP_SESSION_ADD_FEATURE_BY_TYPE property.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
           <parameter name="feature_type" transfer-ownership="none">
-            <doc xml:whitespace="preserve">the #GType of a class that implements #SoupSessionFeature</doc>
+            <doc xml:whitespace="preserve">a #GType</doc>
             <type name="GType" c:type="GType"/>
           </parameter>
         </parameters>
@@ -7279,7 +7391,7 @@ from the session at construct time by using the
         </return-value>
         <parameters>
           <parameter name="feature_type" transfer-ownership="none">
-            <doc xml:whitespace="preserve">the #GType of a class that implements #SoupSessionFeature</doc>
+            <doc xml:whitespace="preserve">a #GType</doc>
             <type name="GType" c:type="GType"/>
           </parameter>
         </parameters>
@@ -7733,6 +7845,16 @@ qv.</doc>
                glib:type-struct="SessionFeatureInterface">
       <doc xml:whitespace="preserve">An object that implement some sort of optional feature for
 #SoupSession.</doc>
+      <virtual-method name="add_feature" invoker="add_feature">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="type" transfer-ownership="none">
+            <type name="GType" c:type="GType"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <virtual-method name="attach" invoker="attach">
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7750,6 +7872,26 @@ qv.</doc>
         <parameters>
           <parameter name="session" transfer-ownership="none">
             <type name="Session" c:type="SoupSession*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="has_feature" invoker="has_feature">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="type" transfer-ownership="none">
+            <type name="GType" c:type="GType"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="remove_feature" invoker="remove_feature">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="type" transfer-ownership="none">
+            <type name="GType" c:type="GType"/>
           </parameter>
         </parameters>
       </virtual-method>
@@ -7795,6 +7937,17 @@ qv.</doc>
           </parameter>
         </parameters>
       </virtual-method>
+      <method name="add_feature"
+              c:identifier="soup_session_feature_add_feature">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="type" transfer-ownership="none">
+            <type name="GType" c:type="GType"/>
+          </parameter>
+        </parameters>
+      </method>
       <method name="attach" c:identifier="soup_session_feature_attach">
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -7812,6 +7965,28 @@ qv.</doc>
         <parameters>
           <parameter name="session" transfer-ownership="none">
             <type name="Session" c:type="SoupSession*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="has_feature"
+              c:identifier="soup_session_feature_has_feature">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="type" transfer-ownership="none">
+            <type name="GType" c:type="GType"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="remove_feature"
+              c:identifier="soup_session_feature_remove_feature">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="type" transfer-ownership="none">
+            <type name="GType" c:type="GType"/>
           </parameter>
         </parameters>
       </method>
@@ -7907,6 +8082,51 @@ qv.</doc>
             </parameter>
             <parameter name="msg" transfer-ownership="none">
               <type name="Message" c:type="SoupMessage*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="add_feature">
+        <callback name="add_feature">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="feature" transfer-ownership="none">
+              <type name="SessionFeature" c:type="SoupSessionFeature*"/>
+            </parameter>
+            <parameter name="type" transfer-ownership="none">
+              <type name="GType" c:type="GType"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="remove_feature">
+        <callback name="remove_feature">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="feature" transfer-ownership="none">
+              <type name="SessionFeature" c:type="SoupSessionFeature*"/>
+            </parameter>
+            <parameter name="type" transfer-ownership="none">
+              <type name="GType" c:type="GType"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="has_feature">
+        <callback name="has_feature">
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="feature" transfer-ownership="none">
+              <type name="SessionFeature" c:type="SoupSessionFeature*"/>
+            </parameter>
+            <parameter name="type" transfer-ownership="none">
+              <type name="GType" c:type="GType"/>
             </parameter>
           </parameters>
         </callback>

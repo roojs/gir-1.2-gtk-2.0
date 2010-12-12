@@ -4371,7 +4371,7 @@ using @progress</doc>
             <type name="none" c:type="void"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -4383,7 +4383,7 @@ using @progress</doc>
             <type name="none" c:type="void"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -4395,7 +4395,7 @@ using @progress</doc>
             <type name="none" c:type="void"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -4407,7 +4407,7 @@ using @progress</doc>
             <type name="none" c:type="void"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -4419,7 +4419,7 @@ using @progress</doc>
             <type name="none" c:type="void"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -4431,7 +4431,7 @@ using @progress</doc>
             <type name="none" c:type="void"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -4443,7 +4443,7 @@ using @progress</doc>
             <type name="none" c:type="void"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -4455,7 +4455,7 @@ using @progress</doc>
             <type name="none" c:type="void"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -4467,7 +4467,7 @@ using @progress</doc>
             <type name="none" c:type="void"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -4536,7 +4536,7 @@ using @progress</doc>
             <type name="none" c:type="void"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
             <parameter name="for_height" transfer-ownership="none">
@@ -4568,7 +4568,7 @@ using @progress</doc>
             <type name="none" c:type="void"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
             <parameter name="for_width" transfer-ownership="none">
@@ -4600,7 +4600,7 @@ using @progress</doc>
             <type name="none" c:type="void"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
             <parameter name="box" transfer-ownership="none">
@@ -4822,7 +4822,7 @@ using @progress</doc>
             <type name="Atk.Object" c:type="AtkObject*"/>
           </return-value>
           <parameters>
-            <parameter name="actor" transfer-ownership="none">
+            <parameter name="self" transfer-ownership="none">
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -11072,7 +11072,7 @@ actor, in pixels.</doc>
       <field name="priv" readable="0" private="1">
         <type name="CairoTexturePrivate" c:type="ClutterCairoTexturePrivate*"/>
       </field>
-      <glib:signal name="create-surface" version="1.6" introspectable="0">
+      <glib:signal name="create-surface" version="1.6">
         <doc xml:whitespace="preserve">The ::create-surface signal is emitted when a #ClutterCairoTexture
 news its surface (re)created, which happens either when the Cairo
 context is created with clutter_cairo_texture_create() or
@@ -11081,9 +11081,9 @@ through clutter_cairo_texture_set_surface_size().
 The first signal handler that returns a non-%NULL, valid surface will
 stop any further signal emission, and the returned surface will be
 the one used.</doc>
-        <return-value>
+        <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">the newly created #cairo_surface_t for the texture</doc>
-          <type/>
+          <type name="cairo.Surface"/>
         </return-value>
         <parameters>
           <parameter name="object" transfer-ownership="none">
@@ -12048,12 +12048,16 @@ only private data</doc>
       <doc xml:whitespace="preserve">#ClutterContainer is an opaque structure whose members cannot be directly
 accessed</doc>
       <prerequisite name="Actor"/>
-      <virtual-method name="add">
+      <virtual-method name="add" invoker="add_actor" version="0.4">
+        <doc xml:whitespace="preserve">Adds a #ClutterActor to @container. This function will emit the
+"actor-added" signal. The actor should be parented to
+#ClutterContainer.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
           <parameter name="actor" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the first #ClutterActor to add</doc>
             <type name="Actor" c:type="ClutterActor*"/>
           </parameter>
         </parameters>
@@ -12157,38 +12161,49 @@ container is not configured to provide #ClutterChildMeta&lt;!-- --&gt;s</doc>
           </parameter>
         </parameters>
       </virtual-method>
-      <virtual-method name="lower">
+      <virtual-method name="lower" invoker="lower_child" version="0.6">
+        <doc xml:whitespace="preserve">Lowers @actor to @sibling level, in the depth ordering.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
           <parameter name="actor" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the actor to raise</doc>
             <type name="Actor" c:type="ClutterActor*"/>
           </parameter>
           <parameter name="sibling" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the sibling to lower to, or %NULL to lower to the bottom</doc>
             <type name="Actor" c:type="ClutterActor*"/>
           </parameter>
         </parameters>
       </virtual-method>
-      <virtual-method name="raise">
+      <virtual-method name="raise" invoker="raise_child" version="0.6">
+        <doc xml:whitespace="preserve">Raises @actor to @sibling level, in the depth ordering.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
           <parameter name="actor" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the actor to raise</doc>
             <type name="Actor" c:type="ClutterActor*"/>
           </parameter>
           <parameter name="sibling" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the sibling to raise to, or %NULL to raise to the top</doc>
             <type name="Actor" c:type="ClutterActor*"/>
           </parameter>
         </parameters>
       </virtual-method>
-      <virtual-method name="remove">
+      <virtual-method name="remove" invoker="remove_actor" version="0.4">
+        <doc xml:whitespace="preserve">Removes @actor from @container. The actor should be unparented, so
+if you want to keep it around you must hold a reference to it
+yourself, using g_object_ref(). When the actor has been removed,
+the "actor-removed" signal is emitted by @container.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
           <parameter name="actor" transfer-ownership="none">
+            <doc xml:whitespace="preserve">a #ClutterActor</doc>
             <type name="Actor" c:type="ClutterActor*"/>
           </parameter>
         </parameters>
@@ -12676,6 +12691,7 @@ virtual functions are optional.</doc>
               <type name="Container" c:type="ClutterContainer*"/>
             </parameter>
             <parameter name="actor" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the first #ClutterActor to add</doc>
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -12691,6 +12707,7 @@ virtual functions are optional.</doc>
               <type name="Container" c:type="ClutterContainer*"/>
             </parameter>
             <parameter name="actor" transfer-ownership="none">
+              <doc xml:whitespace="preserve">a #ClutterActor</doc>
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -12752,9 +12769,11 @@ virtual functions are optional.</doc>
               <type name="Container" c:type="ClutterContainer*"/>
             </parameter>
             <parameter name="actor" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the actor to raise</doc>
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
             <parameter name="sibling" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the sibling to raise to, or %NULL to raise to the top</doc>
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -12770,9 +12789,11 @@ virtual functions are optional.</doc>
               <type name="Container" c:type="ClutterContainer*"/>
             </parameter>
             <parameter name="actor" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the actor to raise</doc>
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
             <parameter name="sibling" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the sibling to lower to, or %NULL to lower to the bottom</doc>
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
           </parameters>
@@ -13599,7 +13620,8 @@ not be modified or freed</doc>
           <type name="InputDevice" c:type="ClutterInputDevice*"/>
         </return-value>
         <parameters>
-          <parameter name="type" transfer-ownership="none">
+          <parameter name="device_type" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the type of the core device</doc>
             <type name="InputDeviceType" c:type="ClutterInputDeviceType"/>
           </parameter>
         </parameters>
@@ -13613,7 +13635,8 @@ never be modified or freed</doc>
           <type name="InputDevice" c:type="ClutterInputDevice*"/>
         </return-value>
         <parameters>
-          <parameter name="id" transfer-ownership="none">
+          <parameter name="device_id" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the integer id of a device</doc>
             <type name="gint" c:type="gint"/>
           </parameter>
         </parameters>
@@ -13752,7 +13775,7 @@ removed from the #ClutterDeviceManager</doc>
             </type>
           </return-value>
           <parameters>
-            <parameter name="manager" transfer-ownership="none">
+            <parameter name="device_manager" transfer-ownership="none">
               <type name="DeviceManager" c:type="ClutterDeviceManager*"/>
             </parameter>
           </parameters>
@@ -13765,10 +13788,11 @@ removed from the #ClutterDeviceManager</doc>
             <type name="InputDevice" c:type="ClutterInputDevice*"/>
           </return-value>
           <parameters>
-            <parameter name="manager" transfer-ownership="none">
+            <parameter name="device_manager" transfer-ownership="none">
               <type name="DeviceManager" c:type="ClutterDeviceManager*"/>
             </parameter>
-            <parameter name="type" transfer-ownership="none">
+            <parameter name="device_type" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the type of the core device</doc>
               <type name="InputDeviceType" c:type="ClutterInputDeviceType"/>
             </parameter>
           </parameters>
@@ -13781,10 +13805,11 @@ removed from the #ClutterDeviceManager</doc>
             <type name="InputDevice" c:type="ClutterInputDevice*"/>
           </return-value>
           <parameters>
-            <parameter name="manager" transfer-ownership="none">
+            <parameter name="device_manager" transfer-ownership="none">
               <type name="DeviceManager" c:type="ClutterDeviceManager*"/>
             </parameter>
-            <parameter name="id" transfer-ownership="none">
+            <parameter name="device_id" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the integer id of a device</doc>
               <type name="gint" c:type="gint"/>
             </parameter>
           </parameters>
@@ -24169,10 +24194,20 @@ See also clutter_actor_get_preferred_height()</doc>
             <doc xml:whitespace="preserve">the width for which the height should be computed, or -1</doc>
             <type name="gfloat" c:type="gfloat"/>
           </parameter>
-          <parameter name="minimum_height_p" transfer-ownership="none">
+          <parameter name="min_height_p"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
+            <doc xml:whitespace="preserve">return location for the minimum height of the layout, or %NULL</doc>
             <type name="gfloat" c:type="gfloat*"/>
           </parameter>
-          <parameter name="natural_height_p" transfer-ownership="none">
+          <parameter name="nat_height_p"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
+            <doc xml:whitespace="preserve">return location for the natural height of the layout, or %NULL</doc>
             <type name="gfloat" c:type="gfloat*"/>
           </parameter>
         </parameters>
@@ -24195,10 +24230,20 @@ See also clutter_actor_get_preferred_width()</doc>
             <doc xml:whitespace="preserve">the height for which the width should be computed, or -1</doc>
             <type name="gfloat" c:type="gfloat"/>
           </parameter>
-          <parameter name="minimum_width_p" transfer-ownership="none">
+          <parameter name="min_width_p"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
+            <doc xml:whitespace="preserve">return location for the minimum width of the layout, or %NULL</doc>
             <type name="gfloat" c:type="gfloat*"/>
           </parameter>
-          <parameter name="natural_width_p" transfer-ownership="none">
+          <parameter name="nat_width_p"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
+            <doc xml:whitespace="preserve">return location for the natural width of the layout, or %NULL</doc>
             <type name="gfloat" c:type="gfloat*"/>
           </parameter>
         </parameters>
@@ -24631,10 +24676,20 @@ data and should be accessed using the provided API</doc>
               <doc xml:whitespace="preserve">the height for which the width should be computed, or -1</doc>
               <type name="gfloat" c:type="gfloat"/>
             </parameter>
-            <parameter name="minimum_width_p" transfer-ownership="none">
+            <parameter name="min_width_p"
+                       direction="out"
+                       caller-allocates="0"
+                       transfer-ownership="full"
+                       allow-none="1">
+              <doc xml:whitespace="preserve">return location for the minimum width of the layout, or %NULL</doc>
               <type name="gfloat" c:type="gfloat*"/>
             </parameter>
-            <parameter name="natural_width_p" transfer-ownership="none">
+            <parameter name="nat_width_p"
+                       direction="out"
+                       caller-allocates="0"
+                       transfer-ownership="full"
+                       allow-none="1">
+              <doc xml:whitespace="preserve">return location for the natural width of the layout, or %NULL</doc>
               <type name="gfloat" c:type="gfloat*"/>
             </parameter>
           </parameters>
@@ -24657,10 +24712,20 @@ data and should be accessed using the provided API</doc>
               <doc xml:whitespace="preserve">the width for which the height should be computed, or -1</doc>
               <type name="gfloat" c:type="gfloat"/>
             </parameter>
-            <parameter name="minimum_height_p" transfer-ownership="none">
+            <parameter name="min_height_p"
+                       direction="out"
+                       caller-allocates="0"
+                       transfer-ownership="full"
+                       allow-none="1">
+              <doc xml:whitespace="preserve">return location for the minimum height of the layout, or %NULL</doc>
               <type name="gfloat" c:type="gfloat*"/>
             </parameter>
-            <parameter name="natural_height_p" transfer-ownership="none">
+            <parameter name="nat_height_p"
+                       direction="out"
+                       caller-allocates="0"
+                       transfer-ownership="full"
+                       allow-none="1">
+              <doc xml:whitespace="preserve">return location for the natural height of the layout, or %NULL</doc>
               <type name="gfloat" c:type="gfloat*"/>
             </parameter>
           </parameters>
@@ -27191,10 +27256,12 @@ count increased.</doc>
           <type name="Cogl.Handle" c:type="CoglHandle"/>
         </return-value>
         <parameters>
-          <parameter name="min_width" transfer-ownership="none">
+          <parameter name="width" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the minimum width of the target texture</doc>
             <type name="gfloat" c:type="gfloat"/>
           </parameter>
-          <parameter name="min_height" transfer-ownership="none">
+          <parameter name="height" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the minimum height of the target texture</doc>
             <type name="gfloat" c:type="gfloat"/>
           </parameter>
         </parameters>
@@ -27274,10 +27341,12 @@ modified or freed</doc>
             <parameter name="effect" transfer-ownership="none">
               <type name="OffscreenEffect" c:type="ClutterOffscreenEffect*"/>
             </parameter>
-            <parameter name="min_width" transfer-ownership="none">
+            <parameter name="width" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the minimum width of the target texture</doc>
               <type name="gfloat" c:type="gfloat"/>
             </parameter>
-            <parameter name="min_height" transfer-ownership="none">
+            <parameter name="height" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the minimum height of the target texture</doc>
               <type name="gfloat" c:type="gfloat"/>
             </parameter>
           </parameters>
@@ -27725,6 +27794,7 @@ encompases @pv and @another_pv.</doc>
            c:symbol-prefix="param_color"
            c:type="ClutterParamSpecColor"
            version="1.0"
+           introspectable="0"
            glib:type-name="ClutterParamSpecColor"
            glib:get-type="clutter_param_color_get_type"
            glib:fundamental="1">
@@ -27740,9 +27810,12 @@ a #ClutterColor.</doc>
     <class name="ParamSpecFixed"
            c:symbol-prefix="param_fixed"
            c:type="ClutterParamSpecFixed"
+           version="0.8"
+           introspectable="0"
            glib:type-name="ClutterParamSpecFixed"
            glib:get-type="clutter_param_fixed_get_type"
            glib:fundamental="1">
+      <doc xml:whitespace="preserve">#GParamSpec subclass for fixed point based properties</doc>
       <field name="parent_instance" readable="0" private="1">
         <type name="GObject.ParamSpec" c:type="GParamSpec"/>
       </field>
@@ -27762,7 +27835,10 @@ a #ClutterColor.</doc>
            glib:get-type="clutter_param_units_get_type"
            glib:fundamental="1">
     </class>
-    <record name="ParamSpecUnits" c:type="ClutterParamSpecUnits" version="1.0">
+    <record name="ParamSpecUnits"
+            c:type="ClutterParamSpecUnits"
+            version="1.0"
+            introspectable="0">
       <doc xml:whitespace="preserve">#GParamSpec subclass for unit based properties.</doc>
       <field name="parent_instance" readable="0" private="1">
         <type name="GObject.ParamSpec" c:type="GParamSpec"/>
@@ -29908,7 +29984,8 @@ definition language parsed by #ClutterScript.</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="name" transfer-ownership="none">
+          <parameter name="id" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the #ClutterScript id of the object</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
         </parameters>
@@ -30012,7 +30089,8 @@ when loading a UI definition data with #ClutterScript</doc>
             <parameter name="scriptable" transfer-ownership="none">
               <type name="Scriptable" c:type="ClutterScriptable*"/>
             </parameter>
-            <parameter name="name" transfer-ownership="none">
+            <parameter name="id" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the #ClutterScript id of the object</doc>
               <type name="utf8" c:type="gchar*"/>
             </parameter>
           </parameters>
@@ -30664,7 +30742,8 @@ integer value; %G_TYPE_FLOAT, for a single floating point value;
 %CLUTTER_TYPE_SHADER_INT, for an array of integer values;
 %CLUTTER_TYPE_SHADER_FLOAT, for an array of floating point values;
 and %CLUTTER_TYPE_SHADER_MATRIX, for a matrix of floating point
-values</doc>
+values. It also accepts %G_TYPE_DOUBLE for compatibility with other
+languages than C.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -31980,6 +32059,7 @@ and should be accessed using the provided API</doc>
                c:symbol-prefix="stage_window"
                c:type="ClutterStageWindow"
                version="0.8"
+               introspectable="0"
                glib:type-name="ClutterStageWindow"
                glib:get-type="clutter_stage_window_get_type"
                glib:type-struct="StageWindowIface">
@@ -32010,7 +32090,7 @@ whose members should not be accessed directly</doc>
           <type name="gint" c:type="int"/>
         </return-value>
       </virtual-method>
-      <virtual-method name="get_wrapper" introspectable="0">
+      <virtual-method name="get_wrapper">
         <return-value>
           <type name="Actor" c:type="ClutterActor*"/>
         </return-value>
@@ -32107,12 +32187,13 @@ whose members should not be accessed directly</doc>
     <record name="StageWindowIface"
             c:type="ClutterStageWindowIface"
             glib:is-gtype-struct-for="StageWindow"
-            version="0.8">
+            version="0.8"
+            introspectable="0">
       <doc xml:whitespace="preserve">The interface implemented by backends for stage windows</doc>
       <field name="parent_iface" readable="0" private="1">
         <type name="GObject.TypeInterface" c:type="GTypeInterface"/>
       </field>
-      <field name="get_wrapper" introspectable="0">
+      <field name="get_wrapper">
         <callback name="get_wrapper" introspectable="0">
           <return-value>
             <type name="Actor" c:type="ClutterActor*"/>
@@ -32125,7 +32206,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="set_title">
-        <callback name="set_title">
+        <callback name="set_title" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="none" c:type="void"/>
           </return-value>
@@ -32140,7 +32221,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="set_fullscreen">
-        <callback name="set_fullscreen">
+        <callback name="set_fullscreen" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="none" c:type="void"/>
           </return-value>
@@ -32155,7 +32236,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="set_cursor_visible">
-        <callback name="set_cursor_visible">
+        <callback name="set_cursor_visible" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="none" c:type="void"/>
           </return-value>
@@ -32170,7 +32251,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="set_user_resizable">
-        <callback name="set_user_resizable">
+        <callback name="set_user_resizable" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="none" c:type="void"/>
           </return-value>
@@ -32185,7 +32266,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="realize">
-        <callback name="realize">
+        <callback name="realize" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="gboolean" c:type="gboolean"/>
           </return-value>
@@ -32197,7 +32278,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="unrealize">
-        <callback name="unrealize">
+        <callback name="unrealize" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="none" c:type="void"/>
           </return-value>
@@ -32209,7 +32290,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="show">
-        <callback name="show">
+        <callback name="show" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="none" c:type="void"/>
           </return-value>
@@ -32224,7 +32305,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="hide">
-        <callback name="hide">
+        <callback name="hide" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="none" c:type="void"/>
           </return-value>
@@ -32236,7 +32317,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="resize">
-        <callback name="resize">
+        <callback name="resize" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="none" c:type="void"/>
           </return-value>
@@ -32254,7 +32335,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="get_geometry">
-        <callback name="get_geometry">
+        <callback name="get_geometry" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="none" c:type="void"/>
           </return-value>
@@ -32269,7 +32350,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="get_pending_swaps">
-        <callback name="get_pending_swaps">
+        <callback name="get_pending_swaps" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="gint" c:type="int"/>
           </return-value>
@@ -32281,7 +32362,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="add_redraw_clip">
-        <callback name="add_redraw_clip">
+        <callback name="add_redraw_clip" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="none" c:type="void"/>
           </return-value>
@@ -32296,7 +32377,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="has_redraw_clips">
-        <callback name="has_redraw_clips">
+        <callback name="has_redraw_clips" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="gboolean" c:type="gboolean"/>
           </return-value>
@@ -32308,7 +32389,7 @@ whose members should not be accessed directly</doc>
         </callback>
       </field>
       <field name="ignoring_redraw_clips">
-        <callback name="ignoring_redraw_clips">
+        <callback name="ignoring_redraw_clips" introspectable="0">
           <return-value transfer-ownership="none">
             <type name="gboolean" c:type="gboolean"/>
           </return-value>
@@ -39355,7 +39436,7 @@ to parse your commandline arguments. Unlike clutter_get_option_group(),
 calling g_option_context_parse() with the #GOptionGroup returned by this
 function requires a subsequent explicit call to clutter_init(); use this
 function when needing to set foreign display connection with
-clutter_x11_set_display(), or with gtk_clutter_init().
+clutter_x11_set_display(), or with &lt;function&gt;gtk_clutter_init()&lt;/function&gt;.
 recognized by Clutter</doc>
       <return-value transfer-ownership="full">
         <doc xml:whitespace="preserve">a #GOptionGroup for the commandline arguments</doc>
@@ -41527,7 +41608,7 @@ should never be modified or freed.</doc>
       </return-value>
       <parameters>
         <parameter name="value" transfer-ownership="none">
-          <doc xml:whitespace="preserve">a #GValue initialized to #CLUTTER_TYPE_UNIT</doc>
+          <doc xml:whitespace="preserve">a #GValue initialized to %CLUTTER_TYPE_UNITS</doc>
           <type name="GObject.Value" c:type="GValue*"/>
         </parameter>
       </parameters>
@@ -41646,7 +41727,7 @@ must have been initialized using %CLUTTER_TYPE_SHADER_MATRIX.</doc>
       </return-value>
       <parameters>
         <parameter name="value" transfer-ownership="none">
-          <doc xml:whitespace="preserve">a #GValue initialized to #CLUTTER_TYPE_UNIT</doc>
+          <doc xml:whitespace="preserve">a #GValue initialized to %CLUTTER_TYPE_UNITS</doc>
           <type name="GObject.Value" c:type="GValue*"/>
         </parameter>
         <parameter name="units" transfer-ownership="none">

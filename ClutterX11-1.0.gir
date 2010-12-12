@@ -429,15 +429,14 @@ by clutter_get_current_event_time(), as Clutter may synthesize
 or throttle events.</doc>
       <return-value>
         <doc xml:whitespace="preserve">a timestamp, in milliseconds</doc>
-        <type c:type="Time"/>
+        <type name="xlib.Time" c:type="Time"/>
       </return-value>
     </function>
     <function name="get_default_display"
               c:identifier="clutter_x11_get_default_display"
-              version="0.6"
-              introspectable="0">
+              version="0.6">
       <doc xml:whitespace="preserve">Retrieves the pointer to the default display.</doc>
-      <return-value>
+      <return-value transfer-ownership="none">
         <doc xml:whitespace="preserve">the default display</doc>
         <type name="xlib.Display" c:type="Display*"/>
       </return-value>
@@ -457,12 +456,12 @@ or throttle events.</doc>
               deprecated="Use clutter_device_manager_peek_devices() instead"
               deprecated-version="1.2">
       <doc xml:whitespace="preserve">Retrieves a pointer to the list of input devices
-returned list is owned by Clutter and should not be modified or
-freed</doc>
+pointer to the internal list of input devices; the returned list is
+owned by Clutter and should not be modified or freed</doc>
       <return-value transfer-ownership="none">
-        <doc xml:whitespace="preserve">a pointer to the internal list of input devices; the</doc>
+        <doc xml:whitespace="preserve">a</doc>
         <type name="GLib.SList" c:type="GSList*">
-          <type name="gpointer" c:type="gpointer"/>
+          <type name="Clutter.InputDevice"/>
         </type>
       </return-value>
     </function>
@@ -478,11 +477,11 @@ freed</doc>
     </function>
     <function name="get_stage_from_window"
               c:identifier="clutter_x11_get_stage_from_window"
-              version="0.8"
-              introspectable="0">
-      <doc xml:whitespace="preserve">Gets the stage for a particular X window.</doc>
-      <return-value>
-        <doc xml:whitespace="preserve">The stage or NULL if a stage does not exist for the window.</doc>
+              version="0.8">
+      <doc xml:whitespace="preserve">Gets the stage for a particular X window.  
+does not exist for the window</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">A #ClutterStage, or% NULL if a stage</doc>
         <type name="Clutter.Stage" c:type="ClutterStage*"/>
       </return-value>
       <parameters>
@@ -502,9 +501,9 @@ freed</doc>
 XVisualInfo that was used to create an existing window for the given stage.
 along the lines of clutter_backend_x11_get_foreign_visual () or perhaps
 clutter_stage_x11_get_foreign_visual ()
-XFree() to free the returned value instead</doc>
-      <return-value>
-        <doc xml:whitespace="preserve">An XVisualInfo suitable for creating a foreign stage. Use</doc>
+foreign stage. Use XFree() to free the returned value instead</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:whitespace="preserve">An XVisualInfo suitable for creating a</doc>
         <type name="xlib.XVisualInfo" c:type="XVisualInfo*"/>
       </return-value>
       <parameters>
@@ -547,7 +546,7 @@ XFree() to free the returned value instead</doc>
 backend.
 &lt;varname&gt;None&lt;/varname&gt;. The returned value should be freed using XFree()
 when done</doc>
-      <return-value>
+      <return-value transfer-ownership="full">
         <doc xml:whitespace="preserve">a &lt;structname&gt;XVisualInfo&lt;/structname&gt;, or</doc>
         <type name="xlib.XVisualInfo" c:type="XVisualInfo*"/>
       </return-value>

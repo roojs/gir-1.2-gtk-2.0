@@ -10746,9 +10746,60 @@ enumeration.</doc>
       </method>
     </record>
     <enumeration name="VariantParseError" c:type="GVariantParseError">
-      <member name="variant_parse_error_failed"
+      <member name="failed"
               value="0"
               c:identifier="G_VARIANT_PARSE_ERROR_FAILED"/>
+      <member name="basic_type_expected"
+              value="1"
+              c:identifier="G_VARIANT_PARSE_ERROR_BASIC_TYPE_EXPECTED"/>
+      <member name="cannot_infer_type"
+              value="2"
+              c:identifier="G_VARIANT_PARSE_ERROR_CANNOT_INFER_TYPE"/>
+      <member name="definite_type_expected"
+              value="3"
+              c:identifier="G_VARIANT_PARSE_ERROR_DEFINITE_TYPE_EXPECTED"/>
+      <member name="input_not_at_end"
+              value="4"
+              c:identifier="G_VARIANT_PARSE_ERROR_INPUT_NOT_AT_END"/>
+      <member name="invalid_character"
+              value="5"
+              c:identifier="G_VARIANT_PARSE_ERROR_INVALID_CHARACTER"/>
+      <member name="invalid_format_string"
+              value="6"
+              c:identifier="G_VARIANT_PARSE_ERROR_INVALID_FORMAT_STRING"/>
+      <member name="invalid_object_path"
+              value="7"
+              c:identifier="G_VARIANT_PARSE_ERROR_INVALID_OBJECT_PATH"/>
+      <member name="invalid_signature"
+              value="8"
+              c:identifier="G_VARIANT_PARSE_ERROR_INVALID_SIGNATURE"/>
+      <member name="invalid_type_string"
+              value="9"
+              c:identifier="G_VARIANT_PARSE_ERROR_INVALID_TYPE_STRING"/>
+      <member name="no_common_type"
+              value="10"
+              c:identifier="G_VARIANT_PARSE_ERROR_NO_COMMON_TYPE"/>
+      <member name="number_out_of_range"
+              value="11"
+              c:identifier="G_VARIANT_PARSE_ERROR_NUMBER_OUT_OF_RANGE"/>
+      <member name="number_too_big"
+              value="12"
+              c:identifier="G_VARIANT_PARSE_ERROR_NUMBER_TOO_BIG"/>
+      <member name="type_error"
+              value="13"
+              c:identifier="G_VARIANT_PARSE_ERROR_TYPE_ERROR"/>
+      <member name="unexpected_token"
+              value="14"
+              c:identifier="G_VARIANT_PARSE_ERROR_UNEXPECTED_TOKEN"/>
+      <member name="unknown_keyword"
+              value="15"
+              c:identifier="G_VARIANT_PARSE_ERROR_UNKNOWN_KEYWORD"/>
+      <member name="unterminated_string_constant"
+              value="16"
+              c:identifier="G_VARIANT_PARSE_ERROR_UNTERMINATED_STRING_CONSTANT"/>
+      <member name="value_expected"
+              value="17"
+              c:identifier="G_VARIANT_PARSE_ERROR_VALUE_EXPECTED"/>
     </enumeration>
     <record name="VariantType" c:type="GVariantType" disguised="1">
       <doc xml:whitespace="preserve">A type in the GVariant type system.

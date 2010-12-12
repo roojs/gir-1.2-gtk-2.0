@@ -3049,14 +3049,12 @@ is computed from the layout's contents, %FALSE otherwise.</doc>
           <type name="gint" c:type="int"/>
         </return-value>
       </method>
-      <method name="get_context"
-              c:identifier="pango_layout_get_context"
-              introspectable="0">
+      <method name="get_context" c:identifier="pango_layout_get_context">
         <doc xml:whitespace="preserve">Retrieves the #PangoContext used for this layout.
-have an additional refcount added, so if you want to keep
-a copy of this around, you must reference it yourself.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">the #PangoContext for the layout. This does not</doc>
+This does not have an additional refcount added, so if you want to
+keep a copy of this around, you must reference it yourself.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">the #PangoContext for the layout.</doc>
           <type name="Context" c:type="PangoContext*"/>
         </return-value>
       </method>
