@@ -647,6 +647,89 @@ JSON data stream starting from a data object model composed by
           <type name="Generator" c:type="JsonGenerator*"/>
         </return-value>
       </constructor>
+      <method name="get_indent"
+              c:identifier="json_generator_get_indent"
+              version="0.14">
+        <doc xml:whitespace="preserve">Retrieves the value set using json_generator_set_indent().</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">the number of repetitions per indentation level</doc>
+          <type name="guint" c:type="guint"/>
+        </return-value>
+      </method>
+      <method name="get_indent_char"
+              c:identifier="json_generator_get_indent_char"
+              version="0.14">
+        <doc xml:whitespace="preserve">Retrieves the value set using json_generator_set_indent_char().</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">the character to be used when indenting</doc>
+          <type name="gunichar" c:type="gunichar"/>
+        </return-value>
+      </method>
+      <method name="get_pretty"
+              c:identifier="json_generator_get_pretty"
+              version="0.14">
+        <doc xml:whitespace="preserve">Retrieves the value set using json_generator_set_pretty().
+%FALSE otherwise</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">%TRUE if the generated JSON should be pretty-printed, and</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+      </method>
+      <method name="get_root"
+              c:identifier="json_generator_get_root"
+              version="0.14">
+        <doc xml:whitespace="preserve">Retrieves a pointer to the root #JsonNode set using
+json_generator_set_root().
+is owned by the #JsonGenerator and it should not be freed</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">a #JsonNode, or %NULL. The returned node</doc>
+          <type name="Node" c:type="JsonNode*"/>
+        </return-value>
+      </method>
+      <method name="set_indent"
+              c:identifier="json_generator_set_indent"
+              version="0.14">
+        <doc xml:whitespace="preserve">Sets the number of repetitions for each indentation level.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="indent_level" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the number of repetitions of the indentation character that should be applied when pretty printing</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_indent_char"
+              c:identifier="json_generator_set_indent_char"
+              version="0.14">
+        <doc xml:whitespace="preserve">Sets the character to be used when indenting</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="indent_char" transfer-ownership="none">
+            <doc xml:whitespace="preserve">a Unicode character to be used when indenting</doc>
+            <type name="gunichar" c:type="gunichar"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_pretty"
+              c:identifier="json_generator_set_pretty"
+              version="0.14">
+        <doc xml:whitespace="preserve">Sets whether the generated JSON should be pretty printed, using the
+indentation character specified in the #JsonGenerator:indent-char
+property and the spacing specified in #JsonGenerator:indent property.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="is_pretty" transfer-ownership="none">
+            <doc xml:whitespace="preserve">whether the generated string should be pretty printed</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </method>
       <method name="set_root" c:identifier="json_generator_set_root">
         <doc xml:whitespace="preserve">Sets @node as the root of the JSON data stream to be serialized by
 the #JsonGenerator.

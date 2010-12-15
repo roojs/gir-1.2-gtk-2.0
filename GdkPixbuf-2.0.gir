@@ -373,6 +373,24 @@ the stream contained invalid data, or the operation was cancelled.</doc>
           </parameter>
         </parameters>
       </constructor>
+      <constructor name="new_from_stream_finish"
+                   c:identifier="gdk_pixbuf_new_from_stream_finish"
+                   version="2.24"
+                   throws="1">
+        <doc xml:whitespace="preserve">Finishes an asynchronous pixbuf creation operation started with
+gdk_pixbuf_new_from_stream_async().
+object with g_object_unref().</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">a #GdkPixbuf or %NULL on error. Free the returned</doc>
+          <type name="Pixbuf" c:type="GdkPixbuf*"/>
+        </return-value>
+        <parameters>
+          <parameter name="async_result" transfer-ownership="none">
+            <doc xml:whitespace="preserve">a #GAsyncResult</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </constructor>
       <constructor name="new_from_xpm_data"
                    c:identifier="gdk_pixbuf_new_from_xpm_data">
         <doc xml:whitespace="preserve">Creates a new pixbuf by parsing XPM data in memory.  This data is commonly
@@ -458,6 +476,105 @@ freed.</doc>
         <parameters>
           <parameter name="msgid" transfer-ownership="none">
             <type name="utf8" c:type="gchar*"/>
+          </parameter>
+        </parameters>
+      </function>
+      <function name="new_from_stream_async"
+                c:identifier="gdk_pixbuf_new_from_stream_async"
+                version="2.24">
+        <doc xml:whitespace="preserve">Creates a new pixbuf by asynchronously loading an image from an input stream.
+For more details see gdk_pixbuf_new_from_stream(), which is the synchronous
+version of this function.
+When the operation is finished, @callback will be called in the main thread.
+You can then call gdk_pixbuf_new_from_stream_finish() to get the result of the operation.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="stream" transfer-ownership="none">
+            <doc xml:whitespace="preserve">a #GInputStream from which to load the pixbuf</doc>
+            <type name="Gio.InputStream" c:type="GInputStream*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     allow-none="1">
+            <doc xml:whitespace="preserve">optional #GCancellable object, %NULL to ignore</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     scope="async"
+                     closure="3">
+            <doc xml:whitespace="preserve">a #GAsyncReadyCallback to call when the the pixbuf is loaded</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the data to pass to the callback function</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </function>
+      <function name="new_from_stream_at_scale_async"
+                c:identifier="gdk_pixbuf_new_from_stream_at_scale_async"
+                version="2.24">
+        <doc xml:whitespace="preserve">Creates a new pixbuf by asynchronously loading an image from an input stream.
+For more details see gdk_pixbuf_new_from_stream_at_scale(), which is the synchronous
+version of this function.
+When the operation is finished, @callback will be called in the main thread.
+You can then call gdk_pixbuf_new_from_stream_finish() to get the result of the operation.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="stream" transfer-ownership="none">
+            <doc xml:whitespace="preserve">a #GInputStream from which to load the pixbuf</doc>
+            <type name="Gio.InputStream" c:type="GInputStream*"/>
+          </parameter>
+          <parameter name="width" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the width the image should have or -1 to not constrain the width</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="height" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the height the image should have or -1 to not constrain the height</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="preserve_aspect_ratio" transfer-ownership="none">
+            <doc xml:whitespace="preserve">%TRUE to preserve the image's aspect ratio</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     allow-none="1">
+            <doc xml:whitespace="preserve">optional #GCancellable object, %NULL to ignore</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     scope="async"
+                     closure="6">
+            <doc xml:whitespace="preserve">a #GAsyncReadyCallback to call when the the pixbuf is loaded</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the data to pass to the callback function</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </function>
+      <function name="save_to_stream_finish"
+                c:identifier="gdk_pixbuf_save_to_stream_finish"
+                version="2.24"
+                throws="1">
+        <doc xml:whitespace="preserve">Finishes an asynchronous pixbuf save operation started with
+gdk_pixbuf_save_to_stream_async().</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">%TRUE if the pixbuf was saved successfully, %FALSE if an error was set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="async_result" transfer-ownership="none">
+            <doc xml:whitespace="preserve">a #GAsyncResult</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
           </parameter>
         </parameters>
       </function>
@@ -1188,6 +1305,50 @@ error was set.</doc>
           <parameter name="error" transfer-ownership="none" allow-none="1">
             <doc xml:whitespace="preserve">return location for error, or %NULL</doc>
             <type name="GLib.Error" c:type="GError**"/>
+          </parameter>
+          <parameter transfer-ownership="none">
+            <varargs>
+            </varargs>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="save_to_stream_async"
+              c:identifier="gdk_pixbuf_save_to_stream_async"
+              version="2.24"
+              introspectable="0">
+        <doc xml:whitespace="preserve">Saves @pixbuf to an output stream asynchronously.
+For more details see gdk_pixbuf_save_to_stream(), which is the synchronous
+version of this function.
+When the operation is finished, @callback will be called in the main thread.
+You can then call gdk_pixbuf_save_to_stream_finish() to get the result of the operation.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="stream" transfer-ownership="none">
+            <doc xml:whitespace="preserve">a #GOutputStream to which to save the pixbuf</doc>
+            <type name="Gio.OutputStream" c:type="GOutputStream*"/>
+          </parameter>
+          <parameter name="type" transfer-ownership="none">
+            <doc xml:whitespace="preserve">name of file format</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     allow-none="1">
+            <doc xml:whitespace="preserve">optional #GCancellable object, %NULL to ignore</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     scope="async"
+                     closure="4">
+            <doc xml:whitespace="preserve">a #GAsyncReadyCallback to call when the the pixbuf is loaded</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the data to pass to the callback function</doc>
+            <type name="gpointer" c:type="gpointer"/>
           </parameter>
           <parameter transfer-ownership="none">
             <varargs>
