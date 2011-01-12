@@ -10,6 +10,7 @@ and/or use gtk-doc annotations.  -->
   <include name="GObject" version="2.0"/>
   <include name="Gio" version="2.0"/>
   <package name="json-glib-1.0"/>
+  <c:include name="json-glib/json-glib.h"/>
   <namespace name="Json"
              version="1.0"
              shared-library="libjson-glib-1.0.so.0"
@@ -51,7 +52,7 @@ of the newly added #JsonArray</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="value" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="full">
             <doc xml:whitespace="preserve">a #JsonArray</doc>
             <type name="Array" c:type="JsonArray*"/>
           </parameter>
@@ -92,7 +93,7 @@ of the newly added #JsonArray</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="node" transfer-ownership="none">
+          <parameter name="node" transfer-ownership="full">
             <doc xml:whitespace="preserve">a #JsonNode</doc>
             <type name="Node" c:type="JsonNode*"/>
           </parameter>
@@ -129,7 +130,7 @@ of the newly added #JsonObject</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="value" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="full">
             <doc xml:whitespace="preserve">a #JsonObject</doc>
             <type name="Object" c:type="JsonObject*"/>
           </parameter>
@@ -241,7 +242,7 @@ inside @array</doc>
       <method name="get_element" c:identifier="json_array_get_element">
         <doc xml:whitespace="preserve">Retrieves the #JsonNode containing the value of the element at @index_
 inside a #JsonArray.</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">a pointer to the #JsonNode at the requested index</doc>
           <type name="Node" c:type="JsonNode*"/>
         </return-value>
@@ -975,7 +976,7 @@ of the #JsonNode contents. Use g_free() to free the allocated resources</doc>
       <method name="get_parent" c:identifier="json_node_get_parent">
         <doc xml:whitespace="preserve">Retrieves the parent #JsonNode of @node.</doc>
         <return-value transfer-ownership="full">
-          <doc xml:whitespace="preserve">the parent node, or %NULL if @node is the root node</doc>
+          <doc xml:whitespace="preserve">(transfer none) the parent node, or %NULL if @node is the root node</doc>
           <type name="Node" c:type="JsonNode*"/>
         </return-value>
       </method>
@@ -993,7 +994,10 @@ using it, call g_value_unset() on the #GValue.</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="value" transfer-ownership="none">
+          <parameter name="value"
+                     direction="out"
+                     caller-allocates="1"
+                     transfer-ownership="none">
             <doc xml:whitespace="preserve">return location for an uninitialized value</doc>
             <type name="GObject.Value" c:type="GValue*"/>
           </parameter>
@@ -1124,7 +1128,7 @@ content.</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="array" transfer-ownership="none">
+          <parameter name="array" transfer-ownership="full">
             <doc xml:whitespace="preserve">a #JsonArray</doc>
             <type name="Array" c:type="JsonArray*"/>
           </parameter>
@@ -1136,7 +1140,7 @@ content.</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="object" transfer-ownership="full">
             <doc xml:whitespace="preserve">a #JsonObject</doc>
             <type name="Object" c:type="JsonObject*"/>
           </parameter>
@@ -1187,7 +1191,7 @@ This function will return if the @object already contains a member</doc>
             <doc xml:whitespace="preserve">the name of the member</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
-          <parameter name="node" transfer-ownership="none">
+          <parameter name="node" transfer-ownership="full">
             <doc xml:whitespace="preserve">the value of the member</doc>
             <type name="Node" c:type="JsonNode*"/>
           </parameter>
@@ -1303,7 +1307,7 @@ stored in @member_name of @object</doc>
         <doc xml:whitespace="preserve">Retrieves the #JsonNode containing the value of @member_name inside
 a #JsonObject.
 member, or %NULL</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">a pointer to the node for the requested object</doc>
           <type name="Node" c:type="JsonNode*"/>
         </return-value>
@@ -1441,7 +1445,7 @@ The @object will take ownership of the passed #JsonArray</doc>
             <doc xml:whitespace="preserve">the name of the member</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
-          <parameter name="value" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="full">
             <doc xml:whitespace="preserve">the value of the member</doc>
             <type name="Array" c:type="JsonArray*"/>
           </parameter>
@@ -1550,7 +1554,7 @@ The @object will take ownership of the passed #JsonObject</doc>
             <doc xml:whitespace="preserve">the name of the member</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
-          <parameter name="value" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="full">
             <doc xml:whitespace="preserve">the value of the member</doc>
             <type name="Object" c:type="JsonObject*"/>
           </parameter>
@@ -1686,7 +1690,7 @@ never be modified or freed.</doc>
           <parameter name="variable_name"
                      direction="out"
                      caller-allocates="0"
-                     transfer-ownership="full"
+                     transfer-ownership="none"
                      allow-none="1">
             <doc xml:whitespace="preserve">Return location for the variable name, or %NULL</doc>
             <type name="utf8" c:type="gchar**"/>
@@ -2489,7 +2493,10 @@ property contained inside @property_node into @value.</doc>
             <doc xml:whitespace="preserve">the name of the property</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
-          <parameter name="value" transfer-ownership="none">
+          <parameter name="value"
+                     direction="out"
+                     caller-allocates="1"
+                     transfer-ownership="none">
             <doc xml:whitespace="preserve">a pointer to an uninitialized #GValue</doc>
             <type name="GObject.Value" c:type="GValue*"/>
           </parameter>
@@ -2612,7 +2619,10 @@ property contained inside @property_node into @value.</doc>
             <doc xml:whitespace="preserve">the name of the property</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
-          <parameter name="value" transfer-ownership="none">
+          <parameter name="value"
+                     direction="out"
+                     caller-allocates="1"
+                     transfer-ownership="none">
             <doc xml:whitespace="preserve">a pointer to an uninitialized #GValue</doc>
             <type name="GObject.Value" c:type="GValue*"/>
           </parameter>
@@ -2700,7 +2710,10 @@ sequence.</doc>
               <doc xml:whitespace="preserve">the name of the property</doc>
               <type name="utf8" c:type="gchar*"/>
             </parameter>
-            <parameter name="value" transfer-ownership="none">
+            <parameter name="value"
+                       direction="out"
+                       caller-allocates="1"
+                       transfer-ownership="none">
               <doc xml:whitespace="preserve">a pointer to an uninitialized #GValue</doc>
               <type name="GObject.Value" c:type="GValue*"/>
             </parameter>
