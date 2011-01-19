@@ -27,6 +27,24 @@ and/or use gtk-doc annotations.  -->
              shared-library="libclutter-glx-1.0.so.0"
              c:identifier-prefixes="Cally"
              c:symbol-prefixes="cally">
+    <callback name="ActionCallback" c:type="CallyActionCallback" version="1.6">
+      <doc xml:whitespace="preserve">Action function, to be used on #AtkAction implementations as
+an individual action. Unlike #CallyActionFunc, this function
+uses the @user_data argument passed to cally_actor_add_action_full().</doc>
+      <return-value transfer-ownership="none">
+        <type name="none" c:type="void"/>
+      </return-value>
+      <parameters>
+        <parameter name="cally_actor" transfer-ownership="none">
+          <doc xml:whitespace="preserve">a #CallyActor</doc>
+          <type name="Actor" c:type="CallyActor*"/>
+        </parameter>
+        <parameter name="user_data" transfer-ownership="none" closure="1">
+          <doc xml:whitespace="preserve">user data passed to the function</doc>
+          <type name="gpointer" c:type="gpointer"/>
+        </parameter>
+      </parameters>
+    </callback>
     <callback name="ActionFunc" c:type="CallyActionFunc" version="1.4">
       <doc xml:whitespace="preserve">Action function, to be used on #AtkAction implementations as a individual
 action</doc>
@@ -67,11 +85,12 @@ data and should be accessed using the provided API</doc>
       </constructor>
       <method name="add_action"
               c:identifier="cally_actor_add_action"
+              shadowed-by="add_action_full"
               version="1.4"
               introspectable="0">
         <doc xml:whitespace="preserve">Adds a new action to be accessed with the #AtkAction interface.</doc>
         <return-value transfer-ownership="none">
-          <doc xml:whitespace="preserve">added action id, or 0 if failure</doc>
+          <doc xml:whitespace="preserve">added action id, or -1 if failure</doc>
           <type name="guint" c:type="guint"/>
         </return-value>
         <parameters>
@@ -90,6 +109,46 @@ data and should be accessed using the provided API</doc>
           <parameter name="action_func" transfer-ownership="none">
             <doc xml:whitespace="preserve">the callback of the action, to be executed with do_action</doc>
             <type name="ActionFunc" c:type="CallyActionFunc"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_action_full"
+              c:identifier="cally_actor_add_action_full"
+              shadows="add_action"
+              version="1.6">
+        <doc xml:whitespace="preserve">Adds a new action to be accessed with the #AtkAction interface.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">added action id, or -1 if failure</doc>
+          <type name="guint" c:type="guint"/>
+        </return-value>
+        <parameters>
+          <parameter name="action_name" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the action name</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="action_description" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the action description</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="action_keybinding" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the action keybinding</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     scope="notified"
+                     closure="4"
+                     destroy="5">
+            <doc xml:whitespace="preserve">the callback of the action</doc>
+            <type name="ActionCallback" c:type="CallyActionCallback"/>
+          </parameter>
+          <parameter name="user_data" transfer-ownership="none">
+            <doc xml:whitespace="preserve">data to be passed to @callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+          <parameter name="notify" transfer-ownership="none" scope="async">
+            <doc xml:whitespace="preserve">function to be called when removing the action</doc>
+            <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
           </parameter>
         </parameters>
       </method>

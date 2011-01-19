@@ -25,7 +25,7 @@ and/or use gtk-doc annotations.  -->
   <c:include name="gst/base/gsttypefindhelper.h"/>
   <namespace name="GstBase"
              version="0.10"
-             shared-library="libgstbase-0.10.so.0"
+             shared-library="libgstreamer-0.10.so.0,libgstbase-0.10.so.0"
              c:identifier-prefixes="Gst"
              c:symbol-prefixes="gst">
     <class name="Adapter"
@@ -78,15 +78,23 @@ available before calling this function.</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="dest" transfer-ownership="none">
-            <doc xml:whitespace="preserve">the memory where to copy to</doc>
-            <type name="guint8" c:type="guint8*"/>
+          <parameter name="dest"
+                     direction="out"
+                     caller-allocates="1"
+                     transfer-ownership="none">
+            <doc xml:whitespace="preserve">the memory to copy into</doc>
+            <array length="2" c:type="guint8*">
+              <type name="guint8"/>
+            </array>
           </parameter>
           <parameter name="offset" transfer-ownership="none">
             <doc xml:whitespace="preserve">the bytes offset in the adapter to start from</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
-          <parameter name="size" transfer-ownership="none">
+          <parameter name="size"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the number of bytes to copy</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
@@ -209,11 +217,16 @@ as #GstBuffer malloc_data or the potentially more performant
 gst_adapter_take_buffer().
 Returns #NULL if @size bytes are not available.</doc>
         <return-value transfer-ownership="none">
-          <doc xml:whitespace="preserve">a pointer to the first @size bytes of data, or NULL.</doc>
-          <type name="guint8" c:type="guint8*"/>
+          <doc xml:whitespace="preserve">a pointer to the first</doc>
+          <array length="0" c:type="guint8*">
+            <type name="guint8"/>
+          </array>
         </return-value>
         <parameters>
-          <parameter name="size" transfer-ownership="none">
+          <parameter name="size"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the number of bytes to peek</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
@@ -224,15 +237,21 @@ Returns #NULL if @size bytes are not available.</doc>
               version="0.10.24">
         <doc xml:whitespace="preserve">Get the timestamp that was before the current byte in the adapter. When
 position is returned.
-The timestamp is reset to GST_CLOCK_TIME_NONE when the adapter is first
-created or when it is cleared.</doc>
+The timestamp is reset to GST_CLOCK_TIME_NONE and the distance is set to 0 when
+the adapter is first created or when it is cleared. This also means that before
+the first byte with a timestamp is removed from the adapter, the timestamp
+and distance returned are GST_CLOCK_TIME_NONE and 0 respectively.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">The previously seen timestamp.</doc>
           <type name="Gst.ClockTime" c:type="GstClockTime"/>
         </return-value>
         <parameters>
-          <parameter name="distance" transfer-ownership="none">
-            <doc xml:whitespace="preserve">pointer to location for distance or NULL</doc>
+          <parameter name="distance"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
+            <doc xml:whitespace="preserve">pointer to location for distance, or NULL</doc>
             <type name="guint64" c:type="guint64*"/>
           </parameter>
         </parameters>
@@ -244,7 +263,7 @@ ownership of the buffer.</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="buf" transfer-ownership="none">
+          <parameter name="buf" transfer-ownership="full">
             <doc xml:whitespace="preserve">a #GstBuffer to add to queue in the adapter</doc>
             <type name="Gst.Buffer" c:type="GstBuffer*"/>
           </parameter>
@@ -252,13 +271,19 @@ ownership of the buffer.</doc>
       </method>
       <method name="take" c:identifier="gst_adapter_take">
         <doc xml:whitespace="preserve">Returns a freshly allocated buffer containing the first @nbytes bytes of the
-Caller owns returned value. g_free after usage.</doc>
-        <return-value transfer-ownership="none">
-          <doc xml:whitespace="preserve">oven-fresh hot data, or #NULL if @nbytes bytes are not available</doc>
-          <type name="guint8" c:type="guint8*"/>
+Caller owns returned value. g_free after usage.
+#NULL if @nbytes bytes are not available</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">oven-fresh hot data, or</doc>
+          <array length="0" c:type="guint8*">
+            <type name="guint8"/>
+          </array>
         </return-value>
         <parameters>
-          <parameter name="nbytes" transfer-ownership="none">
+          <parameter name="nbytes"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the number of bytes to take</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
@@ -266,16 +291,15 @@ Caller owns returned value. g_free after usage.</doc>
       </method>
       <method name="take_buffer"
               c:identifier="gst_adapter_take_buffer"
-              version="0.10.6"
-              introspectable="0">
+              version="0.10.6">
         <doc xml:whitespace="preserve">Returns a #GstBuffer containing the first @nbytes bytes of the
 This function is potentially more performant than gst_adapter_take()
 since it can reuse the memory in pushed buffers by subbuffering
 or merging.
 Caller owns returned value. gst_buffer_unref() after usage.
-or #NULL if @nbytes bytes are not available</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">a #GstBuffer containing the first @nbytes of the adapter,</doc>
+the adapter, or #NULL if @nbytes bytes are not available</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">a #GstBuffer containing the first @nbytes of</doc>
           <type name="Gst.Buffer" c:type="GstBuffer*"/>
         </return-value>
         <parameters>
@@ -287,18 +311,18 @@ or #NULL if @nbytes bytes are not available</doc>
       </method>
       <method name="take_list"
               c:identifier="gst_adapter_take_list"
-              version="0.10.31"
-              introspectable="0">
-        <doc xml:whitespace="preserve">Returns a #GSList of buffers containing the first @nbytes bytes of the
+              version="0.10.31">
+        <doc xml:whitespace="preserve">Returns a #GList of buffers containing the first @nbytes bytes of the
 When the caller can deal with individual buffers, this function is more
-performant because no memory should be coppied.
+performant because no memory should be copied.
 Caller owns returned list and contained buffers. gst_buffer_unref() each
-buffer in the list before freeng the list after usage.
-or #NULL if @nbytes bytes are not available</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">a #GSList of buffers containing the first @nbytes of the adapter,</doc>
+buffer in the list before freeing the list after usage.
+containing the first @nbytes of the adapter, or #NULL if @nbytes bytes
+are not available</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">a #GList of buffers</doc>
           <type name="GLib.List" c:type="GList*">
-            <type name="gpointer" c:type="gpointer"/>
+            <type name="Gst.Buffer"/>
           </type>
         </return-value>
         <parameters>
@@ -311,35 +335,35 @@ or #NULL if @nbytes bytes are not available</doc>
       <field name="object">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="buflist">
+      <field name="buflist" readable="0" private="1">
         <type name="GLib.SList" c:type="GSList*">
           <type name="gpointer" c:type="gpointer"/>
         </type>
       </field>
-      <field name="size">
+      <field name="size" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="skip">
+      <field name="skip" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="assembled_data">
+      <field name="assembled_data" readable="0" private="1">
         <type name="guint8" c:type="guint8*"/>
       </field>
-      <field name="assembled_size">
+      <field name="assembled_size" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="assembled_len">
+      <field name="assembled_len" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="buflist_end">
+      <field name="buflist_end" readable="0" private="1">
         <type name="GLib.SList" c:type="GSList*">
           <type name="gpointer" c:type="gpointer"/>
         </type>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="AdapterPrivate" c:type="GstAdapterPrivate*"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="2">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -351,7 +375,7 @@ or #NULL if @nbytes bytes are not available</doc>
       <field name="parent_class">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="4">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -509,13 +533,14 @@ or #NULL if @nbytes bytes are not available</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
       </virtual-method>
-      <method name="do_preroll" c:identifier="gst_base_sink_do_preroll">
+      <method name="do_preroll"
+              c:identifier="gst_base_sink_do_preroll"
+              version="0.10.22">
         <doc xml:whitespace="preserve">If the @sink spawns its own thread for pulling buffers from upstream it
 should call this method after it has pulled a buffer. If the element needed
 to preroll, this function will perform the preroll and will then block
 until the element state is changed.
 This function should be called with the PREROLL_LOCK held.
-Since 0.10.22
 continue. Any other return value should be returned from the render vmethod.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">#GST_FLOW_OK if the preroll completed and processing can</doc>
@@ -523,7 +548,7 @@ continue. Any other return value should be returned from the render vmethod.</do
         </return-value>
         <parameters>
           <parameter name="obj" transfer-ownership="none">
-            <doc xml:whitespace="preserve">the object that caused the preroll</doc>
+            <doc xml:whitespace="preserve">the mini object that caused the preroll</doc>
             <type name="Gst.MiniObject" c:type="GstMiniObject*"/>
           </parameter>
         </parameters>
@@ -540,15 +565,14 @@ mode.</doc>
       </method>
       <method name="get_last_buffer"
               c:identifier="gst_base_sink_get_last_buffer"
-              version="0.10.15"
-              introspectable="0">
+              version="0.10.15">
         <doc xml:whitespace="preserve">Get the last buffer that arrived in the sink and was used for preroll or for
 rendering. This property can be used to generate thumbnails.
 The #GstCaps on the buffer can be used to determine the type of the buffer.
-NULL when no buffer has arrived in the sink yet or when the sink is not in
-PAUSED or PLAYING.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">a #GstBuffer. gst_buffer_unref() after usage. This function returns</doc>
+This function returns NULL when no buffer has arrived in the sink yet
+or when the sink is not in PAUSED or PLAYING.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">a #GstBuffer. gst_buffer_unref() after usage.</doc>
           <type name="Gst.Buffer" c:type="GstBuffer*"/>
         </return-value>
       </method>
@@ -648,19 +672,35 @@ This function is mostly used by subclasses.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="live" transfer-ownership="none">
+          <parameter name="live"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
             <doc xml:whitespace="preserve">if the sink is live</doc>
             <type name="gboolean" c:type="gboolean*"/>
           </parameter>
-          <parameter name="upstream_live" transfer-ownership="none">
+          <parameter name="upstream_live"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
             <doc xml:whitespace="preserve">if an upstream element is live</doc>
             <type name="gboolean" c:type="gboolean*"/>
           </parameter>
-          <parameter name="min_latency" transfer-ownership="none">
+          <parameter name="min_latency"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
             <doc xml:whitespace="preserve">the min latency of the upstream elements</doc>
             <type name="Gst.ClockTime" c:type="GstClockTime*"/>
           </parameter>
-          <parameter name="max_latency" transfer-ownership="none">
+          <parameter name="max_latency"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
             <doc xml:whitespace="preserve">the max latency of the upstream elements</doc>
             <type name="Gst.ClockTime" c:type="GstClockTime*"/>
           </parameter>
@@ -798,7 +838,9 @@ buffers.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="wait_clock" c:identifier="gst_base_sink_wait_clock">
+      <method name="wait_clock"
+              c:identifier="gst_base_sink_wait_clock"
+              version="0.10.20">
         <doc xml:whitespace="preserve">This function will block until @time is reached. It is usually called by
 subclasses that use their own internal synchronisation.
 If @time is not valid, no sycnhronisation is done and #GST_CLOCK_BADTIME is
@@ -810,8 +852,7 @@ receiving a buffer in
 the #GstBaseSinkClass.render() vmethod.
 The @time argument should be the running_time of when this method should
 return and is not adjusted with any latency or offset configured in the
-sink.
-Since 0.10.20</doc>
+sink.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">#GstClockReturn</doc>
           <type name="Gst.ClockReturn" c:type="GstClockReturn"/>
@@ -821,21 +862,26 @@ Since 0.10.20</doc>
             <doc xml:whitespace="preserve">the running_time to be reached</doc>
             <type name="Gst.ClockTime" c:type="GstClockTime"/>
           </parameter>
-          <parameter name="jitter" transfer-ownership="none">
-            <doc xml:whitespace="preserve">the jitter to be filled with time diff (can be NULL)</doc>
+          <parameter name="jitter"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
+            <doc xml:whitespace="preserve">the jitter to be filled with time diff, or NULL</doc>
             <type name="Gst.ClockTimeDiff" c:type="GstClockTimeDiff*"/>
           </parameter>
         </parameters>
       </method>
-      <method name="wait_eos" c:identifier="gst_base_sink_wait_eos">
+      <method name="wait_eos"
+              c:identifier="gst_base_sink_wait_eos"
+              version="0.10.15">
         <doc xml:whitespace="preserve">This function will block until @time is reached. It is usually called by
 subclasses that use their own internal synchronisation but want to let the
 EOS be handled by the base class.
 This function should only be called with the PREROLL_LOCK held, like when
 receiving an EOS event in the ::event vmethod.
 The @time argument should be the running_time of when the EOS should happen
-and will be adjusted with any latency and offset configured in the sink.
-Since 0.10.15</doc>
+and will be adjusted with any latency and offset configured in the sink.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">#GstFlowReturn</doc>
           <type name="Gst.FlowReturn" c:type="GstFlowReturn"/>
@@ -845,8 +891,12 @@ Since 0.10.15</doc>
             <doc xml:whitespace="preserve">the running_time to be reached</doc>
             <type name="Gst.ClockTime" c:type="GstClockTime"/>
           </parameter>
-          <parameter name="jitter" transfer-ownership="none">
-            <doc xml:whitespace="preserve">the jitter to be filled with time diff (can be NULL)</doc>
+          <parameter name="jitter"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
+            <doc xml:whitespace="preserve">the jitter to be filled with time diff, or NULL</doc>
             <type name="Gst.ClockTimeDiff" c:type="GstClockTimeDiff*"/>
           </parameter>
         </parameters>
@@ -958,16 +1008,16 @@ continue. Any other return value should be returned from the render vmethod.</do
       <field name="segment">
         <type name="Gst.Segment" c:type="GstSegment"/>
       </field>
-      <field name="clock_id">
+      <field name="clock_id" readable="0" private="1">
         <type name="Gst.ClockID" c:type="GstClockID"/>
       </field>
-      <field name="end_time">
+      <field name="end_time" readable="0" private="1">
         <type name="Gst.ClockTime" c:type="GstClockTime"/>
       </field>
-      <field name="sync">
+      <field name="sync" readable="0" private="1">
         <type name="gboolean" c:type="gboolean"/>
       </field>
-      <field name="flushing">
+      <field name="flushing" readable="0" private="1">
         <type name="gboolean" c:type="gboolean"/>
       </field>
       <union name="abidata" c:type="abidata">
@@ -1223,7 +1273,7 @@ output/present buffers.</doc>
           </parameters>
         </callback>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="15">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -1454,15 +1504,27 @@ This function is mostly used by subclasses.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="live" transfer-ownership="none">
+          <parameter name="live"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
             <doc xml:whitespace="preserve">if the source is live</doc>
             <type name="gboolean" c:type="gboolean*"/>
           </parameter>
-          <parameter name="min_latency" transfer-ownership="none">
+          <parameter name="min_latency"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
             <doc xml:whitespace="preserve">the min latency of the source</doc>
             <type name="Gst.ClockTime" c:type="GstClockTime*"/>
           </parameter>
-          <parameter name="max_latency" transfer-ownership="none">
+          <parameter name="max_latency"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     allow-none="1">
             <doc xml:whitespace="preserve">the max latency of the source</doc>
             <type name="Gst.ClockTime" c:type="GstClockTime*"/>
           </parameter>
@@ -1908,7 +1970,7 @@ buffers.</doc>
           </parameters>
         </callback>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="14">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -2308,10 +2370,10 @@ MT safe.</doc>
       <field name="transform_lock">
         <type name="GLib.Mutex" c:type="GMutex*"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="BaseTransformPrivate" c:type="GstBaseTransformPrivate*"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="19">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -2576,7 +2638,7 @@ same type and quantity) it should provide @transform_ip.</doc>
           </parameters>
         </callback>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="17">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -2718,8 +2780,10 @@ can be called on already initialized instances.</doc>
         </return-value>
         <parameters>
           <parameter name="data" transfer-ownership="none">
-            <doc xml:whitespace="preserve">Data from which the #GstBitReader should read</doc>
-            <type name="guint8" c:type="guint8*"/>
+            <doc xml:whitespace="preserve">data from which the bit reader should read</doc>
+            <array length="1" c:type="guint8*">
+              <type name="guint8"/>
+            </array>
           </parameter>
           <parameter name="size" transfer-ownership="none">
             <doc xml:whitespace="preserve">Size of @data in bytes</doc>
@@ -2873,19 +2937,27 @@ otherwise.</doc>
               version="0.10.24">
         <doc xml:whitespace="preserve">Returns a newly-allocated copy of the current data
 position if at least @size bytes are left and
-updates the current position.</doc>
+updates the current position. Free with g_free() when no longer needed.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">%TRUE if successful, %FALSE otherwise.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="size" transfer-ownership="none">
+          <parameter name="size"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">Size in bytes</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
-          <parameter name="val" transfer-ownership="none">
-            <doc xml:whitespace="preserve">Pointer to a #guint8 to store the result</doc>
-            <type name="guint8" c:type="guint8**"/>
+          <parameter name="val"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
+            <doc xml:whitespace="preserve">address of a #guint8 pointer variable in which to store the result</doc>
+            <array length="0" c:type="guint8**">
+              <type name="guint8"/>
+            </array>
           </parameter>
         </parameters>
       </method>
@@ -2906,9 +2978,14 @@ string put into @str must be freed with g_free() when no longer needed.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="str" transfer-ownership="none">
-            <doc xml:whitespace="preserve">address of a #guint16 pointer to store the result</doc>
-            <type name="guint16" c:type="guint16**"/>
+          <parameter name="str"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
+            <doc xml:whitespace="preserve">address of a #guint16 pointer varieble in which to store the result</doc>
+            <array c:type="guint16**">
+              <type name="guint16"/>
+            </array>
           </parameter>
         </parameters>
       </method>
@@ -2929,9 +3006,14 @@ string put into @str must be freed with g_free() when no longer needed.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="str" transfer-ownership="none">
-            <doc xml:whitespace="preserve">address of a #guint32 pointer to store the result</doc>
-            <type name="guint32" c:type="guint32**"/>
+          <parameter name="str"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
+            <doc xml:whitespace="preserve">address of a #guint32 pointer varieble in which to store the result</doc>
+            <array c:type="guint32**">
+              <type name="guint32"/>
+            </array>
           </parameter>
         </parameters>
       </method>
@@ -2949,9 +3031,14 @@ string put into @str must be freed with g_free() when no longer needed.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="str" transfer-ownership="none">
-            <doc xml:whitespace="preserve">address of a string pointer to store the result</doc>
-            <type name="utf8" c:type="gchar**"/>
+          <parameter name="str"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
+            <doc xml:whitespace="preserve">address of a #gchar pointer varieble in which to store the result</doc>
+            <array c:type="gchar**">
+              <type name="utf8"/>
+            </array>
           </parameter>
         </parameters>
       </method>
@@ -2975,13 +3062,21 @@ updates the current position.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="size" transfer-ownership="none">
+          <parameter name="size"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">Size in bytes</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
-          <parameter name="val" transfer-ownership="none">
-            <doc xml:whitespace="preserve">Pointer to a #guint8 to store the result</doc>
-            <type name="guint8" c:type="guint8**"/>
+          <parameter name="val"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="none">
+            <doc xml:whitespace="preserve">address of a #guint8 pointer variable in which to store the result</doc>
+            <array length="0" c:type="guint8**">
+              <type name="guint8"/>
+            </array>
           </parameter>
         </parameters>
       </method>
@@ -3234,9 +3329,14 @@ This function will fail if no NUL-terminator was found in in the data.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="str" transfer-ownership="none">
-            <doc xml:whitespace="preserve">Pointer to a #gchar to store the result</doc>
-            <type name="utf8" c:type="gchar**"/>
+          <parameter name="str"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="none">
+            <doc xml:whitespace="preserve">address of a #gchar pointer varieble in which to store the result</doc>
+            <array c:type="gchar**">
+              <type name="utf8"/>
+            </array>
           </parameter>
         </parameters>
       </method>
@@ -3393,8 +3493,10 @@ can be called on already initialized instances.</doc>
         </return-value>
         <parameters>
           <parameter name="data" transfer-ownership="none">
-            <doc xml:whitespace="preserve">Data from which the #GstByteReader should read</doc>
-            <type name="guint8" c:type="guint8*"/>
+            <doc xml:whitespace="preserve">data from which the #GstByteReader should read</doc>
+            <array length="1" c:type="guint8*">
+              <type name="guint8"/>
+            </array>
           </parameter>
           <parameter name="size" transfer-ownership="none">
             <doc xml:whitespace="preserve">Size of @data in bytes</doc>
@@ -3480,13 +3582,21 @@ keeps the current position.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="size" transfer-ownership="none">
+          <parameter name="size"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">Size in bytes</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
-          <parameter name="val" transfer-ownership="none">
-            <doc xml:whitespace="preserve">Pointer to a #guint8 to store the result</doc>
-            <type name="guint8" c:type="guint8**"/>
+          <parameter name="val"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="none">
+            <doc xml:whitespace="preserve">address of a #guint8 pointer variable in which to store the result</doc>
+            <array length="0" c:type="guint8**">
+              <type name="guint8"/>
+            </array>
           </parameter>
         </parameters>
       </method>
@@ -3712,9 +3822,14 @@ This function will fail if no NUL-terminator was found in in the data.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="str" transfer-ownership="none">
-            <doc xml:whitespace="preserve">Pointer to a #gchar to store the result</doc>
-            <type name="utf8" c:type="gchar**"/>
+          <parameter name="str"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="none">
+            <doc xml:whitespace="preserve">address of a #gchar pointer varieble in which to store the result</doc>
+            <array c:type="gchar**">
+              <type name="utf8"/>
+            </array>
           </parameter>
         </parameters>
       </method>
@@ -3989,12 +4104,12 @@ available and reallocates if necessary.</doc>
       </method>
       <method name="free_and_get_buffer"
               c:identifier="gst_byte_writer_free_and_get_buffer"
-              version="0.10.26"
-              introspectable="0">
+              version="0.10.26">
         <doc xml:whitespace="preserve">Frees @writer and all memory allocated by it except
-the current data, which is returned as #GstBuffer.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">the current data as buffer. gst_buffer_unref() after usage.</doc>
+the current data, which is returned as #GstBuffer.
+after usage.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">the current data as buffer. gst_buffer_unref()</doc>
           <type name="Gst.Buffer" c:type="GstBuffer*"/>
         </return-value>
       </method>
@@ -4003,7 +4118,7 @@ the current data, which is returned as #GstBuffer.</doc>
               version="0.10.26">
         <doc xml:whitespace="preserve">Frees @writer and all memory allocated by it except
 the current data, which is returned.</doc>
-        <return-value transfer-ownership="none">
+        <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">the current data. g_free() after usage.</doc>
           <type name="guint8" c:type="guint8*"/>
         </return-value>
@@ -4059,7 +4174,9 @@ read @size bytes from the #GstByteWriter from the beginning.</doc>
         <parameters>
           <parameter name="data" transfer-ownership="none">
             <doc xml:whitespace="preserve">Memory area for writing</doc>
-            <type name="guint8" c:type="guint8*"/>
+            <array length="1" c:type="guint8*">
+              <type name="guint8"/>
+            </array>
           </parameter>
           <parameter name="size" transfer-ownership="none">
             <doc xml:whitespace="preserve">Size of @data in bytes</doc>
@@ -4100,7 +4217,9 @@ read @size bytes from the #GstByteWriter from the beginning.</doc>
         <parameters>
           <parameter name="data" transfer-ownership="none">
             <doc xml:whitespace="preserve">Data to write</doc>
-            <type name="guint8" c:type="guint8*"/>
+            <array length="1" c:type="guint8*">
+              <type name="guint8"/>
+            </array>
           </parameter>
           <parameter name="size" transfer-ownership="none">
             <doc xml:whitespace="preserve">Size of @data in bytes</doc>
@@ -4314,7 +4433,9 @@ read @size bytes from the #GstByteWriter from the beginning.</doc>
         <parameters>
           <parameter name="data" transfer-ownership="none">
             <doc xml:whitespace="preserve">UTF16 string to write</doc>
-            <type name="guint16" c:type="guint16*"/>
+            <array c:type="guint16*">
+              <type name="guint16"/>
+            </array>
           </parameter>
         </parameters>
       </method>
@@ -4329,7 +4450,9 @@ read @size bytes from the #GstByteWriter from the beginning.</doc>
         <parameters>
           <parameter name="data" transfer-ownership="none">
             <doc xml:whitespace="preserve">UTF32 string to write</doc>
-            <type name="guint32" c:type="guint32*"/>
+            <array c:type="guint32*">
+              <type name="guint32"/>
+            </array>
           </parameter>
         </parameters>
       </method>
@@ -4344,7 +4467,9 @@ read @size bytes from the #GstByteWriter from the beginning.</doc>
         <parameters>
           <parameter name="data" transfer-ownership="none">
             <doc xml:whitespace="preserve">UTF8 string to write</doc>
-            <type name="utf8" c:type="gchar*"/>
+            <array>
+              <type name="utf8"/>
+            </array>
           </parameter>
         </parameters>
       </method>
@@ -4494,11 +4619,11 @@ owned by @writer.</doc>
       </method>
       <method name="reset_and_get_buffer"
               c:identifier="gst_byte_writer_reset_and_get_buffer"
-              version="0.10.26"
-              introspectable="0">
-        <doc xml:whitespace="preserve">Resets @writer and returns the current data as buffer.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">the current data as buffer. gst_buffer_unref() after usage.</doc>
+              version="0.10.26">
+        <doc xml:whitespace="preserve">Resets @writer and returns the current data as buffer.
+after usage.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">the current data as buffer. gst_buffer_unref()</doc>
           <type name="Gst.Buffer" c:type="GstBuffer*"/>
         </return-value>
       </method>
@@ -4506,7 +4631,7 @@ owned by @writer.</doc>
               c:identifier="gst_byte_writer_reset_and_get_data"
               version="0.10.26">
         <doc xml:whitespace="preserve">Resets @writer and returns the current data.</doc>
-        <return-value transfer-ownership="none">
+        <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">the current data. g_free() after usage.</doc>
           <type name="guint8" c:type="guint8*"/>
         </return-value>
@@ -4736,15 +4861,13 @@ MT safe.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="peek"
-              c:identifier="gst_collect_pads_peek"
-              introspectable="0">
+      <method name="peek" c:identifier="gst_collect_pads_peek">
         <doc xml:whitespace="preserve">Peek at the buffer currently queued in @data. This function
 should be called with the @pads LOCK held, such as in the callback
 handler.
 should unref the buffer after usage.
 MT safe.</doc>
-        <return-value>
+        <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">The buffer in @data or NULL if no buffer is queued.</doc>
           <type name="Gst.Buffer" c:type="GstBuffer*"/>
         </return-value>
@@ -4755,16 +4878,14 @@ MT safe.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="pop"
-              c:identifier="gst_collect_pads_pop"
-              introspectable="0">
+      <method name="pop" c:identifier="gst_collect_pads_pop">
         <doc xml:whitespace="preserve">Pop the buffer currently queued in @data. This function
 should be called with the @pads LOCK held, such as in the callback
 handler.
-You should unref the buffer after usage.
+queued. You should unref the buffer after usage.
 MT safe.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">The buffer in @data or NULL if no buffer was queued.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">The buffer in @data or NULL if no buffer was</doc>
           <type name="Gst.Buffer" c:type="GstBuffer*"/>
         </return-value>
         <parameters>
@@ -4791,11 +4912,19 @@ MT safe.</doc>
             <doc xml:whitespace="preserve">the data to use</doc>
             <type name="CollectData" c:type="GstCollectData*"/>
           </parameter>
-          <parameter name="bytes" transfer-ownership="none">
+          <parameter name="bytes"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="none">
             <doc xml:whitespace="preserve">a pointer to a byte array</doc>
-            <type name="guint8" c:type="guint8**"/>
+            <array length="2" c:type="guint8**">
+              <type name="guint8"/>
+            </array>
           </parameter>
-          <parameter name="size" transfer-ownership="none">
+          <parameter name="size"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">the number of bytes to read</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
@@ -4803,15 +4932,14 @@ MT safe.</doc>
       </method>
       <method name="read_buffer"
               c:identifier="gst_collect_pads_read_buffer"
-              version="0.10.18"
-              introspectable="0">
+              version="0.10.18">
         <doc xml:whitespace="preserve">Get a buffer of @size bytes from the given pad @data.
 This function should be called with @pads LOCK held, such as in the callback.
-A return of NULL signals that the pad is end-of-stream.
-Unref the buffer after use.
+that requested. A return of NULL signals that the pad is end-of-stream.
+Unref the buffer with gst_buffer_unref() after use.
 MT safe.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">A #GstBuffer. The size of the buffer can be less that requested.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">a #GstBuffer. The size of the buffer can be less</doc>
           <type name="Gst.Buffer" c:type="GstBuffer*"/>
         </return-value>
         <parameters>
@@ -4917,16 +5045,15 @@ MT safe.</doc>
       </method>
       <method name="take_buffer"
               c:identifier="gst_collect_pads_take_buffer"
-              version="0.10.18"
-              introspectable="0">
+              version="0.10.18">
         <doc xml:whitespace="preserve">Get a buffer of @size bytes from the given pad @data. Flushes the amount
 of read bytes.
 This function should be called with @pads LOCK held, such as in the callback.
-A return of NULL signals that the pad is end-of-stream.
+that requested. A return of NULL signals that the pad is end-of-stream.
 Unref the buffer after use.
 MT safe.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">A #GstBuffer. The size of the buffer can be less that requested.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">a #GstBuffer. The size of the buffer can be less</doc>
           <type name="Gst.Buffer" c:type="GstBuffer*"/>
         </return-value>
         <parameters>
@@ -4948,28 +5075,28 @@ MT safe.</doc>
           <type name="gpointer" c:type="gpointer"/>
         </type>
       </field>
-      <field name="cookie">
+      <field name="cookie" readable="0" private="1">
         <type name="guint32" c:type="guint32"/>
       </field>
-      <field name="cond">
+      <field name="cond" readable="0" private="1">
         <type name="GLib.Cond" c:type="GCond*"/>
       </field>
-      <field name="func">
+      <field name="func" readable="0" private="1">
         <type name="CollectPadsFunction" c:type="GstCollectPadsFunction"/>
       </field>
-      <field name="user_data">
+      <field name="user_data" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
-      <field name="numpads">
+      <field name="numpads" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="queuedpads">
+      <field name="queuedpads" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="eospads">
+      <field name="eospads" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="started">
+      <field name="started" readable="0" private="1">
         <type name="gboolean" c:type="gboolean"/>
       </field>
       <union name="abidata" c:type="abidata">
@@ -5002,7 +5129,7 @@ MT safe.</doc>
       <field name="parent_class">
         <type name="Gst.ObjectClass" c:type="GstObjectClass"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="4">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -5125,6 +5252,16 @@ or @emptycallback.</doc>
           </parameter>
         </parameters>
       </constructor>
+      <virtual-method name="empty">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="full">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <method name="drop_head"
               c:identifier="gst_data_queue_drop_head"
               version="0.10.11">
@@ -5259,43 +5396,53 @@ MT Safe.</doc>
       <field name="object">
         <type name="GObject.Object" c:type="GObject"/>
       </field>
-      <field name="queue">
+      <field name="queue" readable="0" private="1">
         <type name="GLib.Queue" c:type="GQueue*"/>
       </field>
-      <field name="cur_level">
+      <field name="cur_level" readable="0" private="1">
         <type name="DataQueueSize" c:type="GstDataQueueSize"/>
       </field>
-      <field name="checkfull">
+      <field name="checkfull" readable="0" private="1">
         <type name="DataQueueCheckFullFunction"
               c:type="GstDataQueueCheckFullFunction"/>
       </field>
-      <field name="checkdata">
+      <field name="checkdata" readable="0" private="1">
         <type name="gpointer" c:type="gpointer*"/>
       </field>
-      <field name="qlock">
+      <field name="qlock" readable="0" private="1">
         <type name="GLib.Mutex" c:type="GMutex*"/>
       </field>
-      <field name="item_add">
+      <field name="item_add" readable="0" private="1">
         <type name="GLib.Cond" c:type="GCond*"/>
       </field>
-      <field name="item_del">
+      <field name="item_del" readable="0" private="1">
         <type name="GLib.Cond" c:type="GCond*"/>
       </field>
-      <field name="flushing">
+      <field name="flushing" readable="0" private="1">
         <type name="gboolean" c:type="gboolean"/>
       </field>
-      <field name="fullcallback">
+      <field name="fullcallback" readable="0" private="1">
         <type name="DataQueueFullCallback" c:type="GstDataQueueFullCallback"/>
       </field>
-      <field name="emptycallback">
+      <field name="emptycallback" readable="0" private="1">
         <type name="DataQueueEmptyCallback"
               c:type="GstDataQueueEmptyCallback"/>
       </field>
-      <field name="_gst_reserved">
-        <array zero-terminated="0" c:type="gpointer" fixed-size="2">
-          <type name="gpointer" c:type="gpointer"/>
-        </array>
-      </field>
+      <union name="abidata" c:type="abidata">
+        <record name="ABI" c:type="ABI">
+          <field name="waiting_add" writable="1">
+            <type name="gboolean" c:type="gboolean"/>
+          </field>
+          <field name="waiting_del" writable="1">
+            <type name="gboolean" c:type="gboolean"/>
+          </field>
+        </record>
+        <field name="_gst_reserved" writable="1">
+          <array zero-terminated="0" c:type="gpointer" fixed-size="2">
+            <type name="gpointer" c:type="gpointer"/>
+          </array>
+        </field>
+      </union>
       <glib:signal name="empty">
         <doc xml:whitespace="preserve">Reports that the queue became empty (empty).
 A queue is empty if the total amount of visible items inside it (num-visible, time,
@@ -5461,7 +5608,7 @@ long as the top of the structure is identical to this structure.</doc>
       <field name="parent">
         <type name="BaseSrc" c:type="GstBaseSrc"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="4">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -5488,7 +5635,7 @@ long as the top of the structure is identical to this structure.</doc>
           </parameters>
         </callback>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="4">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -5530,7 +5677,7 @@ This function is supposed to behave exactly like a #GstPadGetRangeFunction.</doc
               version="0.10.22"
               introspectable="0">
       <doc xml:whitespace="preserve">Create a new #GstBitReader instance, which will read from @data.</doc>
-      <return-value>
+      <return-value transfer-ownership="full">
         <doc xml:whitespace="preserve">a new #GstBitReader instance</doc>
         <type name="BitReader" c:type="GstBitReader*"/>
       </return-value>
@@ -5551,7 +5698,7 @@ This function is supposed to behave exactly like a #GstPadGetRangeFunction.</doc
               introspectable="0">
       <doc xml:whitespace="preserve">Create a new #GstBitReader instance, which will read from the
 #GstBuffer @buffer.</doc>
-      <return-value>
+      <return-value transfer-ownership="full">
         <doc xml:whitespace="preserve">a new #GstBitReader instance</doc>
         <type name="BitReader" c:type="GstBitReader*"/>
       </return-value>
@@ -5567,14 +5714,16 @@ This function is supposed to behave exactly like a #GstPadGetRangeFunction.</doc
               version="0.10.22"
               introspectable="0">
       <doc xml:whitespace="preserve">Create a new #GstByteReader instance, which will read from @data.</doc>
-      <return-value>
+      <return-value transfer-ownership="full">
         <doc xml:whitespace="preserve">a new #GstByteReader instance</doc>
         <type name="ByteReader" c:type="GstByteReader*"/>
       </return-value>
       <parameters>
         <parameter name="data" transfer-ownership="none">
-          <doc xml:whitespace="preserve">Data from which the #GstByteReader should read</doc>
-          <type name="guint8" c:type="guint8*"/>
+          <doc xml:whitespace="preserve">data from which the #GstByteReader should read</doc>
+          <array length="1" c:type="guint8*">
+            <type name="guint8"/>
+          </array>
         </parameter>
         <parameter name="size" transfer-ownership="none">
           <doc xml:whitespace="preserve">Size of @data in bytes</doc>
@@ -5588,7 +5737,7 @@ This function is supposed to behave exactly like a #GstPadGetRangeFunction.</doc
               introspectable="0">
       <doc xml:whitespace="preserve">Create a new #GstByteReader instance, which will read from the
 #GstBuffer @buffer.</doc>
-      <return-value>
+      <return-value transfer-ownership="full">
         <doc xml:whitespace="preserve">a new #GstByteReader instance</doc>
         <type name="ByteReader" c:type="GstByteReader*"/>
       </return-value>
@@ -5604,7 +5753,7 @@ This function is supposed to behave exactly like a #GstPadGetRangeFunction.</doc
               version="0.10.26"
               introspectable="0">
       <doc xml:whitespace="preserve">Creates a new, empty #GstByteWriter instance</doc>
-      <return-value>
+      <return-value transfer-ownership="full">
         <doc xml:whitespace="preserve">a new, empty #GstByteWriter instance</doc>
         <type name="ByteWriter" c:type="GstByteWriter*"/>
       </return-value>
@@ -5617,7 +5766,7 @@ This function is supposed to behave exactly like a #GstPadGetRangeFunction.</doc
 buffer. If @initialized is %TRUE it is possible to
 read the complete buffer from the #GstByteWriter from the beginning.
 &lt;note&gt;@buffer must be writable&lt;/note&gt;</doc>
-      <return-value>
+      <return-value transfer-ownership="full">
         <doc xml:whitespace="preserve">a new #GstByteWriter instance</doc>
         <type name="ByteWriter" c:type="GstByteWriter*"/>
       </return-value>
@@ -5639,7 +5788,7 @@ read the complete buffer from the #GstByteWriter from the beginning.
       <doc xml:whitespace="preserve">Creates a new #GstByteWriter instance with the given
 memory area. If @initialized is %TRUE it is possible to
 read @size bytes from the #GstByteWriter from the beginning.</doc>
-      <return-value>
+      <return-value transfer-ownership="full">
         <doc xml:whitespace="preserve">a new #GstByteWriter instance</doc>
         <type name="ByteWriter" c:type="GstByteWriter*"/>
       </return-value>
@@ -5664,7 +5813,7 @@ read @size bytes from the #GstByteWriter from the beginning.</doc>
               introspectable="0">
       <doc xml:whitespace="preserve">Creates a new #GstByteWriter instance with the given
 initial data size.</doc>
-      <return-value>
+      <return-value transfer-ownership="full">
         <doc xml:whitespace="preserve">a new #GstByteWriter instance</doc>
         <type name="ByteWriter" c:type="GstByteWriter*"/>
       </return-value>
@@ -5683,7 +5832,7 @@ initial data size.</doc>
       <doc xml:whitespace="preserve">Tries to find what type of data is flowing from the given source #GstPad.
 Returns #NULL if no #GstCaps matches the data stream.</doc>
       <return-value transfer-ownership="full">
-        <doc xml:whitespace="preserve">The #GstCaps corresponding to the data stream.</doc>
+        <doc xml:whitespace="preserve">the #GstCaps corresponding to the data stream.</doc>
         <type name="Gst.Caps" c:type="GstCaps*"/>
       </return-value>
       <parameters>
@@ -5708,9 +5857,10 @@ typefinding is stopped immediately and the found caps will be returned
 right away. Otherwise, all available typefind functions will the tried,
 and the caps with the highest probability will be returned, or #NULL if
 the content of the buffer could not be identified.
-be found. The caller should free the caps returned with gst_caps_unref().</doc>
+if no type could be found. The caller should free the caps returned
+with gst_caps_unref().</doc>
       <return-value transfer-ownership="full">
-        <doc xml:whitespace="preserve">The #GstCaps corresponding to the data, or #NULL if no type could</doc>
+        <doc xml:whitespace="preserve">the #GstCaps corresponding to the data, or #NULL</doc>
         <type name="Gst.Caps" c:type="GstCaps*"/>
       </return-value>
       <parameters>
@@ -5722,7 +5872,11 @@ be found. The caller should free the caps returned with gst_caps_unref().</doc>
           <doc xml:whitespace="preserve">a #GstBuffer with data to typefind</doc>
           <type name="Gst.Buffer" c:type="GstBuffer*"/>
         </parameter>
-        <parameter name="prob" transfer-ownership="none">
+        <parameter name="prob"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full"
+                   allow-none="1">
           <doc xml:whitespace="preserve">location to store the probability of the found caps, or #NULL</doc>
           <type name="Gst.TypeFindProbability"
                 c:type="GstTypeFindProbability*"/>
@@ -5736,13 +5890,14 @@ be found. The caller should free the caps returned with gst_caps_unref().</doc>
 All available typefinders will be checked against the extension in order
 of rank. The caps of the first typefinder that can handle @extension will be
 returned.
-be found. The caller should free the caps returned with gst_caps_unref().</doc>
+#NULL if no type could be found. The caller should free the caps
+returned with gst_caps_unref().</doc>
       <return-value transfer-ownership="full">
-        <doc xml:whitespace="preserve">The #GstCaps corresponding to @extension, or #NULL if no type could</doc>
+        <doc xml:whitespace="preserve">the #GstCaps corresponding to @extension, or</doc>
         <type name="Gst.Caps" c:type="GstCaps*"/>
       </return-value>
       <parameters>
-        <parameter name="obj" transfer-ownership="none">
+        <parameter name="obj" transfer-ownership="none" allow-none="1">
           <doc xml:whitespace="preserve">object doing the typefinding, or NULL (used for logging)</doc>
           <type name="Gst.Object" c:type="GstObject*"/>
         </parameter>
@@ -5753,8 +5908,7 @@ be found. The caller should free the caps returned with gst_caps_unref().</doc>
       </parameters>
     </function>
     <function name="type_find_helper_get_range"
-              c:identifier="gst_type_find_helper_get_range"
-              introspectable="0">
+              c:identifier="gst_type_find_helper_get_range">
       <doc xml:whitespace="preserve">Utility function to do pull-based typefinding. Unlike gst_type_find_helper()
 however, this function will use the specified function @func to obtain the
 data needed by the typefind functions, rather than operating on a given
@@ -5765,7 +5919,7 @@ callback can then call the upstream peer pad with offsets adjusted for the
 tag size, for example).
 Returns #NULL if no #GstCaps matches the data stream.</doc>
       <return-value transfer-ownership="full">
-        <doc xml:whitespace="preserve">The #GstCaps corresponding to the data stream.</doc>
+        <doc xml:whitespace="preserve">the #GstCaps corresponding to the data stream.</doc>
         <type name="Gst.Caps" c:type="GstCaps*"/>
       </return-value>
       <parameters>
@@ -5773,7 +5927,7 @@ Returns #NULL if no #GstCaps matches the data stream.</doc>
           <doc xml:whitespace="preserve">A #GstObject that will be passed as first argument to @func</doc>
           <type name="Gst.Object" c:type="GstObject*"/>
         </parameter>
-        <parameter name="func" transfer-ownership="none">
+        <parameter name="func" transfer-ownership="none" scope="call">
           <doc xml:whitespace="preserve">A generic #GstTypeFindHelperGetRangeFunction that will be used to access data at random offsets when doing the typefinding</doc>
           <type name="TypeFindHelperGetRangeFunction"
                 c:type="GstTypeFindHelperGetRangeFunction"/>
@@ -5782,7 +5936,11 @@ Returns #NULL if no #GstCaps matches the data stream.</doc>
           <doc xml:whitespace="preserve">The length in bytes</doc>
           <type name="guint64" c:type="guint64"/>
         </parameter>
-        <parameter name="prob" transfer-ownership="none">
+        <parameter name="prob"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full"
+                   allow-none="1">
           <doc xml:whitespace="preserve">location to store the probability of the found caps, or #NULL</doc>
           <type name="Gst.TypeFindProbability"
                 c:type="GstTypeFindProbability*"/>
@@ -5791,8 +5949,7 @@ Returns #NULL if no #GstCaps matches the data stream.</doc>
     </function>
     <function name="type_find_helper_get_range_ext"
               c:identifier="gst_type_find_helper_get_range_ext"
-              version="0.10.26"
-              introspectable="0">
+              version="0.10.26">
       <doc xml:whitespace="preserve">Utility function to do pull-based typefinding. Unlike gst_type_find_helper()
 however, this function will use the specified function @func to obtain the
 data needed by the typefind functions, rather than operating on a given
@@ -5806,7 +5963,7 @@ functions for the given extension, which might speed up the typefinding
 in many cases.
 Returns #NULL if no #GstCaps matches the data stream.</doc>
       <return-value transfer-ownership="full">
-        <doc xml:whitespace="preserve">The #GstCaps corresponding to the data stream.</doc>
+        <doc xml:whitespace="preserve">the #GstCaps corresponding to the data stream.</doc>
         <type name="Gst.Caps" c:type="GstCaps*"/>
       </return-value>
       <parameters>
@@ -5814,7 +5971,7 @@ Returns #NULL if no #GstCaps matches the data stream.</doc>
           <doc xml:whitespace="preserve">A #GstObject that will be passed as first argument to @func</doc>
           <type name="Gst.Object" c:type="GstObject*"/>
         </parameter>
-        <parameter name="func" transfer-ownership="none">
+        <parameter name="func" transfer-ownership="none" scope="call">
           <doc xml:whitespace="preserve">A generic #GstTypeFindHelperGetRangeFunction that will be used to access data at random offsets when doing the typefinding</doc>
           <type name="TypeFindHelperGetRangeFunction"
                 c:type="GstTypeFindHelperGetRangeFunction"/>
@@ -5824,10 +5981,14 @@ Returns #NULL if no #GstCaps matches the data stream.</doc>
           <type name="guint64" c:type="guint64"/>
         </parameter>
         <parameter name="extension" transfer-ownership="none">
-          <doc xml:whitespace="preserve">extenstion of the media</doc>
+          <doc xml:whitespace="preserve">extension of the media</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
-        <parameter name="prob" transfer-ownership="none">
+        <parameter name="prob"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full"
+                   allow-none="1">
           <doc xml:whitespace="preserve">location to store the probability of the found caps, or #NULL</doc>
           <type name="Gst.TypeFindProbability"
                 c:type="GstTypeFindProbability*"/>

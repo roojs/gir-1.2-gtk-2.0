@@ -29,7 +29,7 @@ signal system.</doc>
     <alias name="Type" c:type="GType">
       <doc xml:whitespace="preserve">A numerical value which represents the unique identifier of a registered
 type.</doc>
-      <type name="gulong" c:type="gsize"/>
+      <type name="gsize" c:type="gsize"/>
     </alias>
     <glib:boxed glib:name="Array"
                 c:symbol-prefix="array"
@@ -648,7 +648,9 @@ been invalidated before).</doc>
           </parameter>
           <parameter name="param_values" transfer-ownership="none">
             <doc xml:whitespace="preserve">an array of #GValue&lt;!-- --&gt;s holding the arguments on which to invoke the callback of @closure</doc>
-            <type name="Value" c:type="GValue*"/>
+            <array length="1" c:type="GValue*">
+              <type name="Value"/>
+            </array>
           </parameter>
           <parameter name="invocation_hint" transfer-ownership="none">
             <doc xml:whitespace="preserve">a context-dependent invocation hint</doc>
@@ -659,7 +661,7 @@ been invalidated before).</doc>
       <method name="ref" c:identifier="g_closure_ref">
         <doc xml:whitespace="preserve">Increments the reference count on a closure to force it staying
 alive while the caller holds a pointer to it.</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">The @closure passed in, for convenience</doc>
           <type name="Closure" c:type="GClosure*"/>
         </return-value>
@@ -1143,11 +1145,11 @@ whenever the #GBinding reference count reaches zero.</doc>
       </function>
       <function name="compat_control" c:identifier="g_object_compat_control">
         <return-value transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </return-value>
         <parameters>
           <parameter name="what" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="data" transfer-ownership="none">
             <type name="gpointer" c:type="gpointer"/>
@@ -1227,7 +1229,7 @@ NULL),
 "signal::destroy", gtk_widget_destroyed, &amp;amp;menu-&amp;gt;toplevel,
 NULL);
 ]|</doc>
-        <return-value>
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">@object</doc>
           <type name="gpointer" c:type="gpointer"/>
         </return-value>
@@ -1316,16 +1318,16 @@ g_object_unref (objval);
       </function>
       <function name="interface_find_property"
                 c:identifier="g_object_interface_find_property"
-                version="2.4"
-                introspectable="0">
+                version="2.4">
         <doc xml:whitespace="preserve">Find the #GParamSpec with the given name for an
 interface. Generally, the interface vtable passed in as @g_iface
 will be the default vtable from g_type_default_interface_ref(), or,
 if you know the interface has already been loaded,
 g_type_default_interface_peek().
-name @property_name, or %NULL if no such property exists.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">the #GParamSpec for the property of the interface with the</doc>
+interface with the name @property_name, or %NULL if no
+such property exists.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">the #GParamSpec for the property of the</doc>
           <type name="ParamSpec" c:type="GParamSpec*"/>
         </return-value>
         <parameters>
@@ -1371,51 +1373,43 @@ been called for any object types implementing this interface.</doc>
       </function>
       <function name="interface_list_properties"
                 c:identifier="g_object_interface_list_properties"
-                version="2.4"
-                introspectable="0">
+                version="2.4">
         <doc xml:whitespace="preserve">Lists the properties of an interface.Generally, the interface
 vtable passed in as @g_iface will be the default vtable from
 g_type_default_interface_ref(), or, if you know the interface has
 already been loaded, g_type_default_interface_peek().
+pointer to an array of pointers to #GParamSpec
 structures. The paramspecs are owned by GLib, but the
 array should be freed with g_free() when you are done with
 it.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">a pointer to an array of pointers to #GParamSpec</doc>
-          <type name="ParamSpec" c:type="GParamSpec**"/>
+        <return-value transfer-ownership="container">
+          <doc xml:whitespace="preserve">a</doc>
+          <array length="1" c:type="GParamSpec**">
+            <type name="ParamSpec"/>
+          </array>
         </return-value>
         <parameters>
           <parameter name="g_iface" transfer-ownership="none">
             <doc xml:whitespace="preserve">any interface vtable for the interface, or the default vtable for the interface</doc>
             <type name="gpointer" c:type="gpointer"/>
           </parameter>
-          <parameter name="n_properties_p" transfer-ownership="none">
+          <parameter name="n_properties_p"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">location to store number of properties returned.</doc>
             <type name="guint" c:type="guint*"/>
           </parameter>
         </parameters>
       </function>
-      <function name="is_floating"
-                c:identifier="g_object_is_floating"
-                version="2.10">
-        <doc xml:whitespace="preserve">Checks wether @object has a &lt;link linkend="floating-ref"&gt;floating&lt;/link&gt;
-reference.</doc>
-        <return-value transfer-ownership="none">
-          <doc xml:whitespace="preserve">%TRUE if @object has a floating reference</doc>
-          <type name="gboolean" c:type="gboolean"/>
-        </return-value>
-        <parameters>
-          <parameter name="object" transfer-ownership="none">
-            <doc xml:whitespace="preserve">a #GObject</doc>
-            <type name="gpointer" c:type="gpointer"/>
-          </parameter>
-        </parameters>
-      </function>
-      <function name="new" c:identifier="g_object_new" introspectable="0">
+      <function name="new"
+                c:identifier="g_object_new"
+                shadowed-by="newv"
+                introspectable="0">
         <doc xml:whitespace="preserve">Creates a new instance of a #GObject subtype and sets its properties.
 Construction parameters (see #G_PARAM_CONSTRUCT, #G_PARAM_CONSTRUCT_ONLY)
 which are not explicitly specified are set to their default values.</doc>
-        <return-value>
+        <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">a new instance of @object_type</doc>
           <type name="gpointer" c:type="gpointer"/>
         </return-value>
@@ -1459,13 +1453,13 @@ which are not explicitly specified are set to their default values.</doc>
           </parameter>
         </parameters>
       </function>
-      <function name="newv" c:identifier="g_object_newv" introspectable="0">
+      <function name="newv" c:identifier="g_object_newv" shadows="new">
         <doc xml:whitespace="preserve">Creates a new instance of a #GObject subtype and sets its properties.
 Construction parameters (see #G_PARAM_CONSTRUCT, #G_PARAM_CONSTRUCT_ONLY)
 which are not explicitly specified are set to their default values.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">a new instance of @object_type</doc>
-          <type name="gpointer" c:type="gpointer"/>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">a new instance of</doc>
+          <type name="Object"/>
         </return-value>
         <parameters>
           <parameter name="object_type" transfer-ownership="none">
@@ -1478,43 +1472,9 @@ which are not explicitly specified are set to their default values.</doc>
           </parameter>
           <parameter name="parameters" transfer-ownership="none">
             <doc xml:whitespace="preserve">an array of #GParameter</doc>
-            <type name="Parameter" c:type="GParameter*"/>
-          </parameter>
-        </parameters>
-      </function>
-      <function name="ref" c:identifier="g_object_ref" introspectable="0">
-        <doc xml:whitespace="preserve">Increases the reference count of @object.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">the same @object</doc>
-          <type name="gpointer" c:type="gpointer"/>
-        </return-value>
-        <parameters>
-          <parameter name="object" transfer-ownership="none">
-            <doc xml:whitespace="preserve">a #GObject</doc>
-            <type name="gpointer" c:type="gpointer"/>
-          </parameter>
-        </parameters>
-      </function>
-      <function name="ref_sink"
-                c:identifier="g_object_ref_sink"
-                version="2.10"
-                introspectable="0">
-        <doc xml:whitespace="preserve">Increase the reference count of @object, and possibly remove the
-&lt;link linkend="floating-ref"&gt;floating&lt;/link&gt; reference, if @object
-has a floating reference.
-In other words, if the object is floating, then this call "assumes
-ownership" of the floating reference, converting it to a normal
-reference by clearing the floating flag while leaving the reference
-count unchanged.  If the object is not floating, then this call
-adds a new normal reference increasing the reference count by one.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">@object</doc>
-          <type name="gpointer" c:type="gpointer"/>
-        </return-value>
-        <parameters>
-          <parameter name="object" transfer-ownership="none">
-            <doc xml:whitespace="preserve">a #GObject</doc>
-            <type name="gpointer" c:type="gpointer"/>
+            <array length="1" c:type="GParameter*">
+              <type name="Parameter"/>
+            </array>
           </parameter>
         </parameters>
       </function>
@@ -1542,19 +1502,6 @@ adds a new normal reference increasing the reference count by one.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
-      </function>
-      <function name="unref" c:identifier="g_object_unref">
-        <doc xml:whitespace="preserve">Decreases the reference count of @object. When its reference count
-drops to 0, the object is finalized (i.e. its memory is freed).</doc>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <parameter name="object" transfer-ownership="none">
-            <doc xml:whitespace="preserve">a #GObject</doc>
-            <type name="gpointer" c:type="gpointer"/>
-          </parameter>
-        </parameters>
       </function>
       <field name="g_type_instance" writable="1">
         <type name="TypeInstance" c:type="GTypeInstance"/>
@@ -1709,7 +1656,7 @@ drops to 0, the object is finalized (i.e. its memory is freed).</doc>
         </callback>
       </field>
       <field name="flags">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </field>
       <field name="pdummy">
         <array zero-terminated="0" c:type="gpointer" fixed-size="6">
@@ -1911,7 +1858,9 @@ is important state in the proxy object.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="add_weak_pointer" c:identifier="g_object_add_weak_pointer">
+      <method name="add_weak_pointer"
+              c:identifier="g_object_add_weak_pointer"
+              introspectable="0">
         <doc xml:whitespace="preserve">Adds a weak reference from weak_pointer to @object to indicate that
 the pointer located at @weak_pointer_location is only valid during
 the lifetime of @object. When the @object is finalized,</doc>
@@ -1951,11 +1900,9 @@ premature notification while the object is still being modified.</doc>
           <type name="none" c:type="void"/>
         </return-value>
       </method>
-      <method name="get_data"
-              c:identifier="g_object_get_data"
-              introspectable="0">
+      <method name="get_data" c:identifier="g_object_get_data">
         <doc xml:whitespace="preserve">Gets a named field from the objects table of associations (see g_object_set_data()).</doc>
-        <return-value>
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the data if found, or %NULL if no such data exists.</doc>
           <type name="gpointer" c:type="gpointer"/>
         </return-value>
@@ -1967,7 +1914,9 @@ premature notification while the object is still being modified.</doc>
         </parameters>
       </method>
       <method name="get_property" c:identifier="g_object_get_property">
-        <doc xml:whitespace="preserve">Gets a property of an object.
+        <doc xml:whitespace="preserve">Gets a property of an object. @value must have been initialized to the
+expected type of the property (or a type to which the expected type can be
+transformed) using g_value_init().
 In general, a copy is made of the property contents and the caller is
 responsible for freeing the memory by calling g_value_unset().
 Note that g_object_get_property() is really intended for language
@@ -1986,12 +1935,10 @@ bindings, g_object_get() is much more convenient for C programming.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="get_qdata"
-              c:identifier="g_object_get_qdata"
-              introspectable="0">
+      <method name="get_qdata" c:identifier="g_object_get_qdata">
         <doc xml:whitespace="preserve">This function gets back user data pointers stored via
 g_object_set_qdata().</doc>
-        <return-value>
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">The user data pointer set, or %NULL</doc>
           <type name="gpointer" c:type="gpointer"/>
         </return-value>
@@ -2023,6 +1970,16 @@ See g_object_get().</doc>
             <type name="va_list" c:type="va_list"/>
           </parameter>
         </parameters>
+      </method>
+      <method name="is_floating"
+              c:identifier="g_object_is_floating"
+              version="2.10">
+        <doc xml:whitespace="preserve">Checks wether @object has a &lt;link linkend="floating-ref"&gt;floating&lt;/link&gt;
+reference.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">%TRUE if @object has a floating reference</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
       </method>
       <method name="notify" c:identifier="g_object_notify">
         <doc xml:whitespace="preserve">Emits a "notify" signal for the property @property_name on @object.
@@ -2083,6 +2040,27 @@ g_object_notify_by_pspec (self, properties[PROP_FOO]);
           </parameter>
         </parameters>
       </method>
+      <method name="ref" c:identifier="g_object_ref">
+        <doc xml:whitespace="preserve">Increases the reference count of @object.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">the same @object</doc>
+          <type name="Object"/>
+        </return-value>
+      </method>
+      <method name="ref_sink" c:identifier="g_object_ref_sink" version="2.10">
+        <doc xml:whitespace="preserve">Increase the reference count of @object, and possibly remove the
+&lt;link linkend="floating-ref"&gt;floating&lt;/link&gt; reference, if @object
+has a floating reference.
+In other words, if the object is floating, then this call "assumes
+ownership" of the floating reference, converting it to a normal
+reference by clearing the floating flag while leaving the reference
+count unchanged.  If the object is not floating, then this call
+adds a new normal reference increasing the reference count by one.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">@object</doc>
+          <type name="Object"/>
+        </return-value>
+      </method>
       <method name="remove_toggle_ref"
               c:identifier="g_object_remove_toggle_ref"
               version="2.8"
@@ -2104,7 +2082,8 @@ reference count of the object is decreased by one.</doc>
         </parameters>
       </method>
       <method name="remove_weak_pointer"
-              c:identifier="g_object_remove_weak_pointer">
+              c:identifier="g_object_remove_weak_pointer"
+              introspectable="0">
         <doc xml:whitespace="preserve">Removes a weak reference from @object that was previously added
 using g_object_add_weak_pointer(). The @weak_pointer_location has
 to match the one used with g_object_add_weak_pointer().</doc>
@@ -2148,7 +2127,9 @@ the old association will be destroyed.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="set_data_full" c:identifier="g_object_set_data_full">
+      <method name="set_data_full"
+              c:identifier="g_object_set_data_full"
+              introspectable="0">
         <doc xml:whitespace="preserve">Like g_object_set_data() except it adds notification
 for when the association is destroyed, either by setting it
 to a different value or when the object is destroyed.
@@ -2187,7 +2168,9 @@ Note that the @destroy callback is not called if @data is %NULL.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="set_qdata" c:identifier="g_object_set_qdata">
+      <method name="set_qdata"
+              c:identifier="g_object_set_qdata"
+              introspectable="0">
         <doc xml:whitespace="preserve">This sets an opaque, named pointer on an object.
 The name is specified through a #GQuark (retrived e.g. via
 g_quark_from_static_string()), and the pointer
@@ -2210,7 +2193,9 @@ removes the data stored.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="set_qdata_full" c:identifier="g_object_set_qdata_full">
+      <method name="set_qdata_full"
+              c:identifier="g_object_set_qdata_full"
+              introspectable="0">
         <doc xml:whitespace="preserve">This function works like g_object_set_qdata(), but in addition,
 a void (*destroy) (gpointer) function may be specified which is
 called with @data as argument when the @object is finalized, or
@@ -2252,12 +2237,10 @@ with the same @quark.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="steal_data"
-              c:identifier="g_object_steal_data"
-              introspectable="0">
+      <method name="steal_data" c:identifier="g_object_steal_data">
         <doc xml:whitespace="preserve">Remove a specified datum from the object's data associations,
 without invoking the association's destroy handler.</doc>
-        <return-value>
+        <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">the data if found, or %NULL if no such data exists.</doc>
           <type name="gpointer" c:type="gpointer"/>
         </return-value>
@@ -2268,9 +2251,7 @@ without invoking the association's destroy handler.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="steal_qdata"
-              c:identifier="g_object_steal_qdata"
-              introspectable="0">
+      <method name="steal_qdata" c:identifier="g_object_steal_qdata">
         <doc xml:whitespace="preserve">This function gets back user data pointers stored via
 g_object_set_qdata() and removes the @data from object
 without invoking its destroy() function (if any was
@@ -2304,7 +2285,7 @@ Using g_object_get_qdata() in the above example, instead of
 g_object_steal_qdata() would have left the destroy function set,
 and thus the partial string list would have been freed upon
 g_object_set_qdata_full().</doc>
-        <return-value>
+        <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">The user data pointer set, or %NULL</doc>
           <type name="gpointer" c:type="gpointer"/>
         </return-value>
@@ -2320,6 +2301,13 @@ g_object_set_qdata_full().</doc>
 g_object_freeze_notify(). The freeze count is decreased on @object
 and when it reaches zero, all queued "notify" signals are emitted.
 It is an error to call this function when the freeze count is zero.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </method>
+      <method name="unref" c:identifier="g_object_unref">
+        <doc xml:whitespace="preserve">Decreases the reference count of @object. When its reference count
+drops to 0, the object is finalized (i.e. its memory is freed).</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -2558,20 +2546,18 @@ return object;
         </callback>
       </field>
       <field name="flags">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </field>
       <field name="pdummy">
         <array zero-terminated="0" c:type="gpointer" fixed-size="6">
           <type name="gpointer" c:type="gpointer"/>
         </array>
       </field>
-      <method name="find_property"
-              c:identifier="g_object_class_find_property"
-              introspectable="0">
+      <method name="find_property" c:identifier="g_object_class_find_property">
         <doc xml:whitespace="preserve">Looks up the #GParamSpec for a property of a class.
-doesn't have a property of that name</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">the #GParamSpec for the property, or %NULL if the class</doc>
+%NULL if the class doesn't have a property of that name</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">the #GParamSpec for the property, or</doc>
           <type name="ParamSpec" c:type="GParamSpec*"/>
         </return-value>
         <parameters>
@@ -2591,7 +2577,7 @@ the @pspecs array.
 The property id of 0 is treated specially by #GObject and it should not
 be used to store a #GParamSpec.
 This function should be used if you plan to use a static array of
-#GParamSpec&lt;!-- --&gt;s and g_object_notify_pspec(). For instance, this
+#GParamSpec&lt;!-- --&gt;s and g_object_notify_by_pspec(). For instance, this
 class initialization:
 |[
 enum {
@@ -2670,7 +2656,7 @@ e.g. to change the range of allowed values or the default value.</doc>
               c:identifier="g_object_class_list_properties">
         <doc xml:whitespace="preserve">Get an array of #GParamSpec* for all properties of a class.
 #GParamSpec* which should be freed after use</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="container">
           <doc xml:whitespace="preserve">an array of</doc>
           <array length="0" c:type="GParamSpec**">
             <type name="ParamSpec"/>
@@ -2884,11 +2870,9 @@ should not be used directly.</doc>
           <type name="utf8" c:type="gchar*"/>
         </return-value>
       </method>
-      <method name="get_qdata"
-              c:identifier="g_param_spec_get_qdata"
-              introspectable="0">
+      <method name="get_qdata" c:identifier="g_param_spec_get_qdata">
         <doc xml:whitespace="preserve">Gets back user data pointers stored via g_param_spec_set_qdata().</doc>
-        <return-value>
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the user data pointer set, or %NULL</doc>
           <type name="gpointer" c:type="gpointer"/>
         </return-value>
@@ -2901,8 +2885,7 @@ should not be used directly.</doc>
       </method>
       <method name="get_redirect_target"
               c:identifier="g_param_spec_get_redirect_target"
-              version="2.4"
-              introspectable="0">
+              version="2.4">
         <doc xml:whitespace="preserve">If the paramspec redirects operations to another paramspec,
 returns that paramspec. Redirect is used typically for
 providing a new implementation of a property in a derived
@@ -2910,9 +2893,9 @@ type while preserving all the properties from the parent
 type. Redirection is established by creating a property
 of type #GParamSpecOverride. See g_object_class_override_property()
 for an example of the use of this capability.
-be redirected, or %NULL if none.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">paramspec to which requests on this paramspec should</doc>
+paramspec should be redirected, or %NULL if none.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">paramspec to which requests on this</doc>
           <type name="ParamSpec" c:type="GParamSpec*"/>
         </return-value>
       </method>
@@ -2954,7 +2937,9 @@ set, using %NULL as pointer essentially removes the data stored.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="set_qdata_full" c:identifier="g_param_spec_set_qdata_full">
+      <method name="set_qdata_full"
+              c:identifier="g_param_spec_set_qdata_full"
+              introspectable="0">
         <doc xml:whitespace="preserve">This function works like g_param_spec_set_qdata(), but in addition,
 a &lt;literal&gt;void (*destroy) (gpointer)&lt;/literal&gt; function may be
 specified which is called with @data as argument when the @pspec is
@@ -2990,14 +2975,12 @@ count of 1 still, but is not flagged "floating" anymore).</doc>
           <type name="none" c:type="void"/>
         </return-value>
       </method>
-      <method name="steal_qdata"
-              c:identifier="g_param_spec_steal_qdata"
-              introspectable="0">
+      <method name="steal_qdata" c:identifier="g_param_spec_steal_qdata">
         <doc xml:whitespace="preserve">Gets back user data pointers stored via g_param_spec_set_qdata()
 and removes the @data from @pspec without invoking its destroy()
 function (if any was set).  Usually, calling this function is only
 required to update user data pointers with a destroy notifier.</doc>
-        <return-value>
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the user data pointer set, or %NULL</doc>
           <type name="gpointer" c:type="gpointer"/>
         </return-value>
@@ -3008,7 +2991,9 @@ required to update user data pointers with a destroy notifier.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="unref" c:identifier="g_param_spec_unref">
+      <method name="unref"
+              c:identifier="g_param_spec_unref"
+              introspectable="0">
         <doc xml:whitespace="preserve">Decrements the reference count of a @pspec.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3293,37 +3278,40 @@ types.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="list"
-              c:identifier="g_param_spec_pool_list"
-              introspectable="0">
+      <method name="list" c:identifier="g_param_spec_pool_list">
         <doc xml:whitespace="preserve">Gets an array of all #GParamSpec&lt;!-- --&gt;s owned by @owner_type in
 the pool.
-#GParamSpec&lt;!-- --&gt;s owned by @owner_type in the pool</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">a newly allocated array containing pointers to all</doc>
-          <type name="ParamSpec" c:type="GParamSpec**"/>
+allocated array containing pointers to all #GParamSpecs
+owned by @owner_type in the pool</doc>
+        <return-value transfer-ownership="container">
+          <doc xml:whitespace="preserve">a newly</doc>
+          <array length="1" c:type="GParamSpec**">
+            <type name="ParamSpec"/>
+          </array>
         </return-value>
         <parameters>
           <parameter name="owner_type" transfer-ownership="none">
             <doc xml:whitespace="preserve">the owner to look for</doc>
             <type name="GType" c:type="GType"/>
           </parameter>
-          <parameter name="n_pspecs_p" transfer-ownership="none">
+          <parameter name="n_pspecs_p"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full">
             <doc xml:whitespace="preserve">return location for the length of the returned array</doc>
             <type name="guint" c:type="guint*"/>
           </parameter>
         </parameters>
       </method>
-      <method name="list_owned"
-              c:identifier="g_param_spec_pool_list_owned"
-              introspectable="0">
+      <method name="list_owned" c:identifier="g_param_spec_pool_list_owned">
         <doc xml:whitespace="preserve">Gets an #GList of all #GParamSpec&lt;!-- --&gt;s owned by @owner_type in
 the pool.
-in the pool#GParamSpec&lt;!-- --&gt;s.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">a #GList of all #GParamSpec&lt;!-- --&gt;s owned by @owner_type</doc>
+#GList of all #GParamSpec&lt;!-- --&gt;s owned by @owner_type in
+the pool#GParamSpec&lt;!-- --&gt;s.</doc>
+        <return-value transfer-ownership="container">
+          <doc xml:whitespace="preserve">a</doc>
           <type name="GLib.List" c:type="GList*">
-            <type name="gpointer" c:type="gpointer"/>
+            <type name="ParamSpec"/>
           </type>
         </return-value>
         <parameters>
@@ -3333,12 +3321,11 @@ in the pool#GParamSpec&lt;!-- --&gt;s.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="lookup"
-              c:identifier="g_param_spec_pool_lookup"
-              introspectable="0">
-        <doc xml:whitespace="preserve">Looks up a #GParamSpec in the pool.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">The found #GParamSpec, or %NULL if no matching #GParamSpec was found.</doc>
+      <method name="lookup" c:identifier="g_param_spec_pool_lookup">
+        <doc xml:whitespace="preserve">Looks up a #GParamSpec in the pool.
+matching #GParamSpec was found.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">The found #GParamSpec, or %NULL if no</doc>
           <type name="ParamSpec" c:type="GParamSpec*"/>
         </return-value>
         <parameters>
@@ -3816,6 +3803,42 @@ of a toggle reference changes. See g_object_add_toggle_ref().</doc>
           </parameter>
         </parameters>
       </method>
+      <method name="peek_parent" c:identifier="g_type_class_peek_parent">
+        <doc xml:whitespace="preserve">This is a convenience function often needed in class initializers.
+It returns the class structure of the immediate parent type of the
+class passed in.  Since derived classes hold a reference count on
+their parent classes as long as they are instantiated, the returned
+class will always exist. This function is essentially equivalent
+to:
+&lt;programlisting&gt;
+g_type_class_peek (g_type_parent (G_TYPE_FROM_CLASS (g_class)));
+&lt;/programlisting&gt;
+of @g_class.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">The parent class</doc>
+          <type name="TypeClass"/>
+        </return-value>
+      </method>
+      <method name="unref" c:identifier="g_type_class_unref">
+        <doc xml:whitespace="preserve">Decrements the reference count of the class structure being passed in.
+Once the last reference count of a class has been released, classes
+may be finalized by the type system, so further dereferencing of a
+class pointer after g_type_class_unref() are invalid.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </method>
+      <method name="unref_uncached"
+              c:identifier="g_type_class_unref_uncached"
+              introspectable="0">
+        <doc xml:whitespace="preserve">A variant of g_type_class_unref() for use in #GTypeClassCacheFunc
+implementations. It unreferences a class without consulting the chain
+of #GTypeClassCacheFunc&lt;!-- --&gt;s, avoiding the recursion which would occur
+otherwise.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </method>
     </record>
     <callback name="TypeClassCacheFunc" c:type="GTypeClassCacheFunc">
       <doc xml:whitespace="preserve">A callback function which is called when the reference count of a class 
@@ -3945,6 +3968,19 @@ across invocation of g_type_register_static().</doc>
       <field name="g_instance_type" writable="1">
         <type name="GType" c:type="GType"/>
       </field>
+      <method name="peek_parent" c:identifier="g_type_interface_peek_parent">
+        <doc xml:whitespace="preserve">Returns the corresponding #GTypeInterface structure of the parent type
+of the instance type to which @g_iface belongs. This is useful when
+deriving the implementation of an interface from the parent type and
+then possibly overriding some methods.
+corresponding #GTypeInterface structure of the parent type of the
+instance type to which @g_iface belongs, or %NULL if the parent
+type doesn't conform to the interface.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">The</doc>
+          <type name="TypeInterface"/>
+        </return-value>
+      </method>
     </record>
     <callback name="TypeInterfaceCheckFunc"
               c:type="GTypeInterfaceCheckFunc"
@@ -4538,15 +4574,13 @@ return_value);</doc>
           <type name="gpointer" c:type="gpointer"/>
         </return-value>
       </method>
-      <method name="dup_object"
-              c:identifier="g_value_dup_object"
-              introspectable="0">
+      <method name="dup_object" c:identifier="g_value_dup_object">
         <doc xml:whitespace="preserve">Get the contents of a %G_TYPE_OBJECT derived #GValue, increasing
 its reference count.
-longer needed.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">object content of @value, should be unreferenced when no</doc>
-          <type name="gpointer" c:type="gpointer"/>
+should be unreferenced when no longer needed.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">object content of @value,</doc>
+          <type name="Object"/>
         </return-value>
       </method>
       <method name="dup_param"
@@ -4592,11 +4626,9 @@ This is an internal function introduced mainly for C marshallers.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
       </method>
-      <method name="get_boxed"
-              c:identifier="g_value_get_boxed"
-              introspectable="0">
+      <method name="get_boxed" c:identifier="g_value_get_boxed">
         <doc xml:whitespace="preserve">Get the contents of a %G_TYPE_BOXED derived #GValue.</doc>
-        <return-value>
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">boxed contents of @value</doc>
           <type name="gpointer" c:type="gpointer"/>
         </return-value>
@@ -4664,29 +4696,23 @@ This is an internal function introduced mainly for C marshallers.</doc>
           <type name="glong" c:type="glong"/>
         </return-value>
       </method>
-      <method name="get_object"
-              c:identifier="g_value_get_object"
-              introspectable="0">
+      <method name="get_object" c:identifier="g_value_get_object">
         <doc xml:whitespace="preserve">Get the contents of a %G_TYPE_OBJECT derived #GValue.</doc>
-        <return-value>
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">object contents of @value</doc>
-          <type name="gpointer" c:type="gpointer"/>
+          <type name="Object"/>
         </return-value>
       </method>
-      <method name="get_param"
-              c:identifier="g_value_get_param"
-              introspectable="0">
+      <method name="get_param" c:identifier="g_value_get_param">
         <doc xml:whitespace="preserve">Get the contents of a %G_TYPE_PARAM #GValue.</doc>
-        <return-value>
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">#GParamSpec content of @value</doc>
           <type name="ParamSpec" c:type="GParamSpec*"/>
         </return-value>
       </method>
-      <method name="get_pointer"
-              c:identifier="g_value_get_pointer"
-              introspectable="0">
+      <method name="get_pointer" c:identifier="g_value_get_pointer">
         <doc xml:whitespace="preserve">Get the contents of a pointer #GValue.</doc>
-        <return-value>
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">pointer contents of @value</doc>
           <type name="gpointer" c:type="gpointer"/>
         </return-value>
@@ -4737,7 +4763,7 @@ This is an internal function introduced mainly for C marshallers.</doc>
       </method>
       <method name="init" c:identifier="g_value_init">
         <doc xml:whitespace="preserve">Initializes @value with the default value of @type.</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the #GValue structure that has been passed in</doc>
           <type name="Value" c:type="GValue*"/>
         </return-value>
@@ -4748,14 +4774,12 @@ This is an internal function introduced mainly for C marshallers.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="peek_pointer"
-              c:identifier="g_value_peek_pointer"
-              introspectable="0">
-        <doc xml:whitespace="preserve">Return the value contents as pointer. This function asserts that
-g_value_fits_pointer() returned %TRUE for the passed in value.
-This is an internal function introduced mainly for C marshallers.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">%TRUE if @value will fit inside a pointer value.</doc>
+      <method name="peek_pointer" c:identifier="g_value_peek_pointer">
+        <doc xml:whitespace="preserve">function asserts that g_value_fits_pointer() returned %TRUE for the
+passed in value.  This is an internal function introduced mainly
+for C marshallers.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">the value contents as pointer. This</doc>
           <type name="gpointer" c:type="gpointer"/>
         </return-value>
       </method>
@@ -4943,12 +4967,13 @@ the #GValue still exists).</doc>
         <parameters>
           <parameter name="v_object" transfer-ownership="none">
             <doc xml:whitespace="preserve">object value to be set</doc>
-            <type name="gpointer" c:type="gpointer"/>
+            <type name="Object"/>
           </parameter>
         </parameters>
       </method>
       <method name="set_object_take_ownership"
               c:identifier="g_value_set_object_take_ownership"
+              introspectable="0"
               deprecated="Use g_value_take_object() instead."
               deprecated-version="2.4">
         <doc xml:whitespace="preserve">This is an internal function introduced mainly for C marshallers.</doc>
@@ -4976,6 +5001,7 @@ the #GValue still exists).</doc>
       </method>
       <method name="set_param_take_ownership"
               c:identifier="g_value_set_param_take_ownership"
+              introspectable="0"
               deprecated="Use g_value_take_param() instead."
               deprecated-version="2.4">
         <doc xml:whitespace="preserve">This is an internal function introduced mainly for C marshallers.</doc>
@@ -5138,7 +5164,8 @@ the caller doesn't have to unref it any more.</doc>
       </method>
       <method name="take_object"
               c:identifier="g_value_take_object"
-              version="2.4">
+              version="2.4"
+              introspectable="0">
         <doc xml:whitespace="preserve">Sets the contents of a %G_TYPE_OBJECT derived #GValue to @v_object
 and takes over the ownership of the callers reference to @v_object;
 the caller doesn't have to unref it any more (i.e. the reference
@@ -5157,7 +5184,8 @@ g_value_set_object() instead.</doc>
       </method>
       <method name="take_param"
               c:identifier="g_value_take_param"
-              version="2.4">
+              version="2.4"
+              introspectable="0">
         <doc xml:whitespace="preserve">Sets the contents of a %G_TYPE_PARAM #GValue to @param and takes
 over the ownership of the callers reference to @param; the caller
 doesn't have to unref it any more.</doc>
@@ -5272,12 +5300,12 @@ regardless of the value of @n_prealloced.</doc>
       <method name="append" c:identifier="g_value_array_append">
         <doc xml:whitespace="preserve">Insert a copy of @value as last element of @value_array. If @value is
 %NULL, an uninitialized value is appended.</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the #GValueArray passed in as @value_array</doc>
           <type name="ValueArray" c:type="GValueArray*"/>
         </return-value>
         <parameters>
-          <parameter name="value" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none" allow-none="1">
             <doc xml:whitespace="preserve">#GValue to copy into #GValueArray, or %NULL</doc>
             <type name="Value" c:type="GValue*"/>
           </parameter>
@@ -5299,7 +5327,7 @@ contents.</doc>
       </method>
       <method name="get_nth" c:identifier="g_value_array_get_nth">
         <doc xml:whitespace="preserve">Return a pointer to the value at @index_ containd in @value_array.</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">pointer to a value at @index_ in @value_array</doc>
           <type name="Value" c:type="GValue*"/>
         </return-value>
@@ -5313,7 +5341,7 @@ contents.</doc>
       <method name="insert" c:identifier="g_value_array_insert">
         <doc xml:whitespace="preserve">Insert a copy of @value at specified position into @value_array. If @value
 is %NULL, an uninitialized value is inserted.</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the #GValueArray passed in as @value_array</doc>
           <type name="ValueArray" c:type="GValueArray*"/>
         </return-value>
@@ -5322,7 +5350,7 @@ is %NULL, an uninitialized value is inserted.</doc>
             <doc xml:whitespace="preserve">insertion position, must be &amp;lt;= value_array-&amp;gt;n_values</doc>
             <type name="guint" c:type="guint"/>
           </parameter>
-          <parameter name="value" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none" allow-none="1">
             <doc xml:whitespace="preserve">#GValue to copy into #GValueArray, or %NULL</doc>
             <type name="Value" c:type="GValue*"/>
           </parameter>
@@ -5331,12 +5359,12 @@ is %NULL, an uninitialized value is inserted.</doc>
       <method name="prepend" c:identifier="g_value_array_prepend">
         <doc xml:whitespace="preserve">Insert a copy of @value as first element of @value_array. If @value is
 %NULL, an uninitialized value is prepended.</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the #GValueArray passed in as @value_array</doc>
           <type name="ValueArray" c:type="GValueArray*"/>
         </return-value>
         <parameters>
-          <parameter name="value" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none" allow-none="1">
             <doc xml:whitespace="preserve">#GValue to copy into #GValueArray, or %NULL</doc>
             <type name="Value" c:type="GValue*"/>
           </parameter>
@@ -5344,7 +5372,7 @@ is %NULL, an uninitialized value is inserted.</doc>
       </method>
       <method name="remove" c:identifier="g_value_array_remove">
         <doc xml:whitespace="preserve">Remove the value at position @index_ from @value_array.</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the #GValueArray passed in as @value_array</doc>
           <type name="ValueArray" c:type="GValueArray*"/>
         </return-value>
@@ -5355,16 +5383,20 @@ is %NULL, an uninitialized value is inserted.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="sort" c:identifier="g_value_array_sort" introspectable="0">
+      <method name="sort"
+              c:identifier="g_value_array_sort"
+              shadowed-by="sort_with_data">
         <doc xml:whitespace="preserve">Sort @value_array using @compare_func to compare the elements accoring to
 the semantics of #GCompareFunc.
 The current implementation uses Quick-Sort as sorting algorithm.</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the #GValueArray passed in as @value_array</doc>
           <type name="ValueArray" c:type="GValueArray*"/>
         </return-value>
         <parameters>
-          <parameter name="compare_func" transfer-ownership="none">
+          <parameter name="compare_func"
+                     transfer-ownership="none"
+                     scope="call">
             <doc xml:whitespace="preserve">function to compare elements</doc>
             <type name="GLib.CompareFunc" c:type="GCompareFunc"/>
           </parameter>
@@ -5372,16 +5404,19 @@ The current implementation uses Quick-Sort as sorting algorithm.</doc>
       </method>
       <method name="sort_with_data"
               c:identifier="g_value_array_sort_with_data"
-              introspectable="0">
+              shadows="sort">
         <doc xml:whitespace="preserve">Sort @value_array using @compare_func to compare the elements accoring
 to the semantics of #GCompareDataFunc.
 The current implementation uses Quick-Sort as sorting algorithm.</doc>
-        <return-value transfer-ownership="full">
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the #GValueArray passed in as @value_array</doc>
           <type name="ValueArray" c:type="GValueArray*"/>
         </return-value>
         <parameters>
-          <parameter name="compare_func" transfer-ownership="none" closure="1">
+          <parameter name="compare_func"
+                     transfer-ownership="none"
+                     scope="call"
+                     closure="1">
             <doc xml:whitespace="preserve">function to compare elements</doc>
             <type name="GLib.CompareDataFunc" c:type="GCompareDataFunc"/>
           </parameter>
@@ -6327,12 +6362,24 @@ the first parameter.</doc>
         </parameter>
       </parameters>
     </function>
-    <function name="clear_object" c:identifier="g_clear_object">
+    <function name="clear_object"
+              c:identifier="g_clear_object"
+              version="2.28"
+              introspectable="0">
+      <doc xml:whitespace="preserve">Clears a reference to a #GObject.
+If the reference is %NULL then this function does nothing.
+Otherwise, the reference count of the object is decreased and the
+pointer is set to %NULL.
+This function is threadsafe and modifies the pointer atomically,
+using memory barriers where needed.
+A macro is also included that allows this function to be used without
+pointer casts.</doc>
       <return-value transfer-ownership="none">
         <type name="none" c:type="void"/>
       </return-value>
       <parameters>
         <parameter name="object_ptr" transfer-ownership="none">
+          <doc xml:whitespace="preserve">a pointer to a #GObject reference</doc>
           <type name="Object" c:type="GObject**"/>
         </parameter>
       </parameters>
@@ -7150,15 +7197,13 @@ See g_param_spec_internal() for details on property names.</doc>
         </parameter>
       </parameters>
     </function>
-    <function name="param_spec_pool_new"
-              c:identifier="g_param_spec_pool_new"
-              introspectable="0">
+    <function name="param_spec_pool_new" c:identifier="g_param_spec_pool_new">
       <doc xml:whitespace="preserve">Creates a new #GParamSpecPool.
 If @type_prefixing is %TRUE, lookups in the newly created pool will
 allow to specify the owner as a colon-separated prefix of the
 property name, like "GtkContainer:border-width". This feature is
 deprecated, so you should always set @type_prefixing to %FALSE.</doc>
-      <return-value>
+      <return-value transfer-ownership="none">
         <doc xml:whitespace="preserve">a newly allocated #GParamSpecPool.</doc>
         <type name="ParamSpecPool" c:type="GParamSpecPool*"/>
       </return-value>
@@ -7631,21 +7676,35 @@ pointer type with name @name.</doc>
       </parameters>
     </function>
     <function name="signal_accumulator_first_wins"
-              c:identifier="g_signal_accumulator_first_wins">
+              c:identifier="g_signal_accumulator_first_wins"
+              version="2.28">
+      <doc xml:whitespace="preserve">A predefined #GSignalAccumulator for signals intended to be used as a
+hook for application code to provide a particular value.  Usually
+only one such value is desired and multiple handlers for the same
+signal don't make much sense (except for the case of the default
+handler defined in the class structure, in which case you will
+usually want the signal connection to override the class handler).
+This accumulator will use the return value from the first signal
+handler that is run as the return value for the signal and not run</doc>
       <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">standard #GSignalAccumulator result</doc>
         <type name="gboolean" c:type="gboolean"/>
       </return-value>
       <parameters>
         <parameter name="ihint" transfer-ownership="none">
+          <doc xml:whitespace="preserve">standard #GSignalAccumulator parameter</doc>
           <type name="SignalInvocationHint" c:type="GSignalInvocationHint*"/>
         </parameter>
         <parameter name="return_accu" transfer-ownership="none">
+          <doc xml:whitespace="preserve">standard #GSignalAccumulator parameter</doc>
           <type name="Value" c:type="GValue*"/>
         </parameter>
         <parameter name="handler_return" transfer-ownership="none">
+          <doc xml:whitespace="preserve">standard #GSignalAccumulator parameter</doc>
           <type name="Value" c:type="GValue*"/>
         </parameter>
         <parameter name="dummy" transfer-ownership="none">
+          <doc xml:whitespace="preserve">standard #GSignalAccumulator parameter</doc>
           <type name="gpointer" c:type="gpointer"/>
         </parameter>
       </parameters>
@@ -7656,7 +7715,7 @@ pointer type with name @name.</doc>
       <doc xml:whitespace="preserve">A predefined #GSignalAccumulator for signals that return a
 boolean values. The behavior that this accumulator gives is
 callbacks will be invoked, while a return of %FALSE allows
-the emission to coninue. The idea here is that a %TRUE return
+the emission to continue. The idea here is that a %TRUE return
 indicates that the callback &lt;emphasis&gt;handled&lt;/emphasis&gt; the signal,
 and no further handling is needed.</doc>
       <return-value transfer-ownership="none">
@@ -8824,11 +8883,20 @@ filled in with pointers to appropriate functions.</doc>
     </function>
     <function name="source_set_dummy_callback"
               c:identifier="g_source_set_dummy_callback">
+      <doc xml:whitespace="preserve">Sets a dummy callback for @source. The callback will do nothing, and
+if the source expects a #gboolean return value, it will return %TRUE.
+(If the source expects any other type of return value, it will return
+a 0/%NULL value; whatever g_value_init() initializes a #GValue to for
+that type.)
+If the source is not one of the standard GLib types, the
+structure must have been filled in with pointers to appropriate
+functions.</doc>
       <return-value transfer-ownership="none">
         <type name="none" c:type="void"/>
       </return-value>
       <parameters>
         <parameter name="source" transfer-ownership="none">
+          <doc xml:whitespace="preserve">the source</doc>
           <type name="GLib.Source" c:type="GSource*"/>
         </parameter>
       </parameters>
@@ -8900,7 +8968,7 @@ G_TYPE_CLASS_GET_PRIVATE() macro.</doc>
         </parameter>
         <parameter name="private_size" transfer-ownership="none">
           <doc xml:whitespace="preserve">size of private structure.</doc>
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -9085,17 +9153,24 @@ macro.</doc>
     </function>
     <function name="type_children" c:identifier="g_type_children">
       <doc xml:whitespace="preserve">Return a newly allocated and 0-terminated array of type IDs, listing the
-child types of @type. The return value has to be g_free()ed after use.</doc>
-      <return-value transfer-ownership="none">
-        <doc xml:whitespace="preserve">Newly allocated and 0-terminated array of child types.</doc>
-        <type name="GType" c:type="GType*"/>
+child types of @type. The return value has to be g_free()ed after use.
+and 0-terminated array of child types.</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:whitespace="preserve">Newly allocated</doc>
+        <array length="1" c:type="GType*">
+          <type name="GType"/>
+        </array>
       </return-value>
       <parameters>
         <parameter name="type" transfer-ownership="none">
           <doc xml:whitespace="preserve">The parent type.</doc>
           <type name="GType" c:type="GType"/>
         </parameter>
-        <parameter name="n_children" transfer-ownership="none">
+        <parameter name="n_children"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full"
+                   allow-none="1">
           <doc xml:whitespace="preserve">Optional #guint pointer to contain the number of child types.</doc>
           <type name="guint" c:type="guint*"/>
         </parameter>
@@ -9158,62 +9233,38 @@ return priv-&gt;some_field;
         </parameter>
         <parameter name="private_size" transfer-ownership="none">
           <doc xml:whitespace="preserve">size of private structure.</doc>
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
-    <function name="type_class_peek"
-              c:identifier="g_type_class_peek"
-              introspectable="0">
+    <function name="type_class_peek" c:identifier="g_type_class_peek">
       <doc xml:whitespace="preserve">This function is essentially the same as g_type_class_ref(), except that
 the classes reference count isn't incremented. As a consequence, this function
 may return %NULL if the class of the type passed in does not currently
 exist (hasn't been referenced before).
-if the class does not currently exist.</doc>
-      <return-value>
-        <doc xml:whitespace="preserve">The #GTypeClass structure for the given type ID or %NULL</doc>
-        <type name="gpointer" c:type="gpointer"/>
+structure for the given type ID or %NULL if the class does not
+currently exist.</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">The #GTypeClass</doc>
+        <type name="TypeClass"/>
       </return-value>
       <parameters>
         <parameter name="type" transfer-ownership="none">
           <doc xml:whitespace="preserve">Type ID of a classed type.</doc>
           <type name="GType" c:type="GType"/>
-        </parameter>
-      </parameters>
-    </function>
-    <function name="type_class_peek_parent"
-              c:identifier="g_type_class_peek_parent"
-              introspectable="0">
-      <doc xml:whitespace="preserve">This is a convenience function often needed in class initializers.
-It returns the class structure of the immediate parent type of the
-class passed in.  Since derived classes hold a reference count on
-their parent classes as long as they are instantiated, the returned
-class will always exist. This function is essentially equivalent
-to:
-&lt;programlisting&gt;
-g_type_class_peek (g_type_parent (G_TYPE_FROM_CLASS (g_class)));
-&lt;/programlisting&gt;</doc>
-      <return-value>
-        <doc xml:whitespace="preserve">The parent class of @g_class.</doc>
-        <type name="gpointer" c:type="gpointer"/>
-      </return-value>
-      <parameters>
-        <parameter name="g_class" transfer-ownership="none">
-          <doc xml:whitespace="preserve">The #GTypeClass structure to retrieve the parent class for.</doc>
-          <type name="gpointer" c:type="gpointer"/>
         </parameter>
       </parameters>
     </function>
     <function name="type_class_peek_static"
               c:identifier="g_type_class_peek_static"
-              version="2.4"
-              introspectable="0">
+              version="2.4">
       <doc xml:whitespace="preserve">A more efficient version of g_type_class_peek() which works only for
 static types.
-if the class does not currently exist or is dynamically loaded.</doc>
-      <return-value>
-        <doc xml:whitespace="preserve">The #GTypeClass structure for the given type ID or %NULL</doc>
-        <type name="gpointer" c:type="gpointer"/>
+structure for the given type ID or %NULL if the class does not
+currently exist or is dynamically loaded.</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">The #GTypeClass</doc>
+        <type name="TypeClass"/>
       </return-value>
       <parameters>
         <parameter name="type" transfer-ownership="none">
@@ -9222,50 +9273,18 @@ if the class does not currently exist or is dynamically loaded.</doc>
         </parameter>
       </parameters>
     </function>
-    <function name="type_class_ref"
-              c:identifier="g_type_class_ref"
-              introspectable="0">
+    <function name="type_class_ref" c:identifier="g_type_class_ref">
       <doc xml:whitespace="preserve">Increments the reference count of the class structure belonging to
-exist already.</doc>
-      <return-value>
-        <doc xml:whitespace="preserve">The #GTypeClass structure for the given type ID.</doc>
-        <type name="gpointer" c:type="gpointer"/>
+exist already.
+structure for the given type ID.</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">The #GTypeClass</doc>
+        <type name="TypeClass"/>
       </return-value>
       <parameters>
         <parameter name="type" transfer-ownership="none">
           <doc xml:whitespace="preserve">Type ID of a classed type.</doc>
           <type name="GType" c:type="GType"/>
-        </parameter>
-      </parameters>
-    </function>
-    <function name="type_class_unref" c:identifier="g_type_class_unref">
-      <doc xml:whitespace="preserve">Decrements the reference count of the class structure being passed in.
-Once the last reference count of a class has been released, classes
-may be finalized by the type system, so further dereferencing of a
-class pointer after g_type_class_unref() are invalid.</doc>
-      <return-value transfer-ownership="none">
-        <type name="none" c:type="void"/>
-      </return-value>
-      <parameters>
-        <parameter name="g_class" transfer-ownership="none">
-          <doc xml:whitespace="preserve">The #GTypeClass structure to unreference.</doc>
-          <type name="gpointer" c:type="gpointer"/>
-        </parameter>
-      </parameters>
-    </function>
-    <function name="type_class_unref_uncached"
-              c:identifier="g_type_class_unref_uncached">
-      <doc xml:whitespace="preserve">A variant of g_type_class_unref() for use in #GTypeClassCacheFunc
-implementations. It unreferences a class without consulting the chain
-of #GTypeClassCacheFunc&lt;!-- --&gt;s, avoiding the recursion which would occur
-otherwise.</doc>
-      <return-value transfer-ownership="none">
-        <type name="none" c:type="void"/>
-      </return-value>
-      <parameters>
-        <parameter name="g_class" transfer-ownership="none">
-          <doc xml:whitespace="preserve">The #GTypeClass structure to unreference.</doc>
-          <type name="gpointer" c:type="gpointer"/>
         </parameter>
       </parameters>
     </function>
@@ -9297,14 +9316,14 @@ treatment by the fundamental type implementation.</doc>
     </function>
     <function name="type_default_interface_peek"
               c:identifier="g_type_default_interface_peek"
-              version="2.4"
-              introspectable="0">
+              version="2.4">
       <doc xml:whitespace="preserve">If the interface type @g_type is currently in use, returns its
 default interface vtable.
-if the type is not currently in use.</doc>
-      <return-value>
-        <doc xml:whitespace="preserve">the default vtable for the interface, or %NULL</doc>
-        <type name="gpointer" c:type="gpointer"/>
+vtable for the interface, or %NULL if the type is not currently in
+use.</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">the default</doc>
+        <type name="TypeInterface"/>
       </return-value>
       <parameters>
         <parameter name="g_type" transfer-ownership="none">
@@ -9315,8 +9334,7 @@ if the type is not currently in use.</doc>
     </function>
     <function name="type_default_interface_ref"
               c:identifier="g_type_default_interface_ref"
-              version="2.4"
-              introspectable="0">
+              version="2.4">
       <doc xml:whitespace="preserve">Increments the reference count for the interface type @g_type,
 and returns the default interface vtable for the type.
 If the type is not currently in use, then the default vtable
@@ -9327,11 +9345,11 @@ and &lt;structfield&gt;class_init&lt;/structfield&gt; members of #GTypeInfo).
 Calling g_type_default_interface_ref() is useful when you
 want to make sure that signals and properties for an interface
 have been installed.
-g_type_default_interface_unref() when you are done using
-the interface.</doc>
-      <return-value>
-        <doc xml:whitespace="preserve">the default vtable for the interface; call</doc>
-        <type name="gpointer" c:type="gpointer"/>
+vtable for the interface; call g_type_default_interface_unref()
+when you are done using the interface.</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">the default</doc>
+        <type name="TypeInterface"/>
       </return-value>
       <parameters>
         <parameter name="g_type" transfer-ownership="none">
@@ -9355,7 +9373,7 @@ vtable (the &lt;structfield&gt;class_finalize&lt;/structfield&gt; member of
       <parameters>
         <parameter name="g_iface" transfer-ownership="none">
           <doc xml:whitespace="preserve">the default vtable structure for a interface, as returned by g_type_default_interface_ref()</doc>
-          <type name="gpointer" c:type="gpointer"/>
+          <type name="TypeInterface"/>
         </parameter>
       </parameters>
     </function>
@@ -9430,14 +9448,12 @@ or 0 if the type system ran out of fundamental type IDs.</doc>
         <type name="GType" c:type="GType"/>
       </return-value>
     </function>
-    <function name="type_get_plugin"
-              c:identifier="g_type_get_plugin"
-              introspectable="0">
+    <function name="type_get_plugin" c:identifier="g_type_get_plugin">
       <doc xml:whitespace="preserve">Returns the #GTypePlugin structure for @type or
 %NULL if @type does not have a #GTypePlugin structure.
-%NULL otherwise.</doc>
-      <return-value>
-        <doc xml:whitespace="preserve">The corresponding plugin if @type is a dynamic type,</doc>
+dynamic type, %NULL otherwise.</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">The corresponding plugin if @type is a</doc>
         <type name="TypePlugin" c:type="GTypePlugin*"/>
       </return-value>
       <parameters>
@@ -9447,12 +9463,10 @@ or 0 if the type system ran out of fundamental type IDs.</doc>
         </parameter>
       </parameters>
     </function>
-    <function name="type_get_qdata"
-              c:identifier="g_type_get_qdata"
-              introspectable="0">
+    <function name="type_get_qdata" c:identifier="g_type_get_qdata">
       <doc xml:whitespace="preserve">Obtains data which has previously been attached to @type
 with g_type_set_qdata().</doc>
-      <return-value>
+      <return-value transfer-ownership="none">
         <doc xml:whitespace="preserve">the data, or %NULL if no data was found</doc>
         <type name="gpointer" c:type="gpointer"/>
       </return-value>
@@ -9511,13 +9525,12 @@ at most one instantiatable prerequisite type.</doc>
       </parameters>
     </function>
     <function name="type_interface_get_plugin"
-              c:identifier="g_type_interface_get_plugin"
-              introspectable="0">
+              c:identifier="g_type_interface_get_plugin">
       <doc xml:whitespace="preserve">Returns the #GTypePlugin structure for the dynamic interface
 have a #GTypePlugin structure. See g_type_add_interface_dynamic().
-of @instance_type.</doc>
-      <return-value>
-        <doc xml:whitespace="preserve">the #GTypePlugin for the dynamic interface @interface_type</doc>
+interface @interface_type of @instance_type.</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">the #GTypePlugin for the dynamic</doc>
         <type name="TypePlugin" c:type="GTypePlugin*"/>
       </return-value>
       <parameters>
@@ -9531,20 +9544,19 @@ of @instance_type.</doc>
         </parameter>
       </parameters>
     </function>
-    <function name="type_interface_peek"
-              c:identifier="g_type_interface_peek"
-              introspectable="0">
+    <function name="type_interface_peek" c:identifier="g_type_interface_peek">
       <doc xml:whitespace="preserve">Returns the #GTypeInterface structure of an interface to which the
 passed in class conforms.
-by @instance_class, %NULL otherwise</doc>
-      <return-value>
-        <doc xml:whitespace="preserve">The GTypeInterface structure of iface_type if implemented</doc>
-        <type name="gpointer" c:type="gpointer"/>
+structure of iface_type if implemented by @instance_class, %NULL
+otherwise</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">The GTypeInterface</doc>
+        <type name="TypeInterface"/>
       </return-value>
       <parameters>
         <parameter name="instance_class" transfer-ownership="none">
           <doc xml:whitespace="preserve">A #GTypeClass structure.</doc>
-          <type name="gpointer" c:type="gpointer"/>
+          <type name="TypeClass"/>
         </parameter>
         <parameter name="iface_type" transfer-ownership="none">
           <doc xml:whitespace="preserve">An interface ID which this class conforms to.</doc>
@@ -9552,41 +9564,28 @@ by @instance_class, %NULL otherwise</doc>
         </parameter>
       </parameters>
     </function>
-    <function name="type_interface_peek_parent"
-              c:identifier="g_type_interface_peek_parent"
-              introspectable="0">
-      <doc xml:whitespace="preserve">Returns the corresponding #GTypeInterface structure of the parent type
-of the instance type to which @g_iface belongs. This is useful when
-deriving the implementation of an interface from the parent type and
-then possibly overriding some methods.
-type of the instance type to which @g_iface belongs, or
-%NULL if the parent type doesn't conform to the interface.</doc>
-      <return-value>
-        <doc xml:whitespace="preserve">The corresponding #GTypeInterface structure of the parent</doc>
-        <type name="gpointer" c:type="gpointer"/>
-      </return-value>
-      <parameters>
-        <parameter name="g_iface" transfer-ownership="none">
-          <doc xml:whitespace="preserve">A #GTypeInterface structure.</doc>
-          <type name="gpointer" c:type="gpointer"/>
-        </parameter>
-      </parameters>
-    </function>
     <function name="type_interface_prerequisites"
               c:identifier="g_type_interface_prerequisites"
               version="2.2">
       <doc xml:whitespace="preserve">Returns the prerequisites of an interfaces type.
+newly-allocated zero-terminated array of #GType containing
 the prerequisites of @interface_type</doc>
-      <return-value transfer-ownership="none">
-        <doc xml:whitespace="preserve">a newly-allocated zero-terminated array of #GType containing</doc>
-        <type name="GType" c:type="GType*"/>
+      <return-value transfer-ownership="full">
+        <doc xml:whitespace="preserve">a</doc>
+        <array length="1" c:type="GType*">
+          <type name="GType"/>
+        </array>
       </return-value>
       <parameters>
         <parameter name="interface_type" transfer-ownership="none">
           <doc xml:whitespace="preserve">an interface type</doc>
           <type name="GType" c:type="GType"/>
         </parameter>
-        <parameter name="n_prerequisites" transfer-ownership="none">
+        <parameter name="n_prerequisites"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full"
+                   allow-none="1">
           <doc xml:whitespace="preserve">location to return the number of prerequisites, or %NULL</doc>
           <type name="guint" c:type="guint*"/>
         </parameter>
@@ -9595,17 +9594,24 @@ the prerequisites of @interface_type</doc>
     <function name="type_interfaces" c:identifier="g_type_interfaces">
       <doc xml:whitespace="preserve">Return a newly allocated and 0-terminated array of type IDs, listing the
 interface types that @type conforms to. The return value has to be
-g_free()ed after use.</doc>
-      <return-value transfer-ownership="none">
-        <doc xml:whitespace="preserve">Newly allocated and 0-terminated array of interface types.</doc>
-        <type name="GType" c:type="GType*"/>
+g_free()ed after use.
+allocated and 0-terminated array of interface types.</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:whitespace="preserve">Newly</doc>
+        <array length="1" c:type="GType*">
+          <type name="GType"/>
+        </array>
       </return-value>
       <parameters>
         <parameter name="type" transfer-ownership="none">
           <doc xml:whitespace="preserve">The type to list interface types for.</doc>
           <type name="GType" c:type="GType"/>
         </parameter>
-        <parameter name="n_interfaces" transfer-ownership="none">
+        <parameter name="n_interfaces"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full"
+                   allow-none="1">
           <doc xml:whitespace="preserve">Optional #guint pointer to contain the number of interface types.</doc>
           <type name="guint" c:type="guint*"/>
         </parameter>
@@ -9732,7 +9738,10 @@ left untouched.</doc>
           <doc xml:whitespace="preserve">the #GType value of a static, classed type.</doc>
           <type name="GType" c:type="GType"/>
         </parameter>
-        <parameter name="query" transfer-ownership="none">
+        <parameter name="query"
+                   direction="out"
+                   caller-allocates="1"
+                   transfer-ownership="none">
           <doc xml:whitespace="preserve">A user provided structure that is filled in with constant values upon success.</doc>
           <type name="TypeQuery" c:type="GTypeQuery*"/>
         </parameter>

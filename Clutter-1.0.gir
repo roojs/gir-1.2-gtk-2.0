@@ -326,6 +326,66 @@ a grandparent's origin has moved.</doc>
           </parameter>
         </parameters>
       </virtual-method>
+      <virtual-method name="button_press_event">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="event" transfer-ownership="none">
+            <type name="ButtonEvent" c:type="ClutterButtonEvent*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="button_release_event">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="event" transfer-ownership="none">
+            <type name="ButtonEvent" c:type="ClutterButtonEvent*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="captured_event">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="event" transfer-ownership="none">
+            <type name="Event" c:type="ClutterEvent*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="destroy" invoker="destroy">
+        <doc xml:whitespace="preserve">Destroys an actor.  When an actor is destroyed, it will break any
+references it holds to other objects.  If the actor is inside a
+container, the actor will be removed.
+When you destroy a container, its children will be destroyed as well.
+clutter_stage_get_default().</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="enter_event">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="event" transfer-ownership="none">
+            <type name="CrossingEvent" c:type="ClutterCrossingEvent*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="event">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="event" transfer-ownership="none">
+            <type name="Event" c:type="ClutterEvent*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <virtual-method name="get_accessible" invoker="get_accessible">
         <doc xml:whitespace="preserve">Returns the accessible object that describes the actor to an
 assistive technology.
@@ -423,11 +483,62 @@ those transformations do not affect layout, only rendering.</doc>
           </parameter>
         </parameters>
       </virtual-method>
+      <virtual-method name="hide" invoker="hide">
+        <doc xml:whitespace="preserve">Flags an actor to be hidden. A hidden actor will not be
+rendered on the stage.
+Actors are visible by default.
+If this function is called on an actor without a parent, the
+#ClutterActor:show-on-set-parent property will be set to %FALSE
+as a side-effect.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <virtual-method name="hide_all" invoker="hide_all" version="0.2">
         <doc xml:whitespace="preserve">Calls clutter_actor_hide() on all child actors (if any).</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
+      </virtual-method>
+      <virtual-method name="key_focus_in">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="key_focus_out">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="key_press_event">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="event" transfer-ownership="none">
+            <type name="KeyEvent" c:type="ClutterKeyEvent*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="key_release_event">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="event" transfer-ownership="none">
+            <type name="KeyEvent" c:type="ClutterKeyEvent*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="leave_event">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="event" transfer-ownership="none">
+            <type name="CrossingEvent" c:type="ClutterCrossingEvent*"/>
+          </parameter>
+        </parameters>
       </virtual-method>
       <virtual-method name="map" invoker="map" version="1.0">
         <doc xml:whitespace="preserve">Sets the %CLUTTER_ACTOR_MAPPED flag on the actor and possibly maps
@@ -439,6 +550,109 @@ to call this if you implement #ClutterContainer because the default
 implementation will automatically map children of containers.
 When overriding map, it is mandatory to chain up to the parent
 implementation.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="motion_event">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="event" transfer-ownership="none">
+            <type name="MotionEvent" c:type="ClutterMotionEvent*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="paint" invoker="paint">
+        <doc xml:whitespace="preserve">Renders the actor to display.
+This function should not be called directly by applications.
+Call clutter_actor_queue_redraw() to queue paints, instead.
+This function is context-aware, and will either cause a
+regular paint or a pick paint.
+This function will emit the #ClutterActor::paint signal or
+the #ClutterActor::pick signal, depending on the context.
+This function does not paint the actor if the actor is set to 0,
+unless it is performing a pick paint.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="parent_set">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="old_parent" transfer-ownership="none">
+            <type name="Actor" c:type="ClutterActor*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="pick">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="color" transfer-ownership="none">
+            <type name="Color" c:type="ClutterColor*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="queue_redraw">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="leaf_that_queued" transfer-ownership="none">
+            <type name="Actor" c:type="ClutterActor*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="queue_relayout"
+                      invoker="queue_relayout"
+                      version="0.8">
+        <doc xml:whitespace="preserve">Indicates that the actor's size request or other layout-affecting
+properties may have changed. This function is used inside #ClutterActor
+subclass implementations, not by applications directly.
+Queueing a new layout automatically queues a redraw as well.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="realize" invoker="realize">
+        <doc xml:whitespace="preserve">Realization informs the actor that it is attached to a stage. It
+can use this to allocate resources if it wanted to delay allocation
+until it would be rendered. However it is perfectly acceptable for
+an actor to create resources before being realized because Clutter
+only ever has a single rendering context so that actor is free to
+be moved from one stage to another.
+This function does nothing if the actor is already realized.
+Because a realized actor must have realized parent actors, calling
+clutter_actor_realize() will also realize all parents of the actor.
+This function does not realize child actors, except in the special
+case that realizing the stage, when the stage is visible, will
+suddenly map (and thus realize) the children of the stage.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="scroll_event">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="event" transfer-ownership="none">
+            <type name="ScrollEvent" c:type="ClutterScrollEvent*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="show" invoker="show">
+        <doc xml:whitespace="preserve">Flags an actor to be displayed. An actor that isn't shown will not
+be rendered on the stage.
+Actors are visible by default.
+If this function is called on an actor without a parent, the
+#ClutterActor:show-on-set-parent will be set to %TRUE as a side
+effect.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -458,6 +672,22 @@ to call this if you implement #ClutterContainer because the default
 implementation will automatically unmap children of containers.
 When overriding unmap, it is mandatory to chain up to the parent
 implementation.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="unrealize" invoker="unrealize">
+        <doc xml:whitespace="preserve">Unrealization informs the actor that it may be being destroyed or
+moved to another stage. The actor may want to destroy any
+underlying graphics resources at this point. However it is
+perfectly acceptable for it to retain the resources until the actor
+is destroyed because Clutter only ever uses a single rendering
+context and all of the graphics resources are valid on any stage.
+Because mapped actors must be realized, actors may not be
+unrealized if they are mapped. This function hides the actor to be
+sure it isn't mapped, an application-visible side effect that you
+may not be expecting.
+This function should not be called by application code.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -3745,11 +3975,11 @@ want use this signal instead.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="box" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterActorBox with the new allocation</doc>
             <type name="ActorBox"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="flags" transfer-ownership="none">
             <doc xml:whitespace="preserve">#ClutterAllocationFlags for the allocation</doc>
             <type name="AllocationFlags"/>
           </parameter>
@@ -3764,7 +3994,7 @@ or %FALSE to continue the emission.</doc>
           <type name="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="event" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterButtonEvent</doc>
             <type name="Event"/>
           </parameter>
@@ -3779,7 +4009,7 @@ or %FALSE to continue the emission.</doc>
           <type name="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="event" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterButtonEvent</doc>
             <type name="Event"/>
           </parameter>
@@ -3799,7 +4029,7 @@ or %FALSE to continue the emission.</doc>
           <type name="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="event" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterEvent</doc>
             <type name="Event"/>
           </parameter>
@@ -3821,7 +4051,7 @@ or %FALSE to continue the emission.</doc>
           <type name="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="event" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterCrossingEvent</doc>
             <type name="Event"/>
           </parameter>
@@ -3838,7 +4068,7 @@ or %FALSE to continue the emission.</doc>
           <type name="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="event" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterEvent</doc>
             <type name="Event"/>
           </parameter>
@@ -3872,7 +4102,7 @@ or %FALSE to continue the emission.</doc>
           <type name="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="event" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterKeyEvent</doc>
             <type name="Event"/>
           </parameter>
@@ -3888,7 +4118,7 @@ or %FALSE to continue the emission.</doc>
           <type name="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="event" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterKeyEvent</doc>
             <type name="Event"/>
           </parameter>
@@ -3902,7 +4132,7 @@ or %FALSE to continue the emission.</doc>
           <type name="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="event" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterCrossingEvent</doc>
             <type name="Event"/>
           </parameter>
@@ -3917,7 +4147,7 @@ or %FALSE to continue the emission.</doc>
           <type name="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="event" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterMotionEvent</doc>
             <type name="Event"/>
           </parameter>
@@ -3939,7 +4169,7 @@ to set up some custom aspect of a paint.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="old_parent" transfer-ownership="none">
             <doc xml:whitespace="preserve">the previous parent of the actor, or %NULL</doc>
             <type name="Actor"/>
           </parameter>
@@ -3958,7 +4188,7 @@ to set up some custom aspect of a paint in pick mode.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="color" transfer-ownership="none">
             <doc xml:whitespace="preserve">the #ClutterColor to be used when picking</doc>
             <type name="Color"/>
           </parameter>
@@ -4004,7 +4234,7 @@ Stage with g_signal_connect_after().&lt;/para&gt;&lt;/note&gt;</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="origin" transfer-ownership="none">
             <doc xml:whitespace="preserve">the actor which initiated the redraw request</doc>
             <type name="Actor"/>
           </parameter>
@@ -4031,7 +4261,7 @@ or %FALSE to continue the emission.</doc>
           <type name="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="event" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterScrollEvent</doc>
             <type name="Event"/>
           </parameter>
@@ -5907,6 +6137,23 @@ to release the associated resources</doc>
           <type name="Animation" c:type="ClutterAnimation*"/>
         </return-value>
       </constructor>
+      <virtual-method name="completed" invoker="completed" version="1.0">
+        <doc xml:whitespace="preserve">Emits the ::completed signal on @animation
+When using this function with a #ClutterAnimation created
+by the clutter_actor_animate() family of functions, @animation
+will be unreferenced and it will not be valid anymore,
+unless g_object_ref() was called before calling this function
+or unless a reference was taken inside a handler for the
+#ClutterAnimation::completed signal</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="started">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <method name="bind" c:identifier="clutter_animation_bind" version="1.0">
         <doc xml:whitespace="preserve">Adds a single property with name @property_name to the
 animation @animation.  For more information about animations,
@@ -7759,6 +8006,26 @@ be accessed with the functions below.</doc>
           </parameter>
         </parameters>
       </virtual-method>
+      <virtual-method name="applied">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="actor" transfer-ownership="none">
+            <type name="Actor" c:type="ClutterActor*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="removed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="actor" transfer-ownership="none">
+            <type name="Actor" c:type="ClutterActor*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="actors_foreach"
               c:identifier="clutter_behaviour_actors_foreach"
               version="0.2">
@@ -7925,7 +8192,7 @@ to an actor.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="actor" transfer-ownership="none">
             <doc xml:whitespace="preserve">the actor the behaviour was applied to.</doc>
             <type name="Actor"/>
           </parameter>
@@ -7938,7 +8205,7 @@ to an actor anymore.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="actor" transfer-ownership="none">
             <doc xml:whitespace="preserve">the removed actor</doc>
             <type name="Actor"/>
           </parameter>
@@ -8802,6 +9069,16 @@ it can be set later with clutter_behaviour_set_alpha().</doc>
           </parameter>
         </parameters>
       </constructor>
+      <virtual-method name="knot_reached">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="knot_num" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="get_path"
               c:identifier="clutter_behaviour_path_get_path"
               version="1.0"
@@ -8846,7 +9123,7 @@ is reached.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="knot_num" transfer-ownership="none">
             <doc xml:whitespace="preserve">the index of the #ClutterKnot reached</doc>
             <type name="guint"/>
           </parameter>
@@ -10950,6 +11227,19 @@ using clutter_actor_transform_stage_point().</doc>
           </parameter>
         </parameters>
       </constructor>
+      <virtual-method name="create_surface">
+        <return-value transfer-ownership="full">
+          <type name="cairo.Surface" c:type="cairo_surface_t*"/>
+        </return-value>
+        <parameters>
+          <parameter name="width" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="height" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="clear"
               c:identifier="clutter_cairo_texture_clear"
               version="1.0">
@@ -11086,11 +11376,11 @@ the one used.</doc>
           <type name="cairo.Surface"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="width" transfer-ownership="none">
             <doc xml:whitespace="preserve">the width of the surface to create</doc>
             <type name="guint"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="height" transfer-ownership="none">
             <doc xml:whitespace="preserve">the height of the surface to create</doc>
             <type name="guint"/>
           </parameter>
@@ -11298,6 +11588,16 @@ only private data and should be accessed using the provided API</doc>
           <type name="Action" c:type="ClutterAction*"/>
         </return-value>
       </constructor>
+      <virtual-method name="clicked">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="actor" transfer-ownership="none">
+            <type name="Actor" c:type="ClutterActor*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="get_button"
               c:identifier="clutter_click_action_get_button"
               version="1.4">
@@ -11305,6 +11605,15 @@ only private data and should be accessed using the provided API</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the button value</doc>
           <type name="guint" c:type="guint"/>
+        </return-value>
+      </method>
+      <method name="get_state"
+              c:identifier="clutter_click_action_get_state"
+              version="1.6">
+        <doc xml:whitespace="preserve">Retrieves the modifier state of the click action.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">the modifier state parameter, or 0</doc>
+          <type name="ModifierType" c:type="ClutterModifierType"/>
         </return-value>
       </method>
       <method name="release"
@@ -11340,7 +11649,7 @@ pointer button press and release events</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="actor" transfer-ownership="none">
             <doc xml:whitespace="preserve">the #ClutterActor attached to the @action</doc>
             <type name="Actor"/>
           </parameter>
@@ -12047,7 +12356,26 @@ only private data</doc>
                glib:type-struct="ContainerIface">
       <doc xml:whitespace="preserve">#ClutterContainer is an opaque structure whose members cannot be directly
 accessed</doc>
-      <prerequisite name="Actor"/>
+      <virtual-method name="actor_added">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="actor" transfer-ownership="none">
+            <type name="Actor" c:type="ClutterActor*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="actor_removed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="actor" transfer-ownership="none">
+            <type name="Actor" c:type="ClutterActor*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <virtual-method name="add" invoker="add_actor" version="0.4">
         <doc xml:whitespace="preserve">Adds a #ClutterActor to @container. This function will emit the
 "actor-added" signal. The actor should be parented to
@@ -12059,6 +12387,23 @@ accessed</doc>
           <parameter name="actor" transfer-ownership="none">
             <doc xml:whitespace="preserve">the first #ClutterActor to add</doc>
             <type name="Actor" c:type="ClutterActor*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="child_notify" invoker="child_notify" version="1.6">
+        <doc xml:whitespace="preserve">Calls the &lt;function&gt;child_notify()&lt;/function&gt; virtual function of
+#ClutterContainer. The default implementation will emit the
+#ClutterContainer::child-notify signal.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="actor" transfer-ownership="none">
+            <type name="Actor" c:type="ClutterActor*"/>
+          </parameter>
+          <parameter name="pspec" transfer-ownership="none">
+            <doc xml:whitespace="preserve">a #GParamSpec</doc>
+            <type name="GObject.ParamSpec" c:type="GParamSpec*"/>
           </parameter>
         </parameters>
       </virtual-method>
@@ -12633,7 +12978,7 @@ has been added to @container.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="actor" transfer-ownership="none">
             <doc xml:whitespace="preserve">the new child that has been added to @container</doc>
             <type name="Actor"/>
           </parameter>
@@ -12646,7 +12991,7 @@ is removed from @container.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="actor" transfer-ownership="none">
             <doc xml:whitespace="preserve">the child that has been removed from @container</doc>
             <type name="Actor"/>
           </parameter>
@@ -12660,11 +13005,11 @@ clutter_container_child_set_property() calls.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="actor" transfer-ownership="none">
             <doc xml:whitespace="preserve">the child that has had a property set</doc>
             <type name="Actor"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="pspec" transfer-ownership="none">
             <doc xml:whitespace="preserve">the #GParamSpec of the property set</doc>
             <type/>
           </parameter>
@@ -12906,6 +13251,7 @@ virtual functions are optional.</doc>
               <type name="Actor" c:type="ClutterActor*"/>
             </parameter>
             <parameter name="pspec" transfer-ownership="none">
+              <doc xml:whitespace="preserve">a #GParamSpec</doc>
               <type name="GObject.ParamSpec" c:type="GParamSpec*"/>
             </parameter>
           </parameters>
@@ -13739,7 +14085,7 @@ added to the #ClutterDeviceManager</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="device" transfer-ownership="none">
             <doc xml:whitespace="preserve">the newly added #ClutterInputDevice</doc>
             <type name="InputDevice"/>
           </parameter>
@@ -13752,7 +14098,7 @@ removed from the #ClutterDeviceManager</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="device" transfer-ownership="none">
             <doc xml:whitespace="preserve">the removed #ClutterInputDevice</doc>
             <type name="InputDevice"/>
           </parameter>
@@ -13886,6 +14232,60 @@ private data and should be accessed using the provided API</doc>
           <type name="Action" c:type="ClutterAction*"/>
         </return-value>
       </constructor>
+      <virtual-method name="drag_begin">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="actor" transfer-ownership="none">
+            <type name="Actor" c:type="ClutterActor*"/>
+          </parameter>
+          <parameter name="event_x" transfer-ownership="none">
+            <type name="gfloat" c:type="gfloat"/>
+          </parameter>
+          <parameter name="event_y" transfer-ownership="none">
+            <type name="gfloat" c:type="gfloat"/>
+          </parameter>
+          <parameter name="modifiers" transfer-ownership="none">
+            <type name="ModifierType" c:type="ClutterModifierType"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="drag_end">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="actor" transfer-ownership="none">
+            <type name="Actor" c:type="ClutterActor*"/>
+          </parameter>
+          <parameter name="event_x" transfer-ownership="none">
+            <type name="gfloat" c:type="gfloat"/>
+          </parameter>
+          <parameter name="event_y" transfer-ownership="none">
+            <type name="gfloat" c:type="gfloat"/>
+          </parameter>
+          <parameter name="modifiers" transfer-ownership="none">
+            <type name="ModifierType" c:type="ClutterModifierType"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="drag_motion">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="actor" transfer-ownership="none">
+            <type name="Actor" c:type="ClutterActor*"/>
+          </parameter>
+          <parameter name="delta_x" transfer-ownership="none">
+            <type name="gfloat" c:type="gfloat"/>
+          </parameter>
+          <parameter name="delta_y" transfer-ownership="none">
+            <type name="gfloat" c:type="gfloat"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="get_drag_axis"
               c:identifier="clutter_drag_action_get_drag_axis"
               version="1.4">
@@ -14083,19 +14483,19 @@ The emission of this signal can be delayed by using the
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="actor" transfer-ownership="none">
             <doc xml:whitespace="preserve">the #ClutterActor attached to the action</doc>
             <type name="Actor"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="event_x" transfer-ownership="none">
             <doc xml:whitespace="preserve">the X coordinate (in stage space) of the press event</doc>
             <type name="gfloat"/>
           </parameter>
-          <parameter name="p1" transfer-ownership="none">
+          <parameter name="event_y" transfer-ownership="none">
             <doc xml:whitespace="preserve">the Y coordinate (in stage space) of the press event</doc>
             <type name="gfloat"/>
           </parameter>
-          <parameter name="p2" transfer-ownership="none">
+          <parameter name="modifiers" transfer-ownership="none">
             <doc xml:whitespace="preserve">the modifiers of the press event</doc>
             <type name="ModifierType"/>
           </parameter>
@@ -14110,19 +14510,19 @@ signal has been emitted first</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="actor" transfer-ownership="none">
             <doc xml:whitespace="preserve">the #ClutterActor attached to the action</doc>
             <type name="Actor"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="event_x" transfer-ownership="none">
             <doc xml:whitespace="preserve">the X coordinate (in stage space) of the release event</doc>
             <type name="gfloat"/>
           </parameter>
-          <parameter name="p1" transfer-ownership="none">
+          <parameter name="event_y" transfer-ownership="none">
             <doc xml:whitespace="preserve">the Y coordinate (in stage space) of the release event</doc>
             <type name="gfloat"/>
           </parameter>
-          <parameter name="p2" transfer-ownership="none">
+          <parameter name="modifiers" transfer-ownership="none">
             <doc xml:whitespace="preserve">the modifiers of the release event</doc>
             <type name="ModifierType"/>
           </parameter>
@@ -24248,6 +24648,16 @@ See also clutter_actor_get_preferred_width()</doc>
           </parameter>
         </parameters>
       </virtual-method>
+      <virtual-method name="layout_changed"
+                      invoker="layout_changed"
+                      version="1.2">
+        <doc xml:whitespace="preserve">Emits the #ClutterLayoutManager::layout-changed signal on @manager
+This function should only be called by implementations of the
+#ClutterLayoutManager class</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <virtual-method name="set_container"
                       invoker="set_container"
                       version="1.2">
@@ -25114,7 +25524,7 @@ useful for language bindings.</doc>
     <constant name="MAJOR_VERSION" value="1">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="MICRO_VERSION" value="9">
+    <constant name="MICRO_VERSION" value="13">
       <type name="gint" c:type="gint"/>
     </constant>
     <constant name="MINOR_VERSION" value="5">
@@ -25165,6 +25575,21 @@ useful for language bindings.</doc>
                glib:type-struct="MediaIface">
       <doc xml:whitespace="preserve">#ClutterMedia is an opaque structure whose members cannot be directly
 accessed</doc>
+      <virtual-method name="eos">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="error">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="error" transfer-ownership="none">
+            <type name="GLib.Error" c:type="GError*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="get_audio_volume"
               c:identifier="clutter_media_get_audio_volume"
               version="1.0">
@@ -25425,7 +25850,7 @@ pango_font_description_from_string().</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="error" transfer-ownership="none">
             <doc xml:whitespace="preserve">the #GError</doc>
             <type name="GObject.Error"/>
           </parameter>
@@ -25514,6 +25939,11 @@ pango_font_description_from_string().</doc>
 only private data and should be manipulated using the provided
 API.</doc>
       <implements name="Scriptable"/>
+      <virtual-method name="filter_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <virtual-method name="get_column_name"
                       invoker="get_column_name"
                       version="0.6">
@@ -25615,6 +26045,41 @@ the length of the filtered @model is returned.</doc>
             <type name="gpointer" c:type="gpointer"/>
           </parameter>
         </parameters>
+      </virtual-method>
+      <virtual-method name="row_added">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="iter" transfer-ownership="none">
+            <type name="ModelIter" c:type="ClutterModelIter*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="row_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="iter" transfer-ownership="none">
+            <type name="ModelIter" c:type="ClutterModelIter*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="row_removed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="iter" transfer-ownership="none">
+            <type name="ModelIter" c:type="ClutterModelIter*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="sort_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
       </virtual-method>
       <method name="append"
               c:identifier="clutter_model_append"
@@ -26132,7 +26597,7 @@ has been emitted.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="iter" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterModelIter pointing to the new row</doc>
             <type name="ModelIter"/>
           </parameter>
@@ -26146,7 +26611,7 @@ signal has been emitted.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="iter" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterModelIter pointing to the changed row</doc>
             <type name="ModelIter"/>
           </parameter>
@@ -26160,7 +26625,7 @@ when the ::row-removed signal has been emitted.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="iter" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterModelIter pointing to the removed row</doc>
             <type name="ModelIter"/>
           </parameter>
@@ -28460,11 +28925,11 @@ passing a #ClutterPathNode</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="actor" transfer-ownership="none">
             <doc xml:whitespace="preserve">the #ClutterActor using the @constraint</doc>
             <type name="Actor"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="index" transfer-ownership="none">
             <doc xml:whitespace="preserve">the index of the node that has been reached</doc>
             <type name="guint"/>
           </parameter>
@@ -28857,7 +29322,10 @@ it into @color.</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="color" transfer-ownership="none">
+          <parameter name="color"
+                     direction="out"
+                     caller-allocates="1"
+                     transfer-ownership="none">
             <doc xml:whitespace="preserve">return location for a #ClutterColor</doc>
             <type name="Color" c:type="ClutterColor*"/>
           </parameter>
@@ -28878,7 +29346,10 @@ it into @color.</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="color" transfer-ownership="none">
+          <parameter name="color"
+                     direction="out"
+                     caller-allocates="1"
+                     transfer-ownership="none">
             <doc xml:whitespace="preserve">return location for a #ClutterColor</doc>
             <type name="Color" c:type="ClutterColor*"/>
           </parameter>
@@ -29137,6 +29608,41 @@ when done.</doc>
           <type name="Score" c:type="ClutterScore*"/>
         </return-value>
       </constructor>
+      <virtual-method name="completed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="paused">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="started">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="timeline_completed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="timeline" transfer-ownership="none">
+            <type name="Timeline" c:type="ClutterTimeline*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="timeline_started">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="timeline" transfer-ownership="none">
+            <type name="Timeline" c:type="ClutterTimeline*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="append" c:identifier="clutter_score_append" version="0.6">
         <doc xml:whitespace="preserve">Appends a timeline to another one existing in the score; the newly
 appended timeline will be started when @parent is complete.
@@ -29338,7 +29844,7 @@ inside a #ClutterScore terminates.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="timeline" transfer-ownership="none">
             <doc xml:whitespace="preserve">the completed timeline</doc>
             <type name="Timeline"/>
           </parameter>
@@ -29351,7 +29857,7 @@ inside a #ClutterScore starts playing.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="timeline" transfer-ownership="none">
             <doc xml:whitespace="preserve">the current timeline</doc>
             <type name="Timeline"/>
           </parameter>
@@ -29530,7 +30036,7 @@ or other custom, file-based properties.</doc>
           </parameter>
           <parameter name="n_paths" transfer-ownership="none">
             <doc xml:whitespace="preserve">the length of the passed array</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -29689,7 +30195,7 @@ returned. You can use the merge id with clutter_script_unmerge_objects().</doc>
           </parameter>
           <parameter name="length" transfer-ownership="none">
             <doc xml:whitespace="preserve">the length of the buffer, or -1 if @data is a NUL-terminated buffer</doc>
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -30517,7 +31023,7 @@ program.</doc>
           </parameter>
           <parameter name="length" transfer-ownership="none">
             <doc xml:whitespace="preserve">length of source buffer (currently ignored)</doc>
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -30572,7 +31078,7 @@ program.</doc>
           </parameter>
           <parameter name="length" transfer-ownership="none">
             <doc xml:whitespace="preserve">length of source buffer (currently ignored)</doc>
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -30725,7 +31231,7 @@ cogl_matrix_get_array (&amp;matrix));
           </parameter>
           <parameter name="n_values" transfer-ownership="none">
             <doc xml:whitespace="preserve">the number of values</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter transfer-ownership="none">
             <varargs>
@@ -31131,6 +31637,36 @@ destroy or unref the returned actor.</doc>
           <type name="Actor" c:type="ClutterActor*"/>
         </return-value>
       </function>
+      <virtual-method name="activate">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="deactivate">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="delete_event">
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="event" transfer-ownership="none">
+            <type name="Event" c:type="ClutterEvent*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="fullscreen">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="unfullscreen">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <method name="ensure_current"
               c:identifier="clutter_stage_ensure_current"
               version="0.8">
@@ -31179,6 +31715,16 @@ synthetised events.</doc>
           </parameter>
         </parameters>
       </method>
+      <method name="get_accept_focus"
+              c:identifier="clutter_stage_get_accept_focus"
+              version="1.6">
+        <doc xml:whitespace="preserve">Retrieves the value set with clutter_stage_set_accept_focus().
+otherwise</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">%TRUE if the #ClutterStage should accept focus, and %FALSE</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+      </method>
       <method name="get_actor_at_pos"
               c:identifier="clutter_stage_get_actor_at_pos">
         <doc xml:whitespace="preserve">Checks the scene at the coordinates @x and @y and returns a pointer
@@ -31211,7 +31757,10 @@ if any</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="color" transfer-ownership="none">
+          <parameter name="color"
+                     direction="out"
+                     caller-allocates="1"
+                     transfer-ownership="none">
             <doc xml:whitespace="preserve">return location for a #ClutterColor</doc>
             <type name="Color" c:type="ClutterColor*"/>
           </parameter>
@@ -31404,6 +31953,22 @@ to release the resources it has allocated.</doc>
           <parameter name="height" transfer-ownership="none">
             <doc xml:whitespace="preserve">Height dimention of pixels to be read, or -1 for the entire stage height</doc>
             <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_accept_focus"
+              c:identifier="clutter_stage_set_accept_focus"
+              version="1.6">
+        <doc xml:whitespace="preserve">Sets whether the @stage should accept the key focus when shown.
+This function should be called before showing @stage using
+clutter_actor_show().</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="accept_focus" transfer-ownership="none">
+            <doc xml:whitespace="preserve">%TRUE to accept focus on show</doc>
+            <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
       </method>
@@ -31655,6 +32220,13 @@ window manager controls)</doc>
           <type name="none" c:type="void"/>
         </return-value>
       </method>
+      <property name="accept-focus"
+                version="1.6"
+                writable="1"
+                transfer-ownership="none">
+        <doc xml:whitespace="preserve">Whether the #ClutterStage should accept key focus when shown.</doc>
+        <type name="gboolean"/>
+      </property>
       <property name="color" writable="1" transfer-ownership="none">
         <doc xml:whitespace="preserve">The color of the main stage.</doc>
         <type name="Color"/>
@@ -31771,7 +32343,7 @@ backends that use a static frame buffer.&lt;/note&gt;</doc>
           <type name="gboolean"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="event" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #ClutterEvent of type %CLUTTER_DELETE</doc>
             <type name="Event"/>
           </parameter>
@@ -31884,6 +32456,26 @@ object is owned by Clutter and you should not reference or unreference it.</doc>
           <type name="StageManager" c:type="ClutterStageManager*"/>
         </return-value>
       </function>
+      <virtual-method name="stage_added">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="stage" transfer-ownership="none">
+            <type name="Stage" c:type="ClutterStage*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="stage_removed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="stage" transfer-ownership="none">
+            <type name="Stage" c:type="ClutterStage*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="get_default_stage"
               c:identifier="clutter_stage_manager_get_default_stage"
               version="0.8">
@@ -31948,7 +32540,7 @@ has been added to the stage manager.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="stage" transfer-ownership="none">
             <doc xml:whitespace="preserve">the added stage</doc>
             <type name="Stage"/>
           </parameter>
@@ -31961,7 +32553,7 @@ has been removed from the stage manager.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="stage" transfer-ownership="none">
             <doc xml:whitespace="preserve">the removed stage</doc>
             <type name="Stage"/>
           </parameter>
@@ -32125,6 +32717,16 @@ whose members should not be accessed directly</doc>
           </parameter>
           <parameter name="height" transfer-ownership="none">
             <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="set_accept_focus">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="accept_focus" transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
       </virtual-method>
@@ -32400,6 +33002,21 @@ whose members should not be accessed directly</doc>
           </parameters>
         </callback>
       </field>
+      <field name="set_accept_focus">
+        <callback name="set_accept_focus" introspectable="0">
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="stage_window" transfer-ownership="none">
+              <type name="StageWindow" c:type="ClutterStageWindow*"/>
+            </parameter>
+            <parameter name="accept_focus" transfer-ownership="none">
+              <type name="gboolean" c:type="gboolean"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
     </record>
     <constant name="Standby" value="269025040">
       <type name="gint" c:type="gint"/>
@@ -32425,6 +33042,11 @@ private data and should be accessed using the provided API</doc>
           <type name="State" c:type="ClutterState*"/>
         </return-value>
       </constructor>
+      <virtual-method name="completed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <method name="get_animator"
               c:identifier="clutter_state_get_animator"
               version="1.4">
@@ -32966,7 +33588,7 @@ and %FALSE otherwise</doc>
     <record name="StatePrivate" c:type="ClutterStatePrivate" disguised="1">
     </record>
     <enumeration name="StaticColor"
-                 version="1.4"
+                 version="1.6"
                  glib:type-name="ClutterStaticColor"
                  glib:get-type="clutter_static_color_get_type"
                  c:type="ClutterStaticColor">
@@ -33786,6 +34408,26 @@ clutter_text_set_font_name(), and clutter_text_set_text().</doc>
           </parameter>
         </parameters>
       </constructor>
+      <virtual-method name="activate">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="cursor_event">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="geometry" transfer-ownership="none">
+            <type name="Geometry" c:type="ClutterGeometry*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="text_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <method name="activate"
               c:identifier="clutter_text_activate"
               version="1.0">
@@ -33840,11 +34482,11 @@ not in bytes.</doc>
         <parameters>
           <parameter name="start_pos" transfer-ownership="none">
             <doc xml:whitespace="preserve">starting position</doc>
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="end_pos" transfer-ownership="none">
             <doc xml:whitespace="preserve">ending position</doc>
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -33882,11 +34524,11 @@ to free the resources when done</doc>
         <parameters>
           <parameter name="start_pos" transfer-ownership="none">
             <doc xml:whitespace="preserve">start of text, in characters</doc>
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="end_pos" transfer-ownership="none">
             <doc xml:whitespace="preserve">end of text, in characters</doc>
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -33898,7 +34540,10 @@ to free the resources when done</doc>
           <type name="none" c:type="void"/>
         </return-value>
         <parameters>
-          <parameter name="color" transfer-ownership="none">
+          <parameter name="color"
+                     direction="out"
+                     caller-allocates="1"
+                     transfer-ownership="none">
             <doc xml:whitespace="preserve">return location for a #ClutterColor</doc>
             <type name="Color" c:type="ClutterColor*"/>
           </parameter>
@@ -34154,7 +34799,7 @@ The position is expressed in characters, not in bytes.</doc>
           </parameter>
           <parameter name="position" transfer-ownership="none">
             <doc xml:whitespace="preserve">the position of the insertion, or -1</doc>
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -34579,11 +35224,11 @@ This function changes the position of the cursor to match</doc>
         <parameters>
           <parameter name="start_pos" transfer-ownership="none">
             <doc xml:whitespace="preserve">start of the selection, in characters</doc>
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="end_pos" transfer-ownership="none">
             <doc xml:whitespace="preserve">end of the selection, in characters</doc>
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -34901,7 +35546,7 @@ itself.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="geometry" transfer-ownership="none">
             <doc xml:whitespace="preserve">the coordinates of the cursor</doc>
             <type name="Geometry"/>
           </parameter>
@@ -34914,11 +35559,11 @@ the user. It is emitted before @self text changes.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="start_pos" transfer-ownership="none">
             <doc xml:whitespace="preserve">the starting position</doc>
             <type name="gint"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="end_pos" transfer-ownership="none">
             <doc xml:whitespace="preserve">the end position</doc>
             <type name="gint"/>
           </parameter>
@@ -34931,15 +35576,15 @@ the user. It is emitted before @self text changes.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="new_text" transfer-ownership="none">
             <doc xml:whitespace="preserve">the new text to insert</doc>
             <type name="utf8"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="new_text_length" transfer-ownership="none">
             <doc xml:whitespace="preserve">the length of the new text, in bytes, or -1 if new_text is nul-terminated</doc>
             <type name="gint"/>
           </parameter>
-          <parameter name="p1" transfer-ownership="none">
+          <parameter name="position" transfer-ownership="none">
             <doc xml:whitespace="preserve">the position, in characters, at which to insert the new text. this is an in-out parameter.  After the signal emission is finished, it should point after the newly inserted text.</doc>
             <type name="gpointer"/>
           </parameter>
@@ -35195,6 +35840,34 @@ error.</doc>
           </parameter>
         </parameters>
       </constructor>
+      <virtual-method name="load_finished">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="error" transfer-ownership="none">
+            <type name="GLib.Error" c:type="GError*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="pixbuf_change">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="size_change">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="width" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="height" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="get_base_size"
               c:identifier="clutter_texture_get_base_size">
         <doc xml:whitespace="preserve">Gets the size in pixels of the untransformed underlying image</doc>
@@ -35743,7 +36416,7 @@ be set, otherwise it will be %NULL</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="error" transfer-ownership="none">
             <doc xml:whitespace="preserve">A set error, or %NULL</doc>
             <type name="gpointer"/>
           </parameter>
@@ -35764,11 +36437,11 @@ argument to the callback.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="width" transfer-ownership="none">
             <doc xml:whitespace="preserve">the width of the new texture</doc>
             <type name="gint"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="height" transfer-ownership="none">
             <doc xml:whitespace="preserve">the height of the new texture</doc>
             <type name="gint"/>
           </parameter>
@@ -36213,6 +36886,44 @@ g_object_unref() when done using it</doc>
           </parameter>
         </parameters>
       </constructor>
+      <virtual-method name="completed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="marker_reached">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="marker_name" transfer-ownership="none">
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="frame_num" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="new_frame">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="frame_num" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="paused">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="started">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <method name="add_marker_at_time"
               c:identifier="clutter_timeline_add_marker_at_time"
               version="0.8">
@@ -36279,6 +36990,16 @@ from @timeline</doc>
         <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">a new #ClutterTimeline, cloned</doc>
           <type name="Timeline" c:type="ClutterTimeline*"/>
+        </return-value>
+      </method>
+      <method name="get_auto_reverse"
+              c:identifier="clutter_timeline_get_auto_reverse"
+              version="1.6">
+        <doc xml:whitespace="preserve">Retrieves the value set by clutter_timeline_set_auto_reverse().
+%FALSE otherwise</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">%TRUE if the timeline should automatically reverse, and</doc>
+          <type name="gboolean" c:type="gboolean"/>
         </return-value>
       </method>
       <method name="get_delay"
@@ -36348,16 +37069,6 @@ See clutter_timeline_set_duration().</doc>
           <type name="gdouble" c:type="gdouble"/>
         </return-value>
       </method>
-      <method name="get_reverse"
-              c:identifier="clutter_timeline_get_reverse"
-              version="1.6">
-        <doc xml:whitespace="preserve">Retrieves the value set by clutter_timeline_set_reverse().
-%FALSE otherwise</doc>
-        <return-value transfer-ownership="none">
-          <doc xml:whitespace="preserve">%TRUE if the timeline should reverse when looping, and</doc>
-          <type name="gboolean" c:type="gboolean"/>
-        </return-value>
-      </method>
       <method name="has_marker"
               c:identifier="clutter_timeline_has_marker"
               version="0.8">
@@ -36403,7 +37114,7 @@ of the markers. Use g_strfreev() when done.</doc>
                      caller-allocates="0"
                      transfer-ownership="full">
             <doc xml:whitespace="preserve">the number of markers returned</doc>
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -36434,6 +37145,49 @@ of the markers. Use g_strfreev() when done.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
+      </method>
+      <method name="set_auto_reverse"
+              c:identifier="clutter_timeline_set_auto_reverse"
+              version="1.6">
+        <doc xml:whitespace="preserve">Sets whether @timeline should reverse the direction after the
+emission of the #ClutterTimeline::completed signal.
+Setting the #ClutterTimeline:reverse property to %TRUE is the
+equivalent of connecting a callback to the #ClutterTimeline::completed
+signal and changing the direction of the timeline from that callback;
+for instance, this code:
+|[
+static void
+reverse_timeline (ClutterTimeline *timeline)
+{
+ClutterTimelineDirection dir = clutter_timeline_get_direction (timeline);
+if (dir == CLUTTER_TIMELINE_FORWARD)
+dir = CLUTTER_TIMELINE_BACKWARD;
+else
+dir = CLUTTER_TIMELINE_FORWARD;
+clutter_timeline_set_direction (timeline, dir);
+}
+...
+timeline = clutter_timeline_new (1000);
+clutter_timeline_set_loop (timeline);
+g_signal_connect (timeline, "completed",
+G_CALLBACK (reverse_timeline),
+NULL);
+]|
+can be effectively replaced by:
+|[
+timeline = clutter_timeline_new (1000);
+clutter_timeline_set_loop (timeline);
+clutter_timeline_set_auto_reverse (timeline);
+]|</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="reverse" transfer-ownership="none">
+            <doc xml:whitespace="preserve">%TRUE if the @timeline should reverse the direction</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
       </method>
       <method name="set_delay"
               c:identifier="clutter_timeline_set_delay"
@@ -36491,49 +37245,6 @@ of the timeline depends on the ClutterTimeline:fps setting.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="set_reverse"
-              c:identifier="clutter_timeline_set_reverse"
-              version="1.6">
-        <doc xml:whitespace="preserve">Sets whether @timeline should reverse the direction after the
-emission of the #ClutterTimeline::completed signal.
-Setting the #ClutterTimeline:reverse property to %TRUE is the
-equivalent of connecting a callback to the #ClutterTimeline::completed
-signal and changing the direction of the timeline from that callback;
-for instance, this code:
-|[
-static void
-reverse_timeline (ClutterTimeline *timeline)
-{
-ClutterTimelineDirection dir = clutter_timeline_get_direction (timeline);
-if (dir == CLUTTER_TIMELINE_FORWARD)
-dir = CLUTTER_TIMELINE_BACKWARD;
-else
-dir = CLUTTER_TIMELINE_FORWARD;
-clutter_timeline_set_direction (timeline, dir);
-}
-...
-timeline = clutter_timeline_new (1000);
-clutter_timeline_set_loop (timeline);
-g_signal_connect (timeline, "completed",
-G_CALLBACK (reverse_timeline),
-NULL);
-]|
-can be effectively replaced by:
-|[
-timeline = clutter_timeline_new (1000);
-clutter_timeline_set_loop (timeline);
-clutter_timeline_set_reverse (timeline);
-]|</doc>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <parameter name="reverse" transfer-ownership="none">
-            <doc xml:whitespace="preserve">%TRUE if the @timeline should reverse the direction</doc>
-            <type name="gboolean" c:type="gboolean"/>
-          </parameter>
-        </parameters>
-      </method>
       <method name="skip" c:identifier="clutter_timeline_skip">
         <doc xml:whitespace="preserve">Advance timeline by the requested time in milliseconds</doc>
         <return-value transfer-ownership="none">
@@ -36558,6 +37269,14 @@ clutter_timeline_set_reverse (timeline);
           <type name="none" c:type="void"/>
         </return-value>
       </method>
+      <property name="auto-reverse"
+                version="1.6"
+                writable="1"
+                transfer-ownership="none">
+        <doc xml:whitespace="preserve">If the direction of the timeline should be automatically reversed
+when reaching the end.</doc>
+        <type name="gboolean"/>
+      </property>
       <property name="delay"
                 version="0.4"
                 writable="1"
@@ -36584,14 +37303,6 @@ ClutterTimeline:fps value.</doc>
       </property>
       <property name="loop" writable="1" transfer-ownership="none">
         <doc xml:whitespace="preserve">Whether the timeline should automatically rewind and restart.</doc>
-        <type name="gboolean"/>
-      </property>
-      <property name="reverse"
-                version="1.6"
-                writable="1"
-                transfer-ownership="none">
-        <doc xml:whitespace="preserve">Whether the direction of a looping timeline should be reversed
-when emitting the #ClutterTimeline::completed signal.</doc>
         <type name="gboolean"/>
       </property>
       <field name="parent" readable="0" private="1">
@@ -36631,11 +37342,11 @@ will be invoked for the "foo" or "bar" markers, respectively.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="marker_name" transfer-ownership="none">
             <doc xml:whitespace="preserve">the name of the marker reached</doc>
             <type name="utf8"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="msecs" transfer-ownership="none">
             <doc xml:whitespace="preserve">the elapsed time</doc>
             <type name="gint"/>
           </parameter>
@@ -36649,7 +37360,7 @@ to update the scene.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="msecs" transfer-ownership="none">
             <doc xml:whitespace="preserve">the elapsed time between 0 and duration</doc>
             <type name="gint"/>
           </parameter>
@@ -37269,7 +37980,7 @@ typographic points. Pixels are integers.&lt;/note&gt;
     <constant name="VERSION_HEX" value="0">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="VERSION_S" value="1.5.9">
+    <constant name="VERSION_S" value="1.5.13">
       <type name="utf8" c:type="gchar*"/>
     </constant>
     <constant name="VendorHome" value="269025076">
@@ -37352,6 +38063,12 @@ clutter_vertex_free() to free the allocated resources</doc>
       <type name="gint" c:type="gint"/>
     </constant>
     <constant name="W" value="87">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="WINDOWING_GLX" value="1">
+      <type name="gint" c:type="gint"/>
+    </constant>
+    <constant name="WINDOWING_X11" value="1">
       <type name="gint" c:type="gint"/>
     </constant>
     <constant name="WLAN" value="269025173">
@@ -38598,7 +39315,7 @@ parameter, when using #ClutterColor&lt;!-- --&gt;s as keys in a #GHashTable.</do
     </function>
     <function name="color_get_static"
               c:identifier="clutter_color_get_static"
-              version="1.4">
+              version="1.6">
       <doc xml:whitespace="preserve">Retrieves a static color for the given @color name
 Static colors are created by Clutter and are guaranteed to always be
 available and valid
@@ -41543,7 +42260,7 @@ be modified or freed.</doc>
         </parameter>
         <parameter name="length" transfer-ownership="none">
           <doc xml:whitespace="preserve">return location for the number of returned floating point values, or %NULL</doc>
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -41566,7 +42283,7 @@ be modified or freed.</doc>
         </parameter>
         <parameter name="length" transfer-ownership="none">
           <doc xml:whitespace="preserve">return location for the number of returned integer values, or %NULL</doc>
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -41594,7 +42311,7 @@ should never be modified or freed.</doc>
                    caller-allocates="0"
                    transfer-ownership="full">
           <doc xml:whitespace="preserve">return location for the number of returned floating point values, or %NULL</doc>
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>

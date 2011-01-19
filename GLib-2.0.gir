@@ -353,7 +353,7 @@ private data and should not be directly accessed.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -383,7 +383,7 @@ private data and should not be directly accessed.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -468,7 +468,7 @@ private data and should not be directly accessed.</doc>
         </return-value>
         <parameters>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -535,7 +535,7 @@ private data and should not be directly accessed.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -686,7 +686,7 @@ private data and should not be directly accessed.</doc>
             <type name="utf8" c:type="gchar**"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -779,7 +779,7 @@ private data and should not be directly accessed.</doc>
         </return-value>
         <parameters>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -951,7 +951,7 @@ a GChecksum, use g_checksum_free().</doc>
             <type name="guint8" c:type="guint8*"/>
           </parameter>
           <parameter name="digest_len" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -974,7 +974,7 @@ a GChecksum, use g_checksum_free().</doc>
             <type name="guint8" c:type="guchar*"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -1159,7 +1159,7 @@ date to include new hashing algorithm types.</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="n" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </callback>
@@ -2516,7 +2516,7 @@ cannot be accessed directly.</doc>
         <type name="guint" c:type="guint"/>
       </field>
       <field name="buf_size" writable="1">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </field>
       <field name="read_buf" writable="1">
         <type name="String" c:type="GString*"/>
@@ -2575,7 +2575,7 @@ cannot be accessed directly.</doc>
       <method name="get_buffer_size"
               c:identifier="g_io_channel_get_buffer_size">
         <return-value transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </return-value>
       </method>
       <method name="get_buffered" c:identifier="g_io_channel_get_buffered">
@@ -2623,10 +2623,10 @@ cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="count" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="bytes_read" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -2641,10 +2641,10 @@ cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="count" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="bytes_read" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -2659,10 +2659,10 @@ cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar**"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
           <parameter name="terminator_pos" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -2677,7 +2677,7 @@ cannot be accessed directly.</doc>
             <type name="String" c:type="GString*"/>
           </parameter>
           <parameter name="terminator_pos" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -2692,7 +2692,7 @@ cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar**"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -2748,7 +2748,7 @@ cannot be accessed directly.</doc>
         </return-value>
         <parameters>
           <parameter name="size" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -2839,10 +2839,10 @@ cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="count" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="bytes_written" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -2857,10 +2857,10 @@ cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="count" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="bytes_written" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -2954,10 +2954,10 @@ cannot be accessed directly.</doc>
               <type name="utf8" c:type="gchar*"/>
             </parameter>
             <parameter name="count" transfer-ownership="none">
-              <type name="gulong" c:type="gsize"/>
+              <type name="gsize" c:type="gsize"/>
             </parameter>
             <parameter name="bytes_read" transfer-ownership="none">
-              <type name="gulong" c:type="gsize*"/>
+              <type name="gsize" c:type="gsize*"/>
             </parameter>
           </parameters>
         </callback>
@@ -2975,10 +2975,10 @@ cannot be accessed directly.</doc>
               <type name="utf8" c:type="gchar*"/>
             </parameter>
             <parameter name="count" transfer-ownership="none">
-              <type name="gulong" c:type="gsize"/>
+              <type name="gsize" c:type="gsize"/>
             </parameter>
             <parameter name="bytes_written" transfer-ownership="none">
-              <type name="gulong" c:type="gsize*"/>
+              <type name="gsize" c:type="gsize*"/>
             </parameter>
           </parameters>
         </callback>
@@ -3179,7 +3179,7 @@ cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -3227,7 +3227,7 @@ cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -3241,7 +3241,7 @@ cannot be accessed directly.</doc>
         </return-value>
         <parameters>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -3287,7 +3287,7 @@ cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -3305,7 +3305,7 @@ cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -3349,7 +3349,7 @@ cannot be accessed directly.</doc>
                      direction="out"
                      caller-allocates="0"
                      transfer-ownership="full">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -3392,7 +3392,7 @@ cannot be accessed directly.</doc>
                      direction="out"
                      caller-allocates="0"
                      transfer-ownership="full">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -3458,7 +3458,7 @@ cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="flags" transfer-ownership="none">
             <type name="KeyFileFlags" c:type="GKeyFileFlags"/>
@@ -3593,7 +3593,7 @@ cannot be accessed directly.</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -3646,7 +3646,7 @@ cannot be accessed directly.</doc>
             <type name="gdouble" c:type="gdouble"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -3698,7 +3698,7 @@ cannot be accessed directly.</doc>
             <type name="gint" c:type="gint"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -3757,7 +3757,7 @@ cannot be accessed directly.</doc>
                      direction="out"
                      caller-allocates="0"
                      transfer-ownership="full">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -3797,7 +3797,7 @@ cannot be accessed directly.</doc>
                      direction="out"
                      caller-allocates="0"
                      transfer-ownership="full">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -3839,7 +3839,7 @@ cannot be accessed directly.</doc>
         </return-value>
         <parameters>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -3947,7 +3947,7 @@ cannot be accessed directly.</doc>
     <constant name="MAJOR_VERSION" value="2">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="MICRO_VERSION" value="5">
+    <constant name="MICRO_VERSION" value="92">
       <type name="gint" c:type="gint"/>
     </constant>
     <constant name="MINOR_VERSION" value="27">
@@ -4251,7 +4251,7 @@ representing the main event loop of a GLib or GTK+ application.</doc>
       </method>
       <method name="get_length" c:identifier="g_mapped_file_get_length">
         <return-value transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </return-value>
       </method>
       <method name="ref" c:identifier="g_mapped_file_ref" introspectable="0">
@@ -4284,6 +4284,7 @@ representing the main event loop of a GLib or GTK+ application.</doc>
     <enumeration name="MarkupError"
                  c:type="GMarkupError"
                  glib:error-quark="g_markup_error_quark">
+      <doc xml:whitespace="preserve">Error codes returned by markup parsing.</doc>
       <member name="bad_utf8"
               value="0"
               c:identifier="G_MARKUP_ERROR_BAD_UTF8"/>
@@ -4305,6 +4306,10 @@ representing the main event loop of a GLib or GTK+ application.</doc>
     <record name="MarkupParseContext"
             c:type="GMarkupParseContext"
             disguised="1">
+      <doc xml:whitespace="preserve">A parse context is used to parse a stream of bytes that
+you expect to contain marked-up text.
+See g_markup_parse_context_new(), #GMarkupParser, and so
+on for more details.</doc>
       <method name="end_parse"
               c:identifier="g_markup_parse_context_end_parse"
               throws="1">
@@ -4363,7 +4368,7 @@ representing the main event loop of a GLib or GTK+ application.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="text_len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -4389,6 +4394,7 @@ representing the main event loop of a GLib or GTK+ application.</doc>
       </method>
     </record>
     <bitfield name="MarkupParseFlags" c:type="GMarkupParseFlags">
+      <doc xml:whitespace="preserve">Flags that affect the behaviour of the parser.</doc>
       <member name="do_not_use_this_unsupported_flag"
               value="1"
               c:identifier="G_MARKUP_DO_NOT_USE_THIS_UNSUPPORTED_FLAG"/>
@@ -4400,6 +4406,13 @@ representing the main event loop of a GLib or GTK+ application.</doc>
               c:identifier="G_MARKUP_PREFIX_ERROR_POSITION"/>
     </bitfield>
     <record name="MarkupParser" c:type="GMarkupParser">
+      <doc xml:whitespace="preserve">Any of the fields in #GMarkupParser can be %NULL, in which case they
+will be ignored. Except for the @error function, any of these callbacks
+can set an error; in particular the %G_MARKUP_ERROR_UNKNOWN_ELEMENT,
+%G_MARKUP_ERROR_UNKNOWN_ATTRIBUTE, and %G_MARKUP_ERROR_INVALID_CONTENT
+errors are intended to be set from these callbacks. If you set an error
+from a callback, g_markup_parse_context_parse() will report that error
+back to its caller.</doc>
       <field name="start_element">
         <callback name="start_element" throws="1">
           <return-value transfer-ownership="none">
@@ -4455,7 +4468,7 @@ representing the main event loop of a GLib or GTK+ application.</doc>
               <type name="utf8" c:type="gchar*"/>
             </parameter>
             <parameter name="text_len" transfer-ownership="none">
-              <type name="gulong" c:type="gsize"/>
+              <type name="gsize" c:type="gsize"/>
             </parameter>
             <parameter name="user_data" transfer-ownership="none" closure="3">
               <type name="gpointer" c:type="gpointer"/>
@@ -4476,7 +4489,7 @@ representing the main event loop of a GLib or GTK+ application.</doc>
               <type name="utf8" c:type="gchar*"/>
             </parameter>
             <parameter name="text_len" transfer-ownership="none">
-              <type name="gulong" c:type="gsize"/>
+              <type name="gsize" c:type="gsize"/>
             </parameter>
             <parameter name="user_data" transfer-ownership="none" closure="3">
               <type name="gpointer" c:type="gpointer"/>
@@ -4673,7 +4686,7 @@ if it exists, should be prior to any use of GLib.</doc>
           </return-value>
           <parameters>
             <parameter name="n_bytes" transfer-ownership="none">
-              <type name="gulong" c:type="gsize"/>
+              <type name="gsize" c:type="gsize"/>
             </parameter>
           </parameters>
         </callback>
@@ -4688,7 +4701,7 @@ if it exists, should be prior to any use of GLib.</doc>
               <type name="gpointer" c:type="gpointer"/>
             </parameter>
             <parameter name="n_bytes" transfer-ownership="none">
-              <type name="gulong" c:type="gsize"/>
+              <type name="gsize" c:type="gsize"/>
             </parameter>
           </parameters>
         </callback>
@@ -4712,10 +4725,10 @@ if it exists, should be prior to any use of GLib.</doc>
           </return-value>
           <parameters>
             <parameter name="n_blocks" transfer-ownership="none">
-              <type name="gulong" c:type="gsize"/>
+              <type name="gsize" c:type="gsize"/>
             </parameter>
             <parameter name="n_block_bytes" transfer-ownership="none">
-              <type name="gulong" c:type="gsize"/>
+              <type name="gsize" c:type="gsize"/>
             </parameter>
           </parameters>
         </callback>
@@ -4727,7 +4740,7 @@ if it exists, should be prior to any use of GLib.</doc>
           </return-value>
           <parameters>
             <parameter name="n_bytes" transfer-ownership="none">
-              <type name="gulong" c:type="gsize"/>
+              <type name="gsize" c:type="gsize"/>
             </parameter>
           </parameters>
         </callback>
@@ -4742,7 +4755,7 @@ if it exists, should be prior to any use of GLib.</doc>
               <type name="gpointer" c:type="gpointer"/>
             </parameter>
             <parameter name="n_bytes" transfer-ownership="none">
-              <type name="gulong" c:type="gsize"/>
+              <type name="gsize" c:type="gsize"/>
             </parameter>
           </parameters>
         </callback>
@@ -6162,7 +6175,7 @@ structure is opaque and its fields cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="string_len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="start_position" transfer-ownership="none">
             <type name="gint" c:type="gint"/>
@@ -6184,7 +6197,7 @@ structure is opaque and its fields cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="string_len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="start_position" transfer-ownership="none">
             <type name="gint" c:type="gint"/>
@@ -6211,7 +6224,7 @@ structure is opaque and its fields cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="string_len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="start_position" transfer-ownership="none">
             <type name="gint" c:type="gint"/>
@@ -6236,7 +6249,7 @@ structure is opaque and its fields cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="string_len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="start_position" transfer-ownership="none">
             <type name="gint" c:type="gint"/>
@@ -6263,7 +6276,7 @@ structure is opaque and its fields cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="string_len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="start_position" transfer-ownership="none">
             <type name="gint" c:type="gint"/>
@@ -6305,7 +6318,7 @@ structure is opaque and its fields cannot be accessed directly.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="string_len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="start_position" transfer-ownership="none">
             <type name="gint" c:type="gint"/>
@@ -7150,6 +7163,43 @@ to g_regex_replace_eval(), and it should append the replacement to</doc>
           </parameter>
         </parameters>
       </method>
+      <method name="lookup"
+              c:identifier="g_sequence_lookup"
+              introspectable="0">
+        <return-value>
+          <type name="SequenceIter" c:type="GSequenceIter*"/>
+        </return-value>
+        <parameters>
+          <parameter name="data" transfer-ownership="none">
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+          <parameter name="cmp_func" transfer-ownership="none" closure="2">
+            <type name="CompareDataFunc" c:type="GCompareDataFunc"/>
+          </parameter>
+          <parameter name="cmp_data" transfer-ownership="none">
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="lookup_iter"
+              c:identifier="g_sequence_lookup_iter"
+              introspectable="0">
+        <return-value>
+          <type name="SequenceIter" c:type="GSequenceIter*"/>
+        </return-value>
+        <parameters>
+          <parameter name="data" transfer-ownership="none">
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+          <parameter name="iter_cmp" transfer-ownership="none" closure="2">
+            <type name="SequenceIterCompareFunc"
+                  c:type="GSequenceIterCompareFunc"/>
+          </parameter>
+          <parameter name="cmp_data" transfer-ownership="none">
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
       <method name="prepend"
               c:identifier="g_sequence_prepend"
               introspectable="0">
@@ -7964,10 +8014,10 @@ required condition has been met, and returns %TRUE if so.</doc>
         <type name="utf8" c:type="gchar*"/>
       </field>
       <field name="len" writable="1">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </field>
       <field name="allocated_len" writable="1">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </field>
       <method name="append" c:identifier="g_string_append" introspectable="0">
         <return-value>
@@ -8002,7 +8052,7 @@ required condition has been met, and returns %TRUE if so.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -8112,10 +8162,10 @@ required condition has been met, and returns %TRUE if so.</doc>
         </return-value>
         <parameters>
           <parameter name="pos" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -8140,7 +8190,7 @@ required condition has been met, and returns %TRUE if so.</doc>
         </return-value>
         <parameters>
           <parameter name="pos" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="val" transfer-ownership="none">
             <type name="utf8" c:type="gchar*"/>
@@ -8155,7 +8205,7 @@ required condition has been met, and returns %TRUE if so.</doc>
         </return-value>
         <parameters>
           <parameter name="pos" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="c" transfer-ownership="none">
             <type name="gchar" c:type="gchar"/>
@@ -8170,13 +8220,13 @@ required condition has been met, and returns %TRUE if so.</doc>
         </return-value>
         <parameters>
           <parameter name="pos" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="val" transfer-ownership="none">
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -8188,7 +8238,7 @@ required condition has been met, and returns %TRUE if so.</doc>
         </return-value>
         <parameters>
           <parameter name="pos" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
           <parameter name="wc" transfer-ownership="none">
             <type name="gunichar" c:type="gunichar"/>
@@ -8203,7 +8253,7 @@ required condition has been met, and returns %TRUE if so.</doc>
         </return-value>
         <parameters>
           <parameter name="pos" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="val" transfer-ownership="none">
             <type name="utf8" c:type="gchar*"/>
@@ -8218,13 +8268,13 @@ required condition has been met, and returns %TRUE if so.</doc>
         </return-value>
         <parameters>
           <parameter name="pos" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="val" transfer-ownership="none">
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -8263,7 +8313,7 @@ required condition has been met, and returns %TRUE if so.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -8301,7 +8351,7 @@ required condition has been met, and returns %TRUE if so.</doc>
         </return-value>
         <parameters>
           <parameter name="len" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -8313,7 +8363,7 @@ required condition has been met, and returns %TRUE if so.</doc>
         </return-value>
         <parameters>
           <parameter name="len" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -8378,7 +8428,7 @@ required condition has been met, and returns %TRUE if so.</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="len" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -9894,7 +9944,7 @@ enumeration.</doc>
             <type name="Variant" c:type="GVariant**"/>
           </parameter>
           <parameter name="n_children" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </constructor>
@@ -9939,7 +9989,7 @@ enumeration.</doc>
             <type name="utf8" c:type="gchar**"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </constructor>
@@ -9965,7 +10015,7 @@ enumeration.</doc>
             <type name="gpointer" c:type="gconstpointer"/>
           </parameter>
           <parameter name="size" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="trusted" transfer-ownership="none">
             <type name="gboolean" c:type="gboolean"/>
@@ -10104,7 +10154,7 @@ enumeration.</doc>
             </array>
           </parameter>
           <parameter name="length" transfer-ownership="none">
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </constructor>
@@ -10172,7 +10222,7 @@ enumeration.</doc>
         </return-value>
         <parameters>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -10186,7 +10236,7 @@ enumeration.</doc>
         </return-value>
         <parameters>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -10196,7 +10246,7 @@ enumeration.</doc>
         </return-value>
         <parameters>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -10210,7 +10260,7 @@ enumeration.</doc>
         </return-value>
         <parameters>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -10253,7 +10303,7 @@ enumeration.</doc>
         </return-value>
         <parameters>
           <parameter name="length" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -10265,7 +10315,7 @@ enumeration.</doc>
         </return-value>
         <parameters>
           <parameter name="index_" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="format_string" transfer-ownership="none">
             <type name="utf8" c:type="gchar*"/>
@@ -10282,7 +10332,7 @@ enumeration.</doc>
         </return-value>
         <parameters>
           <parameter name="index_" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -10306,10 +10356,10 @@ enumeration.</doc>
         </return-value>
         <parameters>
           <parameter name="n_elements" transfer-ownership="none">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
           <parameter name="element_size" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -10345,7 +10395,7 @@ enumeration.</doc>
       </method>
       <method name="get_size" c:identifier="g_variant_get_size">
         <return-value transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </return-value>
       </method>
       <method name="get_string" c:identifier="g_variant_get_string">
@@ -10358,7 +10408,7 @@ enumeration.</doc>
                      caller-allocates="0"
                      transfer-ownership="full"
                      allow-none="1">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -10374,7 +10424,7 @@ enumeration.</doc>
                      caller-allocates="0"
                      transfer-ownership="full"
                      allow-none="1">
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -10483,7 +10533,7 @@ enumeration.</doc>
       </method>
       <method name="n_children" c:identifier="g_variant_n_children">
         <return-value transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </return-value>
       </method>
       <method name="new_dict_entry" c:identifier="g_variant_new_dict_entry">
@@ -10554,8 +10604,8 @@ enumeration.</doc>
     </record>
     <record name="VariantBuilder" c:type="GVariantBuilder">
       <field name="x" writable="1">
-        <array zero-terminated="0" c:type="gulong" fixed-size="16">
-          <type name="gulong" c:type="gsize"/>
+        <array zero-terminated="0" c:type="gsize" fixed-size="16">
+          <type name="gsize" c:type="gsize"/>
         </array>
       </field>
       <method name="add"
@@ -10676,8 +10726,8 @@ enumeration.</doc>
     </enumeration>
     <record name="VariantIter" c:type="GVariantIter">
       <field name="x" writable="1">
-        <array zero-terminated="0" c:type="gulong" fixed-size="16">
-          <type name="gulong" c:type="gsize"/>
+        <array zero-terminated="0" c:type="gsize" fixed-size="16">
+          <type name="gsize" c:type="gsize"/>
         </array>
       </field>
       <method name="copy"
@@ -10694,7 +10744,7 @@ enumeration.</doc>
       </method>
       <method name="init" c:identifier="g_variant_iter_init">
         <return-value transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </return-value>
         <parameters>
           <parameter name="value" transfer-ownership="none">
@@ -10720,7 +10770,7 @@ enumeration.</doc>
       </method>
       <method name="n_children" c:identifier="g_variant_iter_n_children">
         <return-value transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </return-value>
       </method>
       <method name="next"
@@ -10836,7 +10886,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       <method name="get_string_length"
               c:identifier="g_variant_type_get_string_length">
         <return-value transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </return-value>
       </method>
       <method name="is_array" c:identifier="g_variant_type_is_array">
@@ -10896,7 +10946,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </method>
       <method name="n_items" c:identifier="g_variant_type_n_items">
         <return-value transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </return-value>
       </method>
       <method name="new_array"
@@ -11322,7 +11372,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -11338,7 +11388,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="n" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -11396,7 +11446,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -11746,7 +11796,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="out_len" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -11760,20 +11810,20 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="out_len" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
     <function name="base64_decode_step" c:identifier="g_base64_decode_step">
       <return-value transfer-ownership="none">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </return-value>
       <parameters>
         <parameter name="in" transfer-ownership="none">
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="out" transfer-ownership="none">
           <type name="guint8" c:type="guchar*"/>
@@ -11795,13 +11845,13 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="guint8" c:type="guchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
     <function name="base64_encode_close" c:identifier="g_base64_encode_close">
       <return-value transfer-ownership="none">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </return-value>
       <parameters>
         <parameter name="break_lines" transfer-ownership="none">
@@ -11820,14 +11870,14 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
     </function>
     <function name="base64_encode_step" c:identifier="g_base64_encode_step">
       <return-value transfer-ownership="none">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </return-value>
       <parameters>
         <parameter name="in" transfer-ownership="none">
           <type name="guint8" c:type="guchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="break_lines" transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
@@ -12303,7 +12353,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
     <function name="checksum_type_get_length"
               c:identifier="g_checksum_type_get_length">
       <return-value transfer-ownership="none">
-        <type name="glong" c:type="gssize"/>
+        <type name="gssize" c:type="gssize"/>
       </return-value>
       <parameters>
         <parameter name="checksum_type" transfer-ownership="none">
@@ -12400,7 +12450,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="guint8" c:type="guchar*"/>
         </parameter>
         <parameter name="length" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -12417,7 +12467,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="length" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -12430,7 +12480,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="to_codeset" transfer-ownership="none">
           <type name="utf8" c:type="gchar*"/>
@@ -12442,13 +12492,13 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
                    direction="out"
                    caller-allocates="0"
                    transfer-ownership="full">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
         <parameter name="bytes_written"
                    direction="out"
                    caller-allocates="0"
                    transfer-ownership="full">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -12468,7 +12518,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="to_codeset" transfer-ownership="none">
           <type name="utf8" c:type="gchar*"/>
@@ -12480,10 +12530,10 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="bytes_read" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
         <parameter name="bytes_written" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -12498,16 +12548,16 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="converter" transfer-ownership="none">
           <type name="IConv" c:type="GIConv"/>
         </parameter>
         <parameter name="bytes_read" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
         <parameter name="bytes_written" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -12797,14 +12847,14 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
     </function>
     <function name="date_strftime" c:identifier="g_date_strftime">
       <return-value transfer-ownership="none">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </return-value>
       <parameters>
         <parameter name="s" transfer-ownership="none">
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="slen" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="format" transfer-ownership="none">
           <type name="utf8" c:type="gchar*"/>
@@ -13196,7 +13246,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="msgidoffset" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -13317,7 +13367,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
                    caller-allocates="0"
                    transfer-ownership="full"
                    allow-none="1">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -13363,7 +13413,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           </array>
         </parameter>
         <parameter name="length" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -13428,13 +13478,13 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="bytes_read" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
         <parameter name="bytes_written" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -13464,13 +13514,13 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="bytes_read" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
         <parameter name="bytes_written" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -13554,10 +13604,8 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
         </parameter>
       </parameters>
     </function>
-    <function name="get_environ"
-              c:identifier="g_get_environ"
-              introspectable="0">
-      <return-value>
+    <function name="get_environ" c:identifier="g_get_environ">
+      <return-value transfer-ownership="full">
         <array c:type="gchar**">
           <type name="utf8"/>
         </array>
@@ -13590,6 +13638,20 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8"/>
         </array>
       </return-value>
+    </function>
+    <function name="get_locale_variants"
+              c:identifier="g_get_locale_variants"
+              introspectable="0">
+      <return-value>
+        <array c:type="gchar**">
+          <type name="utf8"/>
+        </array>
+      </return-value>
+      <parameters>
+        <parameter name="locale" transfer-ownership="none">
+          <type name="utf8" c:type="gchar*"/>
+        </parameter>
+      </parameters>
     </function>
     <function name="get_monotonic_time" c:identifier="g_get_monotonic_time">
       <return-value transfer-ownership="none">
@@ -14341,7 +14403,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
     </function>
     <function name="iconv" c:identifier="g_iconv">
       <return-value transfer-ownership="none">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </return-value>
       <parameters>
         <parameter name="converter" transfer-ownership="none">
@@ -14351,13 +14413,13 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar**"/>
         </parameter>
         <parameter name="inbytes_left" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
         <parameter name="outbuf" transfer-ownership="none">
           <type name="utf8" c:type="gchar**"/>
         </parameter>
         <parameter name="outbytes_left" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -15181,8 +15243,8 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
         </parameter>
       </parameters>
     </function>
-    <function name="listenv" c:identifier="g_listenv" introspectable="0">
-      <return-value>
+    <function name="listenv" c:identifier="g_listenv">
+      <return-value transfer-ownership="full">
         <array c:type="gchar**">
           <type name="utf8"/>
         </array>
@@ -15199,13 +15261,13 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="bytes_read" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
         <parameter name="bytes_written" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -15218,13 +15280,13 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="bytes_read" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
         <parameter name="bytes_written" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -15413,7 +15475,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="n_bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -15423,7 +15485,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="n_bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -15433,10 +15495,10 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="n_blocks" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="n_block_bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -15446,10 +15508,10 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="n_blocks" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="n_block_bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -15514,7 +15576,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="length" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -15591,7 +15653,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="gint" c:type="gint"/>
         </parameter>
         <parameter name="area_size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="type" transfer-ownership="none">
           <type name="gint" c:type="gint"/>
@@ -15733,7 +15795,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="value_location" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -15744,7 +15806,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="value_location" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -15754,10 +15816,10 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="value_location" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
         <parameter name="initialization_value" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -15998,7 +16060,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
               c:identifier="g_printf_string_upper_bound"
               introspectable="0">
       <return-value transfer-ownership="none">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </return-value>
       <parameters>
         <parameter name="format" transfer-ownership="none">
@@ -16331,7 +16393,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="gint" c:type="gint"/>
         </parameter>
         <parameter name="size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="compare_func" transfer-ownership="none" closure="4">
           <type name="CompareDataFunc" c:type="GCompareDataFunc"/>
@@ -16474,7 +16536,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="gpointer" c:type="gpointer"/>
         </parameter>
         <parameter name="n_bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -16487,10 +16549,10 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="gpointer" c:type="gpointer"/>
         </parameter>
         <parameter name="n_blocks" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="n_block_bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -16998,7 +17060,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="block_size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -17010,7 +17072,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="block_size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -17020,7 +17082,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="block_size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="mem_block" transfer-ownership="none">
           <type name="gpointer" c:type="gconstpointer"/>
@@ -17033,7 +17095,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="block_size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="mem_block" transfer-ownership="none">
           <type name="gpointer" c:type="gpointer"/>
@@ -17047,13 +17109,13 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="block_size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="mem_chain" transfer-ownership="none">
           <type name="gpointer" c:type="gpointer"/>
         </parameter>
         <parameter name="next_offset" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -18211,7 +18273,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -18236,7 +18298,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -18248,7 +18310,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="dfl_size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -18294,7 +18356,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
     </function>
     <function name="strlcat" c:identifier="g_strlcat">
       <return-value transfer-ownership="none">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </return-value>
       <parameters>
         <parameter name="dest" transfer-ownership="none">
@@ -18304,13 +18366,13 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="dest_size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
     <function name="strlcpy" c:identifier="g_strlcpy">
       <return-value transfer-ownership="none">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </return-value>
       <parameters>
         <parameter name="dest" transfer-ownership="none">
@@ -18320,7 +18382,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="dest_size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -18349,7 +18411,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="n" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -18359,7 +18421,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="length" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="fill_char" transfer-ownership="none">
           <type name="gchar" c:type="gchar"/>
@@ -18398,7 +18460,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="haystack_len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="needle" transfer-ownership="none">
           <type name="utf8" c:type="gchar*"/>
@@ -18462,7 +18524,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="haystack_len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="needle" transfer-ownership="none">
           <type name="utf8" c:type="gchar*"/>
@@ -18546,7 +18608,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="char*"/>
         </parameter>
         <parameter name="data_size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="test_data" transfer-ownership="none">
           <type name="gpointer" c:type="gconstpointer"/>
@@ -18593,7 +18655,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="char*"/>
         </parameter>
         <parameter name="data_size" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="test_data" transfer-ownership="none">
           <type name="gpointer" c:type="gconstpointer"/>
@@ -19304,7 +19366,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="n_bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -19316,7 +19378,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="n_bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -19328,10 +19390,10 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="n_blocks" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="n_block_bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -19343,10 +19405,10 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </return-value>
       <parameters>
         <parameter name="n_blocks" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="n_block_bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -19361,7 +19423,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="gpointer" c:type="gpointer"/>
         </parameter>
         <parameter name="n_bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -19376,10 +19438,10 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="gpointer" c:type="gpointer"/>
         </parameter>
         <parameter name="n_blocks" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="n_block_bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -19730,7 +19792,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="gunichar" c:type="gunichar"/>
         </parameter>
         <parameter name="result_len" transfer-ownership="none">
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -19744,7 +19806,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="gunichar" c:type="gunichar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -19895,7 +19957,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -19921,7 +19983,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -19935,7 +19997,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -19985,7 +20047,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="max_len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -19998,7 +20060,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="mode" transfer-ownership="none">
           <type name="NormalizeMode" c:type="GNormalizeMode"/>
@@ -20052,7 +20114,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="c" transfer-ownership="none">
           <type name="gunichar" c:type="gunichar"/>
@@ -20068,7 +20130,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -20081,7 +20143,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="max" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -20097,7 +20159,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="n" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -20110,7 +20172,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="c" transfer-ownership="none">
           <type name="gunichar" c:type="gunichar"/>
@@ -20126,7 +20188,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -20139,7 +20201,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -20206,7 +20268,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="max_len" transfer-ownership="none">
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
         <parameter name="end" transfer-ownership="none">
           <type name="utf8" c:type="gchar**"/>
@@ -20302,7 +20364,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="Variant" c:type="GVariant**"/>
         </parameter>
         <parameter name="n_children" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>

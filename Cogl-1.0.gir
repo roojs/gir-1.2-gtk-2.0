@@ -149,13 +149,13 @@ will be used directly.</doc>
         </return-value>
         <parameters>
           <parameter name="offset" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="data" transfer-ownership="none">
             <type name="gpointer" c:type="void*"/>
           </parameter>
           <parameter name="size" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -219,8 +219,7 @@ will be used directly.</doc>
               glib:type-name="CoglBufferMapHint"
               glib:get-type="cogl_buffer_map_hint_get_type"
               c:type="CoglBufferMapHint">
-      <doc xml:whitespace="preserve">all the buffer's contents.
-Hints to Cogl about how you are planning to modify the data once it
+      <doc xml:whitespace="preserve">Hints to Cogl about how you are planning to modify the data once it
 is mapped.</doc>
       <member name="discard"
               value="1"
@@ -928,6 +927,14 @@ this enum should also be considered experimental.</doc>
               value="1048576"
               c:identifier="COGL_FEATURE_SHADERS_ARBFP"
               glib:nick="shaders-arbfp"/>
+      <member name="map_buffer_for_read"
+              value="2097152"
+              c:identifier="COGL_FEATURE_MAP_BUFFER_FOR_READ"
+              glib:nick="map-buffer-for-read"/>
+      <member name="map_buffer_for_write"
+              value="4194304"
+              c:identifier="COGL_FEATURE_MAP_BUFFER_FOR_WRITE"
+              glib:nick="map-buffer-for-write"/>
     </bitfield>
     <enumeration name="FogMode"
                  version="1.0"
@@ -977,7 +984,7 @@ actual arguments and return type may be different.</doc>
       </method>
       <method name="get_offset" c:identifier="cogl_indices_get_offset">
         <return-value transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </return-value>
       </method>
       <method name="set_offset" c:identifier="cogl_indices_set_offset">
@@ -986,7 +993,7 @@ actual arguments and return type may be different.</doc>
         </return-value>
         <parameters>
           <parameter name="offset" transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -1224,11 +1231,11 @@ used with the vertex buffer API.</doc>
       </method>
       <method name="get_user_program"
               c:identifier="cogl_material_get_user_program"
-              version="1.4"
-              introspectable="0">
-        <doc xml:whitespace="preserve">Queries what user program has been associated with the given</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">The current user program or %COGL_INVALID_HANDLE.</doc>
+              version="1.4">
+        <doc xml:whitespace="preserve">Queries what user program has been associated with the given
+or %COGL_INVALID_HANDLE.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">The current user program</doc>
           <type name="Handle" c:type="CoglHandle"/>
         </return-value>
       </method>
@@ -1790,6 +1797,7 @@ transformations. The default point size is 1.0.</doc>
         </return-value>
         <parameters>
           <parameter name="point_size" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the new point size.</doc>
             <type name="gfloat" c:type="float"/>
           </parameter>
         </parameters>
@@ -2427,9 +2435,10 @@ the X, Y and Z axis.</doc>
         <doc xml:whitespace="preserve">Finds the user data previously associated with @object using
 the given @key. If no user data has been associated with @object
 for the given @key this function returns NULL.
-the given @key; or NULL if no associated data is found.</doc>
-        <return-value>
-          <doc xml:whitespace="preserve">The user data previously associated with @object using</doc>
+with @object using the given @key; or %NULL if no associated
+data is found.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">The user data previously associated</doc>
           <type name="gpointer" c:type="void*"/>
         </return-value>
         <parameters>
@@ -2455,11 +2464,11 @@ the same @key but NULL for the @user_data.</doc>
             <type name="UserDataKey" c:type="CoglUserDataKey*"/>
           </parameter>
           <parameter name="user_data" transfer-ownership="none">
-            <doc xml:whitespace="preserve">The data to associate with the given object, or NULL to remove a previous association.</doc>
+            <doc xml:whitespace="preserve">The data to associate with the given object, or %NULL to remove a previous association.</doc>
             <type name="gpointer" c:type="void*"/>
           </parameter>
           <parameter name="destroy" transfer-ownership="none">
-            <doc xml:whitespace="preserve">A #CoglUserDataDestroyCallback to call if the object is destroyed or if the association is removed by later setting NULL data for the same key.</doc>
+            <doc xml:whitespace="preserve">A #CoglUserDataDestroyCallback to call if the object is destroyed or if the association is removed by later setting %NULL data for the same key.</doc>
             <type name="UserDataDestroyCallback"
                   c:type="CoglUserDataDestroyCallback"/>
           </parameter>
@@ -2646,7 +2655,7 @@ reference count of 1 so you should unref it with
 cogl_object_unref() if you no longer need it.
 Internally the path will share the data until one of the paths is
 modified so copying paths should be relatively cheap.</doc>
-        <return-value>
+        <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">a copy of the path in @path.</doc>
           <type name="Path" c:type="CoglPath*"/>
         </return-value>
@@ -5219,7 +5228,8 @@ address space using cogl_buffer_map().</doc>
       </return-value>
       <parameters>
         <parameter name="bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <doc xml:whitespace="preserve">The number of bytes to allocate for vertex attribute data.</doc>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -5265,7 +5275,7 @@ address space using cogl_buffer_map().</doc>
           <type name="IndexArray" c:type="CoglIndexArray*"/>
         </parameter>
         <parameter name="offset" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -5547,7 +5557,8 @@ first.</doc>
         <type name="Handle" c:type="CoglHandle"/>
       </return-value>
       <parameters>
-        <parameter name="handle" transfer-ownership="none">
+        <parameter name="material" transfer-ownership="none">
+          <doc xml:whitespace="preserve">a #CoglMaterial object.</doc>
           <type name="Handle" c:type="CoglHandle"/>
         </parameter>
       </parameters>
@@ -5562,7 +5573,8 @@ first.</doc>
         <type name="none" c:type="void"/>
       </return-value>
       <parameters>
-        <parameter name="handle" transfer-ownership="none">
+        <parameter name="material" transfer-ownership="none">
+          <doc xml:whitespace="preserve">a #CoglMaterial object.</doc>
           <type name="Handle" c:type="CoglHandle"/>
         </parameter>
       </parameters>
@@ -5603,7 +5615,9 @@ inverse matrix these are not considered in the comparison.</doc>
         </parameter>
       </parameters>
     </function>
-    <function name="object_unref" c:identifier="cogl_object_unref">
+    <function name="object_unref"
+              c:identifier="cogl_object_unref"
+              introspectable="0">
       <doc xml:whitespace="preserve">Drecreases the reference count of @object by 1; if the reference
 count reaches 0, the resources allocated by @object will be freed</doc>
       <return-value transfer-ownership="none">
@@ -6201,6 +6215,7 @@ transformations. The default point size is 1.0.</doc>
           <type name="Handle" c:type="CoglHandle"/>
         </parameter>
         <parameter name="point_size" transfer-ownership="none">
+          <doc xml:whitespace="preserve">the new point size.</doc>
           <type name="gfloat" c:type="float"/>
         </parameter>
       </parameters>
@@ -7584,7 +7599,10 @@ or in the future it may be an onscreen framebuffers too.</doc>
         </parameter>
       </parameters>
     </function>
-    <function name="set_path" c:identifier="cogl_set_path" version="1.4">
+    <function name="set_path"
+              c:identifier="cogl_set_path"
+              version="1.4"
+              introspectable="0">
       <doc xml:whitespace="preserve">Replaces the current path with @path. A reference is taken on the
 object so if you no longer need the path you should unref with
 cogl_object_unref().</doc>
@@ -8443,7 +8461,8 @@ immediately copied into the new buffer.</doc>
       </return-value>
       <parameters>
         <parameter name="bytes" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <doc xml:whitespace="preserve">The number of bytes to allocate for vertex attribute data.</doc>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="data" transfer-ownership="none">
           <doc xml:whitespace="preserve">An optional pointer to vertex data to upload immediately.</doc>
@@ -8524,11 +8543,11 @@ layout for a list of attribute values stored in @array.</doc>
         </parameter>
         <parameter name="stride" transfer-ownership="none">
           <doc xml:whitespace="preserve">The number of bytes to jump to get to the next attribute value for the next vertex. (Usually &lt;pre&gt;sizeof (MyVertex)&lt;/pre&gt;)</doc>
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="offset" transfer-ownership="none">
           <doc xml:whitespace="preserve">The byte offset from the start of @array for the first attribute value. (Usually &lt;pre&gt;offsetof (MyVertex, component0)&lt;/pre&gt;</doc>
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="components" transfer-ownership="none">
           <doc xml:whitespace="preserve">The number of components (e.g. 4 for an rgba color or 3 for and (x,y,z) position)</doc>
@@ -8785,6 +8804,7 @@ owned by Cogl and should not be modified or unref'd.</doc>
       </return-value>
       <parameters>
         <parameter name="indices" transfer-ownership="none">
+          <doc xml:whitespace="preserve">An indices handle</doc>
           <type name="Handle" c:type="CoglHandle"/>
         </parameter>
       </parameters>

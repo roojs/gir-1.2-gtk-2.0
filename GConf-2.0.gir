@@ -334,6 +334,39 @@ for all #GConfClient internal errors.</doc>
           </parameter>
         </parameters>
       </function>
+      <virtual-method name="error" invoker="error">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="error" transfer-ownership="none">
+            <type name="GLib.Error" c:type="GError*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="unreturned_error" invoker="unreturned_error">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="error" transfer-ownership="none">
+            <type name="GLib.Error" c:type="GError*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="value_changed" invoker="value_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="key" transfer-ownership="none">
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="value" transfer-ownership="none">
+            <type name="Value" c:type="GConfValue*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="add_dir" c:identifier="gconf_client_add_dir" throws="1">
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>

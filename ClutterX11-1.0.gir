@@ -115,6 +115,32 @@ contents of an X11 Pixmap inside a Clutter scene graph</doc>
           </parameter>
         </parameters>
       </constructor>
+      <virtual-method name="update_area" invoker="update_area" version="0.8">
+        <doc xml:whitespace="preserve">Performs the actual binding of texture to the current content of
+the pixmap. Can be called to update the texture if the pixmap
+content has changed.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="x" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the X coordinate of the area to update</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="y" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the Y coordinate of the area to update</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="width" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the width of the area to update</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="height" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the height of the area to update</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="set_automatic"
               c:identifier="clutter_x11_texture_pixmap_set_automatic"
               version="0.8">
@@ -271,7 +297,7 @@ content has changed.</doc>
         </parameters>
       </glib:signal>
       <glib:signal name="update-area" version="0.8">
-        <doc xml:whitespace="preserve">The ::hide signal is emitted to ask the texture to update its
+        <doc xml:whitespace="preserve">The ::update-area signal is emitted to ask the texture to update its
 content from its source pixmap.</doc>
         <return-value transfer-ownership="none">
           <type name="none"/>
@@ -310,15 +336,19 @@ content from its source pixmap.</doc>
               <type name="TexturePixmap" c:type="ClutterX11TexturePixmap*"/>
             </parameter>
             <parameter name="x" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the X coordinate of the area to update</doc>
               <type name="gint" c:type="gint"/>
             </parameter>
             <parameter name="y" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the Y coordinate of the area to update</doc>
               <type name="gint" c:type="gint"/>
             </parameter>
             <parameter name="width" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the width of the area to update</doc>
               <type name="gint" c:type="gint"/>
             </parameter>
             <parameter name="height" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the height of the area to update</doc>
               <type name="gint" c:type="gint"/>
             </parameter>
           </parameters>

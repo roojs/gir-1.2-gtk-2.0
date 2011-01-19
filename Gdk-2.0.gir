@@ -1517,6 +1517,16 @@ otherwise %NULL.</doc>
           <type name="Display" c:type="GdkDisplay*"/>
         </return-value>
       </function>
+      <virtual-method name="closed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="is_error" transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <virtual-method name="get_default_screen"
                       invoker="get_default_screen"
                       version="2.2"
@@ -1925,7 +1935,9 @@ user-configured setting.</doc>
       <method name="set_pointer_hooks"
               c:identifier="gdk_display_set_pointer_hooks"
               version="2.2"
-              introspectable="0">
+              introspectable="0"
+              deprecated="This function will go away in GTK 3 for lack of use cases."
+              deprecated-version="2.24">
         <doc xml:whitespace="preserve">This function allows for hooking into the operation
 of getting the current location of the pointer on a particular
 display. This is only useful for such low-level tools as an
@@ -2154,7 +2166,7 @@ system for @display is closed.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="is_error" transfer-ownership="none">
             <doc xml:whitespace="preserve">%TRUE if the display was closed due to an error</doc>
             <type name="gboolean"/>
           </parameter>
@@ -2255,6 +2267,16 @@ gdk_init(), or gdk_init_check() must have been called first.</doc>
           <type name="DisplayManager" c:type="GdkDisplayManager*"/>
         </return-value>
       </function>
+      <virtual-method name="display_opened">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="display" transfer-ownership="none">
+            <type name="Display" c:type="GdkDisplay*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="get_default_display"
               c:identifier="gdk_display_manager_get_default_display"
               version="2.2">
@@ -2301,7 +2323,7 @@ are done with it.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="display" transfer-ownership="none">
             <doc xml:whitespace="preserve">the opened display</doc>
             <type name="Display"/>
           </parameter>
@@ -2434,8 +2456,12 @@ are done with it.</doc>
            glib:type-name="GdkDragContext"
            glib:get-type="gdk_drag_context_get_type"
            glib:type-struct="DragContextClass">
-      <constructor name="new" c:identifier="gdk_drag_context_new">
-        <doc xml:whitespace="preserve">Creates a new #GdkDragContext.</doc>
+      <constructor name="new"
+                   c:identifier="gdk_drag_context_new"
+                   deprecated="This function is not useful, you always"
+                   deprecated-version="2.24">
+        <doc xml:whitespace="preserve">Creates a new #GdkDragContext.
+obtain drag contexts by gdk_drag_begin() or similar.</doc>
         <return-value transfer-ownership="full">
           <doc xml:whitespace="preserve">the newly created #GdkDragContext.</doc>
           <type name="DragContext" c:type="GdkDragContext*"/>
@@ -2449,6 +2475,24 @@ gdk_drag_context_suggested_action() returns GDK_ACTION_ASK.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the #GdkDragAction flags</doc>
           <type name="DragAction" c:type="GdkDragAction"/>
+        </return-value>
+      </method>
+      <method name="get_dest_window"
+              c:identifier="gdk_drag_context_get_dest_window"
+              version="2.24">
+        <doc xml:whitespace="preserve">Returns the destination windw for the DND operation.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">a #GdkWindow</doc>
+          <type name="Window" c:type="GdkWindow*"/>
+        </return-value>
+      </method>
+      <method name="get_protocol"
+              c:identifier="gdk_drag_context_get_protocol"
+              version="2.24">
+        <doc xml:whitespace="preserve">Returns the drag protocol thats used by this context.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">the drag protocol</doc>
+          <type name="DragProtocol" c:type="GdkDragProtocol"/>
         </return-value>
       </method>
       <method name="get_selected_action"
@@ -13489,6 +13533,21 @@ intend to render the image to.</doc>
           </parameter>
         </parameters>
       </function>
+      <virtual-method name="direction_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="keys_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="state_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <method name="add_virtual_modifiers"
               c:identifier="gdk_keymap_add_virtual_modifiers"
               version="2.20">
@@ -13522,7 +13581,9 @@ accelerators.</doc>
       </method>
       <method name="get_direction" c:identifier="gdk_keymap_get_direction">
         <doc xml:whitespace="preserve">Returns the direction of effective layout of the keymap.
-if it can determine the direction. %PANGO_DIRECTION_NEUTRAL 
+Note that passing %NULL for @keymap is deprecated and will stop
+to work in GTK+ 3.0. Use gdk_keymap_get_for_display() instead.
+if it can determine the direction. %PANGO_DIRECTION_NEUTRAL
 otherwise.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">%PANGO_DIRECTION_LTR or %PANGO_DIRECTION_RTL</doc>
@@ -13536,7 +13597,9 @@ The Nth #GdkKeymapKey in @keys is bound to the Nth
 keyval in @keyvals. Free the returned arrays with g_free().
 When a keycode is pressed by the user, the keyval from
 this list of entries is selected by considering the effective
-keyboard group and level. See gdk_keymap_translate_keyboard_state().</doc>
+keyboard group and level. See gdk_keymap_translate_keyboard_state().
+Note that passing %NULL for @keymap is deprecated and will stop
+to work in GTK+ 3.0. Use gdk_keymap_get_for_display() instead.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">%TRUE if there were any entries</doc>
           <type name="gboolean" c:type="gboolean"/>
@@ -13578,7 +13641,9 @@ convert a keyboard between Hebrew to English modes, for example.
 #GdkEventKey contains a %group field that indicates the active
 keyboard group. The level is computed from the modifier mask.
 The returned array should be freed
-with g_free().</doc>
+with g_free().
+Note that passing %NULL for @keymap is deprecated and will stop
+to work in GTK+ 3.0. Use gdk_keymap_get_for_display() instead.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">%TRUE if keys were found and returned</doc>
           <type name="gboolean" c:type="gboolean"/>
@@ -13608,7 +13673,9 @@ with g_free().</doc>
               c:identifier="gdk_keymap_have_bidi_layouts"
               version="2.12">
         <doc xml:whitespace="preserve">Determines if keyboard layouts for both right-to-left and left-to-right
-languages are in use.</doc>
+languages are in use.
+Note that passing %NULL for @keymap is deprecated and will stop
+to work in GTK+ 3.0. Use gdk_keymap_get_for_display() instead.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">%TRUE if there are layouts in both directions, %FALSE otherwise</doc>
           <type name="gboolean" c:type="gboolean"/>
@@ -13619,7 +13686,9 @@ languages are in use.</doc>
 If no keyval is bound to @key, returns 0. For normal user input,
 you want to use gdk_keymap_translate_keyboard_state() instead of
 this function, since the effective group/level may not be
-the same as the current keyboard state.</doc>
+the same as the current keyboard state.
+Note that passing %NULL for @keymap is deprecated and will stop
+to work in GTK+ 3.0. Use gdk_keymap_get_for_display() instead.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">a keyval, or 0 if none was mapped to the given @key</doc>
           <type name="guint" c:type="guint"/>
@@ -13702,7 +13771,9 @@ are returned only when actually found in @state. When you store
 accelerators, you should always store them with consumed modifiers
 removed. Store &lt;literal&gt;&amp;lt;Control&amp;gt;plus&lt;/literal&gt;,
 not &lt;literal&gt;&amp;lt;Control&amp;gt;&amp;lt;Shift&amp;gt;plus&lt;/literal&gt;,
-&lt;/para&gt;&lt;/note&gt;</doc>
+&lt;/para&gt;&lt;/note&gt;
+Note that passing %NULL for @keymap is deprecated and will stop
+to work in GTK+ 3.0. Use gdk_keymap_get_for_display() instead.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">%TRUE if there was a keyval bound to the keycode/state/group</doc>
           <type name="gboolean" c:type="gboolean"/>
@@ -15048,6 +15119,21 @@ though it is not always correct.</doc>
           <type name="gint" c:type="gint"/>
         </return-value>
       </function>
+      <virtual-method name="composited_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="monitors_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="size_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <method name="broadcast_client_message"
               c:identifier="gdk_screen_broadcast_client_message">
         <return-value transfer-ownership="none">
@@ -18592,19 +18678,19 @@ See also #GtkWindow::to-embedder.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="embedder-x" transfer-ownership="none">
             <doc xml:whitespace="preserve">x coordinate in the embedder window</doc>
             <type name="gdouble"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="embedder-y" transfer-ownership="none">
             <doc xml:whitespace="preserve">y coordinate in the embedder window</doc>
             <type name="gdouble"/>
           </parameter>
-          <parameter name="p1" transfer-ownership="none">
+          <parameter name="offscreen-x" transfer-ownership="none">
             <doc xml:whitespace="preserve">return location for the x coordinate in the offscreen window</doc>
             <type name="gpointer"/>
           </parameter>
-          <parameter name="p2" transfer-ownership="none">
+          <parameter name="offscreen-y" transfer-ownership="none">
             <doc xml:whitespace="preserve">return location for the y coordinate in the offscreen window</doc>
             <type name="gpointer"/>
           </parameter>
@@ -18620,11 +18706,11 @@ child at the given position.</doc>
           <type name="Window"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="x" transfer-ownership="none">
             <doc xml:whitespace="preserve">x coordinate in the window</doc>
             <type name="gdouble"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="y" transfer-ownership="none">
             <doc xml:whitespace="preserve">y coordinate in the window</doc>
             <type name="gdouble"/>
           </parameter>
@@ -18638,19 +18724,19 @@ See also #GtkWindow::from-embedder.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="offscreen-x" transfer-ownership="none">
             <doc xml:whitespace="preserve">x coordinate in the offscreen window</doc>
             <type name="gdouble"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="offscreen-y" transfer-ownership="none">
             <doc xml:whitespace="preserve">y coordinate in the offscreen window</doc>
             <type name="gdouble"/>
           </parameter>
-          <parameter name="p1" transfer-ownership="none">
+          <parameter name="embedder-x" transfer-ownership="none">
             <doc xml:whitespace="preserve">return location for the x coordinate in the embedder window</doc>
             <type name="gpointer"/>
           </parameter>
-          <parameter name="p2" transfer-ownership="none">
+          <parameter name="embedder-y" transfer-ownership="none">
             <doc xml:whitespace="preserve">return location for the y coordinate in the embedder window</doc>
             <type name="gpointer"/>
           </parameter>
@@ -19620,7 +19706,10 @@ meaningless at other times.</doc>
         </parameter>
       </parameters>
     </function>
-    <function name="drag_find_window" c:identifier="gdk_drag_find_window">
+    <function name="drag_find_window"
+              c:identifier="gdk_drag_find_window"
+              deprecated="Use gdk_drag_find_window_for_screen() instead."
+              deprecated-version="2.24">
       <doc xml:whitespace="preserve">Finds the destination window and DND protocol to use at the
 given pointer position.
 This function is called by the drag source to obtain the</doc>
@@ -19706,7 +19795,10 @@ This function is called by the drag source to obtain the</doc>
         </parameter>
       </parameters>
     </function>
-    <function name="drag_get_protocol" c:identifier="gdk_drag_get_protocol">
+    <function name="drag_get_protocol"
+              c:identifier="gdk_drag_get_protocol"
+              deprecated="Use gdk_drag_get_protocol_for_display() instead"
+              deprecated-version="2.24">
       <doc xml:whitespace="preserve">Finds out the DND protocol supported by a window.
 the drop should happen. This may be @xid or the id of a proxy
 window, or zero if @xid doesn't support Drag and Drop.</doc>
@@ -22921,7 +23013,9 @@ global user-configured setting.</doc>
     </function>
     <function name="set_pointer_hooks"
               c:identifier="gdk_set_pointer_hooks"
-              introspectable="0">
+              introspectable="0"
+              deprecated="This function will go away in GTK 3 for lack of use cases."
+              deprecated-version="2.24">
       <doc xml:whitespace="preserve">This function allows for hooking into the operation
 of getting the current location of the pointer. This
 is only useful for such low-level tools as an
@@ -23015,13 +23109,17 @@ in @value, %FALSE otherwise.</doc>
     <function name="spawn_command_line_on_screen"
               c:identifier="gdk_spawn_command_line_on_screen"
               version="2.4"
+              deprecated="This function is being removed in 3.0. Use"
+              deprecated-version="2.24"
               throws="1">
       <doc xml:whitespace="preserve">Like g_spawn_command_line_async(), except the child process is
 spawned in such an environment that on calling gdk_display_open()
 it would be returned a #GdkDisplay with @screen as the default
 screen.
 This is useful for applications which wish to launch an application
-on a specific screen.</doc>
+on a specific screen.
+either g_spawn_command_line_sync(), g_spawn_command_line_async() or 
+#GdkAppLaunchContext instead.</doc>
       <return-value transfer-ownership="none">
         <doc xml:whitespace="preserve">%TRUE on success, %FALSE if error is set.</doc>
         <type name="gboolean" c:type="gboolean"/>
@@ -23041,12 +23139,15 @@ on a specific screen.</doc>
               c:identifier="gdk_spawn_on_screen"
               version="2.4"
               introspectable="0"
+              deprecated="This function is being removed in 3.0. Use"
+              deprecated-version="2.24"
               throws="1">
       <doc xml:whitespace="preserve">Like g_spawn_async(), except the child process is spawned in such
 an environment that on calling gdk_display_open() it would be
 returned a #GdkDisplay with @screen as the default screen.
 This is useful for applications which wish to launch an application
-on a specific screen.</doc>
+on a specific screen.
+either g_spawn_sync(), g_spawn_async(), or #GdkAppLaunchContext instead.</doc>
       <return-value transfer-ownership="none">
         <doc xml:whitespace="preserve">%TRUE on success, %FALSE if error is set</doc>
         <type name="gboolean" c:type="gboolean"/>
@@ -23090,13 +23191,16 @@ on a specific screen.</doc>
               c:identifier="gdk_spawn_on_screen_with_pipes"
               version="2.4"
               introspectable="0"
+              deprecated="This function is being removed in 3.0. Use"
+              deprecated-version="2.24"
               throws="1">
       <doc xml:whitespace="preserve">Like g_spawn_async_with_pipes(), except the child process is
 spawned in such an environment that on calling gdk_display_open()
 it would be returned a #GdkDisplay with @screen as the default
 screen.
 This is useful for applications which wish to launch an application
-on a specific screen.</doc>
+on a specific screen.
+either g_spawn_async_with_pipes() or #GdkAppLaunchContext instead.</doc>
       <return-value transfer-ownership="none">
         <doc xml:whitespace="preserve">%TRUE on success, %FALSE if an error was set</doc>
         <type name="gboolean" c:type="gboolean"/>
@@ -24182,7 +24286,8 @@ was already known to GDK, a new reference to the existing
 For example in the X backend, a native window handle is an Xlib
 &lt;type&gt;XID&lt;/type&gt;.
 %NULL if the window has been destroyed. The wrapper will be
-newly created, if one doesn't exist already.</doc>
+newly created, if one doesn't exist already.
+equivalent backend-specific API instead</doc>
       <return-value>
         <doc xml:whitespace="preserve">a #GdkWindow wrapper for the native window or</doc>
         <type name="Window" c:type="GdkWindow*"/>
@@ -24218,11 +24323,14 @@ its elements need not be freed.</doc>
     </function>
     <function name="window_lookup"
               c:identifier="gdk_window_lookup"
-              introspectable="0">
+              introspectable="0"
+              deprecated="Use gdk_x11_window_lookup_for_display() or equivalent"
+              deprecated-version="2.24">
       <doc xml:whitespace="preserve">Looks up the #GdkWindow that wraps the given native window handle. 
 For example in the X backend, a native window handle is an Xlib
 &lt;type&gt;XID&lt;/type&gt;.
-or %NULL if there is none.</doc>
+or %NULL if there is none.
+backend-specific functionality instead</doc>
       <return-value>
         <doc xml:whitespace="preserve">the #GdkWindow wrapper for the native window,</doc>
         <type name="Window" c:type="GdkWindow*"/>

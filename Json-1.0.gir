@@ -760,7 +760,7 @@ Use g_free() to free the allocated resources.</doc>
                      caller-allocates="0"
                      transfer-ownership="full">
             <doc xml:whitespace="preserve">return location for the length of the returned buffer, or %NULL</doc>
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -1637,6 +1637,82 @@ to release all the memory it allocates.</doc>
           <type name="GLib.Quark" c:type="GQuark"/>
         </return-value>
       </function>
+      <virtual-method name="array_element">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="array" transfer-ownership="none">
+            <type name="Array" c:type="JsonArray*"/>
+          </parameter>
+          <parameter name="index_" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="array_end">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="array" transfer-ownership="none">
+            <type name="Array" c:type="JsonArray*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="array_start">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="error">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="error" transfer-ownership="none">
+            <type name="GLib.Error" c:type="GError*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="object_end">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="object" transfer-ownership="none">
+            <type name="Object" c:type="JsonObject*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="object_member">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="object" transfer-ownership="none">
+            <type name="Object" c:type="JsonObject*"/>
+          </parameter>
+          <parameter name="member_name" transfer-ownership="none">
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="object_start">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="parse_end">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="parse_start">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <method name="get_current_line"
               c:identifier="json_parser_get_current_line">
         <doc xml:whitespace="preserve">Retrieves the line currently parsed, starting from 1.
@@ -1715,7 +1791,7 @@ of error, @error is set accordingly and %FALSE is returned</doc>
           </parameter>
           <parameter name="length" transfer-ownership="none">
             <doc xml:whitespace="preserve">the length of the buffer, or -1</doc>
-            <type name="glong" c:type="gssize"/>
+            <type name="gssize" c:type="gssize"/>
           </parameter>
         </parameters>
       </method>
@@ -1832,11 +1908,11 @@ array and element index are passed to the signal handlers.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="array" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #JsonArray</doc>
             <type name="Array"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="index_" transfer-ownership="none">
             <doc xml:whitespace="preserve">the index of the newly parsed element</doc>
             <type name="gint"/>
           </parameter>
@@ -1849,7 +1925,7 @@ has successfully parsed an entire #JsonArray</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="array" transfer-ownership="none">
             <doc xml:whitespace="preserve">the parsed #JsonArray</doc>
             <type name="Array"/>
           </parameter>
@@ -1869,7 +1945,7 @@ an error in a JSON stream.</doc>
           <type name="none"/>
         </return-value>
         <parameters>
-          <parameter name="object" transfer-ownership="none">
+          <parameter name="error" transfer-ownership="none">
             <doc xml:whitespace="preserve">a pointer to the #GError</doc>
             <type name="gpointer"/>
           </parameter>
@@ -1900,7 +1976,7 @@ object and member are passed to the signal handlers.</doc>
             <doc xml:whitespace="preserve">a #JsonObject</doc>
             <type name="Object"/>
           </parameter>
-          <parameter name="p0" transfer-ownership="none">
+          <parameter name="member_name" transfer-ownership="none">
             <doc xml:whitespace="preserve">the name of the newly parsed member</doc>
             <type name="utf8"/>
           </parameter>
@@ -2891,7 +2967,7 @@ will be used to translate the compatible JSON native types.</doc>
         </parameter>
         <parameter name="length" transfer-ownership="none">
           <doc xml:whitespace="preserve">length of the data stream</doc>
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -2941,7 +3017,7 @@ will be used to translate the compatible JSON native types.</doc>
         </parameter>
         <parameter name="length" transfer-ownership="none">
           <doc xml:whitespace="preserve">length of the data stream, or -1 if it is NUL-terminated</doc>
-          <type name="glong" c:type="gssize"/>
+          <type name="gssize" c:type="gssize"/>
         </parameter>
       </parameters>
     </function>
@@ -2987,7 +3063,7 @@ JSON native types.</doc>
                    caller-allocates="0"
                    transfer-ownership="full">
           <doc xml:whitespace="preserve">return value for the length of the buffer, or %NULL</doc>
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>
@@ -3013,7 +3089,7 @@ translate the compatible types into JSON native types.</doc>
                    caller-allocates="0"
                    transfer-ownership="full">
           <doc xml:whitespace="preserve">return value for the length of the buffer, or %NULL</doc>
-          <type name="gulong" c:type="gsize*"/>
+          <type name="gsize" c:type="gsize*"/>
         </parameter>
       </parameters>
     </function>

@@ -1736,7 +1736,7 @@ situations you may need to cast it to #guchar or another type.</doc>
         <type name="gpointer"/>
       </field>
       <field name="length" writable="1">
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </field>
       <constructor name="new"
                    c:identifier="soup_buffer_new"
@@ -1757,7 +1757,7 @@ situations you may need to cast it to #guchar or another type.</doc>
           </parameter>
           <parameter name="length" transfer-ownership="none">
             <doc xml:whitespace="preserve">length of @data</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </constructor>
@@ -1782,7 +1782,7 @@ convenience and simplifying language bindings.</doc>
           </parameter>
           <parameter name="length" transfer-ownership="none">
             <doc xml:whitespace="preserve">length of @data</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </constructor>
@@ -1811,7 +1811,7 @@ would be a pointer to one of the object's fields).</doc>
           </parameter>
           <parameter name="length" transfer-ownership="none">
             <doc xml:whitespace="preserve">length of @data</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="owner" transfer-ownership="none">
             <doc xml:whitespace="preserve">pointer to an object that owns @data</doc>
@@ -1869,7 +1869,7 @@ of #SoupBuffer.</doc>
                      caller-allocates="0"
                      transfer-ownership="full">
             <doc xml:whitespace="preserve">the length of the buffer data is stored here</doc>
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
       </method>
@@ -1891,11 +1891,11 @@ any data, but will instead simply reference the same data as</doc>
         <parameters>
           <parameter name="offset" transfer-ownership="none">
             <doc xml:whitespace="preserve">offset within @parent to start at</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="length" transfer-ownership="none">
             <doc xml:whitespace="preserve">number of bytes to copy from @parent</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -2035,7 +2035,7 @@ becomes possible to allocate a new buffer.</doc>
         </parameter>
         <parameter name="max_len" transfer-ownership="none">
           <doc xml:whitespace="preserve">the maximum length that will be read, or 0.</doc>
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
         <parameter name="user_data" transfer-ownership="none" closure="2">
           <doc xml:whitespace="preserve">the data passed to soup_message_set_chunk_allocator()</doc>
@@ -2229,7 +2229,7 @@ associated with.</doc>
       </constructor>
       <virtual-method name="get_buffer_size">
         <return-value transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </return-value>
       </virtual-method>
       <virtual-method name="sniff" invoker="sniff">
@@ -2311,7 +2311,7 @@ associated with.</doc>
       <field name="get_buffer_size">
         <callback name="get_buffer_size">
           <return-value transfer-ownership="none">
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </return-value>
           <parameters>
             <parameter name="sniffer" transfer-ownership="none">
@@ -2725,6 +2725,19 @@ not support persistent storage of cookies; use a subclass for that.</doc>
           <type name="CookieJar" c:type="SoupCookieJar*"/>
         </return-value>
       </constructor>
+      <virtual-method name="changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="old_cookie" transfer-ownership="none">
+            <type name="Cookie" c:type="SoupCookie*"/>
+          </parameter>
+          <parameter name="new_cookie" transfer-ownership="none">
+            <type name="Cookie" c:type="SoupCookie*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <virtual-method name="save" invoker="save">
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3405,8 +3418,14 @@ This enum may be extended with more values in future releases.</doc>
                  glib:get-type="soup_http_version_get_type"
                  c:type="SoupHTTPVersion">
       <doc xml:whitespace="preserve">Indicates the HTTP protocol version being used.</doc>
-      <member name="0" value="0" c:identifier="SOUP_HTTP_1_0" glib:nick="0"/>
-      <member name="1" value="1" c:identifier="SOUP_HTTP_1_1" glib:nick="1"/>
+      <member name="http_1_0"
+              value="0"
+              c:identifier="SOUP_HTTP_1_0"
+              glib:nick="http-1-0"/>
+      <member name="http_1_1"
+              value="1"
+              c:identifier="SOUP_HTTP_1_1"
+              glib:nick="http-1-1"/>
     </enumeration>
     <enumeration name="KnownStatusCode"
                  glib:type-name="SoupKnownStatusCode"
@@ -4086,6 +4105,82 @@ be parsed).</doc>
           </parameter>
         </parameters>
       </constructor>
+      <virtual-method name="finished" invoker="finished">
+        <doc xml:whitespace="preserve">Emits the %finished signal, indicating that @msg has been completely
+processed.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="got_body" invoker="got_body">
+        <doc xml:whitespace="preserve">Emits the %got_body signal, indicating that the IO layer finished
+reading the body for @msg.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="got_chunk" invoker="got_chunk">
+        <doc xml:whitespace="preserve">Emits the %got_chunk signal, indicating that the IO layer finished
+reading a chunk of @msg's body.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="chunk" transfer-ownership="none">
+            <doc xml:whitespace="preserve">the newly-read chunk</doc>
+            <type name="Buffer" c:type="SoupBuffer*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="got_headers" invoker="got_headers">
+        <doc xml:whitespace="preserve">Emits the %got_headers signal, indicating that the IO layer
+finished reading the (non-informational) headers for @msg.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="got_informational" invoker="got_informational">
+        <doc xml:whitespace="preserve">Emits the %got_informational signal, indicating that the IO layer
+read a complete informational (1xx) response for @msg.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="restarted" invoker="restarted">
+        <doc xml:whitespace="preserve">Emits the %restarted signal, indicating that @msg should be
+requeued.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="wrote_body" invoker="wrote_body">
+        <doc xml:whitespace="preserve">Emits the %wrote_body signal, indicating that the IO layer finished
+writing the body for @msg.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="wrote_chunk" invoker="wrote_chunk">
+        <doc xml:whitespace="preserve">Emits the %wrote_chunk signal, indicating that the IO layer
+finished writing a chunk of @msg's body.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="wrote_headers" invoker="wrote_headers">
+        <doc xml:whitespace="preserve">Emits the %wrote_headers signal, indicating that the IO layer
+finished writing the (non-informational) headers for @msg.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="wrote_informational" invoker="wrote_informational">
+        <doc xml:whitespace="preserve">Emits the %wrote_informational signal, indicating that the IO layer
+finished writing an informational (1xx) response for @msg.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <method name="add_header_handler"
               c:identifier="soup_message_add_header_handler"
               introspectable="0">
@@ -4436,7 +4531,7 @@ functionality from being used.</doc>
           </parameter>
           <parameter name="req_length" transfer-ownership="none">
             <doc xml:whitespace="preserve">the byte length of @req_body.</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -4464,7 +4559,7 @@ functionality from being used.</doc>
           </parameter>
           <parameter name="resp_length" transfer-ownership="none">
             <doc xml:whitespace="preserve">the byte length of @resp_body.</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -4756,7 +4851,7 @@ will not normally need to call it yourself.</doc>
           </parameter>
           <parameter name="length" transfer-ownership="none">
             <doc xml:whitespace="preserve">length of @data</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -4795,7 +4890,7 @@ convenience and simplifying language bindings.</doc>
           </parameter>
           <parameter name="length" transfer-ownership="none">
             <doc xml:whitespace="preserve">length of @data</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
         </parameters>
       </method>
@@ -5024,6 +5119,7 @@ documented here.</doc>
               <type name="Message" c:type="SoupMessage*"/>
             </parameter>
             <parameter name="chunk" transfer-ownership="none">
+              <doc xml:whitespace="preserve">the newly-read chunk</doc>
               <type name="Buffer" c:type="SoupBuffer*"/>
             </parameter>
           </parameters>
@@ -6589,6 +6685,58 @@ range", referring to the last -@start bytes of the resource body.
           </parameter>
         </parameters>
       </constructor>
+      <virtual-method name="request_aborted">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="msg" transfer-ownership="none">
+            <type name="Message" c:type="SoupMessage*"/>
+          </parameter>
+          <parameter name="client" transfer-ownership="none">
+            <type name="ClientContext" c:type="SoupClientContext*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="request_finished">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="msg" transfer-ownership="none">
+            <type name="Message" c:type="SoupMessage*"/>
+          </parameter>
+          <parameter name="client" transfer-ownership="none">
+            <type name="ClientContext" c:type="SoupClientContext*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="request_read">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="msg" transfer-ownership="none">
+            <type name="Message" c:type="SoupMessage*"/>
+          </parameter>
+          <parameter name="client" transfer-ownership="none">
+            <type name="ClientContext" c:type="SoupClientContext*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="request_started">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="msg" transfer-ownership="none">
+            <type name="Message" c:type="SoupMessage*"/>
+          </parameter>
+          <parameter name="client" transfer-ownership="none">
+            <type name="ClientContext" c:type="SoupClientContext*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <method name="add_auth_domain"
               c:identifier="soup_server_add_auth_domain">
         <doc xml:whitespace="preserve">Adds an authentication domain to @server. Each auth domain will
@@ -7071,6 +7219,22 @@ coming.</doc>
           </parameter>
         </parameters>
       </virtual-method>
+      <virtual-method name="authenticate">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="msg" transfer-ownership="none">
+            <type name="Message" c:type="SoupMessage*"/>
+          </parameter>
+          <parameter name="auth" transfer-ownership="none">
+            <type name="Auth" c:type="SoupAuth*"/>
+          </parameter>
+          <parameter name="retrying" transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <virtual-method name="cancel_message" invoker="cancel_message">
         <doc xml:whitespace="preserve">Causes @session to immediately finish processing @msg (regardless
 of its current state) with a final status_code of @status_code. You
@@ -7131,6 +7295,19 @@ been requeued, @msg will be unreffed.</doc>
                      closure="2">
             <doc xml:whitespace="preserve">a pointer passed to @callback.</doc>
             <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="request_started">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="msg" transfer-ownership="none">
+            <type name="Message" c:type="SoupMessage*"/>
+          </parameter>
+          <parameter name="socket" transfer-ownership="none">
+            <type name="Socket" c:type="SoupSocket*"/>
           </parameter>
         </parameters>
       </virtual-method>
@@ -8230,6 +8407,31 @@ qv.</doc>
           </parameter>
         </parameters>
       </constructor>
+      <virtual-method name="disconnected">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="new_connection">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter transfer-ownership="none">
+            <type name="Socket" c:type="SoupSocket*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="readable">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="writable">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <method name="connect_async" c:identifier="soup_socket_connect_async">
         <doc xml:whitespace="preserve">Begins asynchronously connecting to @sock's remote address. The
 socket will call @callback when it succeeds or fails (but not
@@ -8355,11 +8557,11 @@ also be set).</doc>
           </parameter>
           <parameter name="len" transfer-ownership="none">
             <doc xml:whitespace="preserve">size of @buffer in bytes</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="nread" transfer-ownership="none">
             <doc xml:whitespace="preserve">on return, the number of bytes read into @buffer</doc>
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
           <parameter name="cancellable"
                      transfer-ownership="none"
@@ -8393,7 +8595,7 @@ longer than @boundary_len if you want to make any progress at all.</doc>
           </parameter>
           <parameter name="len" transfer-ownership="none">
             <doc xml:whitespace="preserve">size of @buffer in bytes</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="boundary" transfer-ownership="none">
             <doc xml:whitespace="preserve">boundary to read until</doc>
@@ -8401,11 +8603,11 @@ longer than @boundary_len if you want to make any progress at all.</doc>
           </parameter>
           <parameter name="boundary_len" transfer-ownership="none">
             <doc xml:whitespace="preserve">length of @boundary in bytes</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="nread" transfer-ownership="none">
             <doc xml:whitespace="preserve">on return, the number of bytes read into @buffer</doc>
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
           <parameter name="got_boundary" transfer-ownership="none">
             <doc xml:whitespace="preserve">on return, whether or not the data in @buffer ends with the boundary string</doc>
@@ -8478,11 +8680,11 @@ return value is %SOUP_SOCKET_ERROR.)</doc>
           </parameter>
           <parameter name="len" transfer-ownership="none">
             <doc xml:whitespace="preserve">size of @buffer, in bytes</doc>
-            <type name="gulong" c:type="gsize"/>
+            <type name="gsize" c:type="gsize"/>
           </parameter>
           <parameter name="nwrote" transfer-ownership="none">
             <doc xml:whitespace="preserve">on return, number of bytes written</doc>
-            <type name="gulong" c:type="gsize*"/>
+            <type name="gsize" c:type="gsize*"/>
           </parameter>
           <parameter name="cancellable"
                      transfer-ownership="none"

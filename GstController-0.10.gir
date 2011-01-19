@@ -18,7 +18,7 @@ and/or use gtk-doc annotations.  -->
   <c:include name="gst/controller/gstlfocontrolsource.h"/>
   <namespace name="GstController"
              version="0.10"
-             shared-library="libgstcontroller-0.10.so.0"
+             shared-library="libgstreamer-0.10.so.0,libgstcontroller-0.10.so.0"
              c:identifier-prefixes="Gst"
              c:symbol-prefixes="gst">
     <class name="ControlSource"
@@ -92,10 +92,10 @@ The type of the values in the array is the same as the property's type.</doc>
         <type name="ControlSourceGetValueArray"
               c:type="GstControlSourceGetValueArray"/>
       </field>
-      <field name="bound">
+      <field name="bound" readable="0" private="1">
         <type name="gboolean" c:type="gboolean"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="4">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -124,7 +124,7 @@ The type of the values in the array is the same as the property's type.</doc>
       <field name="bind">
         <type name="ControlSourceBind" c:type="GstControlSourceBind"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="4">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -605,10 +605,10 @@ by controller), %TRUE otherwise</doc>
       <field name="object">
         <type name="GObject.Object" c:type="GObject*"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="ControllerPrivate" c:type="GstControllerPrivate*"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="3">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -620,7 +620,7 @@ by controller), %TRUE otherwise</doc>
       <field name="parent_class">
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="4">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -771,7 +771,7 @@ time.</doc>
       <field name="parent_class">
         <type name="ControlSourceClass" c:type="GstControlSourceClass"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="4">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -833,7 +833,7 @@ time.</doc>
       <field name="parent_class">
         <type name="ControlSourceClass" c:type="GstControlSourceClass"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="4">
           <type name="gpointer" c:type="gpointer"/>
         </array>

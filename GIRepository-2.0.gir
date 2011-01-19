@@ -87,6 +87,72 @@ and/or use gtk-doc annotations.  -->
       <doc xml:whitespace="preserve">Represents a enum value of a #GIEnumInfo.</doc>
       <type name="BaseInfo" c:type="GIBaseInfo"/>
     </alias>
+    <union name="Argument" c:type="GIArgument">
+      <doc xml:whitespace="preserve">Stores a argument of varying type</doc>
+      <field name="v_boolean" writable="1">
+        <type name="gboolean" c:type="gboolean"/>
+      </field>
+      <field name="v_int8" writable="1">
+        <type name="gint8" c:type="gint8"/>
+      </field>
+      <field name="v_uint8" writable="1">
+        <type name="guint8" c:type="guint8"/>
+      </field>
+      <field name="v_int16" writable="1">
+        <type name="gint16" c:type="gint16"/>
+      </field>
+      <field name="v_uint16" writable="1">
+        <type name="guint16" c:type="guint16"/>
+      </field>
+      <field name="v_int32" writable="1">
+        <type name="gint32" c:type="gint32"/>
+      </field>
+      <field name="v_uint32" writable="1">
+        <type name="guint32" c:type="guint32"/>
+      </field>
+      <field name="v_int64" writable="1">
+        <type name="gint64" c:type="gint64"/>
+      </field>
+      <field name="v_uint64" writable="1">
+        <type name="guint64" c:type="guint64"/>
+      </field>
+      <field name="v_float" writable="1">
+        <type name="gfloat" c:type="gfloat"/>
+      </field>
+      <field name="v_double" writable="1">
+        <type name="gdouble" c:type="gdouble"/>
+      </field>
+      <field name="v_short" writable="1">
+        <type name="gshort" c:type="gshort"/>
+      </field>
+      <field name="v_ushort" writable="1">
+        <type name="gushort" c:type="gushort"/>
+      </field>
+      <field name="v_int" writable="1">
+        <type name="gint" c:type="gint"/>
+      </field>
+      <field name="v_uint" writable="1">
+        <type name="guint" c:type="guint"/>
+      </field>
+      <field name="v_long" writable="1">
+        <type name="glong" c:type="glong"/>
+      </field>
+      <field name="v_ulong" writable="1">
+        <type name="gulong" c:type="gulong"/>
+      </field>
+      <field name="v_ssize" writable="1">
+        <type name="gssize" c:type="gssize"/>
+      </field>
+      <field name="v_size" writable="1">
+        <type name="gsize" c:type="gsize"/>
+      </field>
+      <field name="v_string" writable="1">
+        <type name="utf8" c:type="gchar*"/>
+      </field>
+      <field name="v_pointer" writable="1">
+        <type name="gpointer" c:type="gpointer"/>
+      </field>
+    </union>
     <enumeration name="ArrayType" c:type="GIArrayType">
       <doc xml:whitespace="preserve">The type of array in a #GITypeInfo.</doc>
       <member name="c" value="0" c:identifier="GI_ARRAY_TYPE_C"/>
@@ -541,13 +607,12 @@ entries.</doc>
         </parameters>
       </method>
       <method name="get_loaded_namespaces"
-              c:identifier="g_irepository_get_loaded_namespaces">
+              c:identifier="g_irepository_get_loaded_namespaces"
+              introspectable="0">
         <doc xml:whitespace="preserve">Return the list of currently loaded namespaces.</doc>
-        <return-value transfer-ownership="full">
-          <doc xml:whitespace="preserve">List of namespaces</doc>
-          <array c:type="gchar**">
-            <type name="utf8"/>
-          </array>
+        <return-value>
+          <doc xml:whitespace="preserve">(transfer full): List of namespaces</doc>
+          <type name="utf8"/>
         </return-value>
       </method>
       <method name="get_n_infos" c:identifier="g_irepository_get_n_infos">
@@ -688,7 +753,8 @@ not specified, the latest will be used.</doc>
             <doc xml:whitespace="preserve">Private directory where to find the requested typelib</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
-          <parameter name="namespace" transfer-ownership="none">
+          <parameter name="namespace_" transfer-ownership="none">
+            <doc xml:whitespace="preserve">GI namespace to use, e.g. "Gtk"</doc>
             <type name="utf8" c:type="gchar*"/>
           </parameter>
           <parameter name="version" transfer-ownership="none" allow-none="1">
@@ -827,71 +893,6 @@ free them.</doc>
               value="4"
               c:identifier="GI_VFUNC_MUST_NOT_OVERRIDE"/>
     </bitfield>
-    <union name="_Argument" c:type="_GIArgument">
-      <field name="v_boolean" writable="1">
-        <type name="gboolean" c:type="gboolean"/>
-      </field>
-      <field name="v_int8" writable="1">
-        <type name="gint8" c:type="gint8"/>
-      </field>
-      <field name="v_uint8" writable="1">
-        <type name="guint8" c:type="guint8"/>
-      </field>
-      <field name="v_int16" writable="1">
-        <type name="gint16" c:type="gint16"/>
-      </field>
-      <field name="v_uint16" writable="1">
-        <type name="guint16" c:type="guint16"/>
-      </field>
-      <field name="v_int32" writable="1">
-        <type name="gint32" c:type="gint32"/>
-      </field>
-      <field name="v_uint32" writable="1">
-        <type name="guint32" c:type="guint32"/>
-      </field>
-      <field name="v_int64" writable="1">
-        <type name="gint64" c:type="gint64"/>
-      </field>
-      <field name="v_uint64" writable="1">
-        <type name="guint64" c:type="guint64"/>
-      </field>
-      <field name="v_float" writable="1">
-        <type name="gfloat" c:type="gfloat"/>
-      </field>
-      <field name="v_double" writable="1">
-        <type name="gdouble" c:type="gdouble"/>
-      </field>
-      <field name="v_short" writable="1">
-        <type name="gshort" c:type="gshort"/>
-      </field>
-      <field name="v_ushort" writable="1">
-        <type name="gushort" c:type="gushort"/>
-      </field>
-      <field name="v_int" writable="1">
-        <type name="gint" c:type="gint"/>
-      </field>
-      <field name="v_uint" writable="1">
-        <type name="guint" c:type="guint"/>
-      </field>
-      <field name="v_long" writable="1">
-        <type name="glong" c:type="glong"/>
-      </field>
-      <field name="v_ulong" writable="1">
-        <type name="gulong" c:type="gulong"/>
-      </field>
-      <field name="v_ssize" writable="1">
-        <type name="glong" c:type="gssize"/>
-      </field>
-      <field name="v_size" writable="1">
-        <type name="gulong" c:type="gsize"/>
-      </field>
-      <field name="v_string" writable="1">
-        <type name="utf8" c:type="gchar*"/>
-      </field>
-      <field name="v_pointer" writable="1">
-        <type name="gpointer" c:type="gpointer"/>
-      </field>
-    </union>
     <record name="_BaseInfoStub" c:type="_GIBaseInfoStub">
       <field name="dummy1" readable="0" private="1">
         <type name="gint32" c:type="gint32"/>
@@ -1304,8 +1305,7 @@ g_base_info_unref() when done.</doc>
       </parameters>
     </function>
     <function name="constant_info_get_value"
-              c:identifier="g_constant_info_get_value"
-              introspectable="0">
+              c:identifier="g_constant_info_get_value">
       <doc xml:whitespace="preserve">Obtain the value associated with the #GIConstantInfo and store it in the
 The size of the constant value stored in @argument will be returned.</doc>
       <return-value transfer-ownership="none">
@@ -1319,10 +1319,10 @@ The size of the constant value stored in @argument will be returned.</doc>
         </parameter>
         <parameter name="value"
                    direction="out"
-                   caller-allocates="0"
-                   transfer-ownership="full">
+                   caller-allocates="1"
+                   transfer-ownership="none">
           <doc xml:whitespace="preserve">an argument</doc>
-          <type c:type="GIArgument*"/>
+          <type name="Argument" c:type="GIArgument*"/>
         </parameter>
       </parameters>
     </function>
@@ -1427,7 +1427,7 @@ even if that is actually readable.</doc>
         </parameter>
         <parameter name="value" transfer-ownership="none">
           <doc xml:whitespace="preserve">a #GIArgument into which to store the value retrieved</doc>
-          <type c:type="GIArgument*"/>
+          <type name="Argument" c:type="GIArgument*"/>
         </parameter>
       </parameters>
     </function>
@@ -1513,7 +1513,7 @@ with a type such as 'char *' must be set with a setter function.</doc>
         </parameter>
         <parameter name="value" transfer-ownership="none">
           <doc xml:whitespace="preserve">a #GIArgument holding the value to store</doc>
-          <type c:type="GIArgument*"/>
+          <type name="Argument" c:type="GIArgument*"/>
         </parameter>
       </parameters>
     </function>
@@ -1604,7 +1604,7 @@ error occurred.</doc>
         </parameter>
         <parameter name="in_args" transfer-ownership="none">
           <doc xml:whitespace="preserve">an array of #GIArgument&lt;!-- --&gt;s, one for each in parameter of @info. If there are no in parameter, @in_args can be %NULL</doc>
-          <type c:type="GIArgument*"/>
+          <type name="Argument" c:type="GIArgument*"/>
         </parameter>
         <parameter name="n_in_args" transfer-ownership="none">
           <doc xml:whitespace="preserve">the length of the @in_args array</doc>
@@ -1612,7 +1612,7 @@ error occurred.</doc>
         </parameter>
         <parameter name="out_args" transfer-ownership="none">
           <doc xml:whitespace="preserve">an array of #GIArgument&lt;!-- --&gt;s, one for each out parameter of @info. If there are no out parameters, @out_args may be %NULL</doc>
-          <type c:type="GIArgument*"/>
+          <type name="Argument" c:type="GIArgument*"/>
         </parameter>
         <parameter name="n_out_args" transfer-ownership="none">
           <doc xml:whitespace="preserve">the length of the @out_args array</doc>
@@ -1620,7 +1620,7 @@ error occurred.</doc>
         </parameter>
         <parameter name="return_value" transfer-ownership="none">
           <doc xml:whitespace="preserve">return location for the return value of the function. If the function returns void, @return_value may be %NULL</doc>
-          <type c:type="GIArgument*"/>
+          <type name="Argument" c:type="GIArgument*"/>
         </parameter>
       </parameters>
     </function>
@@ -2645,7 +2645,7 @@ when done.</doc>
       <doc xml:whitespace="preserve">Obtain the required alignment of the structure.</doc>
       <return-value transfer-ownership="none">
         <doc xml:whitespace="preserve">required alignment in bytes</doc>
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </return-value>
       <parameters>
         <parameter name="info" transfer-ownership="none">
@@ -2725,7 +2725,7 @@ when done.</doc>
       <doc xml:whitespace="preserve">Obtain the total size of the structure.</doc>
       <return-value transfer-ownership="none">
         <doc xml:whitespace="preserve">size of the structure in bytes</doc>
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </return-value>
       <parameters>
         <parameter name="info" transfer-ownership="none">
@@ -2946,7 +2946,7 @@ of type tags.</doc>
           <type name="guint8" c:type="guint8*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -2975,7 +2975,7 @@ of type tags.</doc>
           <type name="guint8" c:type="guint8*"/>
         </parameter>
         <parameter name="len" transfer-ownership="none">
-          <type name="gulong" c:type="gsize"/>
+          <type name="gsize" c:type="gsize"/>
         </parameter>
       </parameters>
     </function>
@@ -3003,7 +3003,7 @@ when done.</doc>
       <doc xml:whitespace="preserve">Obtain the required alignment of the union.</doc>
       <return-value transfer-ownership="none">
         <doc xml:whitespace="preserve">required alignment in bytes</doc>
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </return-value>
       <parameters>
         <parameter name="info" transfer-ownership="none">
@@ -3129,7 +3129,7 @@ when done.</doc>
       <doc xml:whitespace="preserve">Obtain the total size of the union.</doc>
       <return-value transfer-ownership="none">
         <doc xml:whitespace="preserve">size of the union in bytes</doc>
-        <type name="gulong" c:type="gsize"/>
+        <type name="gsize" c:type="gsize"/>
       </return-value>
       <parameters>
         <parameter name="info" transfer-ownership="none">
@@ -3165,6 +3165,27 @@ return type is to allow both.</doc>
         <parameter name="info" transfer-ownership="none">
           <doc xml:whitespace="preserve">a #GIValueInfo</doc>
           <type name="ValueInfo" c:type="GIValueInfo*"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="vfunc_info_get_address"
+              c:identifier="g_vfunc_info_get_address"
+              introspectable="0"
+              throws="1">
+      <doc xml:whitespace="preserve">This method will look up where inside the type struct of @implementor_gtype
+is the implementation for @info.</doc>
+      <return-value>
+        <doc xml:whitespace="preserve">address to a function or %NULL if an error happened</doc>
+        <type name="gpointer" c:type="gpointer"/>
+      </return-value>
+      <parameters>
+        <parameter name="info" transfer-ownership="none">
+          <doc xml:whitespace="preserve">a #GIVFuncInfo</doc>
+          <type name="VFuncInfo" c:type="GIVFuncInfo*"/>
+        </parameter>
+        <parameter name="implementor_gtype" transfer-ownership="none">
+          <doc xml:whitespace="preserve">#GType implementing this virtual function</doc>
+          <type name="GType" c:type="GType"/>
         </parameter>
       </parameters>
     </function>
@@ -3228,6 +3249,49 @@ this virtual function belongs.</doc>
         <parameter name="info" transfer-ownership="none">
           <doc xml:whitespace="preserve">a #GIVFuncInfo</doc>
           <type name="VFuncInfo" c:type="GIVFuncInfo*"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="vfunc_info_invoke"
+              c:identifier="g_vfunc_info_invoke"
+              introspectable="0"
+              throws="1">
+      <doc xml:whitespace="preserve">Invokes the function described in @info with the given
+arguments. Note that inout parameters must appear in both
+argument lists.
+error occurred.</doc>
+      <return-value transfer-ownership="none">
+        <doc xml:whitespace="preserve">%TRUE if the function has been invoked, %FALSE if an</doc>
+        <type name="gboolean" c:type="gboolean"/>
+      </return-value>
+      <parameters>
+        <parameter name="info" transfer-ownership="none">
+          <doc xml:whitespace="preserve">a #GIVFuncInfo describing the virtual function to invoke</doc>
+          <type name="VFuncInfo" c:type="GIVFuncInfo*"/>
+        </parameter>
+        <parameter name="implementor" transfer-ownership="none">
+          <doc xml:whitespace="preserve">#GType of the type that implements this virtual function</doc>
+          <type name="GType" c:type="GType"/>
+        </parameter>
+        <parameter name="in_args" transfer-ownership="none">
+          <doc xml:whitespace="preserve">an array of #GIArgument&lt;!-- --&gt;s, one for each in parameter of @info. If there are no in parameter, @in_args can be %NULL</doc>
+          <type name="Argument" c:type="GIArgument*"/>
+        </parameter>
+        <parameter name="n_in_args" transfer-ownership="none">
+          <doc xml:whitespace="preserve">the length of the @in_args array</doc>
+          <type name="gint" c:type="int"/>
+        </parameter>
+        <parameter name="out_args" transfer-ownership="none">
+          <doc xml:whitespace="preserve">an array of #GIArgument&lt;!-- --&gt;s, one for each out parameter of @info. If there are no out parameters, @out_args may be %NULL</doc>
+          <type name="Argument" c:type="GIArgument*"/>
+        </parameter>
+        <parameter name="n_out_args" transfer-ownership="none">
+          <doc xml:whitespace="preserve">the length of the @out_args array</doc>
+          <type name="gint" c:type="int"/>
+        </parameter>
+        <parameter name="return_value" transfer-ownership="none">
+          <doc xml:whitespace="preserve">return location for the return value of the function. If the function returns void, @return_value may be %NULL</doc>
+          <type name="Argument" c:type="GIArgument*"/>
         </parameter>
       </parameters>
     </function>

@@ -18,7 +18,7 @@ and/or use gtk-doc annotations.  -->
   <c:include name="gst/check/internal-check.h"/>
   <namespace name="GstCheck"
              version="0.10"
-             shared-library="libgstcheck-0.10.so.0"
+             shared-library="libgstreamer-0.10.so.0,libgstcheck-0.10.so.0"
              c:identifier-prefixes="Gst"
              c:symbol-prefixes="gst">
     <record name="CheckABIStruct" c:type="GstCheckABIStruct">

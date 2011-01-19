@@ -12,9 +12,10 @@ and/or use gtk-doc annotations.  -->
   <include name="Gst" version="0.10"/>
   <include name="libxml2" version="2.0"/>
   <package name="gstreamer-net-0.10"/>
+  <c:include name="gst/net/gstnet.h"/>
   <namespace name="GstNet"
              version="0.10"
-             shared-library="libgstnet-0.10.so.0"
+             shared-library="libgstreamer-0.10.so.0,libgstnet-0.10.so.0"
              c:identifier-prefixes="Gst"
              c:symbol-prefixes="gst">
     <constant name="NET_TIME_PACKET_SIZE" value="16">
@@ -70,15 +71,15 @@ clock.</doc>
       <field name="port">
         <type name="gint" c:type="gint"/>
       </field>
-      <field name="sock">
+      <field name="sock" readable="0" private="1">
         <type name="gint" c:type="int"/>
       </field>
-      <field name="control_sock">
+      <field name="control_sock" readable="0" private="1">
         <array zero-terminated="0" c:type="gint" fixed-size="2">
           <type name="gint" c:type="int"/>
         </array>
       </field>
-      <field name="current_timeout">
+      <field name="current_timeout" readable="0" private="1">
         <type name="Gst.ClockTime" c:type="GstClockTime"/>
       </field>
       <field name="servaddr">
@@ -87,10 +88,10 @@ clock.</doc>
       <field name="thread">
         <type name="GLib.Thread" c:type="GThread*"/>
       </field>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="NetClientClockPrivate" c:type="GstNetClientClockPrivate*"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="3">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -102,7 +103,7 @@ clock.</doc>
       <field name="parent_class">
         <type name="Gst.SystemClockClass" c:type="GstSystemClockClass"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="4">
           <type name="gpointer" c:type="gpointer"/>
         </array>
@@ -199,24 +200,24 @@ MT safe. Caller owns return value (g_free to free).</doc>
       <field name="parent">
         <type name="Gst.Object" c:type="GstObject"/>
       </field>
-      <field name="address">
+      <field name="address" readable="0" private="1">
         <type name="utf8" c:type="gchar*"/>
       </field>
-      <field name="port">
+      <field name="port" readable="0" private="1">
         <type name="gint" c:type="int"/>
       </field>
-      <field name="sock">
+      <field name="sock" readable="0" private="1">
         <type name="gint" c:type="int"/>
       </field>
-      <field name="control_sock">
+      <field name="control_sock" readable="0" private="1">
         <array zero-terminated="0" c:type="gint" fixed-size="2">
           <type name="gint" c:type="int"/>
         </array>
       </field>
-      <field name="thread">
+      <field name="thread" readable="0" private="1">
         <type name="GLib.Thread" c:type="GThread*"/>
       </field>
-      <field name="clock">
+      <field name="clock" readable="0" private="1">
         <type name="Gst.Clock" c:type="GstClock*"/>
       </field>
       <union name="active" c:type="active">
@@ -227,11 +228,11 @@ MT safe. Caller owns return value (g_free to free).</doc>
           <type name="gint" c:type="gint"/>
         </field>
       </union>
-      <field name="priv">
+      <field name="priv" readable="0" private="1">
         <type name="NetTimeProviderPrivate"
               c:type="GstNetTimeProviderPrivate*"/>
       </field>
-      <field name="_gst_reserved">
+      <field name="_gst_reserved" readable="0" private="1">
         <array zero-terminated="0" c:type="gpointer" fixed-size="2">
           <type name="gpointer" c:type="gpointer"/>
         </array>

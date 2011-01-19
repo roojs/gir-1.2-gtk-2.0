@@ -14,11 +14,11 @@ and/or use gtk-doc annotations.  -->
              shared-library="libatk-1.0.so.0"
              c:identifier-prefixes="Atk"
              c:symbol-prefixes="atk">
-    <alias name="AttributeSet">
+    <alias name="AttributeSet" c:type="AtkAttributeSet">
       <doc xml:whitespace="preserve">This is a singly-linked list (a #GSList) of #AtkAttribute. It is
 used by atk_text_get_run_attributes(), atk_text_get_default_attributes()
 and atk_editable_text_set_run_attributes()</doc>
-      <type name="gpointer" c:type="gpointer"/>
+      <type name="GLib.SList" c:type="GSList"/>
     </alias>
     <alias name="State" c:type="AtkState">
       <type name="guint64" c:type="guint64"/>
@@ -420,6 +420,16 @@ or zero if the handler was already added.</doc>
           <parameter name="handler" transfer-ownership="none">
             <doc xml:whitespace="preserve">The #AtkFocusHandler to be attached to @component</doc>
             <type name="FocusHandler" c:type="AtkFocusHandler"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="bounds_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="bounds" transfer-ownership="none">
+            <type name="Rectangle" c:type="AtkRectangle*"/>
           </parameter>
         </parameters>
       </virtual-method>
@@ -2037,6 +2047,11 @@ respect to the document it references) and %FALSE otherwise.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
       </virtual-method>
+      <virtual-method name="link_activated">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <virtual-method name="link_state">
         <return-value transfer-ownership="none">
           <type name="guint" c:type="guint"/>
@@ -2369,6 +2384,16 @@ or -1 if there is no hyperlink associated with this character.</doc>
           <doc xml:whitespace="preserve">the number of links within this hypertext document</doc>
           <type name="gint" c:type="gint"/>
         </return-value>
+      </virtual-method>
+      <virtual-method name="link_selected">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="link_index" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
       </virtual-method>
       <method name="get_link"
               c:identifier="atk_hypertext_get_link"
@@ -3043,6 +3068,29 @@ Application maintainers should not use this method.</doc>
            glib:type-name="AtkObject"
            glib:get-type="atk_object_get_type"
            glib:type-struct="ObjectClass">
+      <virtual-method name="active_descendant_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="child" transfer-ownership="none">
+            <type name="gpointer" c:type="gpointer*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="children_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="change_index" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="changed_child" transfer-ownership="none">
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
       <virtual-method name="connect_property_change_handler"
                       invoker="connect_property_change_handler"
                       introspectable="0">
@@ -3056,6 +3104,16 @@ atk_object_remove_property_change_handler()</doc>
           <parameter name="handler" transfer-ownership="none">
             <type name="PropertyChangeHandler"
                   c:type="AtkPropertyChangeHandler*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="focus_event">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="focus_in" transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
       </virtual-method>
@@ -3139,6 +3197,16 @@ to create an instance of a subclass of #AtkObject</doc>
           <parameter name="data" transfer-ownership="none">
             <doc xml:whitespace="preserve">a #gpointer which identifies the object for which the AtkObject was created.</doc>
             <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="property_change" introspectable="0">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="values" transfer-ownership="none">
+            <type c:type="AtkPropertyValues*"/>
           </parameter>
         </parameters>
       </virtual-method>
@@ -3228,6 +3296,24 @@ set of the accessible</doc>
             <type name="Role" c:type="AtkRole"/>
           </parameter>
         </parameters>
+      </virtual-method>
+      <virtual-method name="state_change">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="name" transfer-ownership="none">
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="state_set" transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="visible_data_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
       </virtual-method>
       <method name="add_relationship"
               c:identifier="atk_object_add_relationship">
@@ -4997,6 +5083,11 @@ supports multiple selections.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
       </virtual-method>
+      <virtual-method name="selection_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <method name="add_selection" c:identifier="atk_selection_add_selection">
         <doc xml:whitespace="preserve">Adds the specified accessible child of the object to the
 object's selection.</doc>
@@ -5877,6 +5968,37 @@ or 0 if value does not implement this interface.</doc>
           </parameter>
         </parameters>
       </virtual-method>
+      <virtual-method name="column_deleted">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="column" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="num_deleted" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="column_inserted">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="column" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="num_inserted" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="column_reordered">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <virtual-method name="get_caption"
                       invoker="get_caption"
                       introspectable="0">
@@ -6140,6 +6262,11 @@ if value does not implement this interface.</doc>
           </parameter>
         </parameters>
       </virtual-method>
+      <virtual-method name="model_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
       <virtual-method name="ref_at" invoker="ref_at" introspectable="0">
         <doc xml:whitespace="preserve">Get a reference to the table cell at @row, @column.</doc>
         <return-value>
@@ -6186,6 +6313,37 @@ the selection, or 0 if value does not implement this interface.</doc>
             <type name="gint" c:type="gint"/>
           </parameter>
         </parameters>
+      </virtual-method>
+      <virtual-method name="row_deleted">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="row" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="num_deleted" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="row_inserted">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="row" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="num_inserted" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="row_reordered">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
       </virtual-method>
       <virtual-method name="set_caption" invoker="set_caption">
         <doc xml:whitespace="preserve">Sets the caption for the table.</doc>
@@ -7860,6 +8018,39 @@ line end before the offset.</doc>
             <type name="gint" c:type="gint"/>
           </parameter>
         </parameters>
+      </virtual-method>
+      <virtual-method name="text_attributes_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+      </virtual-method>
+      <virtual-method name="text_caret_moved">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="location" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="text_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="position" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="length" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="text_selection_changed">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
       </virtual-method>
       <method name="add_selection" c:identifier="atk_text_add_selection">
         <doc xml:whitespace="preserve">Adds a selection bounded by the specified offsets.</doc>
