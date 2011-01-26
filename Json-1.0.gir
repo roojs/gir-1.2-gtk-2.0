@@ -3067,6 +3067,102 @@ JSON native types.</doc>
         </parameter>
       </parameters>
     </function>
+    <function name="gvariant_deserialize"
+              c:identifier="json_gvariant_deserialize"
+              version="0.14"
+              throws="1">
+      <doc xml:whitespace="preserve">Converts a JSON data structure to a GVariant value using @signature to
+resolve ambiguous data types. If no error occurs, the resulting #GVariant
+is guaranteed to conform to @signature.
+If @signature is not %NULL but does not represent a valid GVariant type
+string, %NULL is returned and error is set to %G_IO_ERROR_INVALID_ARGUMENT.
+If a @signature is provided but the JSON structure cannot be mapped to it,
+%NULL is returned and error is set to %G_IO_ERROR_INVALID_DATA.
+If @signature is %NULL, the conversion is done based strictly on the types
+in the JSON nodes.</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:whitespace="preserve">A newly created #GVariant compliant with</doc>
+        <type name="GLib.Variant" c:type="GVariant*"/>
+      </return-value>
+      <parameters>
+        <parameter name="json_node" transfer-ownership="none">
+          <doc xml:whitespace="preserve">A #JsonNode to convert</doc>
+          <type name="Node" c:type="JsonNode*"/>
+        </parameter>
+        <parameter name="signature" transfer-ownership="none">
+          <doc xml:whitespace="preserve">A valid #GVariant type string, or %NULL</doc>
+          <type name="utf8" c:type="gchar*"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="gvariant_deserialize_data"
+              c:identifier="json_gvariant_deserialize_data"
+              version="0.14"
+              throws="1">
+      <doc xml:whitespace="preserve">Converts a JSON string to a #GVariant value. This method works exactly
+like json_gvariant_deserialize(), but takes a JSON encoded string instead.
+The string is first converted to a #JsonNode using #JsonParser, and then
+json_gvariant_deserialize() is called.</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:whitespace="preserve">A newly created #GVariant compliant with</doc>
+        <type name="GLib.Variant" c:type="GVariant*"/>
+      </return-value>
+      <parameters>
+        <parameter name="json" transfer-ownership="none">
+          <doc xml:whitespace="preserve">A JSON data string</doc>
+          <type name="utf8" c:type="gchar*"/>
+        </parameter>
+        <parameter name="length" transfer-ownership="none">
+          <doc xml:whitespace="preserve">The length of @json, or -1 if %NULL-terminated</doc>
+          <type name="gssize" c:type="gssize"/>
+        </parameter>
+        <parameter name="signature" transfer-ownership="none">
+          <doc xml:whitespace="preserve">A valid #GVariant type string, or %NULL</doc>
+          <type name="utf8" c:type="gchar*"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="gvariant_serialize"
+              c:identifier="json_gvariant_serialize"
+              version="0.14">
+      <doc xml:whitespace="preserve">Converts @variant to a JSON tree.
+JSON data structure obtained from @variant</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:whitespace="preserve">A #JsonNode representing the root of the</doc>
+        <type name="Node" c:type="JsonNode*"/>
+      </return-value>
+      <parameters>
+        <parameter name="variant" transfer-ownership="none">
+          <doc xml:whitespace="preserve">A #GVariant to convert</doc>
+          <type name="GLib.Variant" c:type="GVariant*"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="gvariant_serialize_data"
+              c:identifier="json_gvariant_serialize_data"
+              version="0.14">
+      <doc xml:whitespace="preserve">Converts @variant to its JSON encoded string representation. This method
+is actually a helper function. It uses json_gvariant_serialize() to obtain the
+JSON tree, and then #JsonGenerator to stringify it.</doc>
+      <return-value transfer-ownership="full">
+        <doc xml:whitespace="preserve">The JSON encoded string corresponding to</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </return-value>
+      <parameters>
+        <parameter name="variant" transfer-ownership="none">
+          <doc xml:whitespace="preserve">A #GVariant to convert</doc>
+          <type name="GLib.Variant" c:type="GVariant*"/>
+        </parameter>
+        <parameter name="length"
+                   direction="out"
+                   caller-allocates="0"
+                   transfer-ownership="full"
+                   allow-none="1">
+          <doc xml:whitespace="preserve">Return location for the length of the returned string, or %NULL</doc>
+          <type name="gsize" c:type="gsize*"/>
+        </parameter>
+      </parameters>
+    </function>
     <function name="serialize_gobject"
               c:identifier="json_serialize_gobject"
               deprecated="Use json_gobject_to_data() instead"
