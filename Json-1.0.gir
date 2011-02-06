@@ -2328,6 +2328,15 @@ is in error state</doc>
           <type name="gint64" c:type="gint64"/>
         </return-value>
       </method>
+      <method name="get_member_name"
+              c:identifier="json_reader_get_member_name"
+              version="0.14">
+        <doc xml:whitespace="preserve">Retrieves the name of the current member.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:whitespace="preserve">the name of the member, or %NULL</doc>
+          <type name="utf8" c:type="gchar*"/>
+        </return-value>
+      </method>
       <method name="get_null_value"
               c:identifier="json_reader_get_null_value"
               version="0.12">
@@ -2387,11 +2396,25 @@ otherwise</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
       </method>
+      <method name="list_members"
+              c:identifier="json_reader_list_members"
+              version="0.14">
+        <doc xml:whitespace="preserve">Retrieves a list of member names from the current position, if @reader
+is positioned on an object.
+array of strings holding the members name. Use g_strfreev() when
+done.</doc>
+        <return-value transfer-ownership="full">
+          <doc xml:whitespace="preserve">a newly allocated, %NULL-terminated</doc>
+          <array c:type="gchar**">
+            <type name="utf8"/>
+          </array>
+        </return-value>
+      </method>
       <method name="read_element"
               c:identifier="json_reader_read_element"
               version="0.12">
-        <doc xml:whitespace="preserve">Advances the cursor of @reader to the element @index_ of array at the
-current position.
+        <doc xml:whitespace="preserve">Advances the cursor of @reader to the element @index_ of the array
+or the object at the current position.
 You can use the json_reader_get_value* family of functions to retrieve
 the value of the element; for instance:
 |[
@@ -2408,9 +2431,9 @@ json_reader_read_element (reader, 2);
 str_value = json_reader_get_string_value (reader);
 json_reader_end_element (reader);
 ]|
-If @reader is not currently on an array, or if the @index_ is bigger than
-the size of the array, the #JsonReader will be put in an error state until
-json_reader_end_element() is called.</doc>
+If @reader is not currently on an array or an object, or if the @index_ is
+bigger than the size of the array or the object, the #JsonReader will be
+put in an error state until json_reader_end_element() is called.</doc>
         <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">%TRUE on success, and %FALSE otherwise</doc>
           <type name="gboolean" c:type="gboolean"/>
