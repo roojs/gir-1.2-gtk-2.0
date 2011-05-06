@@ -23,7 +23,7 @@ and/or use gtk-doc annotations.  -->
   <package name="libsoup-2.4"/>
   <namespace name="WebKit"
              version="1.0"
-             shared-library="libwebkitgtk-1.0.so.0"
+             shared-library="libwebkit-1.0.so"
              c:identifier-prefixes="WebKit"
              c:symbol-prefixes="webkit">
     <enumeration name="CacheModel"

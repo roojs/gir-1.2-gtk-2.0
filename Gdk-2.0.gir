@@ -3340,10 +3340,10 @@ when you are done.</doc>
       </method>
       <method name="get_colormap"
               c:identifier="gdk_drawable_get_colormap"
-              introspectable="0">
+               >
         <doc xml:whitespace="preserve">Gets the colormap for @drawable, if one is set; returns
 %NULL otherwise.</doc>
-        <return-value>
+        <return-value transfer-ownership="none">
           <doc xml:whitespace="preserve">the colormap, or %NULL</doc>
           <type name="Colormap" c:type="GdkColormap*"/>
         </return-value>
@@ -19086,8 +19086,8 @@ not public API and must not be used by applications.</doc>
     </function>
     <function name="atom_intern"
               c:identifier="gdk_atom_intern"
-              introspectable="0">
-      <return-value>
+              >
+      <return-value transfer-ownership="none">
         <type name="Atom" c:type="GdkAtom"/>
       </return-value>
       <parameters>
