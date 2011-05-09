@@ -2198,22 +2198,22 @@ cannot be accessed directly.</doc>
     <record name="HashTable" c:type="GHashTable" disguised="1">
     </record>
     <record name="HashTableIter" c:type="GHashTableIter">
-      <field name="dummy1" writable="1">
+      <field name="dummy1" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
-      <field name="dummy2" writable="1">
+      <field name="dummy2" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
-      <field name="dummy3" writable="1">
+      <field name="dummy3" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
-      <field name="dummy4" writable="1">
+      <field name="dummy4" readable="0" private="1">
         <type name="gint" c:type="int"/>
       </field>
-      <field name="dummy5" writable="1">
+      <field name="dummy5" readable="0" private="1">
         <type name="gboolean" c:type="gboolean"/>
       </field>
-      <field name="dummy6" writable="1">
+      <field name="dummy6" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
       <method name="get_hash_table"
@@ -2494,66 +2494,66 @@ cannot be accessed directly.</doc>
       <type name="gint" c:type="gint"/>
     </constant>
     <record name="IOChannel" c:type="GIOChannel">
-      <field name="ref_count" writable="1">
+      <field name="ref_count" readable="0" private="1">
         <type name="gint" c:type="gint"/>
       </field>
-      <field name="funcs" writable="1">
+      <field name="funcs" readable="0" private="1">
         <type name="IOFuncs" c:type="GIOFuncs*"/>
       </field>
-      <field name="encoding" writable="1">
+      <field name="encoding" readable="0" private="1">
         <type name="utf8" c:type="gchar*"/>
       </field>
-      <field name="read_cd" writable="1">
+      <field name="read_cd" readable="0" private="1">
         <type name="IConv" c:type="GIConv"/>
       </field>
-      <field name="write_cd" writable="1">
+      <field name="write_cd" readable="0" private="1">
         <type name="IConv" c:type="GIConv"/>
       </field>
-      <field name="line_term" writable="1">
+      <field name="line_term" readable="0" private="1">
         <type name="utf8" c:type="gchar*"/>
       </field>
-      <field name="line_term_len" writable="1">
+      <field name="line_term_len" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="buf_size" writable="1">
+      <field name="buf_size" readable="0" private="1">
         <type name="gsize" c:type="gsize"/>
       </field>
-      <field name="read_buf" writable="1">
+      <field name="read_buf" readable="0" private="1">
         <type name="String" c:type="GString*"/>
       </field>
-      <field name="encoded_read_buf" writable="1">
+      <field name="encoded_read_buf" readable="0" private="1">
         <type name="String" c:type="GString*"/>
       </field>
-      <field name="write_buf" writable="1">
+      <field name="write_buf" readable="0" private="1">
         <type name="String" c:type="GString*"/>
       </field>
-      <field name="partial_write_buf" writable="1">
+      <field name="partial_write_buf" readable="0" private="1">
         <array zero-terminated="0" c:type="gchar" fixed-size="6">
           <type name="gchar" c:type="gchar"/>
         </array>
       </field>
-      <field name="use_buffer" writable="1" bits="1">
+      <field name="use_buffer" readable="0" bits="1" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="do_encode" writable="1" bits="1">
+      <field name="do_encode" readable="0" bits="1" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="close_on_unref" writable="1" bits="1">
+      <field name="close_on_unref" readable="0" bits="1" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="is_readable" writable="1" bits="1">
+      <field name="is_readable" readable="0" bits="1" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="is_writeable" writable="1" bits="1">
+      <field name="is_writeable" readable="0" bits="1" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="is_seekable" writable="1" bits="1">
+      <field name="is_seekable" readable="0" bits="1" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="reserved1" writable="1">
+      <field name="reserved1" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
-      <field name="reserved2" writable="1">
+      <field name="reserved2" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
       <method name="close" c:identifier="g_io_channel_close">
@@ -2655,13 +2655,13 @@ cannot be accessed directly.</doc>
           <type name="IOStatus" c:type="GIOStatus"/>
         </return-value>
         <parameters>
-          <parameter name="str_return" transfer-ownership="none">
+          <parameter name="str_return" transfer-ownership="full" direction="out">
             <type name="utf8" c:type="gchar**"/>
           </parameter>
-          <parameter name="length" transfer-ownership="none">
+          <parameter name="length" transfer-ownership="none" direction="out">
             <type name="gsize" c:type="gsize*"/>
           </parameter>
-          <parameter name="terminator_pos" transfer-ownership="none">
+          <parameter name="terminator_pos" transfer-ownership="none"  direction="out">
             <type name="gsize" c:type="gsize*"/>
           </parameter>
         </parameters>
@@ -2673,7 +2673,7 @@ cannot be accessed directly.</doc>
           <type name="IOStatus" c:type="GIOStatus"/>
         </return-value>
         <parameters>
-          <parameter name="buffer" transfer-ownership="none">
+          <parameter name="buffer" transfer-ownership="none" direction="inout">
             <type name="String" c:type="GString*"/>
           </parameter>
           <parameter name="terminator_pos" transfer-ownership="none">
@@ -2894,14 +2894,14 @@ cannot be accessed directly.</doc>
               value="8"
               c:identifier="G_IO_CHANNEL_ERROR_FAILED"/>
     </enumeration>
-    <enumeration name="IOCondition" c:type="GIOCondition">
+    <bitfield name="IOCondition" c:type="GIOCondition">
       <member name="in" value="1" c:identifier="G_IO_IN"/>
       <member name="out" value="4" c:identifier="G_IO_OUT"/>
       <member name="pri" value="2" c:identifier="G_IO_PRI"/>
       <member name="err" value="8" c:identifier="G_IO_ERR"/>
       <member name="hup" value="16" c:identifier="G_IO_HUP"/>
       <member name="nval" value="32" c:identifier="G_IO_NVAL"/>
-    </enumeration>
+    </bitfield>
     <enumeration name="IOError" c:type="GIOError">
       <member name="none" value="0" c:identifier="G_IO_ERROR_NONE"/>
       <member name="again" value="1" c:identifier="G_IO_ERROR_AGAIN"/>
@@ -3086,7 +3086,14 @@ cannot be accessed directly.</doc>
     <constant name="KEY_FILE_DESKTOP_KEY_EXEC" value="Exec">
       <type name="utf8" c:type="gchar*"/>
     </constant>
+    <constant name="KEY_FILE_DESKTOP_KEY_FULLNAME" value="X-GNOME-FullName">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
     <constant name="KEY_FILE_DESKTOP_KEY_GENERIC_NAME" value="GenericName">
+      <type name="utf8" c:type="gchar*"/>
+    </constant>
+    <constant name="KEY_FILE_DESKTOP_KEY_GETTEXT_DOMAIN"
+              value="X-GNOME-Gettext-Domain">
       <type name="utf8" c:type="gchar*"/>
     </constant>
     <constant name="KEY_FILE_DESKTOP_KEY_HIDDEN" value="Hidden">
@@ -3947,10 +3954,10 @@ cannot be accessed directly.</doc>
     <constant name="MAJOR_VERSION" value="2">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="MICRO_VERSION" value="92">
+    <constant name="MICRO_VERSION" value="5">
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="MINOR_VERSION" value="27">
+    <constant name="MINOR_VERSION" value="28">
       <type name="gint" c:type="gint"/>
     </constant>
     <constant name="MODULE_SUFFIX" value="so">
@@ -4205,6 +4212,22 @@ type representing a set of sources to be handled in a main loop.</doc>
     <record name="MainLoop" c:type="GMainLoop" disguised="1">
       <doc xml:whitespace="preserve">The &lt;structname&gt;GMainLoop&lt;/structname&gt; struct is an opaque data type
 representing the main event loop of a GLib or GTK+ application.</doc>
+      
+       <constructor name="new" c:identifier="g_main_loop_new">
+        <return-value transfer-ownership="full">
+          <type name="MainLoop" c:type="GMainLoop*"/>
+        </return-value>
+        <parameters>
+          <parameter name="context" transfer-ownership="none" allow-none="1">
+            <type name="MainContext" c:type="GMainContext*"/>
+          </parameter>
+          <parameter name="is_running" transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </constructor>
+    
+      
       <method name="get_context"
               c:identifier="g_main_loop_get_context"
               introspectable="0">
@@ -4212,6 +4235,7 @@ representing the main event loop of a GLib or GTK+ application.</doc>
           <type name="MainContext" c:type="GMainContext*"/>
         </return-value>
       </method>
+      
       <method name="is_running" c:identifier="g_main_loop_is_running">
         <return-value transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
@@ -5242,7 +5266,7 @@ fields and should not be directly accessed.</doc>
                      transfer-ownership="full"
                      allow-none="1">
             <array length="0" c:type="gchar***">
-              <type name="utf8"/>
+              <type name="utf8" c:type="gchar**"/>
             </array>
           </parameter>
         </parameters>
@@ -7389,45 +7413,45 @@ to g_regex_replace_eval(), and it should append the replacement to</doc>
     <record name="Source" c:type="GSource">
       <doc xml:whitespace="preserve">The &lt;structname&gt;GSource&lt;/structname&gt; struct is an opaque data type
 representing an event source.</doc>
-      <field name="callback_data" writable="1">
+      <field name="callback_data" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
-      <field name="callback_funcs" writable="1">
+      <field name="callback_funcs" readable="0" private="1">
         <type name="SourceCallbackFuncs" c:type="GSourceCallbackFuncs*"/>
       </field>
-      <field name="source_funcs" writable="1">
+      <field name="source_funcs" readable="0" private="1">
         <type name="SourceFuncs" c:type="GSourceFuncs*"/>
       </field>
-      <field name="ref_count" writable="1">
+      <field name="ref_count" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="context" writable="1">
+      <field name="context" readable="0" private="1">
         <type name="MainContext" c:type="GMainContext*"/>
       </field>
-      <field name="priority" writable="1">
+      <field name="priority" readable="0" private="1">
         <type name="gint" c:type="gint"/>
       </field>
-      <field name="flags" writable="1">
+      <field name="flags" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="source_id" writable="1">
+      <field name="source_id" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="poll_fds" writable="1">
+      <field name="poll_fds" readable="0" private="1">
         <type name="GLib.SList" c:type="GSList*">
           <type name="gpointer" c:type="gpointer"/>
         </type>
       </field>
-      <field name="prev" writable="1">
+      <field name="prev" readable="0" private="1">
         <type name="Source" c:type="GSource*"/>
       </field>
-      <field name="next" writable="1">
+      <field name="next" readable="0" private="1">
         <type name="Source" c:type="GSource*"/>
       </field>
-      <field name="name" writable="1">
+      <field name="name" readable="0" private="1">
         <type name="utf8" c:type="char*"/>
       </field>
-      <field name="priv" writable="1">
+      <field name="priv" readable="0" private="1">
         <type name="SourcePrivate" c:type="GSourcePrivate*"/>
       </field>
       <method name="add_child_source" c:identifier="g_source_add_child_source">
@@ -7857,7 +7881,7 @@ required condition has been met, and returns %TRUE if so.</doc>
       </method>
     </record>
     <record name="StaticPrivate" c:type="GStaticPrivate">
-      <field name="index" writable="1">
+      <field name="index" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
       <method name="free" c:identifier="g_static_private_free">
@@ -7892,25 +7916,25 @@ required condition has been met, and returns %TRUE if so.</doc>
       </method>
     </record>
     <record name="StaticRWLock" c:type="GStaticRWLock">
-      <field name="mutex" writable="1">
+      <field name="mutex" readable="0" private="1">
         <type name="StaticMutex" c:type="GStaticMutex"/>
       </field>
-      <field name="read_cond" writable="1">
+      <field name="read_cond" readable="0" private="1">
         <type name="Cond" c:type="GCond*"/>
       </field>
-      <field name="write_cond" writable="1">
+      <field name="write_cond" readable="0" private="1">
         <type name="Cond" c:type="GCond*"/>
       </field>
-      <field name="read_counter" writable="1">
+      <field name="read_counter" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="have_writer" writable="1">
+      <field name="have_writer" readable="0" private="1">
         <type name="gboolean" c:type="gboolean"/>
       </field>
-      <field name="want_to_read" writable="1">
+      <field name="want_to_read" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="want_to_write" writable="1">
+      <field name="want_to_write" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
       <method name="free" c:identifier="g_static_rw_lock_free">
@@ -7959,13 +7983,13 @@ required condition has been met, and returns %TRUE if so.</doc>
       </method>
     </record>
     <record name="StaticRecMutex" c:type="GStaticRecMutex">
-      <field name="mutex" writable="1">
+      <field name="mutex" readable="0" private="1">
         <type name="StaticMutex" c:type="GStaticMutex"/>
       </field>
-      <field name="depth" writable="1">
+      <field name="depth" readable="0" private="1">
         <type name="guint" c:type="guint"/>
       </field>
-      <field name="owner" writable="1">
+      <field name="owner" readable="0" private="1">
         <type name="SystemThread" c:type="GSystemThread"/>
       </field>
       <method name="free" c:identifier="g_static_rec_mutex_free">
@@ -8497,10 +8521,10 @@ required condition has been met, and returns %TRUE if so.</doc>
       </return-value>
     </callback>
     <record name="TestLogBuffer" c:type="GTestLogBuffer">
-      <field name="data" writable="1">
+      <field name="data" readable="0" private="1">
         <type name="String" c:type="GString*"/>
       </field>
-      <field name="msgs" writable="1">
+      <field name="msgs" readable="0" private="1">
         <type name="GLib.SList" c:type="GSList*">
           <type name="gpointer" c:type="gpointer"/>
         </type>
@@ -8634,16 +8658,16 @@ required condition has been met, and returns %TRUE if so.</doc>
               c:identifier="G_TEST_TRAP_INHERIT_STDIN"/>
     </bitfield>
     <record name="Thread" c:type="GThread">
-      <field name="func" introspectable="0" writable="1">
+      <field name="func" introspectable="0" readable="0" private="1">
         <type name="ThreadFunc" c:type="GThreadFunc"/>
       </field>
-      <field name="data" writable="1">
+      <field name="data" readable="0" private="1">
         <type name="gpointer" c:type="gpointer"/>
       </field>
-      <field name="joinable" writable="1">
+      <field name="joinable" readable="0" private="1">
         <type name="gboolean" c:type="gboolean"/>
       </field>
-      <field name="priority" writable="1">
+      <field name="priority" readable="0" private="1">
         <type name="ThreadPriority" c:type="GThreadPriority"/>
       </field>
       <method name="join" c:identifier="g_thread_join" introspectable="0">
@@ -9576,6 +9600,9 @@ The returned string is owned by GLib and must not be freed.</doc>
       <member name="hangul_lvt_syllable"
               value="35"
               c:identifier="G_UNICODE_BREAK_HANGUL_LVT_SYLLABLE"/>
+      <member name="close_paranthesis"
+              value="36"
+              c:identifier="G_UNICODE_BREAK_CLOSE_PARANTHESIS"/>
     </enumeration>
     <enumeration name="UnicodeScript" c:type="GUnicodeScript">
       <member name="invalid_code"
@@ -9780,9 +9807,9 @@ The returned string is owned by GLib and must not be freed.</doc>
       <member name="old_south_arabian"
               value="88"
               c:identifier="G_UNICODE_SCRIPT_OLD_SOUTH_ARABIAN"/>
-      <member name="old_turkish"
+      <member name="old_turkic"
               value="89"
-              c:identifier="G_UNICODE_SCRIPT_OLD_TURKISH"/>
+              c:identifier="G_UNICODE_SCRIPT_OLD_TURKIC"/>
       <member name="samaritan"
               value="90"
               c:identifier="G_UNICODE_SCRIPT_SAMARITAN"/>
@@ -9792,6 +9819,11 @@ The returned string is owned by GLib and must not be freed.</doc>
       <member name="tai_viet"
               value="92"
               c:identifier="G_UNICODE_SCRIPT_TAI_VIET"/>
+      <member name="batak" value="93" c:identifier="G_UNICODE_SCRIPT_BATAK"/>
+      <member name="brahmi" value="94" c:identifier="G_UNICODE_SCRIPT_BRAHMI"/>
+      <member name="mandaic"
+              value="95"
+              c:identifier="G_UNICODE_SCRIPT_MANDAIC"/>
     </enumeration>
     <enumeration name="UnicodeType" c:type="GUnicodeType">
       <member name="control" value="0" c:identifier="G_UNICODE_CONTROL"/>
@@ -9953,7 +9985,7 @@ enumeration.</doc>
           <type name="Variant" c:type="GVariant*"/>
         </return-value>
         <parameters>
-          <parameter name="boolean" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none">
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -9963,7 +9995,7 @@ enumeration.</doc>
           <type name="Variant" c:type="GVariant*"/>
         </return-value>
         <parameters>
-          <parameter name="byte" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none">
             <type name="guint8" c:type="guchar"/>
           </parameter>
         </parameters>
@@ -9998,7 +10030,7 @@ enumeration.</doc>
           <type name="Variant" c:type="GVariant*"/>
         </return-value>
         <parameters>
-          <parameter name="floating" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none">
             <type name="gdouble" c:type="gdouble"/>
           </parameter>
         </parameters>
@@ -10033,7 +10065,7 @@ enumeration.</doc>
           <type name="Variant" c:type="GVariant*"/>
         </return-value>
         <parameters>
-          <parameter name="handle" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none">
             <type name="gint32" c:type="gint32"/>
           </parameter>
         </parameters>
@@ -10043,7 +10075,7 @@ enumeration.</doc>
           <type name="Variant" c:type="GVariant*"/>
         </return-value>
         <parameters>
-          <parameter name="int16" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none">
             <type name="gint16" c:type="gint16"/>
           </parameter>
         </parameters>
@@ -10053,7 +10085,7 @@ enumeration.</doc>
           <type name="Variant" c:type="GVariant*"/>
         </return-value>
         <parameters>
-          <parameter name="int32" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none">
             <type name="gint32" c:type="gint32"/>
           </parameter>
         </parameters>
@@ -10063,7 +10095,7 @@ enumeration.</doc>
           <type name="Variant" c:type="GVariant*"/>
         </return-value>
         <parameters>
-          <parameter name="int64" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none">
             <type name="gint64" c:type="gint64"/>
           </parameter>
         </parameters>
@@ -10163,7 +10195,7 @@ enumeration.</doc>
           <type name="Variant" c:type="GVariant*"/>
         </return-value>
         <parameters>
-          <parameter name="uint16" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none">
             <type name="guint16" c:type="guint16"/>
           </parameter>
         </parameters>
@@ -10173,7 +10205,7 @@ enumeration.</doc>
           <type name="Variant" c:type="GVariant*"/>
         </return-value>
         <parameters>
-          <parameter name="uint32" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none">
             <type name="guint32" c:type="guint32"/>
           </parameter>
         </parameters>
@@ -10183,7 +10215,7 @@ enumeration.</doc>
           <type name="Variant" c:type="GVariant*"/>
         </return-value>
         <parameters>
-          <parameter name="uint64" transfer-ownership="none">
+          <parameter name="value" transfer-ownership="none">
             <type name="guint64" c:type="guint64"/>
           </parameter>
         </parameters>
@@ -10603,7 +10635,7 @@ enumeration.</doc>
       </method>
     </record>
     <record name="VariantBuilder" c:type="GVariantBuilder">
-      <field name="x" writable="1">
+      <field name="x" readable="0" private="1">
         <array zero-terminated="0" c:type="gsize" fixed-size="16">
           <type name="gsize" c:type="gsize"/>
         </array>
@@ -10725,7 +10757,7 @@ enumeration.</doc>
               c:identifier="G_VARIANT_CLASS_DICT_ENTRY"/>
     </enumeration>
     <record name="VariantIter" c:type="GVariantIter">
-      <field name="x" writable="1">
+      <field name="x" readable="0" private="1">
         <array zero-terminated="0" c:type="gsize" fixed-size="16">
           <type name="gsize" c:type="gsize"/>
         </array>
@@ -10854,7 +10886,7 @@ enumeration.</doc>
     <record name="VariantType" c:type="GVariantType" disguised="1">
       <doc xml:whitespace="preserve">A type in the GVariant type system.
 Two types may not be compared by value; use g_variant_type_equal() or
-g_variant_type_is_subtype().  May be copied using
+g_variant_type_is_subtype_of().  May be copied using
 g_variant_type_copy() and freed using g_variant_type_free().</doc>
       <method name="copy"
               c:identifier="g_variant_type_copy"
@@ -12020,7 +12052,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
         <parameter name="args" transfer-ownership="none">
           <doc xml:whitespace="preserve">Return value:</doc>
           <array c:type="gchar**">
-            <type name="utf8"/>
+            <type name="utf8" c:type="gchar*"/>
           </array>
         </parameter>
       </parameters>
@@ -12053,7 +12085,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
         <parameter name="args" transfer-ownership="none">
           <doc xml:whitespace="preserve">Return value:</doc>
           <array c:type="gchar**">
-            <type name="utf8"/>
+            <type name="utf8" c:type="gchar*"/>
           </array>
         </parameter>
       </parameters>
@@ -14658,9 +14690,8 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
       </parameters>
     </function>
     <function name="io_channel_unix_new"
-              c:identifier="g_io_channel_unix_new"
-              introspectable="0">
-      <return-value>
+              c:identifier="g_io_channel_unix_new" >
+      <return-value transfer-ownership="full">
         <type name="IOChannel" c:type="GIOChannel*"/>
       </return-value>
       <parameters>
@@ -14671,8 +14702,8 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
     </function>
     <function name="io_create_watch"
               c:identifier="g_io_create_watch"
-              introspectable="0">
-      <return-value>
+              >
+      <return-value transfer-ownership="full">
         <type name="Source" c:type="GSource*"/>
       </return-value>
       <parameters>
@@ -15454,21 +15485,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
         <type name="gint" c:type="gint"/>
       </return-value>
     </function>
-    <function name="main_loop_new"
-              c:identifier="g_main_loop_new"
-              introspectable="0">
-      <return-value>
-        <type name="MainLoop" c:type="GMainLoop*"/>
-      </return-value>
-      <parameters>
-        <parameter name="context" transfer-ownership="none" allow-none="1">
-          <type name="MainContext" c:type="GMainContext*"/>
-        </parameter>
-        <parameter name="is_running" transfer-ownership="none">
-          <type name="gboolean" c:type="gboolean"/>
-        </parameter>
-      </parameters>
-    </function>
+    
     <function name="malloc" c:identifier="g_malloc" introspectable="0">
       <return-value>
         <type name="gpointer" c:type="gpointer"/>
@@ -17027,7 +17044,7 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
                    caller-allocates="0"
                    transfer-ownership="full">
           <array c:type="gchar***">
-            <type name="utf8"/>
+            <type name="utf8" c:type="gchar**"/>
           </array>
         </parameter>
       </parameters>
@@ -17780,12 +17797,12 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
         </parameter>
         <parameter name="argv" transfer-ownership="none">
           <array c:type="gchar**">
-            <type name="utf8"/>
+            <type name="utf8" c:type="gchar*"/>
           </array>
         </parameter>
         <parameter name="envp" transfer-ownership="none" allow-none="1">
           <array c:type="gchar**">
-            <type name="utf8"/>
+            <type name="utf8" c:type="gchar*"/>
           </array>
         </parameter>
         <parameter name="flags" transfer-ownership="none">
@@ -17822,10 +17839,14 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
           <type name="utf8" c:type="gchar*"/>
         </parameter>
         <parameter name="argv" transfer-ownership="none">
-          <type name="utf8" c:type="gchar**"/>
+         <array c:type="gchar**">
+            <type name="utf8"/>
+          </array>
         </parameter>
         <parameter name="envp" transfer-ownership="none" allow-none="1">
-          <type name="utf8" c:type="gchar**"/>
+          <array c:type="gchar**">
+            <type name="utf8"/>
+          </array>
         </parameter>
         <parameter name="flags" transfer-ownership="none">
           <type name="SpawnFlags" c:type="GSpawnFlags"/>
@@ -17935,12 +17956,12 @@ g_variant_type_copy() and freed using g_variant_type_free().</doc>
         </parameter>
         <parameter name="argv" transfer-ownership="none">
           <array c:type="gchar**">
-            <type name="utf8"/>
+            <type name="utf8" c:type="gchar*"/>
           </array>
         </parameter>
         <parameter name="envp" transfer-ownership="none" allow-none="1">
           <array c:type="gchar**">
-            <type name="utf8"/>
+            <type name="utf8" c:type="gchar*"/>
           </array>
         </parameter>
         <parameter name="flags" transfer-ownership="none">

@@ -15,8 +15,8 @@ and/or use gtk-doc annotations.  -->
   <package name="glib-2.0"/>
   <package name="gobject-2.0"/>
   <namespace name="Notify"
-             version="0.7"
-             shared-library="libnotify.so.4"
+             version="1.2.3"
+             shared-library="libnotify.so.1"
              c:identifier-prefixes="Notify"
              c:symbol-prefixes="notify">
     <callback name="ActionCallback" c:type="NotifyActionCallback">
