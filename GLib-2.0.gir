@@ -3151,7 +3151,12 @@ cannot be accessed directly.</doc>
     <constant name="KEY_FILE_DESKTOP_TYPE_LINK" value="Link">
       <type name="utf8" c:type="gchar*"/>
     </constant>
-    <record name="KeyFile" c:type="GKeyFile" disguised="1">
+    <record name="KeyFile" c:type="GKeyFile">
+       <constructor name="new" c:identifier="g_key_file_new">
+        <return-value transfer-ownership="full">
+          <type name="KeyFile" c:type="GKeyFile*"/>
+        </return-value>
+      </constructor>
       <method name="free" c:identifier="g_key_file_free">
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3239,9 +3244,8 @@ cannot be accessed directly.</doc>
         </parameters>
       </method>
       <method name="get_groups"
-              c:identifier="g_key_file_get_groups"
-              introspectable="0">
-        <return-value>
+              c:identifier="g_key_file_get_groups">
+        <return-value transfer-ownership="none">
           <array c:type="gchar**">
             <type name="utf8"/>
           </array>
@@ -3300,9 +3304,8 @@ cannot be accessed directly.</doc>
       </method>
       <method name="get_keys"
               c:identifier="g_key_file_get_keys"
-              introspectable="0"
               throws="1">
-        <return-value>
+        <return-value transfer-ownership="none">
           <array c:type="gchar**">
             <type name="utf8"/>
           </array>
